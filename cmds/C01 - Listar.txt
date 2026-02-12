@@ -20,13 +20,13 @@ Não coloque nenhuma afirmação no começo da sua resposta indicando o que voc�
 
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça apenas a lista com a enumeração hierárquica de tudo que aparece no documento em anexo nessa conversa.
 
-Faça uma lista para cubrir todos os itens de sumário e sumarizantes do documento em anexo nessa conversa.
+Faça uma lista para cobrir todos os itens de sumário e sumarizantes do documento em anexo nessa conversa.
 
-Faça uma lista extensa e completa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo presentes no documento em anexo nessa conversa.
+Faça uma lista extensa e completa com riqueza de detalhes para cobrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo presentes no documento em anexo nessa conversa.
 
 Aja como um analista de conhecimento especializado. Analise o documento em anexo e gere um **sumário hierárquico detalhado e exaustivo** cobrindo todos os assuntos, temas e tópicos abordados no documento em anexo.
 
-Faça uma lista extensa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que aparecem no documento em anexo nessa conversa.
+Faça uma lista extensa com riqueza de detalhes para cobrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que aparecem no documento em anexo nessa conversa.
 
 
 **Regras Estritas de Formatação:**
@@ -43,4 +43,4 @@ Faça uma lista extensa com riqueza de detalhes para cubrir todos os assuntos, t
 1.1.1. Cada Detalhe Específico Presente no Subtópico\n
 
 
-Faça uma lista extensa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que constam no documento em anexo nessa conversa.
+Faça uma lista extensa com riqueza de detalhes para cobrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que constam no documento em anexo nessa conversa.

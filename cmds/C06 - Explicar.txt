@@ -35,6 +35,6 @@ Desenvolva uma dissertação aprofundada com base no documento anexado e sobre o
 
 Escreva um texto abrangente e longo, abordando ponto a ponto sob análise conforme o documento em anexo nessa conversa e sobre o que foi requisitado ao final desse comando. A resposta deve ser detalhada e não deve omitir nenhuma informação relevante.
 
-Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação para cubrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
+Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
 
 < INSERT >

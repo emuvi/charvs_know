@@ -71,7 +71,7 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 # Ação
 
-Processe o documento em anexo focando no TEMA ALVO e gere um conjunto extenso de notas atômicas com alta precisão e reiqueza de detalhes informativos / explicativos. Todas as notas atômicas devem ser interconectadas por links / vínculos. Gere um conjunto de notas atômicas que cubra todo o TEMA ALVO apresentando todo o conteúdo presente no documento em anexo.
+Processe o documento em anexo focando no TEMA ALVO e gere um conjunto extenso de notas atômicas com alta precisão e riqueza de detalhes informativos / explicativos. Todas as notas atômicas devem ser interconectadas por links / vínculos. Gere um conjunto de notas atômicas que cubra todo o TEMA ALVO apresentando todo o conteúdo presente no documento em anexo.
 
 # Trate com riqueza de detalhes o TEMA ALVO:
 
