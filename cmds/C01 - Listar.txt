@@ -37,6 +37,7 @@ Faça uma lista extensa com riqueza de detalhes para cobrir todos os assuntos, t
 
 3. **Saída Limpa:** Forneça **apenas** a lista formatada. Não inclua introduções, conclusões, observações ou perguntas finais.
 
+
 **Modelo de Saída Esperado:**
 1. Tópico Principal\n
 1.1. Subtópico Abrangente\n

@@ -2,7 +2,7 @@ Sugira 10 (dez) classificações possíveis que consigam sintetizar todo o assun
 
 Cada classificação sugerida deve apresentar três níveis hierárquicos, cada nível indo do mais abrangente / abstrato para o mais específico / concreto.
 
-Inicie cada nível de classificação com o carácter ´-´.
+Inicie cada nível hierárquico de classificação com o carácter ´-´.
 
 
 Ou seja, sugira 10 (dez) classificações no seguinte estilo:
@@ -16,6 +16,13 @@ Ou seja, sugira 10 (dez) classificações no seguinte estilo:
 - Português - Sintaxe e Regras de Construção - Emprego dos Sinais de Pontuação
 - Geografia - Dinâmica Espacial e Demográfica - Demografia e Migrações
 - Matemática - Aritmética e Fundamentos Numéricos - Potências de Dez e Unidades de Medida
+
+
+Para cada título de classificação sugerido, o primeiro nível hierárquico de classificação pode ter até 30 caracteres. O primeiro nível hierárquico de classificação não deve ter mais de 30 caracteres para cada título de classificação sugerido.
+
+Para cada título de classificação sugerido, o segundo nível hierárquico de classificação pode ter até 60 caracteres. O segundo nível hierárquico de classificação não deve ter mais de 60 caracteres para cada título de classificação sugerido.
+
+Para cada título de classificação sugerido, o terceiro nível hierárquico de classificação pode ter até 90 caracteres. O terceiro nível hierárquico de classificação não deve ter mais de 90 caracteres para cada título de classificação sugerido.
 
 
 Mas **ATENÇÃO** sugira 10 (dez) classificações pertinentes ao documento em anexo e que consigam sintetizar todo o assunto abaixo apresentado e todo o assunto que poderia estar correlacionado.
