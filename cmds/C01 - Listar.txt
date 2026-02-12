@@ -1,0 +1,46 @@
+Liste em 3 (três) níveis hierárquicos todos os itens de sumário e sumarizantes do documento em anexo nessa conversa.
+
+Faça uma lista extensa com todos os assuntos que aparecem no documento em anexo nessa conversa.
+
+Faça uma enumeração hierárquica em 3 (três) níveis para cada linha da sua resposta.
+Comece cada linha com a indicação numérica e hierárquica de cada item da lista na sua resposta.
+Não coloque linhas em branco na sua resposta. Não coloque nada na resposta além da lista enumerada e hierárquica.
+Coloque um item por linha. Nunca coloque mais de um item enumerado por linha da sua resposta.
+
+
+Ou seja, a sua resposta deve ser no seguinte estilo:
+< Início do Estilo da Resposta >
+1. Item de sumário ou sumarizante.\n
+1.1. Item de sumário ou sumarizante.\n
+1.1.1. Item de sumário ou sumarizante.\n
+< Fim do Estilo da Resposta >
+
+
+Não coloque nenhuma afirmação no começo da sua resposta indicando o que você entendeu do meu comando. Forneça apenas a lista com a enumeração hierárquica de tudo que aparece no documento em anexo nessa conversa.
+
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça apenas a lista com a enumeração hierárquica de tudo que aparece no documento em anexo nessa conversa.
+
+Faça uma lista para cubrir todos os itens de sumário e sumarizantes do documento em anexo nessa conversa.
+
+Faça uma lista extensa e completa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo presentes no documento em anexo nessa conversa.
+
+Aja como um analista de conhecimento especializado. Analise o documento em anexo e gere um **sumário hierárquico detalhado e exaustivo** cobrindo todos os assuntos, temas e tópicos abordados no documento em anexo.
+
+Faça uma lista extensa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que aparecem no documento em anexo nessa conversa.
+
+
+**Regras Estritas de Formatação:**
+
+1. **Estrutura:** Organize o conteúdo em exatamente **3 (três) níveis hierárquicos** numéricos (Ex: 1., 1.1., 1.1.1.).
+
+2. **Conteúdo:** Liste apenas um item por linha. Não pule linhas (sem linhas em branco).
+
+3. **Saída Limpa:** Forneça **apenas** a lista formatada. Não inclua introduções, conclusões, observações ou perguntas finais.
+
+**Modelo de Saída Esperado:**
+1. Tópico Principal\n
+1.1. Subtópico Abrangente\n
+1.1.1. Cada Detalhe Específico Presente no Subtópico\n
+
+
+Faça uma lista extensa com riqueza de detalhes para cubrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que constam no documento em anexo nessa conversa.

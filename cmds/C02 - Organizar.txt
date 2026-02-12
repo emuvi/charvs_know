@@ -1,0 +1,30 @@
+Vamos criar um sistema de classificação para cada um dos grupos semióticos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+
+Cada classificação sugerida deve ser apresentada no seguinte formato:
+[[+ Título de Classificação com até 120 Caracteres]]
+
+
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** a lista de classificações sugeridas para cada grupo de assunto, tema ou tópicos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de classificações sugeridas para cada grupo itens classificatórios abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a lista de classificações sugeridas para cada grupo de significado semântico abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+Não coloque nenhuma citação na sua resposta. Forneça **apenas** a lista de classificações sugeridas para cada grupo semiótico abaixo separados por `---`.
+
+Cada título de classificação deve ter até 120 caracteres. Cada título de classificação não deve ter mais de 120 caracteres. Cada título de classificação deve seguir o padrão de que toda palavra importante em cada título deve ter a sua primeira letra em maiúsculas. As palavras menos importantes como preposições e conjunções devem ser escritas com todas as suas letras em minúsculas.
+
+Crie um sistema de classificação baseado no conteúdo do documento em anexo nessa conversa.
+
+Nunca separe cada título de classificação sugerido com os caracteres: `---`.
+
+Coloque uma linha em branco entre cada título de classificação sugerido.
+
+Não coloque nada na sua resposta além dos títulos de classificação sugeridos para sintetizar cada um dos grupos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+Sugira títulos de classificação agrupadores de significado que façam sentido conforme o documento em anexo nessa conversa.
+
+Sintetize um título de classificação para cada um dos grupos semânticos abaixo separados por `---`:
+
+< INSERT >

@@ -1,0 +1,78 @@
+# Papel e Objetivo
+Atue como um Especialista em Gestão do Conhecimento Acadêmico e Pesquisador Sênior. Sua tarefa é analisar o documento em anexo e realizar uma "extração atômica de conhecimento" focada estritamente no TEMA ALVO definido abaixo.
+
+# Instruções de Processamento
+
+1. *Análise Profunda:* Leia o documento anexo integralmente, buscando todas as nuances, argumentos, dados e conceitos relacionados ao TEMA ALVO.
+
+2. *Decomposição Atômica:* Quebre o conhecimento em "Notas Atômicas". Cada nota deve focar em UM único conceito, ideia ou argumento central. Evite notas genéricas ou longas demais que misturem múltiplos tópicos.
+
+3. *Erudição e Detalhe:* O texto deve ser formal, denso em informação e tecnicamente preciso. Não simplifique excessivamente; mantenha o vocabulário do documento original, explicando-o se necessário.
+
+4. *Interconexão (Obrigatório):* Utilize a sintaxe de WikiLinks [[Título da Outra Nota]] para conectar conceitos dentro do texto das notas. As notas devem conversar entre si.
+
+5. *Autossuficiência:* Cada nota deve fazer sentido sozinha, mas ganhar poder quando lida em conjunto com as outras.
+
+6. *Linguagem:* Utilize sempre a língua portuguesa erudita. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome de Tags aplique a acentuação da língua portuguesa.
+
+7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve conter o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. Não coloque o título entre colchetes. O título NÃO deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
+
+8. *Variedade:* Faça uma composição com riqueza de detalhes. Produzindo uma grande quantidade de notas variadas para abordar profundamente o TEMA ALVO.
+
+9. *Precisão:* Não invente nada. Utilize somente as informações e o conteúdo do documento em anexo. Cada link / vínculo no formato de citação entre colchetes `[[link]]` deve ser *EXATAMENTE* o título de outra nota atômica.
+
+10. *Citação:* Sempre que uma referência for citada, faça a citação completa e atômica de maneira que a citação seja também autossuficiente.
+
+11. *Vinculação (Obrigatório):* Insira em cada nota atômica links para as outras notas atômicas que você está criando durante toda essa conversa usando o formato [[Título da Outra Nota]]. Insira links para outras nota atômicas sempre que houver uma relação semântica ou de interesse. Toda nota atômica deve conter pelo menos um link para outra nota atômica. Utilize o formato de citação entre colchetes `[[link]]` somente entre notas atômicas. Nunca utilize o formato de citação entre colchetes `[[link]]` para referências externas, não presentes nessa conversa. Cada link / vínculo no formato de citação entre colchetes `[[link]]` deve ser *EXATAMENTE* o título de outra nota atômica.
+
+12. *Inteligência:* Sempre que possível e interessante para o entendimento do assunto insira vinculações para outras notas atômicas criadas durante essa conversa. Se utilize das suas respostas anteriores para construir vínculos semânticos e lógicos para construir uma explicação clara e erudita do TEMA ALVO. Sempre construa vínculos semânticos interessantes que todas as outras notas atômicas relevantes que você já criou em todas as nossas conversas.
+
+
+# Formato de Saída (Estrito)
+Para cada nota gerada, utilize EXATAMENTE a seguinte estrutura (Markdown):
+
+---
+
+[título completo, claro e declarativo]
+
+[Escreva aqui o conteúdo da nota atômica com riqueza de detalhes, citando definições, argumentos e evidências encontradas no documento em anexo. Insira links para as outras notas atômicas que você está criando durante toda essa conversa usando o formato [[título da outra nota atômica]] sempre que houver uma relação semântica ou de interesse. Escreva em estilo erudito. Coloque em negrito o termo mais importante da nota. Coloque em itálico o segundo e o terceiro termos mais importantes da nota.]
+
+*Tags:* #{{classificação_específica_da_parte_do_tema_alvo_abordado_em_cada_nota}} #{{micro_classificação_genérica_do_assunto_abordado_de_cada_nota}} #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
+
+---
+
+
+# Sistema de Indexação por Tags em Cada Nota Atômica
+
+Crie um sistema de indexação hierárquica que organiza o conhecimento em três níveis crescentes de abrangência, partindo do detalhe específico do conteúdo de cada nota atômica, passando por uma categoria intermediária, até alcançar o tema global do documento de origem em anexo.
+
+#{{classificação_específica_da_parte_do_tema_alvo_abordado_em_cada_nota}}
+Classificação Específica: Identifica o detalhe preciso, o dado exclusivo ou o subtema particular que está sendo isolado e tratado unicamente dentro daquela nota.
+
+#{{micro_classificação_genérica_do_assunto_abordado_de_cada_nota}}
+Micro Classificação Genérica: Estabelece uma categoria intermediária ou temática comum que conecta esta nota a outros conceitos afins (como se fosse o título de um capítulo).
+
+#{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
+Macro Classificação Geral: Define o contexto global, a grande disciplina ou o assunto do documento original de onde toda a informação foi extraída.
+
+*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o  Português erudito.
+
+
+# Conjunto de Notas Atômicas
+
+Faça um conjunto extenso de notas atômicas que capturem todo o conteúdo relacionado com o TEMA ALVO. Comece com notas atômicas mais genéricas / abstratas e vá descendo no nível de detalhamento até produzir notas atômicas sobre cada ponto específico relacionado com o TEMA ALVO.
+
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a lista de notas atômicas separadas por `---`.
+
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de notas atômicas separadas por `---`.
+
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a lista de notas atômicas separadas por `---`.
+
+
+# Ação
+
+Processe o documento em anexo focando no TEMA ALVO e gere um conjunto extenso de notas atômicas com alta precisão e reiqueza de detalhes informativos / explicativos. Todas as notas atômicas devem ser interconectadas por links / vínculos. Gere um conjunto de notas atômicas que cubra todo o TEMA ALVO apresentando todo o conteúdo presente no documento em anexo.
+
+# Trate com riqueza de detalhes o TEMA ALVO:
+
+< INSERT >
