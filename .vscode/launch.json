@@ -6,14 +6,7 @@
       "name": "CharvsKnow",
       "request": "launch",
       "mainClass": "br.com.pointel.charvs_know.CharvsKnow",
-      "projectName": "charvs_know"
-    },
-    {
-      "type": "java",
-      "name": "Charvs",
-      "request": "launch",
-      "mainClass": "br.com.pointel.charvs.Charvs",
-      "projectName": "charvs",
+      "projectName": "charvs_know",
       "args": "--gui"
     }
   ]

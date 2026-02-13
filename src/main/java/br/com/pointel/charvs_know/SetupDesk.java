@@ -80,25 +80,25 @@ public class SetupDesk extends JFrame {
         setTitle("Setup");
         setName("Setup");
         
-        comboOnClipboardNewText.setName("OnClipboardNewText " + Setup.getPerfil());
-        comboOnNaming.setName("OnNaming " + Setup.getPerfil());
-        fieldNumberedPrefix.setName("NameNumberedPrefix " + Setup.getPerfil());
-        spinnerNumberedSize.setName("NameNumberedSize " + Setup.getPerfil());
-        fieldNumberedSuffix.setName("NameNumberedSuffix " + Setup.getPerfil());
-        fieldNameExtension.setName("NameExtension " + Setup.getPerfil());
-        fieldInsertAtBegin.setName("InsertAtBegin " + Setup.getPerfil());
-        fieldInsertAtEnd.setName("InsertAtEnd " + Setup.getPerfil());
-        spinnerStripFirstLines.setName("StripFirstLines " + Setup.getPerfil());
-        checkApplyReplacesList.setName("ApplyReplacesList " + Setup.getPerfil());
-        checkReplaceVarsHolders.setName("ReplaceVarsHolders " + Setup.getPerfil());
-        checkTrimFinalText.setName("TrimFinalText " + Setup.getPerfil());
-        fieldSaveMultipleDivider.setName("SaveMultipleDivider " + Setup.getPerfil());
-        spinnerMultipleMinimumSize.setName("MultipleMinimumSize " + Setup.getPerfil());
-        comboOnSaveExists.setName("OnSaveExists " + Setup.getPerfil());
-        comboOnRecord.setName("OnRecord " + Setup.getPerfil());
-        fieldRecordPrefix.setName("RecordPrefix " + Setup.getPerfil());
-        fieldRecordSuffix.setName("RecordSuffix " + Setup.getPerfil());
-        comboOnRecordExists.setName("OnRecordExists " + Setup.getPerfil());
+        comboOnClipboardNewText.setName("OnClipboardNewText");
+        comboOnNaming.setName("OnNaming");
+        fieldNumberedPrefix.setName("NameNumberedPrefix");
+        spinnerNumberedSize.setName("NameNumberedSize");
+        fieldNumberedSuffix.setName("NameNumberedSuffix");
+        fieldNameExtension.setName("NameExtension");
+        fieldInsertAtBegin.setName("InsertAtBegin");
+        fieldInsertAtEnd.setName("InsertAtEnd");
+        spinnerStripFirstLines.setName("StripFirstLines");
+        checkApplyReplacesList.setName("ApplyReplacesList");
+        checkReplaceVarsHolders.setName("ReplaceVarsHolders");
+        checkTrimFinalText.setName("TrimFinalText");
+        fieldSaveMultipleDivider.setName("SaveMultipleDivider");
+        spinnerMultipleMinimumSize.setName("MultipleMinimumSize");
+        comboOnSaveExists.setName("OnSaveExists");
+        comboOnRecord.setName("OnRecord");
+        fieldRecordPrefix.setName("RecordPrefix");
+        fieldRecordSuffix.setName("RecordSuffix");
+        comboOnRecordExists.setName("OnRecordExists");
 
         panelBody.setBorder(BorderFactory.createEmptyBorder(9, 9, 9, 9));
 
