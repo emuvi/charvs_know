@@ -3,18 +3,17 @@ package br.com.pointel.charvs_know;
 import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.tools.ant.types.selectors.FilenameSelector;
 
 import br.com.pointel.jarch.flow.FTP;
 import br.com.pointel.jarch.mage.WizBytes;
 
-public class Refs {
+public class RefsFTP {
 
     private static final FTP ftp = new FTP(
-        System.getenv("CHARVS_KNOW_REFS_HOST"), 
-        Integer.parseInt(System.getenv("CHARVS_KNOW_REFS_PORT")), 
-        System.getenv("CHARVS_KNOW_REFS_USER"), 
-        System.getenv("CHARVS_KNOW_REFS_PASS"));
+        System.getenv("CHARVS_KNOW_REFS_FTP_HOST"), 
+        Integer.parseInt(System.getenv("CHARVS_KNOW_REFS_FTP_PORT")), 
+        System.getenv("CHARVS_KNOW_REFS_FTP_USER"), 
+        System.getenv("CHARVS_KNOW_REFS_FTP_PASS"));
 
     public static void upload(File origin) throws Exception {
         if (!ftp.isConnected()) {
