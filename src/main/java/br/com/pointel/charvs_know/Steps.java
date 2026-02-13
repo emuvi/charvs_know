@@ -7,7 +7,7 @@ import java.util.List;
 
 public enum Steps { 
     
-    Identificar, Classificar, Organizar, Atomizar, Questionar, Explicar;
+    Identify, Classify, Organize, Atomize, Questify, Explaine;
 
     public String getCommand() throws Exception {
         return Files.readString(list.get(this.ordinal()).toPath());

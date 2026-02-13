@@ -25,21 +25,21 @@ public class CharvsKnowDesk extends DFrame {
     private final JComboBox<String> comboBase = new JComboBox<>();
     private final JButton buttonBaseAdd = new JButton("+");
     private final JButton buttonBaseDel = new JButton("-");
-    private final DRowPane rowArchive = new DRowPane().insets(2)
+    private final DRowPane rowBase = new DRowPane().insets(2)
             .growNone().put(buttonBaseSelect)
             .growNone().put(buttonBaseOpen)
             .growHorizontal().put(comboBase)
             .growNone().put(buttonBaseAdd)
             .growNone().put(buttonBaseDel);
     
-    private final JButton buttonImport = new JButton("Import");
-    private final DRowPane rowActions = new DRowPane().insets(2)
-            .growNone().put(buttonImport)
+    private final JButton buttonStart = new JButton("Start");
+    private final DRowPane rowActs = new DRowPane().insets(2)
+            .growNone().put(buttonStart)
             .growHorizontal().put(new DPane());
 
     private final DPane paneBody = new DColPane().anchorEast()
-            .growHorizontal().put(rowArchive)
-            .growHorizontal().put(rowActions)
+            .growHorizontal().put(rowBase)
+            .growHorizontal().put(rowActs)
             .borderEmpty(7);
 
     public CharvsKnowDesk() {
