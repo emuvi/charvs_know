@@ -13,6 +13,10 @@ public enum Steps {
         return Files.readString(list.get(this.ordinal()).toPath());
     }
 
+    public String getCommand(String withInsertion) throws Exception {
+        return Files.readString(list.get(this.ordinal()).toPath()).replace("< INSERT >", withInsertion);
+    }
+
     private static final List<File> list = new ArrayList<>();
 
     static {
