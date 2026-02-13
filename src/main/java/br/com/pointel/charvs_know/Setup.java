@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import br.com.pointel.jarch.mage.WizObject;
 import br.com.pointel.jarch.mage.WizProps;
-import br.com.pointel.jarch.mage.WizString;
 
 public class Setup {
 
@@ -15,8 +14,18 @@ public class Setup {
         return WizProps.get(KEY_BASE, "");
     }
 
-    public static void setBase(String perfil) {
-        WizProps.set(KEY_BASE, perfil);
+    public static void setBase(String base) {
+        WizProps.set(KEY_BASE, base);
+    }
+
+    public static final String KEY_WORKING = "FRAME_CHARVS_COMP_WORKING";
+    
+    public static String getWorking() {
+        return WizProps.get(KEY_WORKING, "");
+    }
+
+    public static void setWorking(String working) {
+        WizProps.set(KEY_WORKING, working);
     }
 
     public static File getReplacesListFile() {

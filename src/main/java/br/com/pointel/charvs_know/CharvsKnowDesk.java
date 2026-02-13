@@ -33,11 +33,12 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonBaseDel);
     
     private final JButton buttonStart = new JButton("Start");
+    private final JTextField fieldWorking = new JTextField();
     private final DRowPane rowActs = new DRowPane().insets(2)
             .growNone().put(buttonStart)
-            .growHorizontal().put(new DPane());
+            .growHorizontal().put(fieldWorking);
 
-    private final DPane paneBody = new DColPane().anchorEast()
+    private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
             .growHorizontal().put(rowActs)
             .borderEmpty(7);
@@ -69,6 +70,14 @@ public class CharvsKnowDesk extends DFrame {
         buttonBaseAdd.addActionListener(this::comboBaseAddActionPerformed);
         buttonBaseDel.setToolTipText("Del Base");
         buttonBaseDel.addActionListener(this::comboBaseDelActionPerformed);
+
+        fieldWorking.setName("Working");
+        comboBase.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                Setup.setWorking(fieldWorking.getText());
+            }
+        });
     }
 
     private String getSelectedBase() {
