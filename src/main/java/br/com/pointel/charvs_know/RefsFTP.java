@@ -27,11 +27,11 @@ public class RefsFTP {
         ftp.upload(origin, destiny);
     }
 
-    public static void download(String ref, File destiny) throws Exception {
+    public static void download(String refWithExtension, File destiny) throws Exception {
         if (!ftp.isConnected()) {
             ftp.connect();
         }
-        var url = "public_html/refs/" + ref.substring(0, 3) + "/" + ref;
+        var url = "public_html/refs/" + refWithExtension.substring(0, 3) + "/" + refWithExtension;
         ftp.download(url, destiny);
     }
 

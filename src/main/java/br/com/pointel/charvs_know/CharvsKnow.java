@@ -6,7 +6,7 @@ import br.com.pointel.jarch.flow.AppGUI;
 public class CharvsKnow {
 
     public static void main(String[] args) throws Exception {
-        new App(new AppGUI( CharvsKnowDesk.class)).start("CharvsKnow", args);
+        new App(new AppGUI(CharvsKnowDesk.class)).start("CharvsKnow", args);
     }
 
 }
