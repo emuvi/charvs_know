@@ -5,19 +5,24 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.File;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
+import br.com.pointel.jarch.desk.DScroll;
+import br.com.pointel.jarch.desk.DText;
 import br.com.pointel.jarch.mage.WizGUI;
 
 public class CharvsKnowDesk extends DFrame {
 
-    private final JButton buttonBaseSelect = new JButton("Base");
+    private final JButton buttonBaseSelect = new JButton("^");
     private final JButton buttonBaseOpen = new JButton("*");
     private final JComboBox<String> comboBase = new JComboBox<>();
     private final JButton buttonBaseAdd = new JButton("+");
@@ -29,15 +34,26 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonBaseAdd)
             .growNone().put(buttonBaseDel);
     
-    private final JButton buttonActSelect = new JButton("Select");
-    private final JTextField fieldActWorking = new JTextField();
+    private final JButton buttonActRef = new JButton("&");
+    private final JTextField fieldActRef = new JTextField();
+    private final DefaultComboBoxModel<String> modelActChoose = new DefaultComboBoxModel<>(new String[] { "Upload", "Identify", "Classify", "Organize", "Atomize", "Questify", "Explaine" });
+    private final JComboBox<String> comboActChoose = new JComboBox<>(modelActChoose);
+    private final JButton buttonActGo = new JButton(">");
     private final DRowPane rowActs = new DRowPane().insets(2)
-            .growNone().put(buttonActSelect)
-            .growHorizontal().put(fieldActWorking);
+            .growNone().put(buttonActRef)
+            .growHorizontal().put(fieldActRef)
+            .growHorizontal().put(comboActChoose)
+            .growNone().put(buttonActGo);
+
+    private final JTextArea textStatus = new JTextArea();
+    private final JScrollPane scrollStatus = new JScrollPane(textStatus);
+    private final DRowPane rowStatus = new DRowPane().insets(2)
+            .growBoth().put(scrollStatus);
 
     private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
             .growHorizontal().put(rowActs)
+            .growBoth().put(rowStatus)
             .borderEmpty(7);
 
     public CharvsKnowDesk() {
@@ -50,7 +66,6 @@ public class CharvsKnowDesk extends DFrame {
         exitOnClose();
         body(paneBody);
 
-        buttonBaseSelect.setMnemonic('b');
         buttonBaseSelect.setToolTipText("Select Base Folder");
         buttonBaseSelect.addActionListener(this::buttonBaseSelectActionPerformed);
         buttonBaseOpen.setToolTipText("Open Base Folder");
@@ -68,13 +83,11 @@ public class CharvsKnowDesk extends DFrame {
         buttonBaseDel.setToolTipText("Del Base");
         buttonBaseDel.addActionListener(this::comboBaseDelActionPerformed);
 
-        fieldActWorking.setName("ActWorking");
-        comboBase.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                Setup.setActWorking(fieldActWorking.getText());
-            }
-        });
+        buttonActRef.setToolTipText("Select Reference to Act");
+        fieldActRef.setEditable(false);
+        comboActChoose.setEditable(false);
+        buttonActGo.setToolTipText("Execute Act on Reference");
+        textStatus.setEditable(false);
     }
 
     private String getSelectedBase() {
