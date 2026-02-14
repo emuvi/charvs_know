@@ -1,5 +1,7 @@
 package br.com.pointel.charvs_know;
 
+import java.io.File;
+
 import br.com.pointel.jarch.flow.App;
 import br.com.pointel.jarch.flow.AppGUI;
 
