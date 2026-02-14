@@ -7,9 +7,9 @@ import com.google.genai.types.Part;
 
 import br.com.pointel.jarch.flow.MimeType;
 
-public class Talker implements AutoCloseable {
+public class TalkerGenai implements AutoCloseable {
 
-    private final Client client = new Client();
+    private final Client client = Client.builder().apiKey("CHARVS_KNOW_GENAI_API_KEY").build();
     private final Chat chat = client.chats.create("gemini-3-pro-preview");
 
     public String talk(String command) {
