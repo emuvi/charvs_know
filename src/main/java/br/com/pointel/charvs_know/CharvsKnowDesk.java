@@ -9,9 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
@@ -32,11 +29,11 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonBaseAdd)
             .growNone().put(buttonBaseDel);
     
-    private final JButton buttonStart = new JButton("Start");
-    private final JTextField fieldWorking = new JTextField();
+    private final JButton buttonActSelect = new JButton("Select");
+    private final JTextField fieldActWorking = new JTextField();
     private final DRowPane rowActs = new DRowPane().insets(2)
-            .growNone().put(buttonStart)
-            .growHorizontal().put(fieldWorking);
+            .growNone().put(buttonActSelect)
+            .growHorizontal().put(fieldActWorking);
 
     private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
@@ -71,11 +68,11 @@ public class CharvsKnowDesk extends DFrame {
         buttonBaseDel.setToolTipText("Del Base");
         buttonBaseDel.addActionListener(this::comboBaseDelActionPerformed);
 
-        fieldWorking.setName("Working");
+        fieldActWorking.setName("ActWorking");
         comboBase.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                Setup.setWorking(fieldWorking.getText());
+                Setup.setActWorking(fieldActWorking.getText());
             }
         });
     }

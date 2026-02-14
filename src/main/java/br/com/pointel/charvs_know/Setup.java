@@ -18,13 +18,13 @@ public class Setup {
         WizProps.set(KEY_BASE, base);
     }
 
-    public static final String KEY_WORKING = "FRAME_CHARVS_COMP_WORKING";
+    public static final String KEY_WORKING = "FRAME_CHARVS_COMP_ACT_WORKING";
     
-    public static String getWorking() {
+    public static String getActWorking() {
         return WizProps.get(KEY_WORKING, "");
     }
 
-    public static void setWorking(String working) {
+    public static void setActWorking(String working) {
         WizProps.set(KEY_WORKING, working);
     }
 
