@@ -134,86 +134,90 @@ public class RefDatex {
         if (node.isPresent()) {
             datexGroup.parse(node.getValue());
             var propsOrganization = WizProps.getOf(nodeOrganization.getValue(), propsSeparator);
-            group.classification = propsOrganization.get("Classificação");
-            group.titration = propsOrganization.get("Titulação");
+            group.classification = propsOrganization.getOrDefault("Classificação", "");
+            group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
             var propsRealization = WizProps.getOf(nodeRealization.getValue(), propsSeparator);
-            group.statusNotes = propsRealization.get("Notas");
-            group.statusQuests = propsRealization.get("Questões");
-            group.statusTexts = propsRealization.get("Redações");
+            group.statusNotes = propsRealization.getOrDefault("Notas", "");
+            group.statusQuests = propsRealization.getOrDefault("Questões", "");
+            group.statusTexts = propsRealization.getOrDefault("Redações", "");
         }
     }
 
-    public static final void write(Ref refs, File file) throws Exception {
+    public static final void write(Ref ref, File file) throws Exception {
+        WizText.write(file, getRefSource(ref));
+    }
+
+    public static String getRefSource(Ref ref) {
         var builder = new StringBuilder();
         builder.append(propsStart).append("\n");
-        builder.append("hash-md5").append(propsSeparator).append(refs.props.hashMD5).append("\n");
-        builder.append("created-at").append(propsSeparator).append(refs.props.createdAt).append("\n");
-        builder.append("revised-on").append(propsSeparator).append(refs.props.revisedOn).append("\n");
-        builder.append("revised-count").append(propsSeparator).append(refs.props.revisedCount).append("\n");
-        builder.append("uploaded-at").append(propsSeparator).append(refs.props.uploadedAt).append("\n");
+        builder.append("hash-md5").append(propsSeparator).append(ref.props.hashMD5).append("\n");
+        builder.append("created-at").append(propsSeparator).append(ref.props.createdAt).append("\n");
+        builder.append("revised-on").append(propsSeparator).append(ref.props.revisedOn).append("\n");
+        builder.append("revised-count").append(propsSeparator).append(ref.props.revisedCount).append("\n");
+        builder.append("uploaded-at").append(propsSeparator).append(ref.props.uploadedAt).append("\n");
         builder.append(propsEnd).append("\n");
-        if (refs.group01.isPresent()) {
+        if (ref.group01.isPresent()) {
             builder.append(group01Start).append("\n");
-            writeGroup(refs.group01, builder);
+            writeGroup(ref.group01, builder);
             builder.append(group01End).append("\n");    
         }
-        if (refs.group02.isPresent()) {
+        if (ref.group02.isPresent()) {
             builder.append(group02Start).append("\n");
-            writeGroup(refs.group02, builder);
+            writeGroup(ref.group02, builder);
             builder.append(group02End).append("\n");
         }
-        if (refs.group03.isPresent()) {
+        if (ref.group03.isPresent()) {
             builder.append(group03Start).append("\n");
-            writeGroup(refs.group03, builder);
+            writeGroup(ref.group03, builder);
             builder.append(group03End).append("\n");
         }
-        if (refs.group04.isPresent()) {
+        if (ref.group04.isPresent()) {
             builder.append(group04Start).append("\n");
-            writeGroup(refs.group04, builder);
+            writeGroup(ref.group04, builder);
             builder.append(group04End).append("\n");
         }
-        if (refs.group05.isPresent()) {
+        if (ref.group05.isPresent()) {
             builder.append(group05Start).append("\n");
-            writeGroup(refs.group05, builder);
+            writeGroup(ref.group05, builder);
             builder.append(group05End).append("\n");
         }
-        if (refs.group06.isPresent()) {
+        if (ref.group06.isPresent()) {
             builder.append(group06Start).append("\n");
-            writeGroup(refs.group06, builder);
+            writeGroup(ref.group06, builder);
             builder.append(group06End).append("\n");
         }
-        if (refs.group07.isPresent()) {
+        if (ref.group07.isPresent()) {
             builder.append(group07Start).append("\n");
-            writeGroup(refs.group07, builder);
+            writeGroup(ref.group07, builder);
             builder.append(group07End).append("\n");
         }
-        if (refs.group08.isPresent()) {
+        if (ref.group08.isPresent()) {
             builder.append(group08Start).append("\n");
-            writeGroup(refs.group08, builder);
+            writeGroup(ref.group08, builder);
             builder.append(group08End).append("\n");
         }
-        if (refs.group09.isPresent()) {
+        if (ref.group09.isPresent()) {
             builder.append(group09Start).append("\n");
-            writeGroup(refs.group09, builder);
+            writeGroup(ref.group09, builder);
             builder.append(group09End).append("\n");
         }
-        if (refs.group10.isPresent()) {
+        if (ref.group10.isPresent()) {
             builder.append(group10Start).append("\n");
-            writeGroup(refs.group10, builder);
+            writeGroup(ref.group10, builder);
             builder.append(group10End).append("\n");
         }
-        if (refs.group11.isPresent()) {
+        if (ref.group11.isPresent()) {
             builder.append(group11Start).append("\n");
-            writeGroup(refs.group11, builder);
+            writeGroup(ref.group11, builder);
             builder.append(group11End).append("\n");
         }
-        if (refs.group12.isPresent()) {
+        if (ref.group12.isPresent()) {
             builder.append(group12Start).append("\n");
-            writeGroup(refs.group12, builder);
+            writeGroup(ref.group12, builder);
             builder.append(group12End).append("\n");
         }
-        WizText.write(file, builder.toString());
+        return builder.toString();
     }
 
     private static void writeGroup(RefGroup group, StringBuilder builder) {
