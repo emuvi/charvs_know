@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import br.com.pointel.jarch.flow.FTP;
 import br.com.pointel.jarch.mage.WizBytes;
 
-public class RefsFTP {
+public class RefFTP {
 
     private static final FTP ftp = new FTP(
         System.getenv("CHARVS_KNOW_REFS_FTP_HOST"), 

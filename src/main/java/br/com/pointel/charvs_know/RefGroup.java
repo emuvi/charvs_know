@@ -1,6 +1,6 @@
 package br.com.pointel.charvs_know;
 
-public class RefsGroup {
+public class RefGroup {
 
     public String classification = "";
     public String titration = "";
@@ -9,7 +9,7 @@ public class RefsGroup {
     public String statusQuests = "";
     public String statusTexts = "";
 
-    public RefsGroup() {}
+    public RefGroup() {}
 
     public boolean isPresent() {
         return !topics.isEmpty();

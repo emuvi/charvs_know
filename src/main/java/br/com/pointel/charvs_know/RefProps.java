@@ -1,6 +1,6 @@
 package br.com.pointel.charvs_know;
 
-public class RefsProps {
+public class RefProps {
 
     public String hashMD5 = "";
     public String createdAt = "";

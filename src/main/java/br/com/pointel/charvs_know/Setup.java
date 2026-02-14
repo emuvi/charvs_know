@@ -18,14 +18,14 @@ public class Setup {
         WizProps.set(KEY_BASE, base);
     }
 
-    public static final String KEY_WORKING = "FRAME_CHARVS_COMP_ACT_WORKING";
+    public static final String KEY_WORKING = "FRAME_CHARVS_COMP_ACT_REFS";
     
-    public static String getActWorking() {
+    public static String getActRefs() {
         return WizProps.get(KEY_WORKING, "");
     }
 
-    public static void setActWorking(String working) {
-        WizProps.set(KEY_WORKING, working);
+    public static void setActRefs(String refs) {
+        WizProps.set(KEY_WORKING, refs);
     }
 
     public static File getReplacesListFile() {

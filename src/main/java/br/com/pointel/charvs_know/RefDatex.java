@@ -8,7 +8,7 @@ import br.com.pointel.jarch.flow.DatexToken;
 import br.com.pointel.jarch.mage.WizProps;
 import br.com.pointel.jarch.mage.WizText;
 
-public class RefsDatex {
+public class RefDatex {
 
     
     private static final String propsName = "props";
@@ -105,10 +105,10 @@ public class RefsDatex {
     private static final Datex datexGroup = new Datex(DatexNode.of(nodeOrganization, nodeTopics, nodeRealization));
     
 
-    public static final synchronized Refs read(File file) throws Exception {
+    public static final synchronized Ref read(File file) throws Exception {
         var source = WizText.read(file);
         datexRoot.parse(source);
-        var result = new Refs();
+        var result = new Ref();
         var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
         result.props.hashMD5 = props.getOrDefault("hash-md5", "");
         result.props.createdAt = props.getOrDefault("created-at", "");
@@ -130,7 +130,7 @@ public class RefsDatex {
         return result;
     }
 
-    private static void parseGroup(DatexNode node, RefsGroup group) throws Exception {
+    private static void parseGroup(DatexNode node, RefGroup group) throws Exception {
         if (node.isPresent()) {
             datexGroup.parse(node.getValue());
             var propsOrganization = WizProps.getOf(nodeOrganization.getValue(), propsSeparator);
@@ -144,7 +144,7 @@ public class RefsDatex {
         }
     }
 
-    public static final void write(Refs refs, File file) throws Exception {
+    public static final void write(Ref refs, File file) throws Exception {
         var builder = new StringBuilder();
         builder.append(propsStart).append("\n");
         builder.append("hash-md5").append(propsSeparator).append(refs.props.hashMD5).append("\n");
@@ -216,7 +216,7 @@ public class RefsDatex {
         WizText.write(file, builder.toString());
     }
 
-    private static void writeGroup(RefsGroup group, StringBuilder builder) {
+    private static void writeGroup(RefGroup group, StringBuilder builder) {
         builder.append(organizationStart).append("\n");
         builder.append("Classificação: ").append(group.classification).append("\n");
         builder.append("Titulação: ").append(group.titration).append("\n");
