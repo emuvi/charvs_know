@@ -106,28 +106,32 @@ public class RefDatex {
     
 
     public static final synchronized Ref read(File file) throws Exception {
+        var ref = new Ref();
+        read(ref, file);
+        return ref;
+    }
+
+    public static final synchronized void read(Ref ref, File file) throws Exception {
         var source = WizText.read(file);
         datexRoot.parse(source);
-        var result = new Ref();
         var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
-        result.props.hashMD5 = props.getOrDefault("hash-md5", "");
-        result.props.createdAt = props.getOrDefault("created-at", "");
-        result.props.revisedOn = props.getOrDefault("revised-on", "");
-        result.props.revisedCount = props.getOrDefault("revised-count", "");
-        result.props.uploadedAt = props.getOrDefault("uploaded-at", "");
-        parseGroup(nodeGroup01, result.group01);
-        parseGroup(nodeGroup02, result.group02);
-        parseGroup(nodeGroup03, result.group03);
-        parseGroup(nodeGroup04, result.group04);
-        parseGroup(nodeGroup05, result.group05);
-        parseGroup(nodeGroup06, result.group06);
-        parseGroup(nodeGroup07, result.group07);
-        parseGroup(nodeGroup08, result.group08);
-        parseGroup(nodeGroup09, result.group09);
-        parseGroup(nodeGroup10, result.group10);
-        parseGroup(nodeGroup11, result.group11);
-        parseGroup(nodeGroup12, result.group12);
-        return result;
+        ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
+        ref.props.createdAt = props.getOrDefault("created-at", "");
+        ref.props.revisedOn = props.getOrDefault("revised-on", "");
+        ref.props.revisedCount = props.getOrDefault("revised-count", "");
+        ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
+        parseGroup(nodeGroup01, ref.group01);
+        parseGroup(nodeGroup02, ref.group02);
+        parseGroup(nodeGroup03, ref.group03);
+        parseGroup(nodeGroup04, ref.group04);
+        parseGroup(nodeGroup05, ref.group05);
+        parseGroup(nodeGroup06, ref.group06);
+        parseGroup(nodeGroup07, ref.group07);
+        parseGroup(nodeGroup08, ref.group08);
+        parseGroup(nodeGroup09, ref.group09);
+        parseGroup(nodeGroup10, ref.group10);
+        parseGroup(nodeGroup11, ref.group11);
+        parseGroup(nodeGroup12, ref.group12);
     }
 
     private static void parseGroup(DatexNode node, RefGroup group) throws Exception {

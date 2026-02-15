@@ -171,6 +171,11 @@ public class CharvsKnowDesk extends DFrame {
             if (selectedRef == null) {
                 throw new Exception("Reference not selected.");
             }
+            var step = getSelectedStep();
+            if (step == null) {
+                throw new Exception("Step not selected.");
+            }
+            step.getAct().execute(selectedRef);
         } catch (Exception e) {
             WizGUI.showError(e);
         }
@@ -226,7 +231,7 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = selectFile;
-        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension);
+        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 
@@ -252,7 +257,7 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = sourceFile;
-        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension);
+        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 
