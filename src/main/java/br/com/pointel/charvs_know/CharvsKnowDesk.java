@@ -102,8 +102,8 @@ public class CharvsKnowDesk extends DFrame {
         }
         buttonActExecute.setToolTipText("Execute Act on Reference");
         buttonActExecute.addActionListener(this::buttonActExecuteActionPerformed);
-        buttonActExecute.setToolTipText("Execute Act on Reference");
-        buttonActExecute.addActionListener(this::buttonActExecuteActionPerformed);
+        buttonStepOpen.setToolTipText("Open the Step Command");
+        buttonStepOpen.addActionListener(this::buttonStepOpenActionPerformed);
         textStatus.setEditable(false);
     }
 
@@ -155,7 +155,18 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     private void buttonStepOpenActionPerformed(ActionEvent evt) {
-
+        try {
+            var selectedStep = getSelectedStep();
+            if (selectedStep == null) {
+                return;
+            }
+            if (selectedStep.getCommandName() == null) {
+                return;
+            }
+            WizGUI.open(selectedStep.getCommandFile());
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
     }
 
 

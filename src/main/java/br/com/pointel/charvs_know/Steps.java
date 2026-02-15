@@ -2,35 +2,39 @@ package br.com.pointel.charvs_know;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
 
 public enum Steps { 
+
+    Upload(null), 
+    Identify("S01 - Identify.txt"), 
+    Classify("S02 - Classify.txt"), 
+    Organize("S03 - Organize.txt"), 
+    Atomize("S04 - Atomize.txt"), 
+    Questify("S05 - Questify.txt"), 
+    Explaine("S06 - Explaine.txt");
+
+    private final String commandName;
+
+    private Steps(String commandName) {
+        this.commandName = commandName;
+    }
+
+    public String getCommandName() {
+        return this.commandName;
+    }
     
-    Identify, Classify, Organize, Atomize, Questify, Explaine;
+    public File getCommandFile() {
+        return new File(STEPFS_FOLDER, this.commandName);
+    }
 
     public String getCommand() throws Exception {
-        return Files.readString(list.get(this.ordinal()).toPath());
+        return Files.readString(getCommandFile().toPath());
     }
 
     public String getCommand(String withInsertion) throws Exception {
-        return Files.readString(list.get(this.ordinal()).toPath()).replace("< INSERT >", withInsertion);
+        return Files.readString(getCommandFile().toPath()).replace("< INSERT >", withInsertion);
     }
 
-    private static final List<File> list = new ArrayList<>();
+    public static final File STEPFS_FOLDER = new File("steps");
 
-    static {
-        var folder = new File("steps");
-        if (folder.exists()) {
-            var files = folder.listFiles();
-            if (files != null) {
-                for (var file : files) {
-                    if (file.isFile()) {
-                        list.add(file);
-                    }
-                }
-                list.sort((a, b) -> a.getName().compareTo(b.getName()));
-            }
-        }
-    }
 }
