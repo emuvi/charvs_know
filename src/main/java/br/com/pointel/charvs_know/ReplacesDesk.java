@@ -1,10 +1,15 @@
 package br.com.pointel.charvs_know;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.pointel.jarch.desk.DBordPane;
+import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DFrame;
+import br.com.pointel.jarch.desk.DLinePane;
 import br.com.pointel.jarch.desk.DListEditor;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.mage.WizGUI;
@@ -12,10 +17,27 @@ import br.com.pointel.jarch.mage.WizGUI;
 public class ReplacesDesk extends DFrame {
 
     private final DListEditor<Replace> listEditor = new DListEditor<>(ReplaceEditFrame.class);
-    private final DPane paneBody = new DBordPane().putCenter(listEditor).borderEmpty(7);
 
-    public ReplacesDesk() {
+    private final DButton buttonReplace = new DButton("Replace")
+            .onClick(this::buttonReplaceActionPerformed);
+    private final DButton buttonUndo = new DButton("Undo")
+            .onClick(this::buttonUndoActionPerformed);
+    private final DPane paneActions = new DLinePane()
+            .put(buttonReplace)
+            .put(buttonUndo);
+
+    private final DPane paneBody = new DBordPane()
+            .putCenter(listEditor)
+            .putSouth(paneActions)
+            .borderEmpty(7);
+
+    private final TextEditor textEditor;
+    private final List<String> undoList = new ArrayList<>();
+
+    public ReplacesDesk(TextEditor textEditor) {
         super("Replaces");
+        this.textEditor = textEditor;
+        listEditor.list().selectionMultiple();
         body(paneBody);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -44,6 +66,23 @@ public class ReplacesDesk extends DFrame {
         } catch (Exception e) {
             WizGUI.showError(e);
         }
+    }
+
+    private void buttonReplaceActionPerformed(ActionEvent e) {
+        String text = textEditor.getText();
+        undoList.add(text);
+        for (Replace replace : listEditor.list().getSelectedValuesList()) {
+            text = replace.apply(text);
+        }
+        textEditor.setText(text);
+    }
+
+    private void buttonUndoActionPerformed(ActionEvent e) {
+        if (undoList.isEmpty()) {
+            return;
+        }
+        String lastText = undoList.remove(undoList.size() - 1);
+        textEditor.setText(lastText);
     }
 
 }

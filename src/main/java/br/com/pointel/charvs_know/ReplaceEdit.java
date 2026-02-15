@@ -15,10 +15,10 @@ import br.com.pointel.jarch.desk.DColPane;
 
 public class ReplaceEdit extends DEdit<Replace> {
 
-    private DCheckEdit fieldActive = new DCheckEdit().text("Active");
+    private DFieldEdit<String> fieldName = new DStringField().cols(12);
     private DCheckEdit fieldRegex = new DCheckEdit().text("Regex");
     private DPane paneOptions = new DRowPane().insets(3)
-            .put(fieldActive)
+            .growHorizontal().put(fieldName)
             .put(fieldRegex)
             .growHorizontal().put(Box.createHorizontalBox());
     private DFieldEdit<String> fieldOf = new DStringField().cols(24);
@@ -38,12 +38,12 @@ public class ReplaceEdit extends DEdit<Replace> {
 
     @Override
     public Replace getValue() {
-        return new Replace(fieldActive.getValue(), fieldRegex.getValue(), fieldOf.getValue(), fieldTo.getValue());
+        return new Replace(fieldName.getValue(), fieldRegex.getValue(), fieldOf.getValue(), fieldTo.getValue());
     }
 
     @Override
     public void setValue(Replace value) {
-        fieldActive.setValue(value.active);
+        fieldName.setValue(value.name);
         fieldRegex.setValue(value.regex);
         fieldOf.setValue(value.of);
         fieldTo.setValue(value.to);
