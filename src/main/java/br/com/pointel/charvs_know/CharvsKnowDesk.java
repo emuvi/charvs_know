@@ -39,16 +39,20 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonBaseAdd)
             .growNone().put(buttonBaseDel);
     
-    private final JButton buttonActRef = new JButton("&");
-    private final JTextField fieldActRef = new JTextField();
-    private final DefaultComboBoxModel<String> modelActChoose = new DefaultComboBoxModel<>(new String[] { "Upload", "Identify", "Classify", "Organize", "Atomize", "Questify", "Explaine" });
+    private final JButton buttonSelectRef = new JButton("&");
+    private final JButton buttonLastSelected = new JButton("%");
+    private final JTextField fieldSelectedRefWithExtension = new JTextField();
+    private final DefaultComboBoxModel<String> modelActChoose = new DefaultComboBoxModel<>();
     private final JComboBox<String> comboActChoose = new JComboBox<>(modelActChoose);
-    private final JButton buttonActGo = new JButton(">");
+    private final JButton buttonActExecute = new JButton(">");
+    private final JButton buttonStepOpen = new JButton("*");
     private final DRowPane rowActs = new DRowPane().insets(2)
-            .growNone().put(buttonActRef)
-            .growHorizontal().put(fieldActRef)
+            .growNone().put(buttonSelectRef)
+            .growNone().put(buttonLastSelected)
+            .growHorizontal().put(fieldSelectedRefWithExtension)
             .growHorizontal().put(comboActChoose)
-            .growNone().put(buttonActGo);
+            .growNone().put(buttonActExecute)
+            .growNone().put(buttonStepOpen);
 
     private final JTextArea textStatus = new JTextArea();
     private final JScrollPane scrollStatus = new JScrollPane(textStatus);
@@ -87,12 +91,19 @@ public class CharvsKnowDesk extends DFrame {
         buttonBaseDel.setToolTipText("Del Base");
         buttonBaseDel.addActionListener(this::comboBaseDelActionPerformed);
 
-        buttonActRef.setToolTipText("Select Reference to Act");
-        buttonActRef.addActionListener(this::buttonActRefActionPerformed);
-        fieldActRef.setEditable(false);
+        buttonSelectRef.setToolTipText("Select Reference to Act");
+        buttonSelectRef.addActionListener(this::buttonSelectRefActionPerformed);
+        buttonLastSelected.setToolTipText("Select Reference from Last Selected");
+        buttonLastSelected.addActionListener(this::buttonLastSelectedActionPerformed);
+        fieldSelectedRefWithExtension.setEditable(false);
         comboActChoose.setEditable(false);
-        buttonActGo.setToolTipText("Execute Act on Reference");
-        buttonActGo.addActionListener(this::buttonActGoActionPerformed);
+        for (var step : Steps.values()) {
+            modelActChoose.addElement(step.name());
+        }
+        buttonActExecute.setToolTipText("Execute Act on Reference");
+        buttonActExecute.addActionListener(this::buttonActExecuteActionPerformed);
+        buttonActExecute.setToolTipText("Execute Act on Reference");
+        buttonActExecute.addActionListener(this::buttonActExecuteActionPerformed);
         textStatus.setEditable(false);
     }
 
@@ -121,51 +132,95 @@ public class CharvsKnowDesk extends DFrame {
         comboBase.removeItem(getSelectedBase());
     }
 
-
-    private File lastSelectedFile = null;
-    private File selectedRefFile = null;
-    private File selectedSourceFile = null;
-    private Ref selectedRef = null;
-
-    private void buttonActRefActionPerformed(ActionEvent evt) {
+    private void buttonSelectRefActionPerformed(ActionEvent evt) {
         try {
             if (lastSelectedFile == null) {
                 lastSelectedFile = getBaseFolder();
             }
             var selectedFile = WizGUI.selectFile(lastSelectedFile);
             if (selectedFile != null) {
-                lastSelectedFile = selectedFile;
-                var hashMD5 = WizBytes.getMD5(selectedFile);
-                var refFile = getBaseRefFile(hashMD5 + ".md");
-                var sourceFile = getBaseRefFile(hashMD5 + "." + FilenameUtils.getExtension(selectedFile.getName()));
-                if (!sourceFile.exists()) {
-                    Files.move(selectedFile.toPath(), sourceFile.toPath());
-                    WizGUI.showInfo("Selected reference moved to the base.");
-                } else {
-                    WizGUI.showInfo("Selected reference already in the base.");
-                }
-                if (!refFile.exists()) {
-                    selectedRef = new Ref();
-                    selectedRef.props.hashMD5 = hashMD5;
-                    selectedRef.props.createdAt = WizUtilDate.formatDateMach(new Date());
-                    selectedRef.props.revisedOn = WizUtilDate.formatDateMach(new Date());
-                    selectedRef.props.revisedCount = "1";
-                    RefDatex.write(selectedRef, refFile);
-                } else {
-                    selectedRef = RefDatex.read(refFile);
-                }
-                fieldActRef.setText(selectedRef.props.hashMD5);
-                selectedRefFile = refFile;
-                selectedSourceFile = sourceFile;
-                updateStatus();
+                selectRef(selectedFile);
             }
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
     }
 
-    private void buttonActGoActionPerformed(ActionEvent evt) {
+    private void buttonLastSelectedActionPerformed(ActionEvent evt) {
+        new LastSelectedDesk(this).setVisible(true);
+    }
 
+    private void buttonActExecuteActionPerformed(ActionEvent evt) {
+
+    }
+
+    private void buttonStepOpenActionPerformed(ActionEvent evt) {
+
+    }
+
+
+    private File lastSelectedFile = null;
+    private File selectedRefFile = null;
+    private File selectedSourceFile = null;
+    private Ref selectedRef = null;
+
+    public void selectRef(File selectFile) throws Exception {
+        var hashMD5 = WizBytes.getMD5(selectFile);
+        var refFile = getBaseRefFile(hashMD5 + ".md");
+        var refWithExtension = hashMD5 + "." + FilenameUtils.getExtension(selectFile.getName());
+        var sourceFile = getBaseRefFile(refWithExtension);
+        if (!sourceFile.exists()) {
+            if (WizGUI.showConfirm("Selected reference not found in the base. Do you wanna to move it inside?")) {
+                Files.move(selectFile.toPath(), sourceFile.toPath());
+                WizGUI.showInfo("Selected reference moved to the base.");
+            } else if (WizGUI.showConfirm("Do you wanna to copy it to the base?")) {
+                Files.copy(selectFile.toPath(), sourceFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+                WizGUI.showInfo("Selected reference copied to the base.");
+            } else {
+                throw new Exception("Selected reference not found in the base.");
+            }
+        }
+        if (!refFile.exists()) {
+            selectedRef = new Ref();
+            selectedRef.props.hashMD5 = hashMD5;
+            selectedRef.props.createdAt = WizUtilDate.formatDateMach(new Date());
+            selectedRef.props.revisedOn = selectedRef.props.createdAt;
+            selectedRef.props.revisedCount = "1";
+            RefDatex.write(selectedRef, refFile);
+        } else {
+            selectedRef = RefDatex.read(refFile);
+        }
+        fieldSelectedRefWithExtension.setText(refWithExtension);
+        Setup.putSelectedRef(refWithExtension);
+        lastSelectedFile = selectFile;
+        selectedRefFile = refFile;
+        selectedSourceFile = sourceFile;
+        updateStatus();
+    }
+
+    public void selectRef(String refWithExtension) throws Exception {
+        var refFile = getBaseRefFile(FilenameUtils.getBaseName(refWithExtension) + ".md");
+        var sourceFile = getBaseRefFile(refWithExtension);
+        if (!sourceFile.exists()) {
+            throw new Exception("Selected reference not found in the base.");
+        }
+        if (!refFile.exists()) {
+            var hashMD5 = WizBytes.getMD5(sourceFile);
+            selectedRef = new Ref();
+            selectedRef.props.hashMD5 = hashMD5;
+            selectedRef.props.createdAt = WizUtilDate.formatDateMach(new Date());
+            selectedRef.props.revisedOn = selectedRef.props.createdAt;
+            selectedRef.props.revisedCount = "1";
+            RefDatex.write(selectedRef, refFile);
+        } else {
+            selectedRef = RefDatex.read(refFile);
+        }
+        fieldSelectedRefWithExtension.setText(refWithExtension);
+        Setup.putSelectedRef(refWithExtension);
+        lastSelectedFile = sourceFile;
+        selectedRefFile = refFile;
+        selectedSourceFile = sourceFile;
+        updateStatus();
     }
 
     public void updateStatus() {
@@ -176,23 +231,7 @@ public class CharvsKnowDesk extends DFrame {
         textStatus.setSelectionEnd(end);
     }
 
-    private String getSelectedBase() {
-        return comboBase.getSelectedItem().toString();
-    }
-
-    private void setSelectedBase(String base) {
-        comboBase.setSelectedItem(base);
-    }
-
-    private File getBaseFolder() {
-        return new File(getSelectedBase());
-    }
-
-    private File getBaseRefsFolder() {
-        return new File(getBaseFolder(), "+ Refs");
-    }
-
-    private File getBaseRefFile(String refWithExtension) {
+    public File getBaseRefFile(String refWithExtension) {
         var baseRefsFolder = getBaseRefsFolder();
         if (!baseRefsFolder.exists()) {
             baseRefsFolder.mkdirs();
@@ -202,6 +241,29 @@ public class CharvsKnowDesk extends DFrame {
             baseRefFolder.mkdirs();
         }
         return new File(baseRefFolder, refWithExtension);
+    }
+
+    public File getBaseFolder() {
+        return new File(getSelectedBase());
+    }
+
+    public File getBaseRefsFolder() {
+        return new File(getBaseFolder(), "+ Refs");
+    }
+
+    public String getSelectedBase() {
+        return comboBase.getSelectedItem().toString();
+    }
+
+    public void setSelectedBase(String base) {
+        comboBase.setSelectedItem(base);
+    }
+
+    public Steps getSelectedStep() {
+        if (comboActChoose.getSelectedItem() == null) {
+            return null;
+        }
+        return Steps.valueOf(comboActChoose.getSelectedItem().toString());
     }
 
 }
