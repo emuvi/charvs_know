@@ -4,7 +4,7 @@ public class ActExplaine implements Act {
 
     @Override
     public void execute(SelectedRef selectedRef) throws Exception {
-
+        new HelperExplaine(selectedRef).setVisible(true);
     }
 
 }

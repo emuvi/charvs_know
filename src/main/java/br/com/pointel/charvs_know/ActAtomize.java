@@ -4,7 +4,7 @@ public class ActAtomize implements Act {
 
     @Override
     public void execute(SelectedRef selectedRef) throws Exception {
-
+        new HelperAtomize(selectedRef).setVisible(true);
     }
 
 }
