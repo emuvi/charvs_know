@@ -157,17 +157,23 @@ public class CharvsKnowDesk extends DFrame {
 
     private void buttonSelectedOpenActionPerformed(ActionEvent evt) {
         try {
-            if (selectedSourceFile == null) {
+            if (selectedRef == null) {
                 return;
             }
-            WizGUI.open(selectedSourceFile);
+            WizGUI.open(selectedRef.sourceFile);
         } catch (Exception e) {
             WizGUI.showError(e);
         }
     }
 
     private void buttonActExecuteActionPerformed(ActionEvent evt) {
-
+        try {
+            if (selectedRef == null) {
+                throw new Exception("Reference not selected.");
+            }
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
     }
 
     private void buttonStepOpenActionPerformed(ActionEvent evt) {
@@ -186,10 +192,8 @@ public class CharvsKnowDesk extends DFrame {
     }
 
 
-    private File lastSelectedFile = null;
-    private File selectedRefFile = null;
-    private File selectedSourceFile = null;
-    private Ref selectedRef = null;
+    private transient File lastSelectedFile = null;
+    private transient SelectedRef selectedRef = null;
 
     public void selectRef(File selectFile) throws Exception {
         var hashMD5 = WizBytes.getMD5(selectFile);
@@ -207,22 +211,22 @@ public class CharvsKnowDesk extends DFrame {
                 throw new Exception("Selected reference not found in the base.");
             }
         }
+        Ref ref;
         if (!refFile.exists()) {
-            selectedRef = new Ref();
-            selectedRef.props.hashMD5 = hashMD5;
-            selectedRef.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.props.revisedOn = selectedRef.props.createdAt;
-            selectedRef.props.revisedCount = "1";
-            RefDatex.write(selectedRef, refFile);
+            ref = new Ref();
+            ref.props.hashMD5 = hashMD5;
+            ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
+            ref.props.revisedOn = ref.props.createdAt;
+            ref.props.revisedCount = "1";
+            RefDatex.write(ref, refFile);
         } else {
-            selectedRef = RefDatex.read(refFile);
+            ref = RefDatex.read(refFile);
         }
         fieldSelectedRefWithExtension.setText(refWithExtension);
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = selectFile;
-        selectedRefFile = refFile;
-        selectedSourceFile = sourceFile;
+        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension);
         updateStatus();
     }
 
@@ -232,30 +236,30 @@ public class CharvsKnowDesk extends DFrame {
         if (!sourceFile.exists()) {
             throw new Exception("Selected reference not found in the base.");
         }
+        Ref ref;
         if (!refFile.exists()) {
             var hashMD5 = WizBytes.getMD5(sourceFile);
-            selectedRef = new Ref();
-            selectedRef.props.hashMD5 = hashMD5;
-            selectedRef.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.props.revisedOn = selectedRef.props.createdAt;
-            selectedRef.props.revisedCount = "1";
-            RefDatex.write(selectedRef, refFile);
+            ref = new Ref();
+            ref.props.hashMD5 = hashMD5;
+            ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
+            ref.props.revisedOn = ref.props.createdAt;
+            ref.props.revisedCount = "1";
+            RefDatex.write(ref, refFile);
         } else {
-            selectedRef = RefDatex.read(refFile);
+            ref = RefDatex.read(refFile);
         }
         fieldSelectedRefWithExtension.setText(refWithExtension);
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = sourceFile;
-        selectedRefFile = refFile;
-        selectedSourceFile = sourceFile;
+        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension);
         updateStatus();
     }
 
     public void updateStatus() {
         var start = textStatus.getSelectionStart();
         var end = textStatus.getSelectionEnd();
-        textStatus.setText(RefDatex.getRefSource(selectedRef));
+        textStatus.setText(RefDatex.getRefSource(selectedRef.ref));
         textStatus.setSelectionStart(start);
         textStatus.setSelectionEnd(end);
     }
