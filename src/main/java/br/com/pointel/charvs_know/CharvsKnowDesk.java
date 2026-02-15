@@ -173,7 +173,7 @@ public class CharvsKnowDesk extends DFrame {
             }
             var step = getSelectedStep();
             if (step == null) {
-                throw new Exception("Step not selected.");
+                throw new Exception("Action not selected.");
             }
             step.getAct().execute(selectedRef);
         } catch (Exception e) {
