@@ -6,12 +6,12 @@ import java.nio.file.Files;
 public enum Steps { 
 
     Upload(null, new ActUpload()), 
-    Identify("S01 - Identify.txt", null), 
-    Classify("S02 - Classify.txt", null), 
-    Organize("S03 - Organize.txt", null), 
-    Atomize("S04 - Atomize.txt", null), 
-    Questify("S05 - Questify.txt", null), 
-    Explaine("S06 - Explaine.txt", null);
+    Identify("S01 - Identify.txt", new ActIdentify()), 
+    Classify("S02 - Classify.txt", new ActClassify()), 
+    Organize("S03 - Organize.txt", new ActOrganize()), 
+    Atomize("S04 - Atomize.txt", new ActAtomize()), 
+    Questify("S05 - Questify.txt", new ActQuestify()), 
+    Explaine("S06 - Explaine.txt", new ActExplaine());
 
     private final String commandName;
     private final Act stepAct;
