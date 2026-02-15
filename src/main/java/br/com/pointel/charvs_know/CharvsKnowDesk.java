@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -41,6 +42,7 @@ public class CharvsKnowDesk extends DFrame {
     
     private final JButton buttonSelectRef = new JButton("&");
     private final JButton buttonLastSelected = new JButton("%");
+    private final JButton buttonSelectedOpen = new JButton("*");
     private final JTextField fieldSelectedRefWithExtension = new JTextField();
     private final DefaultComboBoxModel<String> modelActChoose = new DefaultComboBoxModel<>();
     private final JComboBox<String> comboActChoose = new JComboBox<>(modelActChoose);
@@ -49,6 +51,7 @@ public class CharvsKnowDesk extends DFrame {
     private final DRowPane rowActs = new DRowPane().insets(2)
             .growNone().put(buttonSelectRef)
             .growNone().put(buttonLastSelected)
+            .growNone().put(buttonSelectedOpen)
             .growHorizontal().put(fieldSelectedRefWithExtension)
             .growHorizontal().put(comboActChoose)
             .growNone().put(buttonActExecute)
@@ -95,6 +98,8 @@ public class CharvsKnowDesk extends DFrame {
         buttonSelectRef.addActionListener(this::buttonSelectRefActionPerformed);
         buttonLastSelected.setToolTipText("Select Reference from Last Selected");
         buttonLastSelected.addActionListener(this::buttonLastSelectedActionPerformed);
+        buttonSelectedOpen.setToolTipText("Open Selected Reference");
+        buttonSelectedOpen.addActionListener(this::buttonSelectedOpenActionPerformed);
         fieldSelectedRefWithExtension.setEditable(false);
         comboActChoose.setEditable(false);
         for (var step : Steps.values()) {
@@ -150,6 +155,17 @@ public class CharvsKnowDesk extends DFrame {
         new LastSelectedDesk(this).setVisible(true);
     }
 
+    private void buttonSelectedOpenActionPerformed(ActionEvent evt) {
+        try {
+            if (selectedSourceFile == null) {
+                return;
+            }
+            WizGUI.open(selectedSourceFile);
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
+    }
+
     private void buttonActExecuteActionPerformed(ActionEvent evt) {
 
     }
@@ -202,6 +218,7 @@ public class CharvsKnowDesk extends DFrame {
             selectedRef = RefDatex.read(refFile);
         }
         fieldSelectedRefWithExtension.setText(refWithExtension);
+        SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = selectFile;
         selectedRefFile = refFile;
@@ -227,6 +244,7 @@ public class CharvsKnowDesk extends DFrame {
             selectedRef = RefDatex.read(refFile);
         }
         fieldSelectedRefWithExtension.setText(refWithExtension);
+        SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = sourceFile;
         selectedRefFile = refFile;
