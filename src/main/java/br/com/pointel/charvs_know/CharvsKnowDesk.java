@@ -237,6 +237,7 @@ public class CharvsKnowDesk extends DFrame {
                 try {
                     Thread.sleep(300);
                     selectedRef.ref.memoa.text = textMemoa.getText().trim();
+                    memoaSaving = false;
                     RefDatex.write(selectedRef.ref, selectedRef.refFile);
                 } catch (Exception ex) {
                     WizGUI.showError(ex);
