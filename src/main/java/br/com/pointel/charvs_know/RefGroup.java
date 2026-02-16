@@ -15,10 +15,19 @@ public class RefGroup {
         return topics != null && !topics.isBlank();
     }
 
-    public void clear() {
+    public void clearIdentified() {
         classification = "";
         titration = "";
         topics = "";
+    }
+
+    public void clearOrganized() {
+        classification = "";
+        titration = "";
+    }
+
+    public void clearClassified() {
+        classification = "";
     }
 
 }

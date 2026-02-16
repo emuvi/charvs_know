@@ -1,17 +1,19 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
-import br.com.pointel.jarch.desk.DBordPane;
 import br.com.pointel.jarch.desk.DButton;
+import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DComboEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.mage.WizGUI;
+import br.com.pointel.jarch.mage.WizUtilDate;
 
 public class HelperIdentify extends DFrame {
 
@@ -32,9 +34,9 @@ public class HelperIdentify extends DFrame {
 
     private final TextEditor textAsk = new TextEditor();
      
-    private final DBordPane paneAsk = new DBordPane()
-            .putNorth(paneAskActs)
-            .putCenter(textAsk);
+    private final DPane paneAsk = new DColPane().insets(2)
+            .growHorizontal().put(paneAskActs)
+            .growBoth().put(textAsk);
 
     private final DButton buttonSet = new DButton("Set")
             .onClick(this::buttonSetActionPerformed);
@@ -52,9 +54,9 @@ public class HelperIdentify extends DFrame {
 
     private final TextEditor textGroup = new TextEditor();
 
-    private final DBordPane paneGroup = new DBordPane()
-            .putNorth(paneGroupActs)
-            .putCenter(textGroup);
+    private final DPane paneGroup = new DColPane().insets(2)
+            .growHorizontal().put(paneGroupActs)
+            .growBoth().put(textGroup);
 
     private final DSplitter splitterBody = new DSplitter(paneAsk, paneGroup)
             .divider(0.5f)
@@ -159,7 +161,9 @@ public class HelperIdentify extends DFrame {
 
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
+            selectedRef.ref.props.identifiedAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
+            WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
