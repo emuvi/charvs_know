@@ -7,8 +7,8 @@ public enum Steps {
 
     Upload(null, new ActUpload()), 
     Identify("S01 - Identify.txt", new ActIdentify()), 
-    Classify("S02 - Classify.txt", new ActClassify()), 
-    Organize("S03 - Organize.txt", new ActOrganize()), 
+    Organize("S02 - Organize.txt", new ActOrganize()), 
+    Classify("S03 - Classify.txt", new ActClassify()),
     Atomize("S04 - Atomize.txt", new ActAtomize()), 
     Questify("S05 - Questify.txt", new ActQuestify()), 
     Explaine("S06 - Explaine.txt", new ActExplaine()),

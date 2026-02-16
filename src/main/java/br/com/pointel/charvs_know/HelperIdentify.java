@@ -15,13 +15,20 @@ import br.com.pointel.jarch.mage.WizGUI;
 
 public class HelperIdentify extends DFrame {
 
-    private final DButton buttonAsk = new DButton("Ask")
-            .onClick(this::buttonAskActionPerformed);
     private final DButton buttonClear = new DButton("Clear")
             .onClick(this::buttonClearActionPerformed);
+    private final DButton buttonAsk = new DButton("Ask")
+            .onClick(this::buttonAskActionPerformed);
+    private final DButton buttonSplit = new DButton("Split")
+            .onClick(this::buttonSplitActionPerformed);
+    private final DButton buttonAdd = new DButton("Add")
+            .onClick(this::buttonAddActionPerformed);
+    
     private final DPane paneAskActs = new DRowPane().insets(2)
-            .growHorizontal().put(buttonAsk)
-            .growNone().put(buttonClear);
+        .growNone().put(buttonClear)
+        .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonSplit)
+        .growNone().put(buttonAdd);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -35,10 +42,13 @@ public class HelperIdentify extends DFrame {
             .onClick(this::comboGroupActionPerformed);
     private final DButton buttonSave = new DButton("Save")
             .onClick(this::buttonSaveActionPerformed);
+    private final DButton buttonWrite = new DButton("Write")
+            .onClick(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
-            .growNone().put(buttonSave);
+            .growNone().put(buttonSave)
+            .growNone().put(buttonWrite);
 
     private final TextEditor textGroup = new TextEditor();
 
@@ -66,6 +76,11 @@ public class HelperIdentify extends DFrame {
         onFirstOpened(e -> buttonAskActionPerformed(null));
     }
 
+    private void buttonClearActionPerformed(ActionEvent e) {
+        selectedRef.ref.groups.clear();
+        comboGroup.clear();
+    }
+
     private void buttonAskActionPerformed(ActionEvent e) {
         if (buttonAsk.getText().equals("Asking...")) {
             return;
@@ -90,16 +105,36 @@ public class HelperIdentify extends DFrame {
         }.start();
     }
 
-    private void buttonClearActionPerformed(ActionEvent e) {
-        for (var group : selectedRef.ref.groups) {
-            group.clear();
+    private void buttonSplitActionPerformed(ActionEvent e) {
+        var parts = textAsk.edit().getValue().split("\\-\\-\\-");
+        if (parts.length == 0) {
+            return;
         }
-        comboGroupActionPerformed(e);
+        selectedRef.ref.groups.clear();
+        comboGroup.clear();
+        for (int i = 0; i < parts.length; i++) {
+            var group = new RefGroup();
+            group.topics = parts[i].trim();
+            selectedRef.ref.groups.add(group);
+            comboGroup.add("Group " + String.format("%02d", i + 1));
+        }
+        comboGroup.selectedIndex(0);
+    }
+
+    private void buttonAddActionPerformed(ActionEvent e) {
+        var group = new RefGroup();
+        group.topics = textAsk.edit().selectedText().trim();
+        selectedRef.ref.groups.add(group);
+        comboGroup.add("Group " + String.format("%02d", selectedRef.ref.groups.size()));
+        comboGroup.selectedIndex(selectedRef.ref.groups.size() - 1);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
-        textGroup.setText(textAsk.edit().selectedText().trim());
-        buttonSaveActionPerformed(e);
+        var index = comboGroup.selectedIndex();
+        if (index > -1) {
+            textGroup.setText(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).topics = textGroup.getText().trim();
+        }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
@@ -116,12 +151,14 @@ public class HelperIdentify extends DFrame {
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {
-        try {
-            var index = comboGroup.selectedIndex();
-            if (index == -1) {
-                return;
-            }
+        var index = comboGroup.selectedIndex();
+        if (index > -1) {
             selectedRef.ref.groups.get(index).topics = textGroup.getText().trim();
+        }
+    }
+
+    private void buttonWriteActionPerformed(ActionEvent e) {
+        try {
             selectedRef.write();
         } catch (Exception ex) {
             WizGUI.showError(ex);
