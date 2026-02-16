@@ -15,13 +15,10 @@ public class RefGroup {
         return !topics.isEmpty();
     }
 
-    public void clean() {
+    public void clear() {
         classification = "";
         titration = "";
         topics = "";
-        statusNotes = "";
-        statusQuests = "";
-        statusTexts = "";
     }
 
 }

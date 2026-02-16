@@ -27,6 +27,10 @@ public class TextEditor extends DBordPane {
         putSouth(paneActions);
     }
 
+    public DText edit() {
+        return textEdit;
+    }
+
     public String getText() {
         return textEdit.value();
     }

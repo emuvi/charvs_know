@@ -7,16 +7,18 @@ import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DComboEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
-import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
-import br.com.pointel.jarch.desk.DText;
+import br.com.pointel.jarch.mage.WizGUI;
 
 public class HelperIdentify extends DFrame {
 
     private final DButton buttonAsk = new DButton("Ask")
             .onClick(this::buttonAskActionPerformed);
+    private final DButton buttonClear = new DButton("Clear")
+            .onClick(this::buttonClearActionPerformed);
     private final DPane paneAskActs = new DBordPane()
-            .putCenter(buttonAsk);
+            .putCenter(buttonAsk)
+            .putEast(buttonClear);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -63,16 +65,86 @@ public class HelperIdentify extends DFrame {
         
     }
 
+    private void buttonClearActionPerformed(ActionEvent e) {
+        selectedRef.ref.group01.clear();
+        selectedRef.ref.group02.clear();
+        selectedRef.ref.group03.clear();
+        selectedRef.ref.group04.clear();
+        selectedRef.ref.group05.clear();
+        selectedRef.ref.group06.clear();
+        selectedRef.ref.group07.clear();
+        selectedRef.ref.group08.clear();
+        selectedRef.ref.group09.clear();
+        selectedRef.ref.group10.clear();
+        selectedRef.ref.group11.clear();
+        selectedRef.ref.group12.clear();
+        comboGroupActionPerformed(e);
+    }
+
     private void buttonSetActionPerformed(ActionEvent e) {
-        
+        textGroup.setText(textAsk.edit().selectedText());
+        buttonSaveActionPerformed(e);
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
-        
+        if (comboGroup.getValue().equals("Group 01")) {
+            textGroup.setText(selectedRef.ref.group01.topics);
+        } else if (comboGroup.getValue().equals("Group 02")) {
+            textGroup.setText(selectedRef.ref.group02.topics);
+        } else if (comboGroup.getValue().equals("Group 03")) {
+            textGroup.setText(selectedRef.ref.group03.topics);
+        } else if (comboGroup.getValue().equals("Group 04")) {
+            textGroup.setText(selectedRef.ref.group04.topics);
+        } else if (comboGroup.getValue().equals("Group 05")) {
+            textGroup.setText(selectedRef.ref.group05.topics);
+        } else if (comboGroup.getValue().equals("Group 06")) {
+            textGroup.setText(selectedRef.ref.group06.topics);
+        } else if (comboGroup.getValue().equals("Group 07")) {
+            textGroup.setText(selectedRef.ref.group07.topics);
+        } else if (comboGroup.getValue().equals("Group 08")) {
+            textGroup.setText(selectedRef.ref.group08.topics);
+        } else if (comboGroup.getValue().equals("Group 09")) {
+            textGroup.setText(selectedRef.ref.group09.topics);
+        } else if (comboGroup.getValue().equals("Group 10")) {
+            textGroup.setText(selectedRef.ref.group10.topics);
+        } else if (comboGroup.getValue().equals("Group 11")) {
+            textGroup.setText(selectedRef.ref.group11.topics);
+        } else if (comboGroup.getValue().equals("Group 12")) {
+            textGroup.setText(selectedRef.ref.group12.topics);
+        }
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {
-        
+        try {
+            if (comboGroup.getValue().equals("Group 01")) {
+                selectedRef.ref.group01.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 02")) {
+                selectedRef.ref.group02.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 03")) {
+                selectedRef.ref.group03.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 04")) {
+                selectedRef.ref.group04.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 05")) {
+                selectedRef.ref.group05.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 06")) {
+                selectedRef.ref.group06.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 07")) {
+                selectedRef.ref.group07.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 08")) {
+                selectedRef.ref.group08.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 09")) {
+                selectedRef.ref.group09.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 10")) {
+                selectedRef.ref.group10.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 11")) {
+                selectedRef.ref.group11.topics = textGroup.getText();
+            } else if (comboGroup.getValue().equals("Group 12")) {
+                selectedRef.ref.group12.topics = textGroup.getText();
+            }
+            selectedRef.write();
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
     }
 
 }
