@@ -272,7 +272,7 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            ref.props.revisedOn = ref.props.createdAt;
+            ref.props.revisedAt = ref.props.createdAt;
             ref.props.revisedCount = "1";
             RefDatex.write(ref, refFile);
         } else {
@@ -298,7 +298,7 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            ref.props.revisedOn = ref.props.createdAt;
+            ref.props.revisedAt = ref.props.createdAt;
             ref.props.revisedCount = "1";
             RefDatex.write(ref, refFile);
         } else {

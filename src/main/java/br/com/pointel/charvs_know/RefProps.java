@@ -4,8 +4,9 @@ public class RefProps {
 
     public String hashMD5 = "";
     public String createdAt = "";
-    public String revisedOn = "";
+    public String revisedAt = "";
     public String revisedCount = "";
     public String uploadedAt = "";
+    public String doneAt = "";
 
 }
