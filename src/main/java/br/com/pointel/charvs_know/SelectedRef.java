@@ -9,6 +9,7 @@ public class SelectedRef {
     public final File sourceFile;
     public final String refWithExtension;
     public final Runnable updateStatus;
+    public final Talker talker;
 
     public SelectedRef(Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
         this.ref = ref;
@@ -16,6 +17,15 @@ public class SelectedRef {
         this.sourceFile = sourceFile;
         this.refWithExtension = refWithExtension;
         this.updateStatus = updateStatus;
+        this.talker = Talker.get();
+    }
+
+    public String talk(String command) {
+        return talker.talk(command);
+    }
+
+    public String talkWithAttach(String command) {
+        return talker.talk(command, UriMime.of(RefFTP.getBaseURI(refWithExtension)));
     }
 
     public void read() throws Exception {
