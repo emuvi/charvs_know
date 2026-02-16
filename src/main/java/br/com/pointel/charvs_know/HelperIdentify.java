@@ -52,11 +52,11 @@ public class HelperIdentify extends DFrame {
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
-    private final TextEditor textGroup = new TextEditor();
+    private final TextEditor textTopics = new TextEditor();
 
     private final DPane paneGroup = new DColPane().insets(2)
             .growHorizontal().put(paneGroupActs)
-            .growBoth().put(textGroup);
+            .growBoth().put(textTopics);
 
     private final DSplitter splitterBody = new DSplitter(paneAsk, paneGroup)
             .divider(0.5f)
@@ -134,28 +134,28 @@ public class HelperIdentify extends DFrame {
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            textGroup.setText(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).topics = textGroup.getText().trim();
+            textTopics.setText(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).topics = textTopics.getText().trim();
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        var start = textGroup.edit().selectionStart();
-        var end = textGroup.edit().selectionEnd();
+        var start = textTopics.edit().selectionStart();
+        var end = textTopics.edit().selectionEnd();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textGroup.setText("");
+            textTopics.setText("");
         } else {
-            textGroup.setText(selectedRef.ref.groups.get(index).topics);
+            textTopics.setText(selectedRef.ref.groups.get(index).topics);
         }
-        textGroup.edit().selectionStart(start);
-        textGroup.edit().selectionEnd(end);
+        textTopics.edit().selectionStart(start);
+        textTopics.edit().selectionEnd(end);
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            selectedRef.ref.groups.get(index).topics = textGroup.getText().trim();
+            selectedRef.ref.groups.get(index).topics = textTopics.getText().trim();
         }
     }
 

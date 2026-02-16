@@ -27,7 +27,7 @@ public class RefDatex {
     private static final String groupEnd = "^^^";
 
     private static final DatexNode nodeProps = DatexNode.must(propsName, DatexToken.literal(propsStart), DatexToken.literal(propsEnd));
-    private static final DatexNode nodeMemoa = DatexNode.must(memoaName, DatexToken.literal(memoaStart), DatexToken.literal(memoaEnd));
+    private static final DatexNode nodeMemoa = DatexNode.may(memoaName, DatexToken.literal(memoaStart), DatexToken.literal(memoaEnd));
     
     
     private static final String organizationName = "organization";
@@ -59,9 +59,7 @@ public class RefDatex {
         var source = WizText.read(file);
         var nodes = new ArrayList<DatexNode>();
         nodes.add(nodeProps);
-        if (sourceHasMemoa(source)) {
-            nodes.add(nodeMemoa);
-        }
+        nodes.add(nodeMemoa);
         int index = 1;
         var groupNodes = new ArrayList<DatexNode>();
         while (sourceHasGroup(source, index)) {
@@ -85,13 +83,14 @@ public class RefDatex {
         var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
         ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
         ref.props.createdAt = props.getOrDefault("created-at", "");
-        ref.props.revisedAt = props.getOrDefault("revised-at", "");
-        ref.props.revisedCount = props.getOrDefault("revised-count", "");
+        ref.props.memoedAt = props.getOrDefault("memoed-at", "");
         ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
         ref.props.identifiedAt = props.getOrDefault("identified-at", "");
         ref.props.organizedAt = props.getOrDefault("organized-at", "");
         ref.props.classifiedAt = props.getOrDefault("classified-at", "");
         ref.props.doneAt = props.getOrDefault("done-at", "");
+        ref.props.revisedAt = props.getOrDefault("revised-at", "");
+        ref.props.revisedCount = props.getOrDefault("revised-count", "");
     }
 
     private static void parseMemoa(Ref ref) {
@@ -127,13 +126,14 @@ public class RefDatex {
         builder.append(propsStart).append("\n");
         builder.append("hash-md5").append(propsSeparator).append(ref.props.hashMD5).append("\n");
         builder.append("created-at").append(propsSeparator).append(ref.props.createdAt).append("\n");
-        builder.append("revised-at").append(propsSeparator).append(ref.props.revisedAt).append("\n");
-        builder.append("revised-count").append(propsSeparator).append(ref.props.revisedCount).append("\n");
+        builder.append("memoed-at").append(propsSeparator).append(ref.props.memoedAt).append("\n");
         builder.append("uploaded-at").append(propsSeparator).append(ref.props.uploadedAt).append("\n");
         builder.append("identified-at").append(propsSeparator).append(ref.props.identifiedAt).append("\n");
         builder.append("organized-at").append(propsSeparator).append(ref.props.organizedAt).append("\n");
         builder.append("classified-at").append(propsSeparator).append(ref.props.classifiedAt).append("\n");
         builder.append("done-at").append(propsSeparator).append(ref.props.doneAt).append("\n");
+        builder.append("revised-at").append(propsSeparator).append(ref.props.revisedAt).append("\n");
+        builder.append("revised-count").append(propsSeparator).append(ref.props.revisedCount).append("\n");
         builder.append(propsEnd).append("\n");
         if (withMemoa && ref.memoa.isPresent()) {
             builder.append(memoaStart).append("\n");

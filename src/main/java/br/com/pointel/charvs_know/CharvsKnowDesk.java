@@ -15,11 +15,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import org.apache.commons.io.FilenameUtils;
 
+import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
@@ -61,16 +60,19 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonActExecute)
             .growNone().put(buttonStepOpen);
 
-    private final JTextArea textMemoa = new JTextArea();
-    private final JScrollPane scrollMemoa = new JScrollPane(textMemoa);
-    private final JTextArea textStatus = new JTextArea();
-    private final JScrollPane scrollStatus = new JScrollPane(textStatus);
+    private final DButton buttonMemoaWrite = new DButton("Write")
+            .onClick(this::buttonMemoaWriteActionPerformed);
+    private final TextEditor textMemoaEditor = new TextEditor()
+            .addButton(buttonMemoaWrite);
+
+    private final JTextArea textView = new JTextArea();
+    private final JScrollPane scrollView = new JScrollPane(textView);
 
     private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
             .growHorizontal().put(rowActs)
-            .growBoth().put(scrollMemoa)
-            .growBoth().put(scrollStatus)
+            .growBoth().put(textMemoaEditor)
+            .growBoth().put(scrollView)
             .borderEmpty(7);
 
     public CharvsKnowDesk() {
@@ -117,23 +119,7 @@ public class CharvsKnowDesk extends DFrame {
         buttonStepOpen.setToolTipText("Open the Step Command");
         buttonStepOpen.addActionListener(this::buttonStepOpenActionPerformed);
 
-        textMemoa.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                textMemoaDocumentChanged(e);
-            }
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                textMemoaDocumentChanged(e);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                textMemoaDocumentChanged(e);
-            }
-        });
-        textStatus.setEditable(false);
+        textView.setEditable(false);
     }
 
     private void buttonSetupActionPerformed(ActionEvent evt) {
@@ -224,28 +210,17 @@ public class CharvsKnowDesk extends DFrame {
         }
     }
 
-    private volatile boolean memoaSaving = false;
-
-    private void textMemoaDocumentChanged(DocumentEvent e) {
-        if (selectedRef == null || memoaSaving) {
+    private void buttonMemoaWriteActionPerformed(ActionEvent evt) {
+        if (selectedRef == null) {
             return;
         }
-        memoaSaving = true;
-        new Thread("Memoa Saving") {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(300);
-                    selectedRef.ref.memoa.text = textMemoa.getText().trim();
-                    memoaSaving = false;
-                    RefDatex.write(selectedRef.ref, selectedRef.refFile);
-                } catch (Exception ex) {
-                    WizGUI.showError(ex);
-                } finally {
-                    memoaSaving = false;
-                }
-            }
-        }.start();
+        try {
+            selectedRef.ref.memoa.text = textMemoaEditor.getText().trim();
+            selectedRef.ref.props.memoedAt = WizUtilDate.formatDateMach(new Date());
+            selectedRef.write();
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }    
     }
 
     private transient File lastSelectedFile = null;
@@ -272,8 +247,6 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            ref.props.revisedAt = ref.props.createdAt;
-            ref.props.revisedCount = "1";
             RefDatex.write(ref, refFile);
         } else {
             ref = RefDatex.read(refFile);
@@ -298,8 +271,6 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            ref.props.revisedAt = ref.props.createdAt;
-            ref.props.revisedCount = "1";
             RefDatex.write(ref, refFile);
         } else {
             ref = RefDatex.read(refFile);
@@ -313,16 +284,16 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     public void updateStatus() {
-        var start = textMemoa.getSelectionStart();
-        var end = textMemoa.getSelectionEnd();
-        textMemoa.setText(selectedRef.ref.memoa.text);
-        textMemoa.setSelectionStart(start);
-        textMemoa.setSelectionEnd(end);
-        start = textStatus.getSelectionStart();
-        end = textStatus.getSelectionEnd();
-        textStatus.setText(RefDatex.getRefSource(selectedRef.ref, false));
-        textStatus.setSelectionStart(start);
-        textStatus.setSelectionEnd(end);
+        var start = textMemoaEditor.edit().selectionStart();
+        var end = textMemoaEditor.edit().selectionEnd();
+        textMemoaEditor.setText(selectedRef.ref.memoa.text);
+        textMemoaEditor.edit().selectionStart(start);
+        textMemoaEditor.edit().selectionEnd(end);
+        start = textView.getSelectionStart();
+        end = textView.getSelectionEnd();
+        textView.setText(RefDatex.getRefSource(selectedRef.ref, false));
+        textView.setSelectionStart(start);
+        textView.setSelectionEnd(end);
     }
 
     public File getBaseRefFile(String refWithExtension) {

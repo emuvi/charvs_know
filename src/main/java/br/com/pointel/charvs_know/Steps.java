@@ -12,9 +12,8 @@ public enum Steps {
     Atomize("S04 - Atomize.txt", new ActAtomize()), 
     Questify("S05 - Questify.txt", new ActQuestify()), 
     Explaine("S06 - Explaine.txt", new ActExplaine()),
-    RevisedAtNow(null, new ActRevisedAtNow()),
-    RevisedCountAdd("S08 - RevisedCountAdd.txt", new ActRevisedCountAdd()),
-    DoneAtNow("S09 - UploadedAtNow.txt", new ActDoneAtNow());
+    DoneAtNow(null, new ActDoneAtNow()),
+    RevisedAtNow(null, new ActRevisedAtNow());
 
     private final String commandName;
     private final Act stepAct;
