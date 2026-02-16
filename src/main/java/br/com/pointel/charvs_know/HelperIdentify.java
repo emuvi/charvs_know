@@ -2,6 +2,8 @@ package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.SwingUtilities;
+
 import br.com.pointel.jarch.desk.DBordPane;
 import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DComboEdit;
@@ -62,7 +64,27 @@ public class HelperIdentify extends DFrame {
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
-        
+        if (buttonAsk.getText().equals("Asking...")) {
+            return;
+        }
+        buttonAsk.setText("Asking...");
+        new Thread("Identify Asking") {
+            @Override
+            public void run() {
+                try {
+                    var result = selectedRef.talkWithAttach(Steps.Identify.getCommand());
+                    SwingUtilities.invokeLater(() -> {
+                        textAsk.setText(result);
+                        textAsk.edit().selectionStart(0);
+                        textAsk.edit().selectionEnd(0);
+                    });
+                } catch (Exception ex) {
+                    WizGUI.showError(ex);
+                } finally {
+                    SwingUtilities.invokeLater(() -> buttonAsk.setText("Ask"));
+                }
+            }
+        }.start();
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
@@ -82,7 +104,7 @@ public class HelperIdentify extends DFrame {
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
-        textGroup.setText(textAsk.edit().selectedText());
+        textGroup.setText(textAsk.edit().selectedText().trim());
         buttonSaveActionPerformed(e);
     }
 

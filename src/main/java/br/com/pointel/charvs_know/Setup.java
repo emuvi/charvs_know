@@ -72,6 +72,16 @@ public class Setup {
         WizProps.set(KEYS_LAST_SELECTED_REFS[0], refWithExtension);
     }
 
+    public static final String KEY_GENAI_MODEL = "FRAME_SETUP_COMP_GENAI_MODEL";
+    
+    public static GenaiModel getGenaiModel() {
+        return GenaiModel.values()[WizProps.get(KEY_GENAI_MODEL, 0)];
+    }
+
+    public static void setGenaiModel(GenaiModel genaiModel) {
+        WizProps.set(KEY_GENAI_MODEL, genaiModel.ordinal());
+    }
+
     public static File getReplacesListFile() {
         return new File("replaces.ser");
     }

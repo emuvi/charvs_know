@@ -7,10 +7,12 @@ import com.google.genai.Client;
 import com.google.genai.types.Content;
 import com.google.genai.types.Part;
 
+import br.com.pointel.jarch.mage.WizEnv;
+
 public class TalkerGenai implements Talker, AutoCloseable {
 
-    private final Client client = Client.builder().apiKey("CHARVS_KNOW_GENAI_API_KEY").build();
-    private final Chat chat = client.chats.create("gemini-3-pro-preview");
+    private final Client client = Client.builder().apiKey(WizEnv.get("CHARVS_KNOW_GENAI_API_KEY", "")).build();
+    private final Chat chat = client.chats.create(Setup.getGenaiModel().code());
 
     @Override
     public String talk(String command) {
@@ -25,7 +27,7 @@ public class TalkerGenai implements Talker, AutoCloseable {
         for (var attach : attachs) {
             parts.add(Part.fromUri(attach.fileUri, attach.mimeType.code()));
         }
-        var content = Content.builder().parts(parts).build();
+        var content = Content.builder().role("user").parts(parts).build();
         var response = chat.sendMessage(content);
         return response.text();
     }
