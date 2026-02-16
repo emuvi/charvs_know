@@ -7,6 +7,9 @@ public class RefProps {
     public String revisedAt = "";
     public String revisedCount = "";
     public String uploadedAt = "";
+    public String identifiedAt = "";
+    public String organizedAt = "";
+    public String classifiedAt = "";
     public String doneAt = "";
 
 }

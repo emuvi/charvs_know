@@ -88,6 +88,9 @@ public class RefDatex {
         ref.props.revisedAt = props.getOrDefault("revised-at", "");
         ref.props.revisedCount = props.getOrDefault("revised-count", "");
         ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
+        ref.props.identifiedAt = props.getOrDefault("identified-at", "");
+        ref.props.organizedAt = props.getOrDefault("organized-at", "");
+        ref.props.classifiedAt = props.getOrDefault("classified-at", "");
         ref.props.doneAt = props.getOrDefault("done-at", "");
     }
 
@@ -105,9 +108,9 @@ public class RefDatex {
             group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
             var propsRealization = WizProps.getOf(nodeRealization.getValue(), propsSeparator);
-            group.statusNotes = propsRealization.getOrDefault("Notas", "");
-            group.statusQuests = propsRealization.getOrDefault("Questões", "");
-            group.statusTexts = propsRealization.getOrDefault("Redações", "");
+            group.atomizedAt = propsRealization.getOrDefault("Atomizado em", "");
+            group.questifiedAt = propsRealization.getOrDefault("Questionado em", "");
+            group.explainedAt = propsRealization.getOrDefault("Explanado em", "");
         }
     }
 
@@ -127,6 +130,9 @@ public class RefDatex {
         builder.append("revised-at").append(propsSeparator).append(ref.props.revisedAt).append("\n");
         builder.append("revised-count").append(propsSeparator).append(ref.props.revisedCount).append("\n");
         builder.append("uploaded-at").append(propsSeparator).append(ref.props.uploadedAt).append("\n");
+        builder.append("identified-at").append(propsSeparator).append(ref.props.identifiedAt).append("\n");
+        builder.append("organized-at").append(propsSeparator).append(ref.props.organizedAt).append("\n");
+        builder.append("classified-at").append(propsSeparator).append(ref.props.classifiedAt).append("\n");
         builder.append("done-at").append(propsSeparator).append(ref.props.doneAt).append("\n");
         builder.append(propsEnd).append("\n");
         if (withMemoa && ref.memoa.isPresent()) {
@@ -154,9 +160,9 @@ public class RefDatex {
         builder.append(group.topics).append("\n");
         builder.append(topicsEnd).append("\n");
         builder.append(realizationStart).append("\n");
-        builder.append("Notas: ").append(group.statusNotes).append("\n");
-        builder.append("Questões: ").append(group.statusQuests).append("\n");
-        builder.append("Redações: ").append(group.statusTexts).append("\n");
+        builder.append("Atomizado em: ").append(group.atomizedAt).append("\n");
+        builder.append("Questionado em: ").append(group.questifiedAt).append("\n");
+        builder.append("Explanado em: ").append(group.explainedAt).append("\n");
         builder.append(realizationEnd).append("\n");
     }
 
