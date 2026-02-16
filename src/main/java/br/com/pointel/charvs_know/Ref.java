@@ -3,6 +3,7 @@ package br.com.pointel.charvs_know;
 public class Ref {
 
     public final RefProps props = new RefProps();
+    public final RefMemoa memoa = new RefMemoa();
     public final RefGroup group01 = new RefGroup();
     public final RefGroup group02 = new RefGroup();
     public final RefGroup group03 = new RefGroup();

@@ -16,6 +16,10 @@ public class RefDatex {
     private static final String propsEnd = "---";
     private static final String propsSeparator = ": ";
 
+    private static final String memoaName = "memoa";
+    private static final String memoaStart = "## Memoa";
+    private static final String memoaEnd = "^^^";
+
     private static final String group01Name = "group01";
     private static final String group01Start = "## Grupo 01";
     private static final String group01End = "^^^";
@@ -65,6 +69,7 @@ public class RefDatex {
     private static final String group12End = "^^^";
 
     private static final DatexNode nodeProps = DatexNode.must(propsName, DatexToken.literal(propsStart), DatexToken.literal(propsEnd));
+    private static final DatexNode nodeMemoa = DatexNode.may(memoaName, DatexToken.literal(memoaStart), DatexToken.literal(memoaEnd));
     private static final DatexNode nodeGroup01 = DatexNode.may(group01Name, DatexToken.literal(group01Start), DatexToken.literal(group01End));
     private static final DatexNode nodeGroup02 = DatexNode.may(group02Name, DatexToken.literal(group02Start), DatexToken.literal(group02End));
     private static final DatexNode nodeGroup03 = DatexNode.may(group03Name, DatexToken.literal(group03Start), DatexToken.literal(group03End));
@@ -79,7 +84,7 @@ public class RefDatex {
     private static final DatexNode nodeGroup12 = DatexNode.may(group12Name, DatexToken.literal(group12Start), DatexToken.literal(group12End));
     
     private static final Datex datexRoot = new Datex(
-            DatexNode.of(nodeProps,
+            DatexNode.of(nodeProps, nodeMemoa,
                     nodeGroup01, nodeGroup02, nodeGroup03,
                     nodeGroup04, nodeGroup05, nodeGroup06,
                     nodeGroup07, nodeGroup08, nodeGroup09,
@@ -114,12 +119,8 @@ public class RefDatex {
     public static final synchronized void read(Ref ref, File file) throws Exception {
         var source = WizText.read(file);
         datexRoot.parse(source);
-        var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
-        ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
-        ref.props.createdAt = props.getOrDefault("created-at", "");
-        ref.props.revisedOn = props.getOrDefault("revised-on", "");
-        ref.props.revisedCount = props.getOrDefault("revised-count", "");
-        ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
+        parseProps(ref);
+        parseMemoa(ref);
         parseGroup(nodeGroup01, ref.group01);
         parseGroup(nodeGroup02, ref.group02);
         parseGroup(nodeGroup03, ref.group03);
@@ -132,6 +133,21 @@ public class RefDatex {
         parseGroup(nodeGroup10, ref.group10);
         parseGroup(nodeGroup11, ref.group11);
         parseGroup(nodeGroup12, ref.group12);
+    }
+
+    private static void parseProps(Ref ref) {
+        var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
+        ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
+        ref.props.createdAt = props.getOrDefault("created-at", "");
+        ref.props.revisedOn = props.getOrDefault("revised-on", "");
+        ref.props.revisedCount = props.getOrDefault("revised-count", "");
+        ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
+    }
+
+    private static void parseMemoa(Ref ref) {
+        if (nodeMemoa.isPresent()) {
+            ref.memoa.text = nodeMemoa.getValue().trim();
+        }
     }
 
     private static void parseGroup(DatexNode node, RefGroup group) throws Exception {
@@ -153,6 +169,10 @@ public class RefDatex {
     }
 
     public static String getRefSource(Ref ref) {
+        return getRefSource(ref, true);
+    }
+
+    public static String getRefSource(Ref ref, boolean withMemoa) {
         var builder = new StringBuilder();
         builder.append(propsStart).append("\n");
         builder.append("hash-md5").append(propsSeparator).append(ref.props.hashMD5).append("\n");
@@ -161,6 +181,11 @@ public class RefDatex {
         builder.append("revised-count").append(propsSeparator).append(ref.props.revisedCount).append("\n");
         builder.append("uploaded-at").append(propsSeparator).append(ref.props.uploadedAt).append("\n");
         builder.append(propsEnd).append("\n");
+        if (withMemoa && ref.memoa.isPresent()) {
+            builder.append(memoaStart).append("\n");
+            builder.append(ref.memoa.text).append("\n");
+            builder.append(memoaEnd).append("\n");
+        }
         if (ref.group01.isPresent()) {
             builder.append(group01Start).append("\n");
             writeGroup(ref.group01, builder);

@@ -12,7 +12,7 @@ public class RefGroup {
     public RefGroup() {}
 
     public boolean isPresent() {
-        return !topics.isEmpty();
+        return topics != null && !topics.isBlank();
     }
 
     public void clear() {

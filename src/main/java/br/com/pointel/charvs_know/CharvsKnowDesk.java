@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -28,12 +30,14 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 
 public class CharvsKnowDesk extends DFrame {
 
+    private final JButton buttonSetup = new JButton("@");
     private final JButton buttonBaseSelect = new JButton("^");
     private final JButton buttonBaseOpen = new JButton("*");
     private final JComboBox<String> comboBase = new JComboBox<>();
     private final JButton buttonBaseAdd = new JButton("+");
     private final JButton buttonBaseDel = new JButton("-");
     private final DRowPane rowBase = new DRowPane().insets(2)
+            .growNone().put(buttonSetup)
             .growNone().put(buttonBaseSelect)
             .growNone().put(buttonBaseOpen)
             .growHorizontal().put(comboBase)
@@ -57,15 +61,16 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonActExecute)
             .growNone().put(buttonStepOpen);
 
+    private final JTextArea textMemoa = new JTextArea();
+    private final JScrollPane scrollMemoa = new JScrollPane(textMemoa);
     private final JTextArea textStatus = new JTextArea();
     private final JScrollPane scrollStatus = new JScrollPane(textStatus);
-    private final DRowPane rowStatus = new DRowPane().insets(2)
-            .growBoth().put(scrollStatus);
 
     private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
             .growHorizontal().put(rowActs)
-            .growBoth().put(rowStatus)
+            .growBoth().put(scrollMemoa)
+            .growBoth().put(scrollStatus)
             .borderEmpty(7);
 
     public CharvsKnowDesk() {
@@ -77,6 +82,8 @@ public class CharvsKnowDesk extends DFrame {
         exitOnClose();
         body(paneBody);
 
+        buttonSetup.setToolTipText("Setup");
+        buttonSetup.addActionListener(this::buttonSetupActionPerformed);
         buttonBaseSelect.setToolTipText("Select Base Folder");
         buttonBaseSelect.addActionListener(this::buttonBaseSelectActionPerformed);
         buttonBaseOpen.setToolTipText("Open Base Folder");
@@ -109,7 +116,28 @@ public class CharvsKnowDesk extends DFrame {
         buttonActExecute.addActionListener(this::buttonActExecuteActionPerformed);
         buttonStepOpen.setToolTipText("Open the Step Command");
         buttonStepOpen.addActionListener(this::buttonStepOpenActionPerformed);
+
+        textMemoa.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                textMemoaDocumentChanged(e);
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                textMemoaDocumentChanged(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                textMemoaDocumentChanged(e);
+            }
+        });
         textStatus.setEditable(false);
+    }
+
+    private void buttonSetupActionPerformed(ActionEvent evt) {
+        new SetupDesk().setVisible(true);
     }
 
     private void buttonBaseSelectActionPerformed(ActionEvent evt) {
@@ -196,6 +224,28 @@ public class CharvsKnowDesk extends DFrame {
         }
     }
 
+    private volatile boolean memoaSaving = false;
+
+    private void textMemoaDocumentChanged(DocumentEvent e) {
+        if (selectedRef == null || memoaSaving) {
+            return;
+        }
+        memoaSaving = true;
+        new Thread("Memoa Saving") {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(300);
+                    selectedRef.ref.memoa.text = textMemoa.getText().trim();
+                    RefDatex.write(selectedRef.ref, selectedRef.refFile);
+                } catch (Exception ex) {
+                    WizGUI.showError(ex);
+                } finally {
+                    memoaSaving = false;
+                }
+            }
+        }.start();
+    }
 
     private transient File lastSelectedFile = null;
     private transient SelectedRef selectedRef = null;
@@ -262,9 +312,14 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     public void updateStatus() {
-        var start = textStatus.getSelectionStart();
-        var end = textStatus.getSelectionEnd();
-        textStatus.setText(RefDatex.getRefSource(selectedRef.ref));
+        var start = textMemoa.getSelectionStart();
+        var end = textMemoa.getSelectionEnd();
+        textMemoa.setText(selectedRef.ref.memoa.text);
+        textMemoa.setSelectionStart(start);
+        textMemoa.setSelectionEnd(end);
+        start = textStatus.getSelectionStart();
+        end = textStatus.getSelectionEnd();
+        textStatus.setText(RefDatex.getRefSource(selectedRef.ref, false));
         textStatus.setSelectionStart(start);
         textStatus.setSelectionEnd(end);
     }
