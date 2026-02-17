@@ -156,6 +156,7 @@ public class HelperOrganize extends DFrame {
         if (index == -1) {
             return;
         }
+        var group = selectedRef.ref.groups.get(index);
         var startTitration = textTitration.edit().selectionStart();
         var endTitration = textTitration.edit().selectionEnd();
         var startTopics = textTopics.selectionStart();
@@ -164,8 +165,8 @@ public class HelperOrganize extends DFrame {
             textTitration.setText("");
             textTopics.setValue("");
         } else {
-            textTitration.setText(selectedRef.ref.groups.get(index).titration);
-            textTopics.setValue(selectedRef.ref.groups.get(index).topics);
+            textTitration.setText(group.titration);
+            textTopics.setValue(group.topics);
         }
         textTitration.edit().selectionStart(startTitration);
         textTitration.edit().selectionEnd(endTitration);

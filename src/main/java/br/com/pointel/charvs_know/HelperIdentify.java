@@ -145,12 +145,13 @@ public class HelperIdentify extends DFrame {
         if (index == -1) {
             return;
         }
+        var group = selectedRef.ref.groups.get(index);
         var start = textTopics.edit().selectionStart();
         var end = textTopics.edit().selectionEnd();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
             textTopics.setText("");
         } else {
-            textTopics.setText(selectedRef.ref.groups.get(index).topics);
+            textTopics.setText(group.topics);
         }
         textTopics.edit().selectionStart(start);
         textTopics.edit().selectionEnd(end);
