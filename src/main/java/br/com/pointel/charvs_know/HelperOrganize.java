@@ -52,7 +52,7 @@ public class HelperOrganize extends DFrame {
             .growNone().put(buttonWrite);
 
     private final TextEditor textTitration = new TextEditor();
-    private final DText textTopics = new DText();
+    private final DText textTopics = new DText().editable(false);
     private final DScroll scrollTopics = new DScroll(textTopics);
     private final DSplitter splitterGroup = new DSplitter()
             .vertical().top(textTitration).bottom(scrollTopics)
