@@ -103,6 +103,7 @@ public class RefDatex {
         if (node.isPresent()) {
             datexGroup.parse(node.getValue());
             var propsOrganization = WizProps.getOf(nodeOrganization.getValue(), propsSeparator);
+            group.order = propsOrganization.getOrDefault("Ordem", "");
             group.classification = propsOrganization.getOrDefault("Classificação", "");
             group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
@@ -153,6 +154,7 @@ public class RefDatex {
 
     private static void writeGroup(RefGroup group, StringBuilder builder) {
         builder.append(organizationStart).append("\n");
+        builder.append("Ordem: ").append(group.order).append("\n");
         builder.append("Classificação: ").append(group.classification).append("\n");
         builder.append("Titulação: ").append(group.titration).append("\n");
         builder.append(organizationEnd).append("\n");

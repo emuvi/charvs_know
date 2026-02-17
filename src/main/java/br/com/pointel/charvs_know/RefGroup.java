@@ -2,6 +2,7 @@ package br.com.pointel.charvs_know;
 
 public class RefGroup {
 
+    public String order = "";
     public String classification = "";
     public String titration = "";
     public String topics = "";
@@ -16,17 +17,20 @@ public class RefGroup {
     }
 
     public void clearIdentified() {
+        order = "";
         classification = "";
         titration = "";
         topics = "";
     }
 
     public void clearOrganized() {
+        order = "";
         classification = "";
         titration = "";
     }
 
     public void clearClassified() {
+        order = "";
         classification = "";
     }
 
