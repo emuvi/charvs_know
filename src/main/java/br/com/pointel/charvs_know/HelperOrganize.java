@@ -153,6 +153,9 @@ public class HelperOrganize extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
+        if (index == -1) {
+            return;
+        }
         var startTitration = textTitration.edit().selectionStart();
         var endTitration = textTitration.edit().selectionEnd();
         var startTopics = textTopics.selectionStart();

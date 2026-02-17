@@ -142,6 +142,9 @@ public class HelperIdentify extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
+        if (index == -1) {
+            return;
+        }
         var start = textTopics.edit().selectionStart();
         var end = textTopics.edit().selectionEnd();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
