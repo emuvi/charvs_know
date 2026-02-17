@@ -116,31 +116,35 @@ public class HelperOrganize extends DFrame {
     }
 
     private void buttonParseActionPerformed(ActionEvent e) {
-        var text = textAsk.getText().trim();
-        if (text.isBlank()) {
-            return;
-        }
-        var index = 0;
-        var start = text.indexOf("[[");
-        while (start > -1) {
-            if (index >= selectedRef.ref.groups.size()) {
-                break;
+        try {
+            var text = textAsk.getText().trim();
+            if (text.isBlank()) {
+                return;
             }
-            var end = text.indexOf("]]", start);
-            if (end > -1) {
-                var titration = text.substring(start + 2, end).trim();
-                if (!titration.startsWith("+")) {
-                    titration = "+" + titration;
+            var index = 0;
+            var start = text.indexOf("[[");
+            while (start > -1) {
+                if (index >= selectedRef.ref.groups.size()) {
+                    break;
                 }
-                titration = Utils.cleanFileName(titration);
-                selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
-                start = text.indexOf("[[", end);
-                index++;
-            } else {
-                break;
+                var end = text.indexOf("]]", start);
+                if (end > -1) {
+                    var titration = text.substring(start + 2, end).trim();
+                    if (!titration.startsWith("+")) {
+                        titration = "+" + titration;
+                    }
+                    titration = Utils.cleanFileName(titration);
+                    selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
+                    start = text.indexOf("[[", end);
+                    index++;
+                } else {
+                    break;
+                }
             }
+            comboGroupActionPerformed(e);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
         }
-        comboGroupActionPerformed(e);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {

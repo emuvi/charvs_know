@@ -21,15 +21,15 @@ public class HelperIdentify extends DFrame {
             .onClick(this::buttonClearActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onClick(this::buttonAskActionPerformed);
-    private final DButton buttonSplit = new DButton("Split")
-            .onClick(this::buttonSplitActionPerformed);
+    private final DButton buttonParse = new DButton("Parse")
+            .onClick(this::buttonParseActionPerformed);
     private final DButton buttonAdd = new DButton("Add")
             .onClick(this::buttonAddActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
-        .growNone().put(buttonSplit)
+        .growNone().put(buttonParse)
         .growNone().put(buttonAdd);
 
     private final TextEditor textAsk = new TextEditor();
@@ -108,20 +108,24 @@ public class HelperIdentify extends DFrame {
         }.start();
     }
 
-    private void buttonSplitActionPerformed(ActionEvent e) {
-        var parts = textAsk.edit().getValue().split("\\-\\-\\-");
-        if (parts.length == 0) {
-            return;
+    private void buttonParseActionPerformed(ActionEvent e) {
+        try {
+            var parts = textAsk.edit().getValue().split("\\-\\-\\-");
+            if (parts.length == 0) {
+                return;
+            }
+            selectedRef.ref.groups.clear();
+            comboGroup.clear();
+            for (int i = 0; i < parts.length; i++) {
+                var group = new RefGroup();
+                group.topics = parts[i].trim();
+                selectedRef.ref.groups.add(group);
+                comboGroup.add("Group " + String.format("%02d", i + 1));
+            }
+            comboGroup.selectedIndex(0);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
         }
-        selectedRef.ref.groups.clear();
-        comboGroup.clear();
-        for (int i = 0; i < parts.length; i++) {
-            var group = new RefGroup();
-            group.topics = parts[i].trim();
-            selectedRef.ref.groups.add(group);
-            comboGroup.add("Group " + String.format("%02d", i + 1));
-        }
-        comboGroup.selectedIndex(0);
     }
 
     private void buttonAddActionPerformed(ActionEvent e) {
