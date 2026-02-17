@@ -107,9 +107,9 @@ public class RefDatex {
             group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
             var propsRealization = WizProps.getOf(nodeRealization.getValue(), propsSeparator);
-            group.atomizedAt = propsRealization.getOrDefault("Atomizado em", "");
-            group.questifiedAt = propsRealization.getOrDefault("Questionário em", "");
-            group.explainedAt = propsRealization.getOrDefault("Explanado em", "");
+            group.cardsAt = propsRealization.getOrDefault("Cartões em", "");
+            group.questsAt = propsRealization.getOrDefault("Questões em", "");
+            group.textsAt = propsRealization.getOrDefault("Redações em", "");
         }
     }
 
@@ -160,9 +160,9 @@ public class RefDatex {
         builder.append(group.topics).append("\n");
         builder.append(topicsEnd).append("\n");
         builder.append(realizationStart).append("\n");
-        builder.append("Atomizado em: ").append(group.atomizedAt).append("\n");
-        builder.append("Questionário em: ").append(group.questifiedAt).append("\n");
-        builder.append("Explanado em: ").append(group.explainedAt).append("\n");
+        builder.append("Cartões em: ").append(group.cardsAt).append("\n");
+        builder.append("Questões em: ").append(group.questsAt).append("\n");
+        builder.append("Redações em: ").append(group.textsAt).append("\n");
         builder.append(realizationEnd).append("\n");
     }
 

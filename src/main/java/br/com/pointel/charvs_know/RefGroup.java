@@ -5,9 +5,9 @@ public class RefGroup {
     public String classification = "";
     public String titration = "";
     public String topics = "";
-    public String atomizedAt = "";
-    public String questifiedAt = "";
-    public String explainedAt = "";
+    public String cardsAt = "";
+    public String questsAt = "";
+    public String textsAt = "";
 
     public RefGroup() {}
 
