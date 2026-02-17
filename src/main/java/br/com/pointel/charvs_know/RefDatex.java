@@ -108,7 +108,7 @@ public class RefDatex {
             group.topics = nodeTopics.getValue().trim();
             var propsRealization = WizProps.getOf(nodeRealization.getValue(), propsSeparator);
             group.atomizedAt = propsRealization.getOrDefault("Atomizado em", "");
-            group.questifiedAt = propsRealization.getOrDefault("Questionado em", "");
+            group.questifiedAt = propsRealization.getOrDefault("Questionário em", "");
             group.explainedAt = propsRealization.getOrDefault("Explanado em", "");
         }
     }
@@ -161,7 +161,7 @@ public class RefDatex {
         builder.append(topicsEnd).append("\n");
         builder.append(realizationStart).append("\n");
         builder.append("Atomizado em: ").append(group.atomizedAt).append("\n");
-        builder.append("Questionado em: ").append(group.questifiedAt).append("\n");
+        builder.append("Questionário em: ").append(group.questifiedAt).append("\n");
         builder.append("Explanado em: ").append(group.explainedAt).append("\n");
         builder.append(realizationEnd).append("\n");
     }
