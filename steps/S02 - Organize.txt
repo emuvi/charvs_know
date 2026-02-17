@@ -5,6 +5,8 @@ Cada classificação sugerida deve ser apresentada no seguinte formato:
 [[+ Título de Classificação com até 120 Caracteres]]
 
 
+Cada classificação sugerida deve começar com `[[+` e terminar com `]]`.
+
 Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** a lista de classificações sugeridas para cada grupo de assunto, tema ou tópicos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de classificações sugeridas para cada grupo itens classificatórios abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.

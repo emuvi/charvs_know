@@ -1,52 +1,85 @@
-Sugira 10 (dez) classificações possíveis que consigam sintetizar todo o assunto abaixo apresentado.
+Vamos criar um sistema de classificação para cada um dos grupos semióticos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
-Cada classificação sugerida deve apresentar três níveis hierárquicos, cada nível indo do mais abrangente / abstrato para o mais específico / concreto.
+Sugira uma classificação que consiga sintetizar todo o significado de cada um dos grupos semióticos de assuntos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
+
+Cada classificação sugerida deve apresentar quatro níveis hierárquicos, cada nível indo do mais abrangente ou abstrato para o mais específico ou concreto.
 
 Inicie cada nível hierárquico de classificação com o carácter ´-´.
 
-
-Ou seja, sugira 10 (dez) classificações no seguinte estilo:
-- Direito - Direito Penal - Lavagem de Dinheiro
-- Direito - Direito Constitucional - Cidadania e Direitos Políticos
-- Informática - Engenharia de Sistemas - Metodologias de Engenharia de Sistemas
-- Administração - Fundamentos e Dinâmica Organizacional - Organização Estrutural
-- Economia - Fundamentos e Microeconomia - Medidas de Elasticidades
-- Economia - Macroeconomia - Sistema Financeiro Nacional
-- Português - Morfologia e Estrutura da Palavra - Preposição e Conjunção
-- Português - Sintaxe e Regras de Construção - Emprego dos Sinais de Pontuação
-- Geografia - Dinâmica Espacial e Demográfica - Demografia e Migrações
-- Matemática - Aritmética e Fundamentos Numéricos - Potências de Dez e Unidades de Medida
+O primeiro nível hierárquico deve ser ou `Funcional` ou `Elementar` conforme a natureza de aplicação do assunto abaixo apresentado.
 
 
-Para cada título de classificação sugerido, o primeiro nível hierárquico de classificação pode ter até 30 caracteres. O primeiro nível hierárquico de classificação não deve ter mais de 30 caracteres para cada título de classificação sugerido.
+Sugira cada classificação para cada um dos grupos semióticos de assuntos abaixo separados por `---` no seguinte estilo:
+[[- Funcional - Direito - Direito Penal - Lavagem de Dinheiro]]
+[[- Funcional - Direito - Direito Constitucional - Cidadania e Direitos Políticos]]
+[[- Funcional - Informática - Engenharia de Sistemas - Metodologias de Engenharia de Sistemas]]
+[[- Funcional - Administração - Fundamentos e Dinâmica Organizacional - Organização Estrutural]]
+[[- Funcional - Economia - Fundamentos e Microeconomia - Medidas de Elasticidades]]
+[[- Funcional - Economia - Macroeconomia - Sistema Financeiro Nacional]]
+[[- Funcional - Contabilidade - Contabilidade Geral - Balanço Patrimonial]]
+[[- Funcional - Gestão de Pessoas - Comportamento Organizacional - Motivação e Liderança]]
+[[- Funcional - Direito - Direito Administrativo - Atos Administrativos]]
+[[- Funcional - Tecnologia da Informação - Banco de Dados - Modelagem de Dados]]
+[[- Funcional - Marketing - Gestão de Marketing - Pesquisa de Mercado]]
+[[- Funcional - Finanças - Matemática Financeira - Juros Compostos e Descontos]]
+[[- Funcional - Direito - Direito Civil - Obrigações e Contratos]]
+[[- Funcional - Administração - Gestão de Projetos - Ciclo de Vida do Projeto]]
+[[- Funcional - Economia - Economia Brasileira - Planos Econômicos]]
+[[- Funcional - Auditoria - Auditoria Governamental - Normas de Auditoria]]
+[[- Elementar - Português - Morfologia e Estrutura da Palavra - Preposição e Conjunção]]
+[[- Elementar - Português - Sintaxe e Regras de Construção - Emprego dos Sinais de Pontuação]]
+[[- Elementar - Geografia - Dinâmica Espacial e Demográfica - Demografia e Migrações]]
+[[- Elementar - Matemática - Aritmética e Fundamentos Numéricos - Potências de Dez e Unidades de Medida]]
+[[- Elementar - História - História do Brasil - Período Colonial]]
+[[- Elementar - História - História Geral - Revolução Francesa]]
+[[- Elementar - Física - Mecânica Clássica - Leis de Newton]]
+[[- Elementar - Física - Termodinâmica - Calorimetria e Mudanças de Fase]]
+[[- Elementar - Química - Química Geral - Tabela Periódica]]
+[[- Elementar - Química - Química Orgânica - Hidrocarbonetos]]
+[[- Elementar - Biologia - Citologia - Estrutura Celular]]
+[[- Elementar - Biologia - Genética - Leis de Mendel]]
+[[- Elementar - Geografia - Geografia Física - Climatologia e Biomas]]
+[[- Elementar - Geografia - Geopolítica - Globalização e Blocos Econômicos]]
+[[- Elementar - Matemática - Geometria Plana - Áreas e Perímetros]]
+[[- Elementar - Matemática - Álgebra - Equações e Funções]]
+[[- Elementar - Português - Semântica - Sinônimos e Antônimos]]
+[[- Elementar - Português - Interpretação de Texto - Tipologia Textual]]
+[[- Elementar - Inglês - Gramática - Tempos Verbais]]
 
-Para cada título de classificação sugerido, o segundo nível hierárquico de classificação pode ter até 60 caracteres. O segundo nível hierárquico de classificação não deve ter mais de 60 caracteres para cada título de classificação sugerido.
 
-Para cada título de classificação sugerido, o terceiro nível hierárquico de classificação pode ter até 90 caracteres. O terceiro nível hierárquico de classificação não deve ter mais de 90 caracteres para cada título de classificação sugerido.
+Cada classificação sugerida deve começar com `[[-` e terminar com `]]`.
+
+Para cada título de classificação sugerido, o segundo nível hierárquico de classificação pode ter até 30 caracteres. O segundo nível hierárquico de classificação não deve ter mais de 30 caracteres para cada título de classificação sugerido.
+
+Para cada título de classificação sugerido, o terceiro nível hierárquico de classificação pode ter até 60 caracteres. O terceiro nível hierárquico de classificação não deve ter mais de 60 caracteres para cada título de classificação sugerido.
+
+Para cada título de classificação sugerido, o quarto nível hierárquico de classificação pode ter até 90 caracteres. O quarto nível hierárquico de classificação não deve ter mais de 90 caracteres para cada título de classificação sugerido.
 
 
-Mas **ATENÇÃO** sugira 10 (dez) classificações pertinentes ao documento em anexo e que consigam sintetizar todo o assunto abaixo apresentado e todo o assunto que poderia estar correlacionado.
+Mas **ATENÇÃO** sugira classificações pertinentes ao documento em anexo para cada um dos grupos semióticos de assuntos abaixo separados por `---` e que consigam sintetizar todo o grupo de significados abaixo separados por `---`.
 
-Siga os padrões de classificação da biblioteconomia (CDU e CDD) mas principalmente de websites de cursos, escolas, universidades, instituições de pesquisa e escolas para concursos.
+Sugira classificações abrangentes o suficiente que consigam capturar todo o assunto que pode estar correlacionado para cada um dos grupos semióticos de assuntos abaixo separados por `---`.
 
-Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** a lista de classificações sugeridas que consigam sintetizar todo o assunto abaixo apresentado extraídos conforme o documento em anexo nessa conversa.
+Siga os padrões de classificação da biblioteconomia (CDU e CDD) adaptando-os conforme os currículos de cursos, escolas, universidades, faculdades, instituições de pesquisa e escolas para concursos.
 
-Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de classificações sugeridas que consigam sintetizar todo o assunto abaixo apresentado extraídos conforme o documento em anexo nessa conversa.
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a lista de classificações sugeridas que consigam sintetizar todo o assunto abaixo apresentado extraídos conforme o documento em anexo nessa conversa.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Não coloque nenhuma citação na sua resposta. Forneça **apenas** a lista de classificações sugeridas que consigam sintetizar todo o assunto abaixo apresentado extraídos conforme o documento em anexo nessa conversa.
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Cada título de classificação sugerido com os três níveis hierárquicos deve ter até 180 caracteres. Cada título de classificação sugerido com os três níveis hierárquicos não deve ter mais de 180 caracteres. Cada título de classificação deve seguir o padrão de que toda palavra importante em cada título deve ter a sua primeira letra em maiúsculas. As palavras menos importantes como preposições e conjunções devem ser escritas com todas as suas letras em minúsculas.
+Não coloque nenhuma citação na sua resposta. Forneça **apenas** as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Sugira 10 (dez) classificações possíveis que consigam sintetizar todo o assunto abaixo apresentado baseado / conforme o conteúdo do documento em anexo nessa conversa.
+Cada título de classificação sugerido com os quatro níveis hierárquicos deve ter até 180 caracteres. Cada título de classificação sugerido com os quatro níveis hierárquicos não deve ter mais de 180 caracteres. Cada título de classificação deve seguir o padrão de que toda palavra importante em cada título deve ter a sua primeira letra em maiúsculas. As palavras menos importantes como preposições e conjunções devem ser escritas com todas as suas letras em minúsculas.
+
+Sugira as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
 Coloque uma linha em branco entre cada título de classificação sugerido.
 
-Não coloque nada na sua resposta além dos 10 títulos de classificação sugeridos para sintetizar todo o assunto abaixo apresentado que foram extraídos conforme o documento em anexo nessa conversa.
+Não coloque nada na sua resposta das classificações sugeridas para sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Sugira 10 (dez) classificações pertinentes ao documento em anexo e que consigam sintetizar todo o assunto abaixo apresentado e todo o assunto que poderia estar correlacionado.
+Sugira classificações pertinentes que consigam sintetizar e ser suficientemente genéricas ao ponto de guardar todo o assunto possivelmente relevante e correlacionado a cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Sugira 10 (dez) classificações possíveis que consigam sintetizar todo o assunto pertinente à:
+Sugira classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---`:
 
 < INSERT >
