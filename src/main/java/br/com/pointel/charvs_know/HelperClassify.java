@@ -96,7 +96,6 @@ public class HelperClassify extends DFrame {
         for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
-        onFirstOpened(e -> buttonAskActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
