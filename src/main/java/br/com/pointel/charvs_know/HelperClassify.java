@@ -18,7 +18,6 @@ import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
-import br.com.pointel.jarch.desk.DStringField;
 import br.com.pointel.jarch.desk.DText;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizUtilDate;
@@ -57,11 +56,13 @@ public class HelperClassify extends DFrame {
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
-    private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField().cols(4);
-    private final DStringField fieldClassTitle = new DStringField();
-    private final DRowPane rowClass = new DRowPane().insets(2)
-            .growNone().put(fieldClassOrder)
-            .growHorizontal().put(fieldClassTitle);
+    private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField()
+            .cols(4).horizontalAlignmentCenter();
+    private final TextEditor fieldClassTitle = new TextEditor();
+    private final DSplitter splitterClass = new DSplitter()
+            .horizontal().left(fieldClassOrder).right(fieldClassTitle)
+            .divider(0.2f)
+            .name("splitterClass");
 
     private final DText textTitration = new DText().editable(false);
     private final DScroll scrollTitration = new DScroll(textTitration);
@@ -70,13 +71,16 @@ public class HelperClassify extends DFrame {
     private final DSplitter splitterGroup = new DSplitter()
             .vertical().top(scrollTitration).bottom(scrollTopics)
             .divider(0.5f)
-            .name("splitterGroup")
-            .borderEmpty(7);
+            .name("splitterGroup");
+
+    private final DSplitter splitterClassGroup = new DSplitter()
+            .vertical().top(splitterClass).bottom(splitterGroup)
+            .divider(0.4f)
+            .name("splitterClassGroup");
 
     private final DPane paneGroup = new DColPane().insets(2)
             .growHorizontal().put(paneGroupActs)
-            .growHorizontal().put(rowClass)
-            .growBoth().put(splitterGroup);
+            .growBoth().put(splitterClassGroup);
 
     private final DSplitter splitterBody = new DSplitter()
             .horizontal().left(paneAsk).right(paneGroup)
@@ -169,8 +173,8 @@ public class HelperClassify extends DFrame {
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            fieldClassTitle.setValue(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).classification = fieldClassTitle.getValue().trim();
+            fieldClassTitle.setText(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).classification = fieldClassTitle.getText().trim();
         }
     }
 
@@ -185,7 +189,7 @@ public class HelperClassify extends DFrame {
             orderInt = Integer.parseInt(group.order.trim());
         } catch (Exception ex) {}
         fieldClassOrder.setValue(orderInt);
-        fieldClassTitle.setValue(group.classification);
+        fieldClassTitle.setText(group.classification);
         var startTitration = textTitration.selectionStart();
         var endTitration = textTitration.selectionEnd();
         var startTopics = textTopics.selectionStart();
@@ -214,7 +218,7 @@ public class HelperClassify extends DFrame {
             orderStr = fieldClassOrder.getValue().toString();
         } catch (Exception ex) {}
         group.order = orderStr;
-        group.classification = fieldClassTitle.getValue().trim();
+        group.classification = fieldClassTitle.getText().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
