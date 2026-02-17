@@ -58,7 +58,8 @@ public class HelperIdentify extends DFrame {
             .growHorizontal().put(paneGroupActs)
             .growBoth().put(textTopics);
 
-    private final DSplitter splitterBody = new DSplitter(paneAsk, paneGroup)
+    private final DSplitter splitterBody = new DSplitter()
+            .horizontal().left(paneAsk).right(paneGroup)
             .divider(0.5f)
             .name("splitterBody")
             .borderEmpty(7);
