@@ -255,7 +255,7 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = selectFile;
-        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension, this::updateStatus);
+        selectedRef = new SelectedRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 
@@ -279,7 +279,7 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = sourceFile;
-        selectedRef = new SelectedRef(ref, refFile, sourceFile, refWithExtension, this::updateStatus);
+        selectedRef = new SelectedRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 

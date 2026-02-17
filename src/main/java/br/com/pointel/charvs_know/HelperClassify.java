@@ -220,6 +220,9 @@ public class HelperClassify extends DFrame {
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
             selectedRef.ref.props.classifiedAt = WizUtilDate.formatDateMach(new Date());
+            for (var group : selectedRef.ref.groups) {
+                group.writeClassification(selectedRef.baseFolder);
+            } 
             selectedRef.write();
             WizGUI.close(this);
         } catch (Exception ex) {

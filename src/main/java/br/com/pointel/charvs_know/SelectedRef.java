@@ -4,6 +4,7 @@ import java.io.File;
 
 public class SelectedRef {
 
+    public final File baseFolder;
     public final Ref ref;
     public final File refFile;
     public final File sourceFile;
@@ -11,7 +12,8 @@ public class SelectedRef {
     public final Runnable updateStatus;
     public final Talker talker;
 
-    public SelectedRef(Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
+    public SelectedRef(File baseFolder, Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
+        this.baseFolder = baseFolder;
         this.ref = ref;
         this.refFile = refFile;
         this.sourceFile = sourceFile;
