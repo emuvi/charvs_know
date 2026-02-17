@@ -176,9 +176,11 @@ public class HelperOrganize extends DFrame {
 
     private void buttonSaveActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index > -1) {
-            selectedRef.ref.groups.get(index).titration = textTitration.getText().trim();
+        if (index == -1) {
+            return;
         }
+        var group = selectedRef.ref.groups.get(index);
+        group.titration = textTitration.getText().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
