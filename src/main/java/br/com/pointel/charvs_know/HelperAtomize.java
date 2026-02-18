@@ -164,9 +164,9 @@ public class HelperAtomize extends DFrame {
         var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
         var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
         for (var link : titrationLinks) {
-            var linkedFile = new File(folder, link + ".md");
-            if (linkedFile.exists()) {
-                linkedFile.delete();
+            var atomicFile = new File(folder, link + ".md");
+            if (atomicFile.exists()) {
+                atomicFile.delete();
             }
         }
         titrationFile.delete();
@@ -209,27 +209,33 @@ public class HelperAtomize extends DFrame {
                 throw new Exception("Ask for a content to write.");
             }
             var group = selectedRef.ref.groups.get(index);
-            var atomicsNotes = source.split("\\-\\-\\-");
-            for (var atomicNote : atomicsNotes) {
-                atomicNote = atomicNote.trim();
-                if (atomicNote.isBlank()) {
+            var classFolder = group.getClassificationFolder(selectedRef.baseFolder);
+            var atomicsSources = source.split("\\-\\-\\-");
+            for (var atomicSource : atomicsSources) {
+                atomicSource = atomicSource.trim();
+                if (atomicSource.isBlank()) {
                     continue;
                 }
-                var name = WizString.getFirstLine(atomicNote);
-                atomicNote = WizString.stripFirstLines(atomicNote, 1).trim();
-                if (atomicNote.isBlank()) {
+                var name = WizString.getFirstLine(atomicSource);
+                atomicSource = WizString.stripFirstLines(atomicSource, 1).trim();
+                if (atomicSource.isBlank()) {
                     continue;
                 }
                 name = CKUtils.cleanFileName(name);
-                var folder = group.getClassificationFolder(selectedRef.baseFolder);
-                var atomicFile = new File(folder, name + ".md");
-                var atomicProps = "---\n";
-                atomicProps = atomicProps + "nature: atomic\n";
-                atomicProps = atomicProps + "created-at: " + WizUtilDate.formatDateMach(new Date()) + "\n";
-                atomicProps = atomicProps + "---\n";
-                var atomicRefs = "\n\nRefs: " + selectedRef.ref.props.hashMD5;
-                atomicNote = atomicProps + atomicNote + atomicRefs;
-                WizText.write(atomicFile, atomicNote);
+                var atomicFile = new File(classFolder, name + ".md");
+                AtomicNote atomicNote;
+                if (atomicFile.exists()) {
+                    atomicNote = AtomicNote.read(atomicFile);
+                    atomicNote.props.put("updated-at", WizUtilDate.formatDateMach(new Date()));
+                } else {
+                    atomicNote = new AtomicNote();
+                    atomicNote.props.put("nature", "atomic");
+                    atomicNote.props.put("created-at", WizUtilDate.formatDateMach(new Date()));
+                }
+                atomicNote.note = AtomicNote.extractNote(atomicSource);
+                atomicNote.tags = AtomicNote.extractTags(atomicSource);
+                atomicNote.refs = selectedRef.ref.props.hashMD5;
+                AtomicNote.write(atomicNote, atomicFile);
                 var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
                 CKUtils.putMarkDownLink(titrationFile, name);
                 var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
@@ -243,7 +249,29 @@ public class HelperAtomize extends DFrame {
 
     private void buttonBringActionPerformed(ActionEvent e) {
         try {
-            
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
+            var builder = new StringBuilder();
+            for (var link : titrationLinks) {
+                builder.append(link);
+                var atomicFile = new File(folder, link + ".md");
+                if (atomicFile.exists()) {
+                    builder.append("\n\n");
+                    var atomicNote = AtomicNote.read(atomicFile);
+                    builder.append(atomicNote.note.trim());
+                    if (atomicNote.tags != null && !atomicNote.tags.isBlank()) {
+                        builder.append("\n\n*Tags:* ").append(atomicNote.tags.trim());
+                    }
+                }
+                builder.append("\n\n---\n\n");
+            }
+            textAsk.setText(builder.toString());
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

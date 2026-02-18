@@ -38,8 +38,11 @@ public class CKUtils {
             return;
         }
         source = source.trim();
-        if (!source.isEmpty() && source.contains("[[")) {
-            source = source + "\n\n";
+        if (!source.isEmpty()) {
+            source = source + "\n";
+        }
+        if (source.contains("[[")) {
+            source = source + "\n";
         }
         source = source + link;
         WizText.write(classFile, source);
