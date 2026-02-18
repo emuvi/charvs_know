@@ -36,7 +36,7 @@ public class CKUtils {
             return;
         }
         source = source.trim();
-        if (!source.isEmpty()) {
+        if (!source.isEmpty() && source.contains("[[")) {
             source = source + "\n\n";
         }
         source = source + link;
