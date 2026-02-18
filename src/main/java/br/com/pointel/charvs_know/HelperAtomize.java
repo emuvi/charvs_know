@@ -273,7 +273,11 @@ public class HelperAtomize extends DFrame {
                 }
                 builder.append("\n\n---\n\n");
             }
+            var start = textAsk.edit().selectionStart();
+            var end = textAsk.edit().selectionEnd();
             textAsk.setValue(builder.toString());
+            textAsk.edit().selectionStart(start);
+            textAsk.edit().selectionEnd(end);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
