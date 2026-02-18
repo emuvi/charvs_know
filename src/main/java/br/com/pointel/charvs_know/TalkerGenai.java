@@ -12,12 +12,11 @@ import br.com.pointel.jarch.mage.WizEnv;
 public class TalkerGenai implements Talker, AutoCloseable {
 
     private final Client client = Client.builder().apiKey(WizEnv.get("CHARVS_KNOW_GENAI_API_KEY", "")).build();
-    private final Chat chat = client.chats.create(Setup.getGenaiModel().code());
 
     @Override
     public String talk(String command) {
-        var response = chat.sendMessage(command);
-        return response.text();
+        var content = Content.fromParts(Part.fromText(command));
+        return sendMessage(content);
     }
 
     @Override
@@ -28,7 +27,11 @@ public class TalkerGenai implements Talker, AutoCloseable {
             parts.add(Part.fromUri(attach.fileUri, attach.mimeType.code()));
         }
         var content = Content.builder().role("user").parts(parts).build();
-        var response = chat.sendMessage(content);
+        return sendMessage(content);
+    }
+
+    private String sendMessage(Content content) {
+        var response = client.models.generateContent(Setup.getGenaiModel().code(), content, null);
         return response.text();
     }
 
