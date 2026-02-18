@@ -93,20 +93,26 @@ public class RefGroup {
         if (classification == null || classification.isBlank()) {
             return null;
         }
-        File actualFolder = onBaseFolder;
-        var hierarchy = classification.split("\\-");
-        for (int i = 0; i < hierarchy.length; i++) {
-            var level = hierarchy[i].trim();
-            if (level.isBlank()) {
-                continue;
-            }
-            level = "- " + level;
-            actualFolder = new File(actualFolder, level);
+        File folder = getClassificationFolder(onBaseFolder);
+        var file = new File(folder, folder.getName() + ".md");
+        if (!file.exists()) {
+            file.createNewFile();
         }
-        if (!actualFolder.exists()) {
-            actualFolder.mkdirs();
+        return file;
+    }
+
+    public File getTitrationFile(File onBaseFolder) throws Exception {
+        if (classification == null || classification.isBlank()) {
+            return null;
         }
-        var file = new File(actualFolder, actualFolder.getName() + ".md");
+        if (titration == null || titration.isBlank()) {
+            return null;
+        }
+        var folder = getClassificationFolder(onBaseFolder);
+        if (folder == null) {
+            return null;
+        }
+        var file = new File(folder, Utils.delBrackets(titration) + ".md");
         if (!file.exists()) {
             file.createNewFile();
         }

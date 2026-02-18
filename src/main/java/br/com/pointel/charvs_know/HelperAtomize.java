@@ -175,6 +175,11 @@ public class HelperAtomize extends DFrame {
 
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to write");
+            }
+            var group = selectedRef.ref.groups.get(index);
             
         } catch (Exception ex) {
             WizGUI.showError(ex);

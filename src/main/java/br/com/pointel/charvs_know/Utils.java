@@ -11,12 +11,6 @@ public class Utils {
         if (link == null || link.isBlank()) {
             return;
         }
-        if (!link.startsWith("[[")) {
-            link = "[[" + link;
-        }
-        if (!link.endsWith("]]")) {
-            link = link + "]]";
-        }
         if (!markDown.exists()) {
             var folder = markDown.getParentFile();
             if (!folder.exists()) {
@@ -29,6 +23,7 @@ public class Utils {
             }
         }
         var source = WizText.read(markDown);
+        link = putBrackets(link);
         if (source.contains(link)) {
             return;
         }
@@ -37,6 +32,26 @@ public class Utils {
             source = source + "\n\n";
         }
         source = source + link;
+        WizText.write(markDown, source);
+    }
+
+    public static void delMarkDownLink(File markDown, String link) throws Exception {
+        if (link == null || link.isBlank()) {
+            return;
+        }
+        if (!markDown.exists()) {
+            return;
+        }
+        var source = WizText.read(markDown);
+        link = putBrackets(link);
+        if (!source.contains(link)) {
+            return;
+        }
+        source = source.replace(link, "");
+        source = source.trim();
+        while (source.contains("\n\n\n")) {
+            source = source.replace("\n\n\n", "\n\n");
+        }
         WizText.write(markDown, source);
     }
 
@@ -61,6 +76,32 @@ public class Utils {
                 .replace(":", ",")
                 .replace(";", ",");
         return title.replaceAll("\\s+", " ").trim();
+    }
+
+    public static String putBrackets(String link) {
+        if (link == null || link.isBlank()) {
+            return "";
+        }
+        if (!link.startsWith("[[")) {
+            link = "[[" + link;
+        }
+        if (!link.endsWith("]]")) {
+            link = link + "]]";
+        }
+        return link;
+    }
+
+    public static String delBrackets(String link) {
+        if (link == null || link.isBlank()) {
+            return "";
+        }
+        if (link.startsWith("[[")) {
+            link = link.substring(2);
+        }
+        if (link.endsWith("]]")) {
+            link = link.substring(0, link.length() - 2);
+        }
+        return link;
     }
 
 }
