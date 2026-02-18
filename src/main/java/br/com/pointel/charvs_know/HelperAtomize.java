@@ -1,11 +1,8 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.swing.SwingUtilities;
 
@@ -21,6 +18,8 @@ import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
 import br.com.pointel.jarch.mage.WizGUI;
+import br.com.pointel.jarch.mage.WizString;
+import br.com.pointel.jarch.mage.WizText;
 import br.com.pointel.jarch.mage.WizUtilDate;
 
 public class HelperAtomize extends DFrame {
@@ -71,6 +70,7 @@ public class HelperAtomize extends DFrame {
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
+        .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
         .growNone().put(buttonWrite)
         .growNone().put(buttonBring);
@@ -177,10 +177,40 @@ public class HelperAtomize extends DFrame {
         try {
             var index = comboGroup.selectedIndex();
             if (index == -1 || index >= selectedRef.ref.groups.size()) {
-                throw new Exception("Select a group to write");
+                throw new Exception("Select a group to write.");
+            }
+            var source = textAsk.getText().trim();
+            if (source.isBlank()) {
+                throw new Exception("Ask for a content to write.");
             }
             var group = selectedRef.ref.groups.get(index);
-            
+            var atomicsNotes = source.split("\\-\\-\\-");
+            for (var atomicNote : atomicsNotes) {
+                atomicNote = atomicNote.trim();
+                if (atomicNote.isBlank()) {
+                    continue;
+                }
+                var name = WizString.getFirstLine(atomicNote);
+                atomicNote = WizString.stripFirstLines(atomicNote, 1).trim();
+                if (atomicNote.isBlank()) {
+                    continue;
+                }
+                name = CKUtils.cleanFileName(name);
+                var folder = group.getClassificationFolder(selectedRef.baseFolder);
+                var atomicFile = new File(folder, name + ".md");
+                var atomicProps = "---\n";
+                atomicProps = atomicProps + "nature: atomic\n";
+                atomicProps = atomicProps + "created-at: " + WizUtilDate.formatDateMach(new Date()) + "\n";
+                atomicProps = atomicProps + "---\n";
+                var atomicRefs = "\n\nRefs: " + selectedRef.ref.props.hashMD5;
+                atomicNote = atomicProps + atomicNote + atomicRefs;
+                WizText.write(atomicFile, atomicNote);
+                var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+                CKUtils.putMarkDownLink(titrationFile, name);
+                var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
+                CKUtils.putMarkDownLink(classificationFile, group.titration);
+            }
+            WizGUI.showInfo("Group Written.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
