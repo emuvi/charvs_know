@@ -126,6 +126,7 @@ public class HelperAtomize extends DFrame {
         fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
+        textAsk.setValue("");
         fieldClassTitle.selectionStart(startClass);
         fieldClassTitle.selectionEnd(endClass);
         textTitration.selectionStart(startTitration);
