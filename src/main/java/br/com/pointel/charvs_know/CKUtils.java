@@ -1,7 +1,9 @@
 package br.com.pointel.charvs_know;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
@@ -61,6 +63,25 @@ public class CKUtils {
             source = source.replace("\n\n\n", "\n\n");
         }
         WizText.write(classFile, source);
+    }
+
+    public static List<String> getMarkDownLinks(File classFile) throws Exception {
+        var result = new ArrayList<String>();
+        if (!classFile.exists()) {
+            return result;
+        }
+        var source = WizText.read(classFile);
+        var start = source.indexOf("[[");
+        while (start > -1) {
+            var end = source.indexOf("]]", start);
+            if (end > -1) {
+                result.add(source.substring(start + 2, end));
+                start = source.indexOf("[[", end);
+            } else {
+                break;
+            }
+        }
+        return result;
     }
 
     public static String cleanFileName(String title) {

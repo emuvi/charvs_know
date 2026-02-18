@@ -135,7 +135,12 @@ public class HelperAtomize extends DFrame {
 
     private void buttonClearActionPerformed(ActionEvent e) {
         try {
-            
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            clearGroup(group);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -143,10 +148,30 @@ public class HelperAtomize extends DFrame {
 
     private void buttonClearAllActionPerformed(ActionEvent e) {
         try {
-            
+            if (!WizGUI.showConfirm("Are you sure to clear all?")) {
+                return;
+            }
+            for (var group : selectedRef.ref.groups) {
+                clearGroup(group);
+            }
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
+    }
+
+    private void clearGroup(RefGroup group) throws Exception {
+        var folder = group.getClassificationFolder(selectedRef.baseFolder);
+        var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+        var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
+        for (var link : titrationLinks) {
+            var linkedFile = new File(folder, link + ".md");
+            if (linkedFile.exists()) {
+                linkedFile.delete();
+            }
+        }
+        titrationFile.delete();
+        var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
+        CKUtils.delMarkDownLink(classificationFile, group.titration);
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
