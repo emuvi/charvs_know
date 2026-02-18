@@ -91,7 +91,7 @@ public class HelperIdentify extends DFrame {
             return;
         }
         buttonAsk.setText("Asking...");
-        new Thread("Identify Asking") {
+        new Thread("Asking Identify") {
             @Override
             public void run() {
                 try {

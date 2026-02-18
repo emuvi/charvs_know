@@ -79,7 +79,7 @@ public class HelperClassify extends DFrame {
 
     private final DSplitter splitterClassGroup = new DSplitter()
             .vertical().top(splitterClass).bottom(splitterGroup)
-            .divider(0.4f)
+            .divider(0.3f)
             .name("splitterClassGroup");
 
     private final DPane paneGroup = new DColPane().insets(2)
@@ -117,7 +117,7 @@ public class HelperClassify extends DFrame {
             return;
         }
         buttonAsk.setText("Asking...");
-        new Thread("Organize Asking") {
+        new Thread("Asking Classify") {
             @Override
             public void run() {
                 try {

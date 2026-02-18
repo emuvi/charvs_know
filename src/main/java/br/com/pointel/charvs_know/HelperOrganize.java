@@ -98,7 +98,7 @@ public class HelperOrganize extends DFrame {
             return;
         }
         buttonAsk.setText("Asking...");
-        new Thread("Organize Asking") {
+        new Thread("Asking Organize") {
             @Override
             public void run() {
                 try {
