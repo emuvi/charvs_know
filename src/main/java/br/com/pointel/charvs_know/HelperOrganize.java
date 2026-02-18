@@ -25,11 +25,14 @@ public class HelperOrganize extends DFrame {
             .onClick(this::buttonAskActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
             .onClick(this::buttonParseActionPerformed);
+    private final DButton buttonBring = new DButton("Bring")
+            .onClick(this::buttonBringActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
-        .growNone().put(buttonParse);
+        .growNone().put(buttonParse)
+        .growNone().put(buttonBring);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -130,7 +133,7 @@ public class HelperOrganize extends DFrame {
                 if (end > -1) {
                     var titration = text.substring(start + 2, end).trim();
                     if (!titration.startsWith("+")) {
-                        titration = "+" + titration;
+                        titration = "+ " + titration;
                     }
                     titration = Utils.cleanFileName(titration);
                     selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
@@ -146,6 +149,29 @@ public class HelperOrganize extends DFrame {
         }
     }
 
+    private void buttonBringActionPerformed(ActionEvent e) {
+        var builder = new StringBuilder();
+        for (var group : selectedRef.ref.groups) {
+            var titration = group.titration;
+            if (titration == null || titration.isBlank()) {
+                titration = "[[+ ]]";
+            }
+            titration = titration.trim();
+            if (!titration.startsWith("[[")) {
+                if (!titration.startsWith("+")) {
+                    titration = "+ " + titration;
+                }
+                titration = "[[" + titration;
+            }
+            if (!titration.endsWith("]]")) {
+                titration = titration + "]]";
+            }
+            builder.append(titration);
+            builder.append("\n\n");
+        }
+        textAsk.setText(builder.toString());
+    }
+
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
@@ -156,7 +182,9 @@ public class HelperOrganize extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1) {
+        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            textTitration.setText("");
+            textTopics.setValue("");
             return;
         }
         var group = selectedRef.ref.groups.get(index);
@@ -164,13 +192,8 @@ public class HelperOrganize extends DFrame {
         var endTitration = textTitration.edit().selectionEnd();
         var startTopics = textTopics.selectionStart();
         var endTopics = textTopics.selectionEnd();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textTitration.setText("");
-            textTopics.setValue("");
-        } else {
-            textTitration.setText(group.titration);
-            textTopics.setValue(group.topics);
-        }
+        textTitration.setText(group.titration);
+        textTopics.setValue(group.topics);
         textTitration.edit().selectionStart(startTitration);
         textTitration.edit().selectionEnd(endTitration);
         textTopics.selectionStart(startTopics);

@@ -1,10 +1,11 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.SwingUtilities;
 
@@ -30,11 +31,14 @@ public class HelperClassify extends DFrame {
             .onClick(this::buttonAskActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
             .onClick(this::buttonParseActionPerformed);
+    private final DButton buttonBring = new DButton("Bring")
+            .onClick(this::buttonBringActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
-        .growNone().put(buttonParse);
+        .growNone().put(buttonParse)
+        .growNone().put(buttonBring);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -139,7 +143,7 @@ public class HelperClassify extends DFrame {
                 return;
             }
             var index = 0;
-            var orders = getOrders();
+            var orders = List.copyOf(getOrders());
             var start = text.indexOf("[[");
             while (start > -1) {
                 if (index >= orders.size()) {
@@ -170,6 +174,29 @@ public class HelperClassify extends DFrame {
         }
     }
 
+    private void buttonBringActionPerformed(ActionEvent e) {
+        var map = new LinkedHashMap<Integer, String>();
+        for (var group : selectedRef.ref.groups) {
+            if (group.order == null || group.order.isBlank()) {
+                continue;
+            }
+            if (group.classification == null || group.classification.isBlank()) {
+                continue;
+            }
+            try {
+                var order = Integer.parseInt(group.order);
+                map.put(order, group.classification);
+            } catch (Exception ex) {}
+        }
+        var builder = new StringBuilder();
+        for (var order : map.entrySet()) {
+            builder.append("[[");
+            builder.append(order.getValue());
+            builder.append("]]\n\n");
+        }
+        textAsk.setText(builder.toString());
+    }
+
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
@@ -180,7 +207,10 @@ public class HelperClassify extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1) {
+        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            fieldClassTitle.setText("");
+            textTitration.setValue("");
+            textTopics.setValue("");
             return;
         }
         var group = selectedRef.ref.groups.get(index);
@@ -189,18 +219,17 @@ public class HelperClassify extends DFrame {
             orderInt = Integer.parseInt(group.order.trim());
         } catch (Exception ex) {}
         fieldClassOrder.setValue(orderInt);
-        fieldClassTitle.setText(group.classification);
+        var startClass = fieldClassTitle.edit().selectionStart();
+        var endClass = fieldClassTitle.edit().selectionEnd();
         var startTitration = textTitration.selectionStart();
         var endTitration = textTitration.selectionEnd();
         var startTopics = textTopics.selectionStart();
         var endTopics = textTopics.selectionEnd();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textTitration.setValue("");
-            textTopics.setValue("");
-        } else {
-            textTitration.setValue(group.titration);
-            textTopics.setValue(group.topics);
-        }
+        fieldClassTitle.setText(group.classification);
+        textTitration.setValue(group.titration);
+        textTopics.setValue(group.topics);
+        fieldClassTitle.edit().selectionStart(startClass);
+        fieldClassTitle.edit().selectionEnd(endClass);
         textTitration.selectionStart(startTitration);
         textTitration.selectionEnd(endTitration);
         textTopics.selectionStart(startTopics);
@@ -264,8 +293,8 @@ public class HelperClassify extends DFrame {
         return result.toString();
     }
 
-    private List<Integer> getOrders() {
-        var orderSet = new HashSet<Integer>();
+    private Set<Integer> getOrders() {
+        var result = new LinkedHashSet<Integer>();
         for (var group : selectedRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
                 continue;
@@ -273,20 +302,18 @@ public class HelperClassify extends DFrame {
             try {
                 group.order = group.order.trim();
                 var order = Integer.parseInt(group.order);
-                orderSet.add(order);
+                result.add(order);
             } catch (Exception ex) {}
         }
-        if (!orderSet.isEmpty()) {
-            var result = new ArrayList<>(orderSet);
-            result.sort(Integer::compareTo);
+        if (!result.isEmpty()) {
             return result;
         } else {
             return createOrders();
         }
     }
 
-    private List<Integer> createOrders() {
-        var result = new ArrayList<Integer>();
+    private Set<Integer> createOrders() {
+        var result = new LinkedHashSet<Integer>();
         var size = selectedRef.ref.groups.size() / 3;
         if (selectedRef.ref.groups.size() % 3 == 1) {
             size--;

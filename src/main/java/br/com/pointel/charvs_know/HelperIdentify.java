@@ -23,6 +23,8 @@ public class HelperIdentify extends DFrame {
             .onClick(this::buttonAskActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
             .onClick(this::buttonParseActionPerformed);
+    private final DButton buttonBring = new DButton("Bring")
+            .onClick(this::buttonBringActionPerformed);
     private final DButton buttonAdd = new DButton("Add")
             .onClick(this::buttonAddActionPerformed);
     
@@ -30,6 +32,7 @@ public class HelperIdentify extends DFrame {
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
         .growNone().put(buttonParse)
+        .growNone().put(buttonBring)
         .growNone().put(buttonAdd);
 
     private final TextEditor textAsk = new TextEditor();
@@ -127,6 +130,20 @@ public class HelperIdentify extends DFrame {
         }
     }
 
+    private void buttonBringActionPerformed(ActionEvent e) {
+        var builder = new StringBuilder();
+        var first = true;
+        for (var group : selectedRef.ref.groups) {
+            if (first) {
+                first = false;
+            } else {
+                builder.append("\n\n---\n\n");
+            }
+            builder.append(group.topics);
+        }
+        textAsk.setText(builder.toString());
+    }
+
     private void buttonAddActionPerformed(ActionEvent e) {
         var group = new RefGroup();
         group.topics = textAsk.edit().selectedText().trim();
@@ -145,17 +162,14 @@ public class HelperIdentify extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1) {
+        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            textTopics.setText("");
             return;
         }
         var group = selectedRef.ref.groups.get(index);
         var start = textTopics.edit().selectionStart();
         var end = textTopics.edit().selectionEnd();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textTopics.setText("");
-        } else {
-            textTopics.setText(group.topics);
-        }
+        textTopics.setText(group.topics);
         textTopics.edit().selectionStart(start);
         textTopics.edit().selectionEnd(end);
     }
