@@ -243,7 +243,9 @@ public class HelperAtomize extends DFrame {
                 var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
                 CKUtils.putMarkDownLink(classificationFile, group.titration);
             }
-            WizGUI.showInfo("Group Written.");
+            group.cardsAt = WizUtilDate.formatDateMach(new Date());
+            selectedRef.write();
+            WizGUI.showInfo("Written.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
