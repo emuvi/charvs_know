@@ -135,7 +135,7 @@ public class HelperOrganize extends DFrame {
                     if (!titration.startsWith("+")) {
                         titration = "+ " + titration;
                     }
-                    titration = Utils.cleanFileName(titration);
+                    titration = CKUtils.cleanFileName(titration);
                     selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
                     start = text.indexOf("[[", end);
                     index++;

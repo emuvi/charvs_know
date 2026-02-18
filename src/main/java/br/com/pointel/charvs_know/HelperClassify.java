@@ -155,7 +155,7 @@ public class HelperClassify extends DFrame {
                     if (!classification.startsWith("-")) {
                         classification = "-" + classification;
                     }
-                    classification = Utils.cleanFileName(classification);
+                    classification = CKUtils.cleanFileName(classification);
                     var order = orders.get(index).toString();
                     for (var group : selectedRef.ref.groups) {
                         if (order.equals(group.order)) {

@@ -55,7 +55,7 @@ public class RefGroup {
             } else {
                 markDownFile = new File(actualFolder, actualFolder.getName() + ".md");
             }
-            Utils.putMarkDownLink(markDownFile, level);
+            CKUtils.putMarkDownLink(markDownFile, level);
             actualFolder = new File(actualFolder, level);
         }
         if (actualFolder != null) {
@@ -64,7 +64,7 @@ public class RefGroup {
             }
             var classificationFile = new File(actualFolder, actualFolder.getName() + ".md");
             if (!classificationFile.exists()) {
-                classificationFile.createNewFile();
+                CKUtils.createClassFile(classificationFile);
             }
         }
     }
@@ -96,7 +96,7 @@ public class RefGroup {
         File folder = getClassificationFolder(onBaseFolder);
         var file = new File(folder, folder.getName() + ".md");
         if (!file.exists()) {
-            file.createNewFile();
+            CKUtils.createClassFile(file);
         }
         return file;
     }
@@ -112,9 +112,9 @@ public class RefGroup {
         if (folder == null) {
             return null;
         }
-        var file = new File(folder, Utils.delBrackets(titration) + ".md");
+        var file = new File(folder, CKUtils.delBrackets(titration) + ".md");
         if (!file.exists()) {
-            file.createNewFile();
+            CKUtils.createClassFile(file);
         }
         return file;
     }

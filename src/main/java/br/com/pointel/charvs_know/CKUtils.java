@@ -1,28 +1,36 @@
 package br.com.pointel.charvs_know;
 
 import java.io.File;
+import java.util.Date;
 
 import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
+import br.com.pointel.jarch.mage.WizUtilDate;
 
-public class Utils {
+public class CKUtils {
 
-    public static void putMarkDownLink(File markDown, String link) throws Exception {
+    public static void createClassFile(File classFile) throws Exception  {
+        var classProps = "---\n";
+        classProps = classProps + "nature: class\n";
+        classProps = classProps + "created-at: " + WizUtilDate.formatDateMach(new Date()) + "\n";
+        classProps = classProps + "---\n";
+        WizText.write(classFile, classProps);
+    }
+
+    public static void putMarkDownLink(File classFile, String link) throws Exception {
         if (link == null || link.isBlank()) {
             return;
         }
-        if (!markDown.exists()) {
-            var folder = markDown.getParentFile();
+        if (!classFile.exists()) {
+            var folder = classFile.getParentFile();
             if (!folder.exists()) {
                 if (!folder.mkdirs()) {
-                    throw new Exception("Failed to create folder: " + folder.getAbsolutePath());
+                    throw new Exception("Failed to create class folder: " + folder.getAbsolutePath());
                 }
             }
-            if (!markDown.createNewFile()) {
-                throw new Exception("Failed to create file: " + markDown.getAbsolutePath());
-            }
+            createClassFile(classFile);
         }
-        var source = WizText.read(markDown);
+        var source = WizText.read(classFile);
         link = putBrackets(link);
         if (source.contains(link)) {
             return;
@@ -32,17 +40,17 @@ public class Utils {
             source = source + "\n\n";
         }
         source = source + link;
-        WizText.write(markDown, source);
+        WizText.write(classFile, source);
     }
 
-    public static void delMarkDownLink(File markDown, String link) throws Exception {
+    public static void delMarkDownLink(File classFile, String link) throws Exception {
         if (link == null || link.isBlank()) {
             return;
         }
-        if (!markDown.exists()) {
+        if (!classFile.exists()) {
             return;
         }
-        var source = WizText.read(markDown);
+        var source = WizText.read(classFile);
         link = putBrackets(link);
         if (!source.contains(link)) {
             return;
@@ -52,7 +60,7 @@ public class Utils {
         while (source.contains("\n\n\n")) {
             source = source.replace("\n\n\n", "\n\n");
         }
-        WizText.write(markDown, source);
+        WizText.write(classFile, source);
     }
 
     public static String cleanFileName(String title) {
