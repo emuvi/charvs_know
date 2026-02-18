@@ -108,6 +108,7 @@ public class HelperAtomize extends DFrame {
             fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
+            textAsk.setValue("");
             return;
         }
         var group = selectedRef.ref.groups.get(index);
@@ -185,7 +186,7 @@ public class HelperAtomize extends DFrame {
                 try {
                     var result = selectedRef.talkWithAttach(Steps.Atomize.getCommand(getInsertion()));
                     SwingUtilities.invokeLater(() -> {
-                        textAsk.setText(result);
+                        textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
                         textAsk.edit().selectionEnd(0);
                     });
@@ -204,7 +205,7 @@ public class HelperAtomize extends DFrame {
             if (index == -1 || index >= selectedRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
-            var source = textAsk.getText().trim();
+            var source = textAsk.getValue().trim();
             if (source.isBlank()) {
                 throw new Exception("Ask for a content to write.");
             }
@@ -271,7 +272,7 @@ public class HelperAtomize extends DFrame {
                 }
                 builder.append("\n\n---\n\n");
             }
-            textAsk.setText(builder.toString());
+            textAsk.setValue(builder.toString());
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

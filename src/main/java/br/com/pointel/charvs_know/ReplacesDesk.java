@@ -69,12 +69,12 @@ public class ReplacesDesk extends DFrame {
     }
 
     private void buttonReplaceActionPerformed(ActionEvent e) {
-        String text = textEditor.getText();
+        String text = textEditor.getValue();
         undoList.add(text);
         for (Replace replace : listEditor.list().getSelectedValuesList()) {
             text = replace.apply(text);
         }
-        textEditor.setText(text);
+        textEditor.setValue(text);
     }
 
     private void buttonUndoActionPerformed(ActionEvent e) {
@@ -82,7 +82,7 @@ public class ReplacesDesk extends DFrame {
             return;
         }
         String lastText = undoList.remove(undoList.size() - 1);
-        textEditor.setText(lastText);
+        textEditor.setValue(lastText);
     }
 
 }

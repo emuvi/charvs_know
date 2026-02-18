@@ -15,7 +15,7 @@ Atue como um Especialista em Gestão do Conhecimento Acadêmico e Pesquisador S�
 
 6. *Linguagem:* Utilize sempre a língua portuguesa erudita. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome de Tags aplique a acentuação da língua portuguesa.
 
-7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve conter o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. Não coloque o título entre colchetes. O título NÃO deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
+7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve conter o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. Não coloque o título entre colchetes. O título *NÃO* deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
 
 8. *Variedade:* Faça uma composição com riqueza de detalhes. Produzindo uma grande quantidade de notas variadas para abordar profundamente o TEMA ALVO.
 
@@ -33,9 +33,9 @@ Para cada nota gerada, utilize EXATAMENTE a seguinte estrutura (Markdown):
 
 ---
 
-[título completo, claro e declarativo]
+título completo, claro e declarativo
 
-[Escreva aqui o conteúdo da nota atômica com riqueza de detalhes, citando definições, argumentos e evidências encontradas no documento em anexo. Insira links para as outras notas atômicas que você está criando durante toda essa conversa usando o formato [[título da outra nota atômica]] sempre que houver uma relação semântica ou de interesse. Escreva em estilo erudito. Coloque em negrito o termo mais importante da nota. Coloque em itálico o segundo e o terceiro termos mais importantes da nota.]
+Escreva aqui o conteúdo da nota atômica com riqueza de detalhes, citando definições, argumentos e evidências encontradas no documento em anexo. Insira links para as outras notas atômicas que você está criando durante toda essa conversa usando o formato [[título da outra nota atômica]] sempre que houver uma relação semântica ou de interesse. Escreva em estilo erudito. Coloque em negrito o termo mais importante da nota. Coloque em itálico o segundo e o terceiro termos mais importantes da nota.
 
 *Tags:* #{{classificação_específica_da_parte_do_tema_alvo_abordado_em_cada_nota}} #{{micro_classificação_genérica_do_assunto_abordado_de_cada_nota}} #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
 
@@ -59,6 +59,8 @@ Macro Classificação Geral: Define o contexto global, a grande disciplina ou o 
 
 
 # Conjunto de Notas Atômicas
+
+O título de cada nota atômica deve ser todo em letras minúsculas, exceto as siglas que devem ser em maiúsculas.
 
 Faça um conjunto extenso de notas atômicas que capturem todo o conteúdo relacionado com o TEMA ALVO. Comece com notas atômicas mais genéricas / abstratas e vá descendo no nível de detalhamento até produzir notas atômicas sobre cada ponto específico relacionado com o TEMA ALVO.
 

@@ -36,11 +36,11 @@ public class TextEditor extends DBordPane {
         return textEdit;
     }
 
-    public String getText() {
+    public String getValue() {
         return textEdit.value();
     }
 
-    public void setText(String text) {
+    public void setValue(String text) {
         textEdit.value(text);
     }
 

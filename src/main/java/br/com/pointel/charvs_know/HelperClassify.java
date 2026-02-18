@@ -123,7 +123,7 @@ public class HelperClassify extends DFrame {
                 try {
                     var result = selectedRef.talkWithAttach(Steps.Classify.getCommand(getInsertion()));
                     SwingUtilities.invokeLater(() -> {
-                        textAsk.setText(result);
+                        textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
                         textAsk.edit().selectionEnd(0);
                     });
@@ -138,7 +138,7 @@ public class HelperClassify extends DFrame {
 
     private void buttonParseActionPerformed(ActionEvent e) {
         try {
-            var text = textAsk.getText().trim();
+            var text = textAsk.getValue().trim();
             if (text.isBlank()) {
                 return;
             }
@@ -194,21 +194,21 @@ public class HelperClassify extends DFrame {
             builder.append(order.getValue());
             builder.append("]]\n\n");
         }
-        textAsk.setText(builder.toString());
+        textAsk.setValue(builder.toString());
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            fieldClassTitle.setText(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).classification = fieldClassTitle.getText().trim();
+            fieldClassTitle.setValue(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).classification = fieldClassTitle.getValue().trim();
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            fieldClassTitle.setText("");
+            fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
             return;
@@ -225,7 +225,7 @@ public class HelperClassify extends DFrame {
         var endTitration = textTitration.selectionEnd();
         var startTopics = textTopics.selectionStart();
         var endTopics = textTopics.selectionEnd();
-        fieldClassTitle.setText(group.classification);
+        fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
         fieldClassTitle.edit().selectionStart(startClass);
@@ -247,7 +247,7 @@ public class HelperClassify extends DFrame {
             orderStr = fieldClassOrder.getValue().toString();
         } catch (Exception ex) {}
         group.order = orderStr;
-        group.classification = fieldClassTitle.getText().trim();
+        group.classification = fieldClassTitle.getValue().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {

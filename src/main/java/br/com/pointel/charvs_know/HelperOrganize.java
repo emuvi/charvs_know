@@ -104,7 +104,7 @@ public class HelperOrganize extends DFrame {
                 try {
                     var result = selectedRef.talkWithAttach(Steps.Organize.getCommand(getInsertion()));
                     SwingUtilities.invokeLater(() -> {
-                        textAsk.setText(result);
+                        textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
                         textAsk.edit().selectionEnd(0);
                     });
@@ -119,7 +119,7 @@ public class HelperOrganize extends DFrame {
 
     private void buttonParseActionPerformed(ActionEvent e) {
         try {
-            var text = textAsk.getText().trim();
+            var text = textAsk.getValue().trim();
             if (text.isBlank()) {
                 return;
             }
@@ -169,21 +169,21 @@ public class HelperOrganize extends DFrame {
             builder.append(titration);
             builder.append("\n\n");
         }
-        textAsk.setText(builder.toString());
+        textAsk.setValue(builder.toString());
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            textTitration.setText(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).titration = textTitration.getText().trim();
+            textTitration.setValue(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).titration = textTitration.getValue().trim();
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textTitration.setText("");
+            textTitration.setValue("");
             textTopics.setValue("");
             return;
         }
@@ -192,7 +192,7 @@ public class HelperOrganize extends DFrame {
         var endTitration = textTitration.edit().selectionEnd();
         var startTopics = textTopics.selectionStart();
         var endTopics = textTopics.selectionEnd();
-        textTitration.setText(group.titration);
+        textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
         textTitration.edit().selectionStart(startTitration);
         textTitration.edit().selectionEnd(endTitration);
@@ -206,7 +206,7 @@ public class HelperOrganize extends DFrame {
             return;
         }
         var group = selectedRef.ref.groups.get(index);
-        group.titration = textTitration.getText().trim();
+        group.titration = textTitration.getValue().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {

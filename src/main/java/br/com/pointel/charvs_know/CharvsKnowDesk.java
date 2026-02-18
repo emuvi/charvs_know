@@ -215,7 +215,7 @@ public class CharvsKnowDesk extends DFrame {
             return;
         }
         try {
-            selectedRef.ref.memoa.text = textMemoaEditor.getText().trim();
+            selectedRef.ref.memoa.text = textMemoaEditor.getValue().trim();
             selectedRef.ref.props.memoedAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
         } catch (Exception ex) {
@@ -286,7 +286,7 @@ public class CharvsKnowDesk extends DFrame {
     public void updateStatus() {
         var start = textMemoaEditor.edit().selectionStart();
         var end = textMemoaEditor.edit().selectionEnd();
-        textMemoaEditor.setText(selectedRef.ref.memoa.text);
+        textMemoaEditor.setValue(selectedRef.ref.memoa.text);
         textMemoaEditor.edit().selectionStart(start);
         textMemoaEditor.edit().selectionEnd(end);
         start = textView.getSelectionStart();

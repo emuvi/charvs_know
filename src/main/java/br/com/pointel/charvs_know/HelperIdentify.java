@@ -97,7 +97,7 @@ public class HelperIdentify extends DFrame {
                 try {
                     var result = selectedRef.talkWithAttach(Steps.Identify.getCommand());
                     SwingUtilities.invokeLater(() -> {
-                        textAsk.setText(result);
+                        textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
                         textAsk.edit().selectionEnd(0);
                     });
@@ -141,7 +141,7 @@ public class HelperIdentify extends DFrame {
             }
             builder.append(group.topics);
         }
-        textAsk.setText(builder.toString());
+        textAsk.setValue(builder.toString());
     }
 
     private void buttonAddActionPerformed(ActionEvent e) {
@@ -155,21 +155,21 @@ public class HelperIdentify extends DFrame {
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
-            textTopics.setText(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).topics = textTopics.getText().trim();
+            textTopics.setValue(textAsk.edit().selectedText().trim());
+            selectedRef.ref.groups.get(index).topics = textTopics.getValue().trim();
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
-            textTopics.setText("");
+            textTopics.setValue("");
             return;
         }
         var group = selectedRef.ref.groups.get(index);
         var start = textTopics.edit().selectionStart();
         var end = textTopics.edit().selectionEnd();
-        textTopics.setText(group.topics);
+        textTopics.setValue(group.topics);
         textTopics.edit().selectionStart(start);
         textTopics.edit().selectionEnd(end);
     }
@@ -180,7 +180,7 @@ public class HelperIdentify extends DFrame {
             return;
         }
         var group = selectedRef.ref.groups.get(index);
-        group.topics = textTopics.getText().trim();
+        group.topics = textTopics.getValue().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
