@@ -1,13 +1,8 @@
 package br.com.pointel.charvs_know;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import br.com.pointel.jarch.mage.WizString;
-import br.com.pointel.jarch.mage.WizText;
-import br.com.pointel.jarch.mage.WizUtilDate;
 
 public class CKUtils {
 
