@@ -35,6 +35,6 @@ O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `^ `.
 
-Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
+Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação expositiva para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
 
 < INSERT >
