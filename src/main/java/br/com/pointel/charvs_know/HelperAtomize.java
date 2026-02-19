@@ -262,6 +262,7 @@ public class HelperAtomize extends DFrame {
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
             var builder = new StringBuilder();
+            builder.append("---\n\n");
             for (var link : titrationLinks) {
                 builder.append(link);
                 var atomicFile = new File(folder, link + ".md");
@@ -272,8 +273,9 @@ public class HelperAtomize extends DFrame {
                     if (atomicNote.tags != null && !atomicNote.tags.isBlank()) {
                         builder.append("\n\n*Tags:* ").append(atomicNote.tags.trim());
                     }
+                    builder.append("\n\n");
                 }
-                builder.append("\n\n---\n\n");
+                builder.append("---\n\n");
             }
             var start = textAsk.edit().selectionStart();
             var end = textAsk.edit().selectionEnd();
