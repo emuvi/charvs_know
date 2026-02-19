@@ -2,7 +2,14 @@ package br.com.pointel.charvs_know;
 
 import java.io.File;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SelectedRef {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(SelectedRef.class);
+
 
     public final File baseFolder;
     public final Ref ref;
@@ -23,11 +30,14 @@ public class SelectedRef {
     }
 
     public String talk(String command) {
+        logger.info("Command: {}", command);
         return talker.talk(command);
     }
 
     public String talkWithAttach(String command) {
-        return talker.talk(command, UriMime.of(RefFTP.getBaseURI(refWithExtension)));
+        var baseURI = RefFTP.getBaseURI(refWithExtension);
+        logger.info("Command: {} Base URI: {}", command, baseURI);
+        return talker.talk(command, UriMime.of(baseURI));
     }
 
     public void read() throws Exception {

@@ -119,4 +119,18 @@ public class RefGroup {
         return file;
     }
 
+    public File getQuestsFile(File onBaseFolder) throws Exception {
+        if (classification == null || classification.isBlank()) {
+            return null;
+        }
+        if (titration == null || titration.isBlank()) {
+            return null;
+        }
+        var folder = getClassificationFolder(onBaseFolder);
+        if (folder == null) {
+            return null;
+        }
+        return new File(folder, CKUtils.delBrackets(titration) + ".csv");
+    }
+
 }

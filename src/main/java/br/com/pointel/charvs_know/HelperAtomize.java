@@ -168,10 +168,16 @@ public class HelperAtomize extends DFrame {
         for (var link : titrationLinks) {
             var atomicFile = new File(folder, link + ".md");
             if (atomicFile.exists()) {
-                atomicFile.delete();
+                if (!atomicFile.delete()) {
+                    throw new Exception("Failed to delete atomic file: " + atomicFile.getAbsolutePath());
+                }
             }
         }
-        titrationFile.delete();
+        if (titrationFile.exists()) {
+            if (!titrationFile.delete()) {
+                throw new Exception("Failed to delete titration file: " + titrationFile.getAbsolutePath());
+            }
+        }
         var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
         CKUtils.delMarkDownLink(classificationFile, group.titration);
     }
