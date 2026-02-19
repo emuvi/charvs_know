@@ -80,6 +80,12 @@ Não coloque nada na sua resposta das classificações sugeridas para sintetizar
 
 Sugira classificações pertinentes que consigam sintetizar e ser suficientemente genéricas ao ponto de guardar todo o assunto possivelmente relevante e correlacionado a cada um dos grupos de significados de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
+Faça um agrupamento inteligente. Ou seja, siga essas regras de agrupamento:
+1) O primeiro nível hierárquico de cada classificação sugerida deve *SEMPRE* ser o mesmo para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
+2) O segundo nível hierárquico de cada classificação sugerida deve *PREFERENCIALMENTE* ser o mesmo para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
+3) O terceiro nível hierárquico de cada classificação sugerida pode, ou não, ser específico para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
+4) O quarto nível hierárquico de cada classificação sugerida deve *SEMPRE* ser específico para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
+
 Sugira classificações que consigam sintetizar cada um dos grupos semânticos de assuntos abaixo separados por `---`:
 
 < INSERT >

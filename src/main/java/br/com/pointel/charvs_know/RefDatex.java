@@ -80,7 +80,7 @@ public class RefDatex {
     }
 
     private static void parseProps(Ref ref) {
-        var props = WizProps.getOf(nodeProps.getValue(), propsSeparator);
+        var props = WizProps.fromSource(nodeProps.getValue(), propsSeparator);
         ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
         ref.props.createdAt = props.getOrDefault("created-at", "");
         ref.props.memoedAt = props.getOrDefault("memoed-at", "");
@@ -102,12 +102,12 @@ public class RefDatex {
     private static void parseGroup(DatexNode node, RefGroup group) throws Exception {
         if (node.isPresent()) {
             datexGroup.parse(node.getValue());
-            var propsOrganization = WizProps.getOf(nodeOrganization.getValue(), propsSeparator);
+            var propsOrganization = WizProps.fromSource(nodeOrganization.getValue(), propsSeparator);
             group.order = propsOrganization.getOrDefault("Ordem", "");
             group.classification = propsOrganization.getOrDefault("Classificação", "");
             group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
-            var propsRealization = WizProps.getOf(nodeRealization.getValue(), propsSeparator);
+            var propsRealization = WizProps.fromSource(nodeRealization.getValue(), propsSeparator);
             group.cardsAt = propsRealization.getOrDefault("Cartões em", "");
             group.questsAt = propsRealization.getOrDefault("Questões em", "");
             group.textsAt = propsRealization.getOrDefault("Redações em", "");

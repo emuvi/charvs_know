@@ -64,7 +64,7 @@ public class RefGroup {
             }
             var classificationFile = new File(actualFolder, actualFolder.getName() + ".md");
             if (!classificationFile.exists()) {
-                CKUtils.createClassFile(classificationFile);
+                ClassDatex.create(classificationFile);
             }
         }
     }
@@ -94,11 +94,7 @@ public class RefGroup {
             return null;
         }
         File folder = getClassificationFolder(onBaseFolder);
-        var file = new File(folder, folder.getName() + ".md");
-        if (!file.exists()) {
-            CKUtils.createClassFile(file);
-        }
-        return file;
+        return new File(folder, folder.getName() + ".md");
     }
 
     public File getTitrationFile(File onBaseFolder) throws Exception {
@@ -112,11 +108,7 @@ public class RefGroup {
         if (folder == null) {
             return null;
         }
-        var file = new File(folder, CKUtils.delBrackets(titration) + ".md");
-        if (!file.exists()) {
-            CKUtils.createClassFile(file);
-        }
-        return file;
+        return new File(folder, CKUtils.delBrackets(titration) + ".md");
     }
 
     public File getQuestsFile(File onBaseFolder) throws Exception {

@@ -1,7 +1,6 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
@@ -18,7 +17,6 @@ import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
 import br.com.pointel.jarch.mage.WizGUI;
-import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
 import br.com.pointel.jarch.mage.WizUtilDate;
 

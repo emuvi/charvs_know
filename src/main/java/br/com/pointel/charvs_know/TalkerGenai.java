@@ -2,7 +2,6 @@ package br.com.pointel.charvs_know;
 
 import java.util.ArrayList;
 
-import com.google.genai.Chat;
 import com.google.genai.Client;
 import com.google.genai.types.Content;
 import com.google.genai.types.Part;

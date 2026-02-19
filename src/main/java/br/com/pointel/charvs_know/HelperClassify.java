@@ -46,6 +46,8 @@ public class HelperClassify extends DFrame {
             .growHorizontal().put(paneAskActs)
             .growBoth().put(textAsk);
 
+    private final DButton buttonAuto = new DButton("Auto")
+            .onClick(this::buttonAutoActionPerformed);
     private final DButton buttonSet = new DButton("Set")
             .onClick(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
@@ -55,6 +57,7 @@ public class HelperClassify extends DFrame {
     private final DButton buttonWrite = new DButton("Write")
             .onClick(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
+            .growNone().put(buttonAuto)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
             .growNone().put(buttonSave)
@@ -197,6 +200,11 @@ public class HelperClassify extends DFrame {
         textAsk.setValue(builder.toString());
     }
 
+    private void buttonAutoActionPerformed(ActionEvent e) {
+        createOrders();
+        comboGroupActionPerformed(e);
+    }
+
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
@@ -314,7 +322,7 @@ public class HelperClassify extends DFrame {
 
     private Set<Integer> createOrders() {
         var result = new LinkedHashSet<Integer>();
-        var size = selectedRef.ref.groups.size() / 3;
+        var size = (int) Math.ceil(selectedRef.ref.groups.size() / 3.0);
         if (selectedRef.ref.groups.size() % 3 == 1) {
             size--;
         }

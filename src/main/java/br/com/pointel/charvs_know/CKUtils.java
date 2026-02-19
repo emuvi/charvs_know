@@ -11,14 +11,6 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 
 public class CKUtils {
 
-    public static void createClassFile(File classFile) throws Exception  {
-        var classProps = "---\n";
-        classProps = classProps + "nature: class\n";
-        classProps = classProps + "created-at: " + WizUtilDate.formatDateMach(new Date()) + "\n";
-        classProps = classProps + "---\n";
-        WizText.write(classFile, classProps);
-    }
-
     public static void putMarkDownLink(File classFile, String link) throws Exception {
         if (link == null || link.isBlank()) {
             return;
@@ -30,22 +22,19 @@ public class CKUtils {
                     throw new Exception("Failed to create class folder: " + folder.getAbsolutePath());
                 }
             }
-            createClassFile(classFile);
         }
-        var source = WizText.read(classFile);
-        link = putBrackets(link);
-        if (source.contains(link)) {
-            return;
+        var classData = ClassDatex.read(classFile);
+        link = delBrackets(link);
+        if (link.startsWith("^")) {
+            if (!classData.textsLinks.contains(link)) {
+                classData.textsLinks.add(link);
+            }
+        } else {
+            if (!classData.cardsLinks.contains(link)) {
+                classData.cardsLinks.add(link);
+            }
         }
-        source = source.trim();
-        if (!source.isEmpty()) {
-            source = source + "\n";
-        }
-        if (source.contains("[[")) {
-            source = source + "\n";
-        }
-        source = source + link;
-        WizText.write(classFile, source);
+        ClassDatex.write(classData, classFile);
     }
 
     public static void delMarkDownLink(File classFile, String link) throws Exception {
@@ -55,36 +44,17 @@ public class CKUtils {
         if (!classFile.exists()) {
             return;
         }
-        var source = WizText.read(classFile);
-        link = putBrackets(link);
-        if (!source.contains(link)) {
-            return;
+        var classData = ClassDatex.read(classFile);
+        link = delBrackets(link);
+        var updated = false;
+        if (link.startsWith("^")) {
+            updated = classData.textsLinks.remove(link);
+        } else {
+            updated = classData.cardsLinks.remove(link);
         }
-        source = source.replace(link, "");
-        source = source.trim();
-        while (source.contains("\n\n\n")) {
-            source = source.replace("\n\n\n", "\n\n");
+        if (updated) {
+            ClassDatex.write(classData, classFile);
         }
-        WizText.write(classFile, source);
-    }
-
-    public static List<String> getMarkDownLinks(File classFile) throws Exception {
-        var result = new ArrayList<String>();
-        if (!classFile.exists()) {
-            return result;
-        }
-        var source = WizText.read(classFile);
-        var start = source.indexOf("[[");
-        while (start > -1) {
-            var end = source.indexOf("]]", start);
-            if (end > -1) {
-                result.add(source.substring(start + 2, end));
-                start = source.indexOf("[[", end);
-            } else {
-                break;
-            }
-        }
-        return result;
     }
 
     public static String cleanFileName(String title) {
@@ -125,7 +95,7 @@ public class CKUtils {
 
     public static String delBrackets(String link) {
         if (link == null || link.isBlank()) {
-            return "";
+            return link;
         }
         if (link.startsWith("[[")) {
             link = link.substring(2);

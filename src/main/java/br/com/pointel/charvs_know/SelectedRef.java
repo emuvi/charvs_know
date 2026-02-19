@@ -30,13 +30,14 @@ public class SelectedRef {
     }
 
     public String talk(String command) {
-        logger.info("Command: {}", command);
+        logger.info("Command:\n{}", command);
         return talker.talk(command);
     }
 
     public String talkWithAttach(String command) {
+        logger.info("Command:\n{}", command);
         var baseURI = RefFTP.getBaseURI(refWithExtension);
-        logger.info("Command: {} Base URI: {}", command, baseURI);
+        logger.info("Base URI:\n{}", baseURI);
         return talker.talk(command, UriMime.of(baseURI));
     }
 

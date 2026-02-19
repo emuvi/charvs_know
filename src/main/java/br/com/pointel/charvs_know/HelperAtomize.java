@@ -143,6 +143,7 @@ public class HelperAtomize extends DFrame {
             }
             var group = selectedRef.ref.groups.get(index);
             clearGroup(group);
+            WizGUI.showInfo("Cleared.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -156,6 +157,7 @@ public class HelperAtomize extends DFrame {
             for (var group : selectedRef.ref.groups) {
                 clearGroup(group);
             }
+            WizGUI.showInfo("Cleared All.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -164,13 +166,27 @@ public class HelperAtomize extends DFrame {
     private void clearGroup(RefGroup group) throws Exception {
         var folder = group.getClassificationFolder(selectedRef.baseFolder);
         var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
-        var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
-        for (var link : titrationLinks) {
-            var atomicFile = new File(folder, link + ".md");
-            if (atomicFile.exists()) {
-                if (!atomicFile.delete()) {
-                    throw new Exception("Failed to delete atomic file: " + atomicFile.getAbsolutePath());
+        var titrationData = ClassDatex.read(titrationFile);
+        for (var link : titrationData.cardsLinks) {
+            var cardFile = new File(folder, link + ".md");
+            if (cardFile.exists()) {
+                if (!cardFile.delete()) {
+                    throw new Exception("Failed to delete card file: " + cardFile.getAbsolutePath());
                 }
+            }
+        }
+        for (var link : titrationData.textsLinks) {
+            var textFile = new File(folder, link + ".md");
+            if (textFile.exists()) {
+                if (!textFile.delete()) {
+                    throw new Exception("Failed to delete text file: " + textFile.getAbsolutePath());
+                }
+            }
+        }
+        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+        if (questsFile.exists()) {
+            if (!questsFile.delete()) {
+                throw new Exception("Failed to delete quests file: " + questsFile.getAbsolutePath());
             }
         }
         if (titrationFile.exists()) {
@@ -180,6 +196,10 @@ public class HelperAtomize extends DFrame {
         }
         var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
         CKUtils.delMarkDownLink(classificationFile, group.titration);
+        group.cardsAt = "";
+        group.questsAt = "";
+        group.textsAt = "";
+        selectedRef.write();
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
@@ -266,15 +286,18 @@ public class HelperAtomize extends DFrame {
             var group = selectedRef.ref.groups.get(index);
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
-            var titrationLinks = CKUtils.getMarkDownLinks(titrationFile);
+            var titrationData = ClassDatex.read(titrationFile);
             var builder = new StringBuilder();
             builder.append("---\n\n");
-            for (var link : titrationLinks) {
+            for (var link : titrationData.cardsLinks) {
+                if (link == null || link.isBlank()) {
+                    continue;
+                }
                 builder.append(link);
-                var atomicFile = new File(folder, link + ".md");
-                if (atomicFile.exists()) {
+                var cardFile = new File(folder, link + ".md");
+                if (cardFile.exists()) {
                     builder.append("\n\n");
-                    var atomicNote = AtomicNote.read(atomicFile);
+                    var atomicNote = AtomicNote.read(cardFile);
                     builder.append(atomicNote.note.trim());
                     if (atomicNote.tags != null && !atomicNote.tags.isBlank()) {
                         builder.append("\n\n*Tags:* ").append(atomicNote.tags.trim());
