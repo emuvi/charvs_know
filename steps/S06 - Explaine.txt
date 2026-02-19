@@ -3,23 +3,13 @@ Dentro do contexto do documento em anexo nessa conversa vamos montar uma base de
 Vamos tratar os pontos sob análise conforme requisitado ao final desse comando.
 
 A resposta deve começar com 1 (um) título.
-O título não deve ter mais de 160 caracteres.
-Faça um título conciso que capture toda a essência da redação.
+O título não deve ter mais de 120 caracteres.
+Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `^ `.
 O título deve capturar toda a essência de cada um dos elementos sob análise.
 Deixe uma linha em branco após o título e entre cada parágrafo. 
 
 Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todo o item sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
-
-Não coloque nada além do título e dos parágrafos na sua resposta.
-Não coloque nenhum link (vínculo) para referências na sua resposta. 
-Não coloque nenhuma referência a fontes na sua resposta.
-Não coloque nenhuma formatação de estilo na sua resposta.
-Não coloque nada além do título e do artigo.
-Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa.
-O título deve ter até 160 caracteres.
-Faça um título conciso que capture toda a essência da redação.
-O título deve começar com os caracteres `^ `.
 
 Faça toda a acentuação e pontuação da sua resposta em Português erudito.
 Utilize o estilo de redação erudito tanto para concursos públicos quanto para exames de vestibulares.
@@ -34,6 +24,16 @@ Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve s
 Desenvolva uma dissertação aprofundada com base no documento anexado e sobre os pontos requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos sob análise, articulando todas as informações relevantes em uma estrutura textual ampla e bem fundamentada.
 
 Escreva um texto abrangente e longo, abordando ponto a ponto sob análise conforme o documento em anexo nessa conversa e sobre o que foi requisitado ao final desse comando. A resposta deve ser detalhada e não deve omitir nenhuma informação relevante.
+
+Não coloque nada além do título e dos parágrafos na sua resposta.
+Não coloque nenhum link (vínculo) para referências na sua resposta. 
+Não coloque nenhuma referência a fontes na sua resposta.
+Não coloque nenhuma formatação de estilo na sua resposta.
+Não coloque nada além do título e do artigo.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa.
+O título deve ter até 120 caracteres.
+Faça um título conciso que capture toda a essência da redação / dissertação.
+O título deve começar com os caracteres `^ `.
 
 Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
 
