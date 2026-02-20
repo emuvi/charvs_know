@@ -207,7 +207,7 @@ public class HelperQuestify extends DFrame {
             WizText.write(questsFile, source);
             group.questsAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showInfo("Written.");
+            WizGUI.showInfo("Written Quests.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

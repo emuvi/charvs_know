@@ -271,7 +271,7 @@ public class HelperAtomize extends DFrame {
             }
             group.cardsAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showInfo("Written.");
+            WizGUI.showNotify("Written Atomics.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
