@@ -1,11 +1,21 @@
 package br.com.pointel.charvs_know;
 
-import br.com.pointel.jarch.desk.SelectDesk;
+import java.awt.event.ActionEvent;
+
+import org.apache.commons.io.FilenameUtils;
+
+import br.com.pointel.jarch.desk.DButton;
+import br.com.pointel.jarch.desk.DListDesk;
+import br.com.pointel.jarch.desk.DTextDesk;
 import br.com.pointel.jarch.mage.WizGUI;
 
-public class LastSelectedDesk extends SelectDesk<String> {
+public class LastSelectedDesk extends DListDesk<String> {
 
     private final CharvsKnowDesk parent;
+
+    private final DButton buttonMemoa = new DButton("Memoa")
+            .onClick(this::buttonMemoaActionPerformed);
+    
 
     public LastSelectedDesk(CharvsKnowDesk parent) {
         super("Last Selected");
@@ -21,6 +31,7 @@ public class LastSelectedDesk extends SelectDesk<String> {
             }
         }
         onSelect(this::onSelect);
+        putButton(buttonMemoa);
     }
 
     private void onSelect(String selected) {
@@ -29,6 +40,24 @@ public class LastSelectedDesk extends SelectDesk<String> {
                 return;
             }
             parent.selectRef(selected);
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
+    }
+
+    private void buttonMemoaActionPerformed(ActionEvent evt) {
+        try {
+            var refWithExtension = selected();
+            if (refWithExtension == null || refWithExtension.isBlank()) {
+                return;
+            }
+            var refFile = parent.getBaseRefFile(FilenameUtils.getBaseName(refWithExtension) + ".md");
+            if (!refFile.exists()) {
+                throw new Exception("Selected reference not found in the base.");
+            }
+            var ref = RefDatex.read(refFile);
+            new DTextDesk("Memoa", ref.memoa.text)
+                    .delButtons().editable(false).view();
         } catch (Exception e) {
             WizGUI.showError(e);
         }

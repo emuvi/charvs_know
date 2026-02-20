@@ -17,7 +17,7 @@ import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
-import br.com.pointel.jarch.desk.SelectDesk;
+import br.com.pointel.jarch.desk.DListDesk;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
@@ -252,14 +252,14 @@ public class HelperExplaine extends DFrame {
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
             if (titrationData.textsLinks.size() > 1) {
-                var selectLink = new SelectDesk<String>("Select a text to bring");
+                var selectLink = new DListDesk<String>("Select a text to bring");
                 selectLink.options(titrationData.textsLinks);
                 selectLink.onSelect(selected -> {
                     try {
                         if (selected == null || selected.isBlank()) {
                             return;
                         }
-                        bringText(folder, selected);
+                        bringExplained(folder, selected);
                     } catch (Exception ei) {
                         WizGUI.showError(ei);
                     }
@@ -267,14 +267,14 @@ public class HelperExplaine extends DFrame {
                 selectLink.setVisible(true);
             } else {
                 var link = titrationData.textsLinks.get(0);
-                bringText(folder, link);
+                bringExplained(folder, link);
             }
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
     }
 
-    private void bringText(File folder, String link) throws Exception {
+    private void bringExplained(File folder, String link) throws Exception {
         var textFile = new File(folder, link + ".md");
         if (!textFile.exists()) {
             return;

@@ -86,8 +86,8 @@ public class CharvsKnowDesk extends DFrame {
     }
     
     private void initComponents() {
-        exitOnClose();
         body(paneBody);
+        exitOnClose();
 
         buttonSetup.setToolTipText("Setup");
         buttonSetup.addActionListener(this::buttonSetupActionPerformed);
