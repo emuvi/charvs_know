@@ -85,6 +85,7 @@ public class HelperOrganize extends DFrame {
         for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
+        onFirstActivated(e -> buttonBringActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
@@ -169,7 +170,11 @@ public class HelperOrganize extends DFrame {
             builder.append(titration);
             builder.append("\n\n");
         }
+        var start = textAsk.edit().selectionStart();
+        var end = textAsk.edit().selectionEnd();
         textAsk.setValue(builder.toString());
+        textAsk.edit().selectionStart(start);
+        textAsk.edit().selectionEnd(end);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {

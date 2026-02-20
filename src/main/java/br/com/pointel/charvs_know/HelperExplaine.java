@@ -134,6 +134,7 @@ public class HelperExplaine extends DFrame {
         textTitration.selectionEnd(endTitration);
         textTopics.selectionStart(startTopics);
         textTopics.selectionEnd(endTopics);
+        buttonBringActionPerformed(e);
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
