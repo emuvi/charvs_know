@@ -23,6 +23,7 @@ import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
+import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.mage.WizBytes;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizUtilDate;
@@ -68,11 +69,15 @@ public class CharvsKnowDesk extends DFrame {
     private final JTextArea textView = new JTextArea();
     private final JScrollPane scrollView = new JScrollPane(textView);
 
+    private final DSplitter splitterBody = new DSplitter()
+            .vertical().top(textMemoaEditor).bottom(scrollView)
+            .divider(0.3f)
+            .name("splitterClassGroup");
+
     private final DPane paneBody = new DColPane()
             .growHorizontal().put(rowBase)
             .growHorizontal().put(rowActs)
-            .growBoth().put(textMemoaEditor)
-            .growBoth().put(scrollView)
+            .growBoth().put(splitterBody)
             .borderEmpty(7);
 
     public CharvsKnowDesk() {
