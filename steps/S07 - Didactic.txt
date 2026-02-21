@@ -1,0 +1,63 @@
+Dentro do contexto do documento em anexo nessa conversa vamos montar uma base de conhecimento.
+Vamos tratar os pontos sob análise conforme requisitado ao final dessa requisição.
+
+A resposta deve começar com 1 (um) título.
+O título não deve ter mais de 120 caracteres.
+Faça um título conciso que capture toda a essência da redação / dissertação.
+O título deve começar com os caracteres `~ `.
+O título deve capturar toda a essência de cada um dos elementos sob análise.
+Deixe uma linha em branco após o título e entre cada parágrafo. 
+
+Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os itens sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
+
+Utilize o estilo de redação didático, com recursos mnemônicos, para estudos tanto para concursos públicos quanto para exames de vestibulares.
+Faça um parágrafo de introdução apresentando o contexto e o assunto.
+Faça diversos parágrafos explicando cada um dos pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+Faça um parágrafo de conclusão resumindo tudo que foi explicado.
+
+Faça uma redação extensa com um grande número de parágrafos tratando todos os pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+
+Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve ser extenso, estruturado em múltiplos parágrafos e cobrir integralmente todos os tópicos pertinentes e sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+
+Desenvolva uma dissertação aprofundada e didática, com recursos mnemônicos, para ensinar o conteúdo pertinente do documento anexado exclusivamente sobre os pontos requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos sob análise, articulando todas as informações relevantes em uma estrutura textual ampla, completa e bem fundamentada.
+
+Escreva um texto abrangente e longo, abordando ponto a ponto sob análise conforme o documento em anexo nessa conversa e sobre o que foi requisitado ao final desse comando. A resposta deve ser detalhada e não deve omitir nenhuma informação relevante.
+
+Não coloque nada além do título e dos parágrafos na sua resposta.
+Não coloque nenhum link (vínculo) para referências na sua resposta. 
+Não coloque nenhuma referência a fontes na sua resposta.
+Não coloque nenhuma formatação de estilo na sua resposta.
+Não coloque nada além do título e do artigo.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa.
+O título deve ter até 120 caracteres.
+Faça um título conciso que capture toda a essência da redação / dissertação.
+O título deve começar com os caracteres `~ `.
+
+Faça toda a acentuação e pontuação da sua resposta na norma padrão da língua portuguesa.
+Utilize uma pontuação clara e bem pausada que garanta um ar de clareza na sua resposta.
+
+Empregue analogias precisas e metáforas do cotidiano para traduzir conceitos abstratos, técnicos ou demasiadamente teóricos em representações mentais concretas. Ao deparar-se com teorias complexas ou regras intrincadas presentes no texto, construa paralelos lúcidos com situações práticas e rotineiras, permitindo que o leitor compreenda a essência e a lógica subjacente do assunto, transcendendo a mera memorização mecânica.
+
+Para blindar o estudante contra as armadilhas comuns das bancas examinadoras, incorpore um elemento de contraste explícito sempre que houver conceitos semelhantes, ramificações ou exceções à regra. Estruture essa explicação opondo diretamente o termo principal aos seus distratores mais frequentes, utilizando o recurso de alerta, destacando as minúcias e as palavras-chave exatas que diferenciam a norma geral de suas derrogações, garantindo assim uma compreensão cristalina e à prova de confusões.
+
+Para a memorização de processos estruturados, trâmites legais ou sequências de causa e efeito, desenvolva breves narrativas de encadeamento lógico. Em vez de apresentar uma sucessão árida de fatos isolados, construa um fluxo contínuo onde a consequência de um evento sirva de gatilho natural e indelével para a compreensão da etapa seguinte. Utilize palavras de transição marcantes que evidenciem essa progressão, costurando os elementos em uma trilha mental coesa, sequencial e fluida que o estudante possa repassar internamente com extrema facilidade.
+
+Ao finalizar a explanação de cada núcleo temático de alta densidade, institua uma "regra de ouro" ou um "gatilho de revisão" expresso em uma única máxima de impacto. Essa sentença conclusiva deve atuar como uma âncora cognitiva, condensando a premissa fundamental daquele ponto sob análise, preferencialmente estruturada de forma ritmada ou com uso de aliterações, servindo como um recurso de resgate rápido na memória durante a resolução de questões ou exames.
+
+
+Todas as siglas mnemônicas que você sugerir utilize o padrão A.B.C. ou seja, todas as siglas mnemônicas devem ter todas as letras em maiúsculas com cada letra separada por ponto `.`.
+
+
+Explique cada conceito ou núcleo semântico com os seguintes recursos:
+1. De maneira técnica, utilizando a terminologia específica e o jargão pertinente ao campo de estudo, garantindo precisão e rigor acadêmico.
+2. De maneira simplificada, utilizando uma linguagem acessível e exemplos do cotidiano, para assegurar que o entendimento seja sólido e aplicável mesmo para aqueles que estão se familiarizando com o tema.
+3. De maneira comparativa, estabelecendo paralelos entre os conceitos apresentados e outros temas correlatos, destacando semelhanças, diferenças e pontos de atenção para evitar confusões conceituais.
+4. De maneira mnemônica, criando acrônimos, frases de efeito ou associações mentais que facilitem a retenção de longo prazo e a recuperação rápida da informação durante situações de avaliação.
+
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a redação.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a redação.
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a redação.
+
+Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva didática, com recursos mnemônicos. Escreva uma dissertação expositiva para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
+
+< INSERT >

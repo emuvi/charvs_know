@@ -21,8 +21,12 @@ public class CKUtils {
         var classData = ClassDatex.read(classFile);
         link = delBrackets(link);
         if (link.startsWith("^")) {
-            if (!classData.textsLinks.contains(link)) {
-                classData.textsLinks.add(link);
+            if (!classData.explainsLinks.contains(link)) {
+                classData.explainsLinks.add(link);
+            }
+        } else if (link.startsWith("~")) {
+            if (!classData.didacticLinks.contains(link)) {
+                classData.didacticLinks.add(link);
             }
         } else {
             if (!classData.cardsLinks.contains(link)) {
@@ -43,8 +47,10 @@ public class CKUtils {
         link = delBrackets(link);
         var updated = false;
         if (link.startsWith("^")) {
-            updated = classData.textsLinks.remove(link);
-        } else {
+            updated = classData.explainsLinks.remove(link);
+        } else if (link.startsWith("~")) {
+            updated = classData.didacticLinks.remove(link);
+        } else  {
             updated = classData.cardsLinks.remove(link);
         }
         if (updated) {

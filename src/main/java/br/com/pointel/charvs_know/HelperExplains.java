@@ -17,12 +17,13 @@ import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
+import br.com.pointel.jarch.desk.DListDesk;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
 import br.com.pointel.jarch.mage.WizUtilDate;
 
-public class HelperAtomize extends DFrame {
+public class HelperExplains extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onClick(this::comboGroupActionPerformed);    
@@ -92,8 +93,8 @@ public class HelperAtomize extends DFrame {
     private final SelectedRef selectedRef;
 
     
-    public HelperAtomize(SelectedRef selectedRef) {
-        super("Helper Atomize");
+    public HelperExplains(SelectedRef selectedRef) {
+        super("Helper Explains");
         this.selectedRef = selectedRef;
         body(splitterBody);
         comboGroup.clear();
@@ -144,7 +145,6 @@ public class HelperAtomize extends DFrame {
             }
             var group = selectedRef.ref.groups.get(index);
             clearGroup(group);
-            WizGUI.showInfo("Cleared.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -158,57 +158,26 @@ public class HelperAtomize extends DFrame {
             for (var group : selectedRef.ref.groups) {
                 clearGroup(group);
             }
-            WizGUI.showInfo("Cleared All.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
     }
 
     private void clearGroup(RefGroup group) throws Exception {
-        var folder = group.getClassificationFolder(selectedRef.baseFolder);
         var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+        if (!titrationFile.exists()) {
+            return;
+        }
         var titrationData = ClassDatex.read(titrationFile);
-        for (var link : titrationData.cardsLinks) {
-            var cardFile = new File(folder, link + ".md");
-            if (cardFile.exists()) {
-                if (!cardFile.delete()) {
-                    throw new Exception("Failed to delete card file: " + cardFile.getAbsolutePath());
-                }
-            }
-        }
+        var folder = group.getClassificationFolder(selectedRef.baseFolder);
         for (var link : titrationData.explainsLinks) {
-            var textFile = new File(folder, link + ".md");
-            if (textFile.exists()) {
-                if (!textFile.delete()) {
-                    throw new Exception("Failed to delete explains file: " + textFile.getAbsolutePath());
+            var explainsFile = new File(folder, link + ".md");
+            if (explainsFile.exists()) {
+                if (!explainsFile.delete()) {
+                    throw new Exception("Failed to delete explains file: " + explainsFile.getAbsolutePath());
                 }
             }
         }
-        for (var link : titrationData.didacticLinks) {
-            var textFile = new File(folder, link + ".md");
-            if (textFile.exists()) {
-                if (!textFile.delete()) {
-                    throw new Exception("Failed to delete didactic file: " + textFile.getAbsolutePath());
-                }
-            }
-        }
-        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
-        if (questsFile.exists()) {
-            if (!questsFile.delete()) {
-                throw new Exception("Failed to delete quests file: " + questsFile.getAbsolutePath());
-            }
-        }
-        if (titrationFile.exists()) {
-            if (!titrationFile.delete()) {
-                throw new Exception("Failed to delete titration file: " + titrationFile.getAbsolutePath());
-            }
-        }
-        var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
-        CKUtils.delMarkDownLink(classificationFile, group.titration);
-        group.cardsAt = "";
-        group.questsAt = "";
-        group.explainsAt = "";
-        selectedRef.write();
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
@@ -216,11 +185,11 @@ public class HelperAtomize extends DFrame {
             return;
         }
         buttonAsk.setText("Asking...");
-        new Thread("Atomize Asking") {
+        new Thread("Explains Asking") {
             @Override
             public void run() {
                 try {
-                    var result = selectedRef.talkWithAttach(Steps.Atomize.getCommand(getInsertion()));
+                    var result = selectedRef.talkWithAttach(Steps.Explains.getCommand(getInsertion()));
                     SwingUtilities.invokeLater(() -> {
                         textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
@@ -246,41 +215,24 @@ public class HelperAtomize extends DFrame {
                 throw new Exception("Ask for a content to write.");
             }
             var group = selectedRef.ref.groups.get(index);
-            var classFolder = group.getClassificationFolder(selectedRef.baseFolder);
-            var atomicsSources = source.split("\\-\\-\\-");
-            for (var atomicSource : atomicsSources) {
-                atomicSource = atomicSource.trim();
-                if (atomicSource.isBlank()) {
-                    continue;
-                }
-                var name = WizString.getFirstLine(atomicSource);
-                atomicSource = WizString.stripFirstLines(atomicSource, 1).trim();
-                if (atomicSource.isBlank()) {
-                    continue;
-                }
-                name = CKUtils.cleanFileName(name);
-                var atomicFile = new File(classFolder, name + ".md");
-                AtomicNote atomicNote;
-                if (atomicFile.exists()) {
-                    atomicNote = AtomicNote.read(atomicFile);
-                    atomicNote.props.put("updated-at", WizUtilDate.formatDateMach(new Date()));
-                } else {
-                    atomicNote = new AtomicNote();
-                    atomicNote.props.put("nature", "atomic");
-                    atomicNote.props.put("created-at", WizUtilDate.formatDateMach(new Date()));
-                }
-                atomicNote.note = AtomicNote.extractNote(atomicSource);
-                atomicNote.tags = AtomicNote.extractTags(atomicSource);
-                atomicNote.refs = selectedRef.ref.props.hashMD5;
-                AtomicNote.write(atomicNote, atomicFile);
-                var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
-                CKUtils.putMarkDownLink(titrationFile, name);
-                var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
-                CKUtils.putMarkDownLink(classificationFile, group.titration);
+            var title = CKUtils.cleanFileName(WizString.getFirstLine(source)).trim();
+            if (title.isBlank()) {
+                throw new Exception("The first line of the content must have a title.");
             }
-            group.cardsAt = WizUtilDate.formatDateMach(new Date());
+            if (!title.startsWith("^")) {
+                title = "^ " + title;
+            }
+            if (!source.contains("*Refs:*")) {
+                source = source + "\n\n*Refs:* " + selectedRef.ref.props.hashMD5;
+            }
+            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            var textFile = new File(folder, title + ".md");
+            WizText.write(textFile, source);
+            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            CKUtils.putMarkDownLink(titrationFile, title);
+            group.explainsAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showNotify("Written Atomics.", 1);
+            WizGUI.showNotify("Explains Written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -292,37 +244,47 @@ public class HelperAtomize extends DFrame {
             if (index == -1 || index >= selectedRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
-            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            var group = selectedRef.ref.groups.get(index);            
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
-            var builder = new StringBuilder();
-            builder.append("---\n\n");
-            for (var link : titrationData.cardsLinks) {
-                if (link == null || link.isBlank()) {
-                    continue;
-                }
-                builder.append(link);
-                var cardFile = new File(folder, link + ".md");
-                if (cardFile.exists()) {
-                    builder.append("\n\n");
-                    var atomicNote = AtomicNote.read(cardFile);
-                    builder.append(atomicNote.note.trim());
-                    if (atomicNote.tags != null && !atomicNote.tags.isBlank()) {
-                        builder.append("\n\n*Tags:* ").append(atomicNote.tags.trim());
-                    }
-                    builder.append("\n\n");
-                }
-                builder.append("---\n\n");
+            if (titrationData.explainsLinks.isEmpty()) {
+                return;
             }
-            var start = textAsk.edit().selectionStart();
-            var end = textAsk.edit().selectionEnd();
-            textAsk.setValue(builder.toString());
-            textAsk.edit().selectionStart(start);
-            textAsk.edit().selectionEnd(end);
+            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            if (titrationData.explainsLinks.size() > 1) {
+                var selectLink = new DListDesk<String>("Select a text to bring");
+                selectLink.options(titrationData.explainsLinks);
+                selectLink.onSelect(selected -> {
+                    try {
+                        if (selected == null || selected.isBlank()) {
+                            return;
+                        }
+                        bringExplains(folder, selected);
+                    } catch (Exception ei) {
+                        WizGUI.showError(ei);
+                    }
+                });
+                selectLink.setVisible(true);
+            } else {
+                var link = titrationData.explainsLinks.get(0);
+                bringExplains(folder, link);
+            }
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
+    }
+
+    private void bringExplains(File folder, String link) throws Exception {
+        var explainsFile = new File(folder, link + ".md");
+        if (!explainsFile.exists()) {
+            return;
+        }
+        var source = WizText.read(explainsFile);
+        var start = textAsk.edit().selectionStart();
+        var end = textAsk.edit().selectionEnd();
+        textAsk.setValue(source);
+        textAsk.edit().selectionStart(start);
+        textAsk.edit().selectionEnd(end);
     }
 
     private String getInsertion() {

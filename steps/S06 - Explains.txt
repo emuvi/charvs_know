@@ -1,6 +1,5 @@
 Dentro do contexto do documento em anexo nessa conversa vamos montar uma base de conhecimento.
-
-Vamos tratar os pontos sob análise conforme requisitado ao final desse comando.
+Vamos tratar os pontos sob análise conforme requisitado ao final dessa requisição.
 
 A resposta deve começar com 1 (um) título.
 O título não deve ter mais de 120 caracteres.
@@ -9,7 +8,7 @@ O título deve começar com os caracteres `^ `.
 O título deve capturar toda a essência de cada um dos elementos sob análise.
 Deixe uma linha em branco após o título e entre cada parágrafo. 
 
-Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todo o item sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
+Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os itens sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
 
 Utilize o estilo de redação erudito tanto para concursos públicos quanto para exames de vestibulares.
 Faça um parágrafo de introdução apresentando o contexto e o assunto.
@@ -20,7 +19,7 @@ Faça uma redação extensa com um grande número de parágrafos tratando todos 
 
 Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve ser extenso, estruturado em múltiplos parágrafos e cobrir integralmente todos os tópicos pertinentes e sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
 
-Desenvolva uma dissertação aprofundada com base no documento anexado e sobre os pontos requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos sob análise, articulando todas as informações relevantes em uma estrutura textual ampla e bem fundamentada.
+Desenvolva uma dissertação aprofundada com base no documento anexado e exclusivamente sobre os pontos requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos sob análise, articulando todas as informações relevantes em uma estrutura textual ampla, completa e bem fundamentada.
 
 Escreva um texto abrangente e longo, abordando ponto a ponto sob análise conforme o documento em anexo nessa conversa e sobre o que foi requisitado ao final desse comando. A resposta deve ser detalhada e não deve omitir nenhuma informação relevante.
 
@@ -36,6 +35,10 @@ O título deve começar com os caracteres `^ `.
 
 Faça toda a acentuação e pontuação da sua resposta em Português erudito.
 Utilize uma pontuação clara e bem pausada que garanta um ar de elegância na sua resposta.
+
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a redação.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a redação.
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a redação.
 
 Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação expositiva para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
 

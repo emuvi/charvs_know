@@ -23,7 +23,7 @@ import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
 import br.com.pointel.jarch.mage.WizUtilDate;
 
-public class HelperExplaine extends DFrame {
+public class HelperDidactic extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onClick(this::comboGroupActionPerformed);    
@@ -93,8 +93,8 @@ public class HelperExplaine extends DFrame {
     private final SelectedRef selectedRef;
 
     
-    public HelperExplaine(SelectedRef selectedRef) {
-        super("Helper Explaine");
+    public HelperDidactic(SelectedRef selectedRef) {
+        super("Helper Didactic");
         this.selectedRef = selectedRef;
         body(splitterBody);
         comboGroup.clear();
@@ -170,11 +170,11 @@ public class HelperExplaine extends DFrame {
         }
         var titrationData = ClassDatex.read(titrationFile);
         var folder = group.getClassificationFolder(selectedRef.baseFolder);
-        for (var link : titrationData.textsLinks) {
-            var textFile = new File(folder, link + ".md");
-            if (textFile.exists()) {
-                if (!textFile.delete()) {
-                    throw new Exception("Failed to delete text file: " + textFile.getAbsolutePath());
+        for (var link : titrationData.didacticLinks) {
+            var didacticFile = new File(folder, link + ".md");
+            if (didacticFile.exists()) {
+                if (!didacticFile.delete()) {
+                    throw new Exception("Failed to delete didactic file: " + didacticFile.getAbsolutePath());
                 }
             }
         }
@@ -185,11 +185,11 @@ public class HelperExplaine extends DFrame {
             return;
         }
         buttonAsk.setText("Asking...");
-        new Thread("Atomize Asking") {
+        new Thread("Didactic Asking") {
             @Override
             public void run() {
                 try {
-                    var result = selectedRef.talkWithAttach(Steps.Explaine.getCommand(getInsertion()));
+                    var result = selectedRef.talkWithAttach(Steps.Didactic.getCommand(getInsertion()));
                     SwingUtilities.invokeLater(() -> {
                         textAsk.setValue(result);
                         textAsk.edit().selectionStart(0);
@@ -219,8 +219,8 @@ public class HelperExplaine extends DFrame {
             if (title.isBlank()) {
                 throw new Exception("The first line of the content must have a title.");
             }
-            if (!title.startsWith("^")) {
-                title = "^ " + title;
+            if (!title.startsWith("~")) {
+                title = "~ " + title;
             }
             if (!source.contains("*Refs:*")) {
                 source = source + "\n\n*Refs:* " + selectedRef.ref.props.hashMD5;
@@ -230,9 +230,9 @@ public class HelperExplaine extends DFrame {
             WizText.write(textFile, source);
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             CKUtils.putMarkDownLink(titrationFile, title);
-            group.textsAt = WizUtilDate.formatDateMach(new Date());
+            group.didacticAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showNotify("Explained Written.", 1);
+            WizGUI.showNotify("Didactic Written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -247,34 +247,34 @@ public class HelperExplaine extends DFrame {
             var group = selectedRef.ref.groups.get(index);            
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
-            if (titrationData.textsLinks.isEmpty()) {
+            if (titrationData.didacticLinks.isEmpty()) {
                 return;
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            if (titrationData.textsLinks.size() > 1) {
+            if (titrationData.didacticLinks.size() > 1) {
                 var selectLink = new DListDesk<String>("Select a text to bring");
-                selectLink.options(titrationData.textsLinks);
+                selectLink.options(titrationData.didacticLinks);
                 selectLink.onSelect(selected -> {
                     try {
                         if (selected == null || selected.isBlank()) {
                             return;
                         }
-                        bringExplained(folder, selected);
+                        bringDidactic(folder, selected);
                     } catch (Exception ei) {
                         WizGUI.showError(ei);
                     }
                 });
                 selectLink.setVisible(true);
             } else {
-                var link = titrationData.textsLinks.get(0);
-                bringExplained(folder, link);
+                var link = titrationData.didacticLinks.get(0);
+                bringDidactic(folder, link);
             }
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
     }
 
-    private void bringExplained(File folder, String link) throws Exception {
+    private void bringDidactic(File folder, String link) throws Exception {
         var textFile = new File(folder, link + ".md");
         if (!textFile.exists()) {
             return;

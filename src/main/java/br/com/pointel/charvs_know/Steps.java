@@ -11,7 +11,8 @@ public enum Steps {
     Classify("S03 - Classify.txt", new ActClassify()),
     Atomize("S04 - Atomize.txt", new ActAtomize()), 
     Questify("S05 - Questify.txt", new ActQuestify()), 
-    Explaine("S06 - Explaine.txt", new ActExplaine()),
+    Explains("S06 - Explains.txt", new ActExplains()),
+    Didactic("S07 - Didactic.txt", new ActDidactic()),
     DoneAtNow(null, new ActDoneAtNow()),
     RevisedAtNow(null, new ActRevisedAtNow());
 

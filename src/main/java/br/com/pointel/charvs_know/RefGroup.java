@@ -10,7 +10,8 @@ public class RefGroup {
     public String topics = "";
     public String cardsAt = "";
     public String questsAt = "";
-    public String textsAt = "";
+    public String explainsAt = "";
+    public String didacticAt = "";
 
     public RefGroup() {}
 

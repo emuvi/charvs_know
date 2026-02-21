@@ -110,7 +110,8 @@ public class RefDatex {
             var propsRealization = WizProps.fromSource(nodeRealization.getValue(), propsSeparator);
             group.cardsAt = propsRealization.getOrDefault("Cartões em", "");
             group.questsAt = propsRealization.getOrDefault("Questões em", "");
-            group.textsAt = propsRealization.getOrDefault("Redações em", "");
+            group.explainsAt = propsRealization.getOrDefault("Redações em", "");
+            group.didacticAt = propsRealization.getOrDefault("Didática em", "");
         }
     }
 
@@ -164,7 +165,8 @@ public class RefDatex {
         builder.append(realizationStart).append("\n");
         builder.append("Cartões em: ").append(group.cardsAt).append("\n");
         builder.append("Questões em: ").append(group.questsAt).append("\n");
-        builder.append("Redações em: ").append(group.textsAt).append("\n");
+        builder.append("Redações em: ").append(group.explainsAt).append("\n");
+        builder.append("Didática em: ").append(group.didacticAt).append("\n");
         builder.append(realizationEnd).append("\n");
     }
 

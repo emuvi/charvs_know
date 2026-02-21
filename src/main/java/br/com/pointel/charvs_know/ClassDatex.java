@@ -52,7 +52,9 @@ public class ClassDatex {
                 if (line.startsWith("[[") && line.endsWith("]]")) {
                     var link = CKUtils.delBrackets(line);
                     if (link.startsWith("^")) {
-                        result.textsLinks.add(link);
+                        result.explainsLinks.add(link);
+                    } else if (link.startsWith("~")) {
+                        result.didacticLinks.add(link);
                     } else {
                         result.cardsLinks.add(link);
                     }
@@ -77,7 +79,10 @@ public class ClassDatex {
             builder.append("updated-at: ").append(classData.updatedAt).append("\n");
         }
         builder.append("---\n");
-        for (var link : classData.textsLinks) {
+        for (var link : classData.explainsLinks) {
+            builder.append(CKUtils.putBrackets(link)).append("\n\n");
+        }
+        for (var link : classData.didacticLinks) {
             builder.append(CKUtils.putBrackets(link)).append("\n\n");
         }
         for (var link : classData.cardsLinks) {
