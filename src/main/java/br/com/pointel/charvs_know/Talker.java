@@ -3,7 +3,7 @@ package br.com.pointel.charvs_know;
 public interface Talker {
 
     public static Talker get() {
-        return new TalkerGenai();
+        return  Setup.getTalkerKind() == SetupTalkerKind.Genai ? new TalkerGenai() : new TalkerClipboard();
     }
 
     public String talk(String command);

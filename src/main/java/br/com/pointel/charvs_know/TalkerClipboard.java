@@ -1,0 +1,54 @@
+package br.com.pointel.charvs_know;
+
+import java.util.Objects;
+
+import br.com.pointel.jarch.mage.WizGUI;
+import br.com.pointel.jarch.mage.WizThread;
+
+public class TalkerClipboard implements Talker {
+
+    @Override
+    public String talk(String command) {
+        return sendMessage(command);
+    }
+
+    @Override
+    public String talk(String command, UriMime... attachs) {
+        return sendMessage(command);
+    }
+
+    private String sendMessage(String command) {
+        try {
+            var window = WizGUI.getActiveWindow();
+            var checkWindow = window != null && window.isVisible();
+            WizGUI.putStringOnClipboard(command);
+            var errorCount = 0;
+            while (true) {
+                WizThread.sleep(100);
+                if (checkWindow && !window.isVisible()) {
+                    throw new Exception("Window is not visible.");
+                }
+                try {
+                    var clipboard = WizGUI.getStringFromClipboard();
+                    if (!Objects.equals(clipboard, command)) {
+                        if (window != null) {
+                            window.toFront();
+                            window.requestFocus();
+                            window.requestFocusInWindow();
+                            window.toFront();
+                        }
+                        return clipboard;
+                    }
+                } catch (Exception e) {
+                    errorCount++;
+                    if (errorCount > 10) {
+                        return e.getMessage();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+}

@@ -74,12 +74,22 @@ public class Setup {
 
     public static final String KEY_GENAI_MODEL = "FRAME_SETUP_COMP_GENAI_MODEL";
     
-    public static GenaiModel getGenaiModel() {
-        return GenaiModel.values()[WizProps.get(KEY_GENAI_MODEL, 0)];
+    public static SetupGenaiModel getGenaiModel() {
+        return SetupGenaiModel.values()[WizProps.get(KEY_GENAI_MODEL, 0)];
     }
 
-    public static void setGenaiModel(GenaiModel genaiModel) {
+    public static void setGenaiModel(SetupGenaiModel genaiModel) {
         WizProps.set(KEY_GENAI_MODEL, genaiModel.ordinal());
+    }
+
+    public static final String KEY_TALKER_KIND = "FRAME_SETUP_COMP_TALKER_KIND";
+    
+    public static SetupTalkerKind getTalkerKind() {
+        return SetupTalkerKind.values()[WizProps.get(KEY_TALKER_KIND, 0)];
+    }
+
+    public static void setTalkerKind(SetupTalkerKind talkerKind) {
+        WizProps.set(KEY_TALKER_KIND, talkerKind.ordinal());
     }
 
     public static File getReplacesListFile() {

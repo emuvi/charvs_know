@@ -1,36 +1,35 @@
 package br.com.pointel.charvs_know;
 
+import br.com.pointel.jarch.desk.DCheckEdit;
+import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DEdit;
 import br.com.pointel.jarch.desk.DFieldEdit;
 import br.com.pointel.jarch.desk.DLabelEdit;
-import br.com.pointel.jarch.desk.DLinePane;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DStringField;
 
-import javax.swing.Box;
-
-import br.com.pointel.jarch.desk.DCheckEdit;
-import br.com.pointel.jarch.desk.DColPane;
-
 public class ReplaceEdit extends DEdit<Replace> {
 
-    private DFieldEdit<String> fieldName = new DStringField().cols(12);
+    private DCheckEdit fieldActive = new DCheckEdit().text("Active");
+    private DFieldEdit<String> fieldName = new DStringField();
     private DCheckEdit fieldRegex = new DCheckEdit().text("Regex");
     private DPane paneOptions = new DRowPane().insets(3)
+            .growNone().put(fieldActive)
             .growHorizontal().put(fieldName)
-            .put(fieldRegex)
-            .growHorizontal().put(Box.createHorizontalBox());
-    private DFieldEdit<String> fieldOf = new DStringField().cols(24);
+            .growNone().put(fieldRegex);
+
+    private DFieldEdit<String> fieldOf = new DStringField();
     private DLabelEdit<String> titledOf = new DLabelEdit<>("Of:", fieldOf);
-    private DFieldEdit<String> fieldTo = new DStringField().cols(24);
+    private DFieldEdit<String> fieldTo = new DStringField();
     private DLabelEdit<String> titledTo = new DLabelEdit<>("To:", fieldTo);
     private DPane paneReplace = new DRowPane().insets(3)
             .growHorizontal().put(titledOf)
-            .put(titledTo);
+            .growHorizontal().put(titledTo);
+
     private DPane paneBody = new DColPane()
-            .growBoth().put(paneOptions)
-            .put(paneReplace);
+            .growHorizontal().put(paneOptions)
+            .growHorizontal().put(paneReplace);
 
     public ReplaceEdit() {
         comp(paneBody);
@@ -38,11 +37,12 @@ public class ReplaceEdit extends DEdit<Replace> {
 
     @Override
     public Replace getValue() {
-        return new Replace(fieldName.getValue(), fieldRegex.getValue(), fieldOf.getValue(), fieldTo.getValue());
+        return new Replace(fieldActive.getValue(), fieldName.getValue(), fieldRegex.getValue(), fieldOf.getValue(), fieldTo.getValue());
     }
 
     @Override
     public void setValue(Replace value) {
+        fieldActive.setValue(value.active);
         fieldName.setValue(value.name);
         fieldRegex.setValue(value.regex);
         fieldOf.setValue(value.of);

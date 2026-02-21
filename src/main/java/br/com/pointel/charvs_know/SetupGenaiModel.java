@@ -1,6 +1,6 @@
 package br.com.pointel.charvs_know;
 
-public enum GenaiModel {
+public enum SetupGenaiModel {
 
     Gemini3Flash("gemini-3-flash-preview"),
     Gemini3Pro("gemini-3-pro-preview"),
@@ -9,7 +9,7 @@ public enum GenaiModel {
 
     private final String code;
 
-    GenaiModel(String code) {
+    SetupGenaiModel(String code) {
         this.code = code;
     }
 

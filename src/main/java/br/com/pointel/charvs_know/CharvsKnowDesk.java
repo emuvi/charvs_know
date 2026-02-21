@@ -25,6 +25,7 @@ import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.mage.WizBytes;
+import br.com.pointel.jarch.mage.WizFile;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizUtilDate;
 
@@ -133,7 +134,7 @@ public class CharvsKnowDesk extends DFrame {
 
     private void buttonBaseSelectActionPerformed(ActionEvent evt) {
         var selected = new File(getSelectedBase());
-        selected = WizGUI.selectFolder(selected);
+        selected = WizFile.openDir(selected);
         if (selected != null) {
             setSelectedBase(selected.getAbsolutePath());
         }
@@ -161,7 +162,7 @@ public class CharvsKnowDesk extends DFrame {
             if (lastSelectedFile == null) {
                 lastSelectedFile = getBaseFolder();
             }
-            var selectedFile = WizGUI.selectFile(lastSelectedFile);
+            var selectedFile = WizFile.openFile(lastSelectedFile);
             if (selectedFile != null) {
                 selectRef(selectedFile);
             }
@@ -179,7 +180,7 @@ public class CharvsKnowDesk extends DFrame {
             if (selectedRef == null) {
                 return;
             }
-            WizGUI.open(selectedRef.sourceFile);
+            WizGUI.exploreAndSelect(selectedRef.sourceFile);
         } catch (Exception e) {
             WizGUI.showError(e);
         }

@@ -232,7 +232,7 @@ public class HelperExplaine extends DFrame {
             CKUtils.putMarkDownLink(titrationFile, title);
             group.textsAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showInfo("Written Texts.");
+            WizGUI.showNotify("Explained Written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
