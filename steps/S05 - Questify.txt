@@ -31,6 +31,7 @@ Faça mais perguntas e respostas do que o total de notas atômicas apresentadas 
 Seja absolutamente preciso nas perguntas e respostas, escreva elas conforme o conteúdo do documento em anexo nessa conversa.
 
 Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+Utilize uma pontuação clara e bem pausada que garanta um ar de elegância na sua resposta.
 
 As notas atômicas apresentadas abaixo estão separadas por `---`.
 
