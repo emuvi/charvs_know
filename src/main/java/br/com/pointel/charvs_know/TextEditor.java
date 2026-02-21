@@ -11,7 +11,8 @@ import br.com.pointel.jarch.desk.DText;
 
 public class TextEditor extends DBordPane {
 
-    private final DText textEdit = new DText();
+    private final DText textEdit = new DText()
+            .lineWrap(true).wrapStyleWord(true);
     private final DScroll scrollPane = new DScroll(textEdit);
 
     private final DButton buttonReplaces = new DButton("#")
