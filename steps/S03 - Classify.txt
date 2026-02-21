@@ -76,6 +76,8 @@ Sugira as classificações que consigam sintetizar cada um dos grupos semiótico
 
 Coloque uma linha em branco entre cada título de classificação sugerido.
 
+Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+
 Não coloque nada na sua resposta das classificações sugeridas para sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
 Sugira classificações pertinentes que consigam sintetizar e ser suficientemente genéricas ao ponto de guardar todo o assunto possivelmente relevante e correlacionado a cada um dos grupos de significados de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.

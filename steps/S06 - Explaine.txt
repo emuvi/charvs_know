@@ -12,6 +12,7 @@ Deixe uma linha em branco após o título e entre cada parágrafo.
 Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todo o item sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
 
 Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+
 Utilize o estilo de redação erudito tanto para concursos públicos quanto para exames de vestibulares.
 Faça um parágrafo de introdução apresentando o contexto e o assunto.
 Faça diversos parágrafos explicando cada um dos pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.

@@ -23,6 +23,8 @@ Nunca separe cada título de classificação sugerido com os caracteres: `---`.
 
 Coloque uma linha em branco entre cada título de classificação sugerido.
 
+Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+
 Não coloque nada na sua resposta além dos títulos de classificação sugeridos para sintetizar cada um dos grupos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
 Sugira títulos de classificação agrupadores de significado que façam sentido conforme o documento em anexo nessa conversa.

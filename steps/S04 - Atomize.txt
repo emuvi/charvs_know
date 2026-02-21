@@ -98,6 +98,8 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 O objetivo é processar um documento anexo para gerar um conjunto exaustivo, detalhado e preciso de notas atômicas interconectadas sobre um tema alvo, garantindo que todo o conteúdo relevante seja transformado em anotações vinculadas entre si.
 
+Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+
 # Gere um conjunto extenso de notas atômicas interconectadas que cubram, conforme o documento em anexo, todo o TEMA ALVO seguinte:
 
 < INSERT >
