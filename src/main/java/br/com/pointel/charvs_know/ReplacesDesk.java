@@ -74,11 +74,7 @@ public class ReplacesDesk extends DFrame {
         for (Replace replace : listEditor.list().getSelectedValuesList()) {
             text = replace.apply(text);
         }
-        var start = textEditor.edit().selectionStart();
-        var end = textEditor.edit().selectionEnd();
         textEditor.setValue(text);
-        textEditor.edit().selectionStart(start);
-        textEditor.edit().selectionEnd(end);
     }
 
     private void buttonUndoActionPerformed(ActionEvent e) {
@@ -86,11 +82,7 @@ public class ReplacesDesk extends DFrame {
             return;
         }
         String lastText = undoList.remove(undoList.size() - 1);
-        var start = textEditor.edit().selectionStart();
-        var end = textEditor.edit().selectionEnd();
         textEditor.setValue(lastText);
-        textEditor.edit().selectionStart(start);
-        textEditor.edit().selectionEnd(end);
     }
 
 }

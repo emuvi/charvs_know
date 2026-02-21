@@ -113,7 +113,15 @@ public class HelperIdentify extends DFrame {
 
     private void buttonParseActionPerformed(ActionEvent e) {
         try {
-            var parts = textAsk.edit().getValue().split("\\-\\-\\-");
+            var source = textAsk.edit().getValue().trim();
+            if (source.isBlank()) {
+                return;
+            }
+            for (var replace : Setup.getReplacesList(ReplaceAutoOn.OnIdentify)) {
+                source = replace.apply(source);
+            }
+            textAsk.edit().setValue(source);
+            var parts = source.split("\\-\\-\\-");
             if (parts.length == 0) {
                 return;
             }
@@ -142,11 +150,7 @@ public class HelperIdentify extends DFrame {
             }
             builder.append(group.topics);
         }
-        var start = textAsk.edit().selectionStart();
-        var end = textAsk.edit().selectionEnd();
         textAsk.setValue(builder.toString());
-        textAsk.edit().selectionStart(start);
-        textAsk.edit().selectionEnd(end);
     }
 
     private void buttonAddActionPerformed(ActionEvent e) {
@@ -172,11 +176,7 @@ public class HelperIdentify extends DFrame {
             return;
         }
         var group = selectedRef.ref.groups.get(index);
-        var start = textTopics.edit().selectionStart();
-        var end = textTopics.edit().selectionEnd();
         textTopics.setValue(group.topics);
-        textTopics.edit().selectionStart(start);
-        textTopics.edit().selectionEnd(end);
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {

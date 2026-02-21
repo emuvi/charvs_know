@@ -142,20 +142,24 @@ public class HelperClassify extends DFrame {
 
     private void buttonParseActionPerformed(ActionEvent e) {
         try {
-            var text = textAsk.getValue().trim();
-            if (text.isBlank()) {
+            var source = textAsk.edit().getValue().trim();
+            if (source.isBlank()) {
                 return;
             }
+            for (var replace : Setup.getReplacesList(ReplaceAutoOn.OnClassify)) {
+                source = replace.apply(source);
+            }
+            textAsk.edit().setValue(source);
             var index = 0;
             var orders = List.copyOf(getOrders());
-            var start = text.indexOf("[[");
+            var start = source.indexOf("[[");
             while (start > -1) {
                 if (index >= orders.size()) {
                     break;
                 }
-                var end = text.indexOf("]]", start);
+                var end = source.indexOf("]]", start);
                 if (end > -1) {
-                    var classification = text.substring(start + 2, end).trim();
+                    var classification = source.substring(start + 2, end).trim();
                     if (!classification.startsWith("-")) {
                         classification = "-" + classification;
                     }
@@ -166,7 +170,7 @@ public class HelperClassify extends DFrame {
                             group.classification = classification;
                         }
                     }
-                    start = text.indexOf("[[", end);
+                    start = source.indexOf("[[", end);
                     index++;
                 } else {
                     break;
@@ -198,11 +202,7 @@ public class HelperClassify extends DFrame {
             builder.append(order.getValue());
             builder.append("]]\n\n");
         }
-        var start = textAsk.edit().selectionStart();
-        var end = textAsk.edit().selectionEnd();
         textAsk.setValue(builder.toString());
-        textAsk.edit().selectionStart(start);
-        textAsk.edit().selectionEnd(end);
     }
 
     private void buttonAutoActionPerformed(ActionEvent e) {
@@ -232,21 +232,9 @@ public class HelperClassify extends DFrame {
             orderInt = Integer.parseInt(group.order.trim());
         } catch (Exception ex) {}
         fieldClassOrder.setValue(orderInt);
-        var startClass = fieldClassTitle.edit().selectionStart();
-        var endClass = fieldClassTitle.edit().selectionEnd();
-        var startTitration = textTitration.selectionStart();
-        var endTitration = textTitration.selectionEnd();
-        var startTopics = textTopics.selectionStart();
-        var endTopics = textTopics.selectionEnd();
         fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
-        fieldClassTitle.edit().selectionStart(startClass);
-        fieldClassTitle.edit().selectionEnd(endClass);
-        textTitration.selectionStart(startTitration);
-        textTitration.selectionEnd(endTitration);
-        textTopics.selectionStart(startTopics);
-        textTopics.selectionEnd(endTopics);
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {

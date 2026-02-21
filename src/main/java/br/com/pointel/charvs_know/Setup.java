@@ -2,6 +2,7 @@ package br.com.pointel.charvs_know;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import br.com.pointel.jarch.mage.WizObject;
 import br.com.pointel.jarch.mage.WizProps;
@@ -96,6 +97,10 @@ public class Setup {
         return new File("replaces.ser");
     }
 
+    public static void writeReplacesList(ArrayList<Replace> replaces) throws Exception {
+        WizObject.write(getReplacesListFile(), replaces);
+    }
+
     public static ArrayList<Replace> readReplacesList() throws Exception {
         var file = getReplacesListFile();
         if (!file.exists()) {
@@ -104,8 +109,18 @@ public class Setup {
         return (ArrayList<Replace>) WizObject.read(file);
     }
 
-    public static void writeReplacesList(ArrayList<Replace> replaces) throws Exception {
-        WizObject.write(getReplacesListFile(), replaces);
+    public static ArrayList<Replace> getReplacesList(ReplaceAutoOn forStep) throws Exception {
+        var result = new ArrayList<Replace>();
+        for (var replace : readReplacesList()) {
+            if (Objects.equals(replace.autoOn, ReplaceAutoOn.OnAllSteps) 
+                    || Objects.equals(replace.autoOn, forStep)) {
+                result.add(replace);
+            }
+        }
+        return result;
+
+
+
     }
     
 }

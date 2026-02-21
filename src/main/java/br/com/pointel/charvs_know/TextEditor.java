@@ -58,11 +58,7 @@ public class TextEditor extends DBordPane {
             for (Replace replace : Setup.readReplacesList()) {
                 text = replace.apply(text);
             }
-            var start = textEdit.selectionStart();
-            var end = textEdit.selectionEnd();
             textEdit.setValue(text);
-            textEdit.selectionStart(start);
-            textEdit.selectionEnd(end);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -290,13 +290,9 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     public void updateStatus() {
-        var start = textMemoaEditor.edit().selectionStart();
-        var end = textMemoaEditor.edit().selectionEnd();
         textMemoaEditor.setValue(selectedRef.ref.memoa.text);
-        textMemoaEditor.edit().selectionStart(start);
-        textMemoaEditor.edit().selectionEnd(end);
-        start = textView.getSelectionStart();
-        end = textView.getSelectionEnd();
+        var start = textView.getSelectionStart();
+        var end = textView.getSelectionEnd();
         textView.setText(RefDatex.getRefSource(selectedRef.ref, false));
         textView.setSelectionStart(start);
         textView.setSelectionEnd(end);

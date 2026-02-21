@@ -118,22 +118,10 @@ public class HelperExplains extends DFrame {
             orderInt = Integer.parseInt(group.order.trim());
         } catch (Exception ex) {}
         fieldClassOrder.setValue(orderInt);
-        var startClass = fieldClassTitle.selectionStart();
-        var endClass = fieldClassTitle.selectionEnd();
-        var startTitration = textTitration.selectionStart();
-        var endTitration = textTitration.selectionEnd();
-        var startTopics = textTopics.selectionStart();
-        var endTopics = textTopics.selectionEnd();
         fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
         textAsk.setValue("");
-        fieldClassTitle.selectionStart(startClass);
-        fieldClassTitle.selectionEnd(endClass);
-        textTitration.selectionStart(startTitration);
-        textTitration.selectionEnd(endTitration);
-        textTopics.selectionStart(startTopics);
-        textTopics.selectionEnd(endTopics);
         buttonBringActionPerformed(e);
     }
 
@@ -210,10 +198,14 @@ public class HelperExplains extends DFrame {
             if (index == -1 || index >= selectedRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
-            var source = textAsk.getValue().trim();
+            var source = textAsk.edit().getValue().trim();
             if (source.isBlank()) {
                 throw new Exception("Ask for a content to write.");
             }
+            for (var replace : Setup.getReplacesList(ReplaceAutoOn.OnExplains)) {
+                source = replace.apply(source);
+            }
+            textAsk.edit().setValue(source);
             var group = selectedRef.ref.groups.get(index);
             var title = CKUtils.cleanFileName(WizString.getFirstLine(source)).trim();
             if (title.isBlank()) {
@@ -280,11 +272,7 @@ public class HelperExplains extends DFrame {
             return;
         }
         var source = WizText.read(explainsFile);
-        var start = textAsk.edit().selectionStart();
-        var end = textAsk.edit().selectionEnd();
         textAsk.setValue(source);
-        textAsk.edit().selectionStart(start);
-        textAsk.edit().selectionEnd(end);
     }
 
     private String getInsertion() {

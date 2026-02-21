@@ -120,25 +120,29 @@ public class HelperOrganize extends DFrame {
 
     private void buttonParseActionPerformed(ActionEvent e) {
         try {
-            var text = textAsk.getValue().trim();
-            if (text.isBlank()) {
+            var source = textAsk.edit().getValue().trim();
+            if (source.isBlank()) {
                 return;
             }
+            for (var replace : Setup.getReplacesList(ReplaceAutoOn.OnOrganize)) {
+                source = replace.apply(source);
+            }
+            textAsk.edit().setValue(source);
             var index = 0;
-            var start = text.indexOf("[[");
+            var start = source.indexOf("[[");
             while (start > -1) {
                 if (index >= selectedRef.ref.groups.size()) {
                     break;
                 }
-                var end = text.indexOf("]]", start);
+                var end = source.indexOf("]]", start);
                 if (end > -1) {
-                    var titration = text.substring(start + 2, end).trim();
+                    var titration = source.substring(start + 2, end).trim();
                     if (!titration.startsWith("+")) {
                         titration = "+ " + titration;
                     }
                     titration = CKUtils.cleanFileName(titration);
                     selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
-                    start = text.indexOf("[[", end);
+                    start = source.indexOf("[[", end);
                     index++;
                 } else {
                     break;
@@ -170,11 +174,7 @@ public class HelperOrganize extends DFrame {
             builder.append(titration);
             builder.append("\n\n");
         }
-        var start = textAsk.edit().selectionStart();
-        var end = textAsk.edit().selectionEnd();
         textAsk.setValue(builder.toString());
-        textAsk.edit().selectionStart(start);
-        textAsk.edit().selectionEnd(end);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
@@ -193,16 +193,8 @@ public class HelperOrganize extends DFrame {
             return;
         }
         var group = selectedRef.ref.groups.get(index);
-        var startTitration = textTitration.edit().selectionStart();
-        var endTitration = textTitration.edit().selectionEnd();
-        var startTopics = textTopics.selectionStart();
-        var endTopics = textTopics.selectionEnd();
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
-        textTitration.edit().selectionStart(startTitration);
-        textTitration.edit().selectionEnd(endTitration);
-        textTopics.selectionStart(startTopics);
-        textTopics.selectionEnd(endTopics);
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {
