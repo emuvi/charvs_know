@@ -29,6 +29,7 @@ public class LastSelectedDesk extends DListDesk<String> {
         loadOptions();
         onSelect(this::onSelect);
         putButton(buttonMemoa);
+        putButton(buttonClear);
     }
 
     private void loadOptions() {
