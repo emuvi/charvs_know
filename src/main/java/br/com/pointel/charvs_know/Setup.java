@@ -73,6 +73,12 @@ public class Setup {
         WizProps.set(KEYS_LAST_SELECTED_REFS[0], refWithExtension);
     }
 
+    public static void clearLastSelectedRefs() {
+        for (int i = 0; i < KEYS_LAST_SELECTED_REFS.length; i++) {
+            WizProps.set(KEYS_LAST_SELECTED_REFS[i], "");
+        }
+    }
+
     public static final String KEY_GENAI_MODEL = "FRAME_SETUP_COMP_GENAI_MODEL";
     
     public static SetupGenaiModel getGenaiModel() {

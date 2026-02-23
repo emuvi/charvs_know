@@ -15,6 +15,8 @@ public class LastSelectedDesk extends DListDesk<String> {
 
     private final DButton buttonMemoa = new DButton("Memoa")
             .onClick(this::buttonMemoaActionPerformed);
+    private final DButton buttonClear = new DButton("Clear")
+            .onClick(this::buttonClearActionPerformed);
     
 
     public LastSelectedDesk(CharvsKnowDesk parent) {
@@ -24,14 +26,19 @@ public class LastSelectedDesk extends DListDesk<String> {
     }
     
     private void initComponents() {
+        loadOptions();
+        onSelect(this::onSelect);
+        putButton(buttonMemoa);
+    }
+
+    private void loadOptions() {
+        delOptions();
         var lastSelected = Setup.getLastSelectedRefs();
         for (var ref : lastSelected) {
             if (ref != null && !ref.isBlank()) {
                 addOption(ref);
             }
         }
-        onSelect(this::onSelect);
-        putButton(buttonMemoa);
     }
 
     private void onSelect(String selected) {
@@ -58,6 +65,18 @@ public class LastSelectedDesk extends DListDesk<String> {
             var ref = RefDatex.read(refFile);
             new DTextDesk("Memoa", ref.memoa.text)
                     .delButtons().editable(false).view();
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
+    }
+
+    private void buttonClearActionPerformed(ActionEvent evt) {
+        if (!WizGUI.showConfirm("Are you sure want to clear all last selected?")) {
+            return;
+        }
+        try {
+            Setup.clearLastSelectedRefs();
+            loadOptions();
         } catch (Exception e) {
             WizGUI.showError(e);
         }
