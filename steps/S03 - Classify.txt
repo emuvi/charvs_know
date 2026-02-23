@@ -76,7 +76,7 @@ Sugira as classificações que consigam sintetizar cada um dos grupos semiótico
 
 Coloque uma linha em branco entre cada título de classificação sugerido.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma padrão.
+Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
 
 Não coloque nada na sua resposta das classificações sugeridas para sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 

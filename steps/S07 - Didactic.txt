@@ -33,8 +33,14 @@ O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `~ `.
 
-Faça toda a acentuação e pontuação da sua resposta na norma padrão da língua portuguesa.
+Faça toda a acentuação e pontuação da sua resposta na norma-padrão da língua portuguesa.
 Utilize uma pontuação clara e bem pausada que garanta um ar de clareza na sua resposta.
+
+Inicie a dissertação com um parágrafo de introdução estratégico que contextualize imediatamente o tema central com base no documento fornecido. Em seguida, apresente de forma clara a tese ou a premissa principal que será explorada. Finalize esta introdução delineando brevemente os principais tópicos que serão desenvolvidos nos parágrafos seguintes, criando uma espécie de roteiro de leitura claro e objetivo que guie a compreensão estrutural do texto.
+
+Estruture cada parágrafo de desenvolvimento iniciando com um 'tópico frasal' claro, que apresente a ideia central a ser abordada. Em seguida, desdobre essa ideia com explicações detalhadas, contextualizações e sínteses extraídas exclusivamente do documento anexo. Finalize cada parágrafo com um breve fecho conclusivo daquela ideia antes de avançar para o próximo ponto.
+
+Elabore um parágrafo de conclusão que funcione como uma síntese de alto valor informacional, perfeitamente autossuficiente. Retome a tese central e os principais argumentos desenvolvidos ao longo do texto de forma concisa e integrada. A conclusão deve encapsular o núcleo do conhecimento extraído do documento, consolidando o aprendizado sem inserir em nenhuma hipótese informações, opiniões ou conceitos novos que não tenham sido previamente discutidos no desenvolvimento.
 
 Empregue analogias precisas e metáforas do cotidiano para traduzir conceitos abstratos, técnicos ou demasiadamente teóricos em representações mentais concretas. Ao deparar-se com teorias complexas ou regras intrincadas presentes no texto, construa paralelos lúcidos com situações práticas e rotineiras, permitindo que o leitor compreenda a essência e a lógica subjacente do assunto, transcendendo a mera memorização mecânica.
 

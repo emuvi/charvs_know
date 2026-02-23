@@ -25,7 +25,7 @@ Forneça apenas o conjunto de notas atômicas separadas por --- que capturem tod
 
 5. *Autossuficiência:* Cada nota deve fazer sentido sozinha, mas ganhar poder quando lida em conjunto com as outras.
 
-6. *Linguagem:* Utilize sempre a norma padrão da língua portuguesa. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome das tags aplique a acentuação correta da língua portuguesa.
+6. *Linguagem:* Utilize sempre a norma-padrão da língua portuguesa. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome das tags aplique a acentuação correta da língua portuguesa.
 
 7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve explicitar o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. O título *NÃO* deve estar entre colchetes. O título *NÃO* deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
 
@@ -67,7 +67,7 @@ Micro Classificação Genérica: Estabelece uma categoria intermediária ou tem�
 #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
 Macro Classificação Geral: Define o contexto global, a grande disciplina ou o assunto do documento original de onde toda a informação foi extraída.
 
-*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o Português da norma padrão.
+*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o Português da norma-padrão.
 
 
 # Conjunto de Notas Atômicas
@@ -98,7 +98,7 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 O objetivo é processar um documento anexo para gerar um conjunto exaustivo, detalhado e preciso de notas atômicas interconectadas sobre um tema alvo, garantindo que todo o conteúdo relevante seja transformado em anotações vinculadas entre si.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma padrão.
+Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e bem cadenciada na sua resposta.
 
 # Gere um conjunto extenso de notas atômicas interconectadas que cubram, conforme o documento em anexo, todo o TEMA ALVO seguinte:
