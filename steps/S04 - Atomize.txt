@@ -19,25 +19,25 @@ Forneça apenas o conjunto de notas atômicas separadas por --- que capturem tod
 
 2. *Decomposição Atômica:* Quebre o conhecimento em "Notas Atômicas". Cada nota deve focar em UM único conceito, ideia ou argumento central. Evite notas genéricas ou longas demais que misturem múltiplos tópicos.
 
-3. *Erudição e Detalhe:* O texto deve ser formal, denso em informação e tecnicamente preciso. Não simplifique excessivamente; mantenha o vocabulário do documento original, explicando-o se necessário.
+3. *Didática e Detalhe:* O texto deve ser didático e detalhado, denso em informação e tecnicamente preciso. Não simplifique excessivamente; mantenha o vocabulário do documento original, explicando-o se necessário.
 
-4. *Interconexão (Obrigatório):* Utilize a sintaxe de WikiLinks [[Título da Outra Nota]] para conectar conceitos dentro do texto das notas. As notas devem conversar entre si.
+4. *Interconexão (Obrigatório):* Utilize a sintaxe de WikiLinks [[título da outra nota]] para conectar conceitos dentro do texto das notas. As notas devem conversar entre si.
 
 5. *Autossuficiência:* Cada nota deve fazer sentido sozinha, mas ganhar poder quando lida em conjunto com as outras.
 
-6. *Linguagem:* Utilize sempre a língua portuguesa erudita. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome de Tags aplique a acentuação da língua portuguesa.
+6. *Linguagem:* Utilize sempre a norma padrão da língua portuguesa. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome das tags aplique a acentuação correta da língua portuguesa.
 
 7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve explicitar o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. O título *NÃO* deve estar entre colchetes. O título *NÃO* deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
 
-8. *Variedade:* Faça uma composição com riqueza de detalhes. Produzindo uma grande quantidade de notas variadas para abordar profundamente o TEMA ALVO.
+8. *Variedade:* Faça uma composição com riqueza de detalhes. Produzindo uma grande quantidade de notas atômicas para abordar profundamente o TEMA ALVO.
 
 9. *Precisão:* Não invente nada. Utilize somente as informações e o conteúdo do documento em anexo. Cada link / vínculo no formato de citação entre colchetes `[[link]]` deve ser *EXATAMENTE* o título de outra nota atômica.
 
 10. *Citação:* Sempre que uma referência for citada, faça a citação completa e atômica de maneira que a citação seja também autossuficiente.
 
-11. *Vinculação (Obrigatório):* Garanta a interconectividade semântica total, exigindo que cada nota atômica contenha ao menos um link no formato [[título exato da nota]] ligando-a exclusivamente a outras notas já geradas, sem referências externas.
+11. *Vinculação (Obrigatório):* Garanta a interconectividade semântica máxima, exigindo que cada nota atômica contenha ao menos um link no formato [[título exato da outra nota]] ligando-a exclusivamente a outras notas já geradas, sem referências externas.
 
-12. *Inteligência:* Construa um ecossistema de conhecimento por meio de vinculações semânticas e lógicas entre as notas atômicas, utilizando respostas de interações anteriores para criar uma explicação erudita e integrada que conecte o tema atual a todas as outras notas relevantes já geradas.
+12. *Inteligência:* Construa um ecossistema de conhecimento por meio de vinculações semânticas e lógicas entre as notas atômicas, utilizando respostas de interações anteriores para criar uma explicação clara e integrada que conecte o tema atual a todas as outras notas relevantes já geradas.
 
 
 # Formato de Saída (Estrito)
@@ -47,7 +47,7 @@ Para cada nota gerada, utilize EXATAMENTE a seguinte estrutura (Markdown):
 
 título completo, claro e declarativo
 
-Escreva aqui o conteúdo da nota atômica com riqueza de detalhes, usando definições, argumentos e evidências encontradas no documento em anexo. Insira links para as outras notas atômicas que você está criando durante toda essa conversa usando o formato [[título da outra nota atômica]] sempre que houver uma relação semântica ou de interesse. Escreva em estilo erudito. Coloque em negrito o termo mais importante da nota. Coloque em itálico o segundo e o terceiro termos mais importantes da nota.
+Escreva aqui o conteúdo da nota atômica com riqueza de detalhes, usando definições, argumentos e evidências encontradas no documento em anexo. Insira links para as outras notas atômicas que você está criou durante toda essa conversa usando o formato [[título da outra nota atômica]] sempre que houver uma relação semântica ou de interesse. Escreva em estilo claro e didático. Coloque em negrito o termo mais importante de cada nota. Coloque em itálico o segundo e o terceiro termos mais importantes de cada nota.
 
 *Tags:* #{{classificação_específica_da_parte_do_tema_alvo_abordado_em_cada_nota}} #{{micro_classificação_genérica_do_assunto_abordado_de_cada_nota}} #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
 
@@ -67,27 +67,27 @@ Micro Classificação Genérica: Estabelece uma categoria intermediária ou tem�
 #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
 Macro Classificação Geral: Define o contexto global, a grande disciplina ou o assunto do documento original de onde toda a informação foi extraída.
 
-*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o  Português erudito.
+*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o Português da norma padrão.
 
 
 # Conjunto de Notas Atômicas
 
 Cada título de cada nota atômica deve ser autossuficiente em sentido, iniciando obrigatoriamente por substantivos (sem artigos), escritos em minúsculas — exceto por SIGLAS — e limitados ao máximo de 180 caracteres.
 
-Produza as notas atômicas em português erudito e tecnicamente preciso, organizadas do abstrato ao detalhado, utilizando obrigatoriamente negrito para o termo principal, itálico para o segundo e terceiro mais importantes, e conexões semânticas entre as notas através de links no formato [[título da nota]].
+Produza as notas atômicas em português claro e didático, denso em informação tecnicamente preciso, com um conjunto de notas atômicas organizadas do abstrato ao concreto, do genérico ao específico, utilizando obrigatoriamente negrito para o termo principal, itálico para o segundo e terceiro mais importantes, e conexões semânticas entre as notas através de links no formato [[título da outra nota]].
 
-O objetivo é gerar um conjunto exaustivo de notas atômicas interconectadas sobre um tema alvo, organizadas em uma estrutura lógica que parte de conceitos abstratos e genéricos até alcançar o nível mais profundo de detalhamento de cada ponto específico presente no documento, utilizando `---` como único separador e omitindo qualquer introdução ou conclusão.
+O objetivo é gerar um conjunto exaustivo de notas atômicas interconectadas sobre um tema alvo, organizadas em uma estrutura lógica que parte dos conceitos mais abstratos e genéricos até alcançar o nível mais profundo de detalhamento com cada ponto específico presente no documento, utilizando `---` como único separador e omitindo qualquer introdução ou conclusão.
 
 
 Para o sistema de indexação por Tags, utilize três níveis hierárquicos ao final de cada nota:
 
-1. #classificação_específica_do_tema: O detalhe preciso ou subtema tratado unicamente na nota.
+1. #classificação_específica_da_nota: O detalhe preciso ou subtema tratado unicamente em cada nota.
 
 2. #micro_classificação_genérica: A categoria intermediária ou temática comum (como um capítulo).
 
 3. #macro_classificação_geral: O contexto global ou disciplina do documento original.
 
-Todas as tags devem ser escritas com letras minúsculas e acentuação correta.
+Todas as tags devem ser escritas com letras minúsculas e com acentuação correta.
 
 
 Não coloque nenhuma introdução no começo da sua resposta. Forneça **apenas** a lista de notas atômicas separadas por `---`.
@@ -98,7 +98,7 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 O objetivo é processar um documento anexo para gerar um conjunto exaustivo, detalhado e preciso de notas atômicas interconectadas sobre um tema alvo, garantindo que todo o conteúdo relevante seja transformado em anotações vinculadas entre si.
 
-Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+Faça toda a acentuação e pontuação da sua resposta em Português da norma padrão.
 Utilize uma pontuação clara e bem pausada que garanta um ar de elegância na sua resposta.
 
 # Gere um conjunto extenso de notas atômicas interconectadas que cubram, conforme o documento em anexo, todo o TEMA ALVO seguinte:

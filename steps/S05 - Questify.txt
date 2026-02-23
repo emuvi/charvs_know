@@ -20,7 +20,7 @@ Não coloque nenhuma pergunta ao final da sua resposta para questionar como que 
 Cada pergunta deve ter até 240 caracteres. Cada pergunta não deve ter mais de 240 caracteres.
 A resposta a cada pergunta deve ter até 480 caracteres. Cada resposta a cada pergunta não deve ter mais de 480 caracteres.
 
-Crie todas as perguntas e respostas de forma erudita, concisa e clara.
+Crie todas as perguntas e respostas de forma didática, concisa e clara.
 
 Crie um conjunto de perguntas e respostas com alta precisão que abordem exatamente cada ponto de cada uma das notas atômicas apresentadas abaixo.
 
@@ -30,7 +30,7 @@ Faça mais perguntas e respostas do que o total de notas atômicas apresentadas 
 
 Seja absolutamente preciso nas perguntas e respostas, escreva elas conforme o conteúdo do documento em anexo nessa conversa.
 
-Faça toda a acentuação e pontuação da sua resposta em Português erudito.
+Faça toda a acentuação e pontuação da sua resposta em Português da norma padrão.
 Utilize uma pontuação clara e bem pausada que garanta um ar de elegância na sua resposta.
 
 As notas atômicas apresentadas abaixo estão separadas por `---`.
