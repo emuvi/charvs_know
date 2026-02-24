@@ -1,41 +1,41 @@
-Vamos realizar uma extração atômica de conhecimento focada estritamente no TEMA ALVO definido ao final deste comando, conforme o documento em anexo.
+Vamos realizar uma extração atômica de conhecimento focada estritamente no TÓPICOS definido ao final deste comando, conforme o documento em anexo.
 
 Cada nota atômica deve conter apenas em 1 (um) único conceito, ideia ou argumento extraído do documento em anexo.
 
-Separe cada nota atômica utilizando estritamente o separador `---`.
+Separe cada nota atômica utilizando EXATAMENTE o separador `---`.
 
-Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** a lista de notas atomicas separadas por `---`.
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você entendeu desse comando. Forneça **apenas** a lista de notas atômicas separadas por `---`.
 
-Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de notas atomicas separadas por `---`.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a lista de notas atômicas separadas por `---`.
 
-Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a lista de notas atomicas separadas por `---`.
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a lista de notas atômicas separadas por `---`.
 
-Forneça apenas o conjunto de notas atômicas separadas por --- que capturem toda a essência do TEMA ALVO conforme o documento em anexo .
+Forneça apenas um conjunto de notas atômicas separadas por `---` que capturem todo o conjunto de conteúdos relacionados aos TÓPICOS presentes no final desse comando conforme o documento em anexo.
 
 
 # Instruções de Processamento
 
-1. *Análise Profunda:* Leia o documento anexo integralmente, buscando todas as nuances, argumentos, dados e conceitos relacionados ao TEMA ALVO.
+1. *Análise Profunda:* Leia o documento anexo integralmente, buscando todas as nuances, argumentos, dados e conceitos relacionados aos TÓPICOS presentes no final desse comando.
 
-2. *Decomposição Atômica:* Quebre o conhecimento em "Notas Atômicas". Cada nota deve focar em UM único conceito, ideia ou argumento central. Evite notas genéricas ou longas demais que misturem múltiplos tópicos.
+2. *Decomposição Atômica:* Quebre o conhecimento em "Notas Atômicas". Cada nota deve focar em UM único conceito, ideia ou argumento específico do documento em anexo. Evite notas genéricas ou longas demais especialmente NÃO faça notas que misturem múltiplos conceitos, ideias ou argumentos.
 
-3. *Didática e Detalhe:* O texto deve ser didático e detalhado, denso em informação e tecnicamente preciso. Não simplifique excessivamente; mantenha o vocabulário do documento original, explicando-o se necessário.
+3. *Didática e Detalhe:* O texto deve ser didático e detalhado, denso em informação e tecnicamente preciso. Não simplifique excessivamente; mantenha o vocabulário do documento original, explicando-o sempre que necessário para que cada nota seja autossuficiente.
 
-4. *Interconexão (Obrigatório):* Utilize a sintaxe de WikiLinks [[título da outra nota]] para conectar conceitos dentro do texto das notas. As notas devem conversar entre si.
+4. *Interconexão (Obrigatório):* Utilize a sintaxe de WikiLinks [[título da outra nota]] para conectar conceitos dentro do texto das notas. As notas devem conversar entre si e com todas as outras já feitas nessa conversa.
 
-5. *Autossuficiência:* Cada nota deve fazer sentido sozinha, mas ganhar poder quando lida em conjunto com as outras.
+5. *Autossuficiência:* Cada nota deve fazer sentido sozinha, mas ganhar poder didático / explicativo / expositivo quando lida em conjunto com as outras.
 
 6. *Linguagem:* Utilize sempre a norma-padrão da língua portuguesa. Faça a acentuação e pontuação perfeitamente adequada. Inclusive nos nome das tags aplique a acentuação correta da língua portuguesa.
 
-7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve explicitar o conteúdo específico de cada nota e o assunto genérico e específico ao qual a nota está vinculada. Cada título pode ter até 180 caracteres. O título *NÃO* deve estar entre colchetes. O título *NÃO* deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente de letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
+7. *Nomenclatura:* Cada título de cada nota deve ser autossuficiente, ou seja, ele deve ser completo em sentido e expressar tudo que cada nota contém de conteúdo. Cada título deve explicitar o conteúdo específico de cada nota, mais o assunto genérico, mas o assunto específico ao qual a nota está relacionada. Cada título pode ter até 180 caracteres. O título *NÃO* deve estar entre colchetes. O título *NÃO* deve começar com artigo. O título deve começar com um substantivo. A primeira letra do título deve ser minúscula. Cada título não pode ter mais de 180 caracteres. O título de cada nota deve ser exclusivamente escrito em letras minúsculas, apenas as SIGLAS devem ser escritas em letras maiúsculas.
 
-8. *Variedade:* Faça uma composição com riqueza de detalhes. Produzindo uma grande quantidade de notas atômicas para abordar profundamente o TEMA ALVO.
+8. *Variedade:* Faça uma composição vasta com muitas notas atômicas que exponham com riqueza de detalhes todo o assunto relacionado aos TÓPICOS presentes no final desse comando conforme o documento em anexo. Produza uma grande quantidade de notas atômicas para abordar profundamente os TÓPICOS presentes no final desse comando conforme o documento em anexo.
 
-9. *Precisão:* Não invente nada. Utilize somente as informações e o conteúdo do documento em anexo. Cada link / vínculo no formato de citação entre colchetes `[[link]]` deve ser *EXATAMENTE* o título de outra nota atômica.
+9. *Precisão:* Não invente nada. Utilize somente as informações e o conteúdo do documento em anexo. Cada link / vínculo no formato de citação entre colchetes `[[link]]` deve ser *EXATAMENTE* o título de outra nota atômica já produzida por você nessa conversa.
 
-10. *Citação:* Sempre que uma referência for citada, faça a citação completa e atômica de maneira que a citação seja também autossuficiente.
+10. *Citação:* Sempre que uma referência for citada, faça a citação completa e atômica de maneira que a citação seja também autossuficiente. Faça citações somente pertinentes ao documento em anexo nessa conversa. Faça citações claras e precisas. Faça todas as citações autossuficientes.
 
-11. *Vinculação (Obrigatório):* Garanta a interconectividade semântica máxima, exigindo que cada nota atômica contenha ao menos um link no formato [[título exato da outra nota]] ligando-a exclusivamente a outras notas já geradas, sem referências externas.
+11. *Vinculação (Obrigatório):* Garanta a interconectividade semântica máxima, exigindo que cada nota atômica contenha ao menos um link no formato [[título exato da outra nota]] ligando-a exclusivamente a outras notas já geradas. Não faça links / referências / citações diferentes às notas já geradas ou presentes no documento em anexo nessa conversa.
 
 12. *Inteligência:* Construa um ecossistema de conhecimento por meio de vinculações semânticas e lógicas entre as notas atômicas, utilizando respostas de interações anteriores para criar uma explicação clara e integrada que conecte o tema atual a todas as outras notas relevantes já geradas.
 
@@ -99,8 +99,8 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 O objetivo é processar um documento anexo para gerar um conjunto exaustivo, detalhado e preciso de notas atômicas interconectadas sobre um tema alvo, garantindo que todo o conteúdo relevante seja transformado em anotações vinculadas entre si.
 
 Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
-Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e bem cadenciada na sua resposta.
+Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
-# Gere um conjunto extenso de notas atômicas interconectadas que cubram, conforme o documento em anexo, todo o TEMA ALVO seguinte:
+# Gere um conjunto extenso e completo de notas atômicas interconectadas que cubram com profundidade e conforme o documento em anexo todos os seguintes TÓPICOS:
 
 < INSERT >

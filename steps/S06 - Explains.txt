@@ -44,7 +44,7 @@ Faça um título conciso que capture toda a essência da redação / dissertaç�
 O título deve começar com os caracteres `^ `.
 
 Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
-Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e bem cadenciada na sua resposta.
+Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
 Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a redação.
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a redação.
