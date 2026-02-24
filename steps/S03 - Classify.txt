@@ -70,7 +70,7 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 Não coloque nenhuma citação na sua resposta. Forneça **apenas** as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 
-Cada título de classificação sugerido com os quatro níveis hierárquicos deve ter até 180 caracteres. Cada título de classificação sugerido com os quatro níveis hierárquicos não deve ter mais de 180 caracteres. Cada título de classificação deve seguir o padrão de que toda palavra importante em cada título deve ter a sua primeira letra em maiúsculas. As palavras menos importantes como preposições e conjunções devem ser escritas com todas as suas letras em minúsculas.
+Cada título de classificação sugerido com os quatro níveis hierárquicos deve ter até 180 caracteres. Cada título de classificação sugerido com os quatro níveis hierárquicos não deve ter mais de 180 caracteres. Cada título de classificação deve seguir o padrão de que todas as palavras significativas em cada título deve ter a sua primeira letra em maiúsculas. As palavras menos significativas como preposições e conjunções devem ser escritas com todas as suas letras em minúsculas.
 
 Sugira as classificações que consigam sintetizar cada um dos grupos semióticos de assuntos abaixo separados por `---` orientadas conforme o documento em anexo nessa conversa.
 

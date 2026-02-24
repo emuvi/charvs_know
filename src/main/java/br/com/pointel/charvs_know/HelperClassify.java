@@ -46,6 +46,8 @@ public class HelperClassify extends DFrame {
             .growHorizontal().put(paneAskActs)
             .growBoth().put(textAsk);
 
+    private final DButton buttonSame = new DButton("Same")
+            .onClick(this::buttonSameActionPerformed);
     private final DButton buttonAuto = new DButton("Auto")
             .onClick(this::buttonAutoActionPerformed);
     private final DButton buttonSet = new DButton("Set")
@@ -57,6 +59,7 @@ public class HelperClassify extends DFrame {
     private final DButton buttonWrite = new DButton("Write")
             .onClick(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
+            .growNone().put(buttonSame)
             .growNone().put(buttonAuto)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
@@ -203,6 +206,13 @@ public class HelperClassify extends DFrame {
             builder.append("]]\n\n");
         }
         textAsk.setValue(builder.toString());
+    }
+
+    private void buttonSameActionPerformed(ActionEvent e) {
+        for (var group : selectedRef.ref.groups) {
+            group.order = 1 + "";
+        }
+        comboGroupActionPerformed(e);
     }
 
     private void buttonAutoActionPerformed(ActionEvent e) {
