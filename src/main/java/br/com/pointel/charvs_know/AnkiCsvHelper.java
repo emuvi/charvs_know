@@ -19,9 +19,18 @@ public class AnkiCsvHelper {
     private static final HttpClient client = HttpClient.newHttpClient();
 
     public static void setupDeckFromCsv(String deckName, File csvFile) throws Exception {
+        logger.info("Checking if deck exists: " + deckName);
+        String deckNamesJson = "{\"action\": \"deckNames\", \"version\": 6}";
+        String responseNames = sendRequest(deckNamesJson);
+        if (responseNames.contains("\"" + escapeJson(deckName) + "\"")) {
+            String deleteDeckJson = String.format(
+                "{\"action\": \"deleteDecks\", \"version\": 6, \"params\": {\"decks\": [\"%s\"], \"cardsToo\": true}}", 
+                escapeJson(deckName)
+            );
+            sendRequest(deleteDeckJson);
+        }
         
         logger.info("Creating deck: " + deckName);
-        
         String createDeckJson = String.format(
             "{\"action\": \"createDeck\", \"version\": 6, \"params\": {\"deck\": \"%s\"}}", 
             escapeJson(deckName)
@@ -78,7 +87,7 @@ public class AnkiCsvHelper {
         if (responseBody.contains("\"error\"") && !responseBody.contains("\"error\": null")) {
             throw new Exception("Anki error: " + responseBody);
         }
-        return responseBody;
+        return decodeUnicode(responseBody);
     }
 
     private static String escapeJson(String text) {
@@ -102,6 +111,26 @@ public class AnkiCsvHelper {
             text = text.substring(0, text.length() - 1);
         }
         return text;
+    }
+
+    private static String decodeUnicode(String input) {
+        if (input == null) return null;
+        StringBuilder result = new StringBuilder();
+        int len = input.length();
+        for (int i = 0; i < len; i++) {
+            char c = input.charAt(i);
+            if (c == '\\' && i + 5 < len && input.charAt(i + 1) == 'u') {
+                String hex = input.substring(i + 2, i + 6);
+                try {
+                    int code = Integer.parseInt(hex, 16);
+                    result.append((char) code);
+                    i += 5;
+                    continue;
+                } catch (NumberFormatException e) {}
+            }
+            result.append(c);
+        }
+        return result.toString();
     }
 
 }
