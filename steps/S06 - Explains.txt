@@ -58,6 +58,6 @@ Não coloque nenhuma pergunta ao final da sua resposta para questionar como que 
 
 Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a redação sobre todos os pontos presentes no documento em anexo de todos os TÓPICOS requisitados no final desse comando.
 
-Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa. Escreva em formato de dissertação expositiva / explicativa. Escreva uma dissertação didática para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise do documento em anexo e que são relacionados a esses TÓPICOS:
+Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa. Escreva em formato de redação expositiva / explicativa. Escreva uma dissertação didática para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise do documento em anexo e que são relacionados a esses TÓPICOS:
 
 < INSERT >
