@@ -132,7 +132,8 @@ public class HelperAtomize extends DFrame {
             }
             var group = selectedRef.ref.groups.get(index);
             clearGroup(group);
-            WizGUI.showInfo("Cleared.");
+            buttonBringActionPerformed(e);
+            WizGUI.showNotify("Cleared.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -146,7 +147,8 @@ public class HelperAtomize extends DFrame {
             for (var group : selectedRef.ref.groups) {
                 clearGroup(group);
             }
-            WizGUI.showInfo("Cleared All.");
+            buttonBringActionPerformed(e);
+            WizGUI.showNotify("Cleared All.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

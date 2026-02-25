@@ -130,6 +130,8 @@ public class HelperQuestify extends DFrame {
             }
             var group = selectedRef.ref.groups.get(index);
             clearGroup(group);
+            buttonBringActionPerformed(e);
+            WizGUI.showNotify("Cleared.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -143,6 +145,8 @@ public class HelperQuestify extends DFrame {
             for (var group : selectedRef.ref.groups) {
                 clearGroup(group);
             }
+            buttonBringActionPerformed(e);
+            WizGUI.showNotify("Cleared All.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
