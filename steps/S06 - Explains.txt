@@ -8,6 +8,8 @@ O título deve começar com os caracteres `^ `.
 O título deve capturar toda a essência de cada um dos elementos sob análise.
 Deixe uma linha em branco após o título e entre cada parágrafo. 
 
+Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para gerar suas respostas.
+
 Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os itens sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
 
 Adote um tom estritamente impessoal e objetivo, característico de dissertações expositivas de alto nível. Utilize a terceira pessoa do singular, vocabulário condizente com o documento em anexo e absolutamente preciso, respeitando rigorosamente a norma-padrão da língua portuguesa. Evite coloquialismos, ambiguidades, juízos de valor não fundamentados ou expressões de cunho emocional, garantindo uma exposição sóbria e direta dos conceitos.
@@ -16,6 +18,8 @@ Utilize o estilo de redação didático tanto para concursos públicos quanto pa
 Faça um parágrafo de introdução apresentando o contexto e o assunto.
 Faça diversos parágrafos explicando cada um dos pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
 Faça um parágrafo de conclusão resumindo tudo que foi explicado.
+
+Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatamente o mesmo nível de formalidade, estrutura de frases e jargões ao longo de toda a nossa conversa.
 
 Inicie a dissertação com um parágrafo de introdução estratégico que contextualize imediatamente o tema central com base no documento fornecido. Em seguida, apresente de forma clara a tese ou a premissa principal que será explorada. Finalize esta introdução delineando brevemente os principais tópicos que serão desenvolvidos nos parágrafos seguintes, criando uma espécie de roteiro de leitura claro e objetivo que guie a compreensão estrutural do texto.
 
@@ -42,6 +46,8 @@ Não coloque nenhuma pergunta ao final da sua resposta para questionar como que 
 O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `^ `.
+
+Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
 Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.

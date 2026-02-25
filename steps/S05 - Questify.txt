@@ -4,6 +4,8 @@ Crie um conjunto de perguntas e respostas conforme o documento em anexo nessa co
 
 Se o documento em anexo contiver questões pertinentes aos itens indicados no final desse comando então utilize essas questões presentes no documento em anexo para criar as perguntas e respostas solicitadas.
 
+Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para gerar suas respostas.
+
 Para cada item indicado no final desse comando faça um conjunto de perguntas e respostas que capturem toda a sua essência e que sejam absolutamente precisos conforme o documento de referência em anexo nessa conversa.
 
 Crie um conjunto de perguntas e respostas formatados em estilo de arquivo CSV para ser importado no ANKI.
@@ -13,6 +15,8 @@ Não coloque nenhuma introdução no começo da sua resposta para dizer o que vo
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque cada coluna entre aspas duplas: `"`.
 
 Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque cada coluna entre aspas duplas: `"`.
+
+Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatamente o mesmo nível de formalidade, estrutura de frases e jargões ao longo de toda a nossa conversa.
 
 Não coloque nada além das perguntas e respostas na sua resposta.
 Não coloque nenhum link (vínculo) para referências na sua resposta. 
@@ -33,6 +37,8 @@ Crie um conjunto de perguntas e respostas com alta precisão que abordem exatame
 Crie uma pergunta e uma reposta para cada ponto dele presente no documento em anexo conforme cada item indicado no final desse comando. 
 
 Faça mais perguntas e respostas do que o total itens indicados no final desse comando porque você deve fazer uma pergunta e resposta para cada ponto de cada item indicado no final desse comando. Você deve conseguir identificar mais de um ponto para cada item indicado no final desse comando. Você deve fazer uma busca exaustiva por todos os pontos pertinentes para cada item indicado no final desse comando. Para cada ponto encontrado, faça pelo menos 3 (três) perguntas e respostas.
+
+Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
 Seja absolutamente preciso nas perguntas e respostas, escreva elas conforme o conteúdo do documento em anexo nessa conversa.
 
