@@ -25,8 +25,8 @@ Não coloque nenhuma formatação de estilo na sua resposta.
 
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa.
 
-Cada pergunta deve ter até 240 caracteres. Cada pergunta não deve ter mais de 240 caracteres.
-A resposta a cada pergunta deve ter até 480 caracteres. Cada resposta a cada pergunta não deve ter mais de 480 caracteres.
+Cada pergunta deve ter até 360 caracteres. Cada pergunta não deve ter mais de 360 caracteres.
+A resposta a cada pergunta deve ter até 540 caracteres. Cada resposta a cada pergunta não deve ter mais de 540 caracteres.
 
 Solicito que o documento anexado seja analisado. Havendo questões pertinentes aos itens especificados no final desse comando, peço que as utilize como referência principal para a elaboração das perguntas e respostas.
 
