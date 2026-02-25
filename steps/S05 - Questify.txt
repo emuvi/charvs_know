@@ -1,20 +1,20 @@
 Vamos criar uma lista de perguntas e resposta para estudar na plataforma do ANKI.
 
-Crie um conjunto de perguntas e respostas conforme o documento em anexo nessa conversa que capturem todos os items indicados no final desse comando.
+Crie um conjunto de perguntas e respostas conforme o documento em anexo nessa conversa que capturem todos os TÓPICOS indicados no final desse comando.
 
-Se o documento em anexo contiver questões pertinentes aos itens indicados no final desse comando então utilize essas questões presentes no documento em anexo para criar as perguntas e respostas solicitadas.
+Se o documento em anexo contiver questões pertinentes aos TÓPICOS indicados no final desse comando então utilize essas questões presentes no documento em anexo para criar as perguntas e respostas requisitadas nesse comando.
 
-Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para gerar suas respostas.
+Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para gerar suas perguntas e respostas.
 
-Para cada item indicado no final desse comando faça um conjunto de perguntas e respostas que capturem toda a sua essência e que sejam absolutamente precisos conforme o documento de referência em anexo nessa conversa.
+Para cada TÓPICO indicado no final desse comando faça um conjunto de perguntas e respostas que capturem toda o conteúdo. Faça perguntas e respostas que sejam absolutamente precisas conforme o documento de referência em anexo nessa conversa.
 
 Crie um conjunto de perguntas e respostas formatados em estilo de arquivo CSV para ser importado no ANKI.
 
-Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque cada coluna entre aspas duplas: `"`.
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque os valores das colunas entre aspas duplas: `"`.
 
-Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque cada coluna entre aspas duplas: `"`.
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque os valores das colunas entre aspas duplas: `"`.
 
-Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque cada coluna entre aspas duplas: `"`.
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** um conjunto de perguntas e respostas formatados em estilo de arquivo CSV no qual cada linha contenha uma pergunta em uma coluna e uma resposta em uma coluna. Utilize ponto e vírgula `;` como separador de colunas. Coloque os valores das colunas entre aspas duplas: `"`.
 
 Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatamente o mesmo nível de formalidade, estrutura de frases e jargões ao longo de toda a nossa conversa.
 
@@ -32,11 +32,11 @@ Solicito que o documento anexado seja analisado. Havendo questões pertinentes a
 
 Crie todas as perguntas e respostas de forma didática, concisa e clara.
 
-Crie um conjunto de perguntas e respostas com alta precisão que abordem exatamente cada ponto de cada item indicado no final desse comando.
+Crie um conjunto de perguntas e respostas com alta precisão que abordem exatamente cada informação no documento em anexo de cada TÓPICO indicado no final desse comando.
 
-Crie uma pergunta e uma reposta para cada ponto dele presente no documento em anexo conforme cada item indicado no final desse comando. 
+Crie uma pergunta e uma reposta para cada informação presente no documento em anexo conforme cada TÓPICO indicado no final desse comando. 
 
-Faça mais perguntas e respostas do que o total itens indicados no final desse comando porque você deve fazer uma pergunta e resposta para cada ponto de cada item indicado no final desse comando. Você deve conseguir identificar mais de um ponto para cada item indicado no final desse comando. Você deve fazer uma busca exaustiva por todos os pontos pertinentes para cada item indicado no final desse comando. Para cada ponto encontrado, faça pelo menos 3 (três) perguntas e respostas.
+Faça mais perguntas e respostas do que o total de TÓPICOS indicados no final desse comando porque você deve fazer uma pergunta e resposta para cada informação de cada TÓPICO indicado no final desse comando. Você deve conseguir identificar mais de um ponto para cada TÓPICO indicado no final desse comando. Você deve fazer uma busca exaustiva por todos os pontos pertinentes para cada TÓPICO indicado no final desse comando. Para cada ponto encontrado, faça pelo menos 3 (três) perguntas e respostas.
 
 Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
@@ -47,6 +47,6 @@ Analise o documento em anexo. Se ele contiver questões alinhadas aos temas indi
 Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
-Crie um conjunto completo e exaustivo de perguntas e respostas com riqueza de detalhes que abordem todos pontos presentes no documento em anexo nessa conversa conforme cada um dos itens a seguir:
+Crie um conjunto completo e exaustivo de perguntas e respostas com riqueza de detalhes que abordem todos pontos presentes no documento em anexo nessa conversa conforme cada um dos TÓPICOS indicados a seguir:
 
 < INSERT >

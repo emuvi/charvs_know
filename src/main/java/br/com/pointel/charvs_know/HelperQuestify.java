@@ -23,9 +23,15 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class HelperQuestify extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
-            .onClick(this::comboGroupActionPerformed);    
+            .onClick(this::comboGroupActionPerformed);
+    private final DButton buttonNamer = new DButton("&")
+            .onClick(this::buttonNamerActionPerformed);
+    private final DButton buttonDecker = new DButton(">")
+            .onClick(this::buttonDeckerActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
-            .growHorizontal().put(comboGroup);
+            .growHorizontal().put(comboGroup)
+            .growNone().put(buttonNamer)
+            .growNone().put(buttonDecker);
 
     private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField()
             .cols(4).editable(false).horizontalAlignmentCenter();
@@ -65,13 +71,16 @@ public class HelperQuestify extends DFrame {
             .onClick(this::buttonWriteActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
             .onClick(this::buttonBringActionPerformed);
+    private final DButton buttonOpen = new DButton("*")
+            .onClick(this::buttonOpenActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
         .growNone().put(buttonWrite)
-        .growNone().put(buttonBring);
+        .growNone().put(buttonBring)
+        .growNone().put(buttonOpen);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -122,6 +131,37 @@ public class HelperQuestify extends DFrame {
         buttonBringActionPerformed(e);
     }
 
+    private void buttonNamerActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var deckName = getDeckName(group);
+            WizGUI.putStringOnClipboard(deckName);
+            WizGUI.showNotify("Name copied.");
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
+    private void buttonDeckerActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var deckName = getDeckName(group);
+            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            AnkiCsvHelper.setupDeckFromCsv(deckName, questsFile);
+            WizGUI.showNotify("Deck created.", 1);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
     private void buttonClearActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
@@ -149,15 +189,6 @@ public class HelperQuestify extends DFrame {
             WizGUI.showNotify("Cleared All.");
         } catch (Exception ex) {
             WizGUI.showError(ex);
-        }
-    }
-
-    private void clearGroup(RefGroup group) throws Exception {
-        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
-        if (questsFile.exists()) {
-            if (!questsFile.delete()) {
-                throw new Exception("Failed to delete quest file: " + questsFile.getAbsolutePath());
-            }
         }
     }
 
@@ -228,6 +259,20 @@ public class HelperQuestify extends DFrame {
         }
     }
 
+    private void buttonOpenActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to write.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            WizGUI.open(questsFile);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
     private String getInsertion() {
         var index = comboGroup.selectedIndex();
         if (index == -1 || index >= selectedRef.ref.groups.size()) {
@@ -235,6 +280,19 @@ public class HelperQuestify extends DFrame {
         }
         var group = selectedRef.ref.groups.get(index);
         return group.topics.trim();
+    }
+
+    private void clearGroup(RefGroup group) throws Exception {
+        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+        if (questsFile.exists()) {
+            if (!questsFile.delete()) {
+                throw new Exception("Failed to delete quest file: " + questsFile.getAbsolutePath());
+            }
+        }
+    }
+
+    private String getDeckName(RefGroup group) {
+        return group.classification.trim() + " " + CKUtils.delBrackets(group.titration).trim();
     }
 
 }
