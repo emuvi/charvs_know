@@ -224,7 +224,7 @@ public class HelperExplains extends DFrame {
             CKUtils.putMarkDownLink(titrationFile, title);
             group.explainsAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showNotify("Explains Written.", 1);
+            WizGUI.showNotify("Explains written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

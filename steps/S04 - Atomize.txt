@@ -1,4 +1,4 @@
-Vamos realizar uma extração atômica de conhecimento focada estritamente no TÓPICOS definido ao final deste comando, conforme o documento em anexo.
+Vamos realizar uma extração atômica de conhecimento focada estritamente nos TÓPICOS definidos ao final deste comando. Extraia o conhecimento conforme o documento em anexo.
 
 Cada nota atômica deve conter apenas em 1 (um) único conceito, ideia ou argumento extraído do documento em anexo.
 
@@ -67,7 +67,7 @@ Micro Classificação Genérica: Estabelece uma categoria intermediária ou tem�
 #{{macro_classificação_geral_do_assunto_do_documento_em_anexo}}
 Macro Classificação Geral: Define o contexto global, a grande disciplina ou o assunto do documento original de onde toda a informação foi extraída.
 
-*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas e corretamente acentuadas conforme o Português da norma-padrão.
+*IMPORTANTE:* Todas as tags devem ser escritas com todas as suas letras minúsculas. Todas as tags devem ser acentuadas conforme o Português da norma-padrão. Faça a acentuação de todas as #tags de acordo com a norma-padrão do Português.
 
 
 # Conjunto de Notas Atômicas

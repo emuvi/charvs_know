@@ -224,7 +224,7 @@ public class HelperDidactic extends DFrame {
             CKUtils.putMarkDownLink(titrationFile, title);
             group.didacticAt = WizUtilDate.formatDateMach(new Date());
             selectedRef.write();
-            WizGUI.showNotify("Didactic Written.", 1);
+            WizGUI.showNotify("Didactic written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
