@@ -2,9 +2,13 @@ package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
+
+import org.apache.commons.io.FilenameUtils;
 
 import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DColPane;
@@ -64,17 +68,20 @@ public class HelperExplains extends DFrame {
             .onClick(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onClick(this::buttonAskActionPerformed);
+    private final DButton buttonBring = new DButton("<")
+            .onClick(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
             .onClick(this::buttonWriteActionPerformed);
-    private final DButton buttonBring = new DButton("Bring")
-            .onClick(this::buttonBringActionPerformed);
+    private final DButton buttonSound = new DButton(">")
+            .onClick(this::buttonSoundActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonBring)
         .growNone().put(buttonWrite)
-        .growNone().put(buttonBring);
+        .growNone().put(buttonSound);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -91,6 +98,8 @@ public class HelperExplains extends DFrame {
 
 
     private final SelectedRef selectedRef;
+
+    private File selectedFile = null;
 
     
     public HelperExplains(SelectedRef selectedRef) {
@@ -222,8 +231,9 @@ public class HelperExplains extends DFrame {
                 source = source + "\n\n*Refs:* " + selectedRef.ref.props.hashMD5;
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            var textFile = new File(folder, title + ".md");
-            WizText.write(textFile, source);
+            var explainsFile = new File(folder, title + ".md");
+            WizText.write(explainsFile, source);
+            selectedFile = explainsFile;
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             CKUtils.putMarkDownLink(titrationFile, title);
             group.explainsAt = WizUtilDate.formatDateMach(new Date());
@@ -270,6 +280,53 @@ public class HelperExplains extends DFrame {
         }
     }
 
+    private void buttonSoundActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("There are no group selected.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            if (selectedFile == null) {
+                throw new Exception("There are no explains selected.");
+            }
+            var poolFolder = new File(selectedRef.baseFolder, "+ Pool");
+            if (!poolFolder.exists()) {
+                poolFolder.mkdirs();
+            }
+            var mp3Files = new ArrayList<File>();
+            for (var file : poolFolder.listFiles()) {
+                if (file.getName().endsWith(".mp3")) {
+                    mp3Files.add(file);
+                }
+            }
+            var selectedName = FilenameUtils.getBaseName(selectedFile.getName());
+            File mp3File = null;
+            var minDiff = Integer.MAX_VALUE;
+            for (var file : mp3Files) {
+                var mp3Name = FilenameUtils.getBaseName(file.getName());
+                var difference = WizString.getDistanceWords(selectedName, mp3Name);
+                if (mp3Name.equals(selectedName)) {
+                    mp3File = file;
+                    break;
+                } else if (difference < minDiff) {
+                    mp3File = file;
+                    minDiff = difference;
+                }
+            }
+            if (mp3File == null) {
+                throw new Exception("No mp3 file found in pool folder.");
+            }
+            var targetFile = new File(selectedFile.getParentFile(), selectedName + ".mp3");
+            Files.move(mp3File.toPath(), targetFile.toPath());
+            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            CKUtils.putMarkDownLink(titrationFile, targetFile.getName());
+            WizGUI.showNotify("Sound inserted.", 1);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
     private void bringExplains(File folder, String link) throws Exception {
         var explainsFile = new File(folder, link + ".md");
         if (!explainsFile.exists()) {
@@ -277,6 +334,7 @@ public class HelperExplains extends DFrame {
         }
         var source = WizText.read(explainsFile);
         textAsk.setValue(source);
+        selectedFile = explainsFile;
     }
 
     private String getInsertion() {

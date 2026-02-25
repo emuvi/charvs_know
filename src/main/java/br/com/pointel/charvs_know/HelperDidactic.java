@@ -64,17 +64,20 @@ public class HelperDidactic extends DFrame {
             .onClick(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onClick(this::buttonAskActionPerformed);
+    private final DButton buttonBring = new DButton("<")
+            .onClick(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
             .onClick(this::buttonWriteActionPerformed);
-    private final DButton buttonBring = new DButton("Bring")
-            .onClick(this::buttonBringActionPerformed);
+    private final DButton buttonSound = new DButton(">")
+            .onClick(this::buttonSoundActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonBring)
         .growNone().put(buttonWrite)
-        .growNone().put(buttonBring);
+        .growNone().put(buttonSound);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -91,6 +94,8 @@ public class HelperDidactic extends DFrame {
 
 
     private final SelectedRef selectedRef;
+
+    private File selectedFile = null;
 
     
     public HelperDidactic(SelectedRef selectedRef) {
@@ -222,8 +227,9 @@ public class HelperDidactic extends DFrame {
                 source = source + "\n\n*Refs:* " + selectedRef.ref.props.hashMD5;
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            var textFile = new File(folder, title + ".md");
-            WizText.write(textFile, source);
+            var didacticFile = new File(folder, title + ".md");
+            WizText.write(didacticFile, source);
+            selectedFile = didacticFile;
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             CKUtils.putMarkDownLink(titrationFile, title);
             group.didacticAt = WizUtilDate.formatDateMach(new Date());
@@ -270,13 +276,22 @@ public class HelperDidactic extends DFrame {
         }
     }
 
+    private void buttonSoundActionPerformed(ActionEvent e) {
+        try {
+            
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
     private void bringDidactic(File folder, String link) throws Exception {
-        var textFile = new File(folder, link + ".md");
-        if (!textFile.exists()) {
+        var didacticFile = new File(folder, link + ".md");
+        if (!didacticFile.exists()) {
             return;
         }
-        var source = WizText.read(textFile);
+        var source = WizText.read(didacticFile);
         textAsk.setValue(source);
+        selectedFile = didacticFile;
     }
 
     private String getInsertion() {

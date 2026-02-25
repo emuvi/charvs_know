@@ -1,41 +1,41 @@
 Dentro do contexto do documento em anexo nessa conversa vamos montar uma base de conhecimento.
-Vamos tratar os pontos sob análise conforme requisitado ao final dessa requisição.
+Vamos tratar os TÓPICOS sob análise conforme requisitado ao final dessa requisição.
 
 A resposta deve começar com 1 (um) título.
 O título não deve ter mais de 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `^ `.
-O título deve capturar toda a essência de cada um dos elementos sob análise.
+O título deve capturar toda a essência de cada um dos TÓPICOS sob análise.
 Deixe uma linha em branco após o título e entre cada parágrafo. 
 
 Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para gerar suas respostas.
 
-Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os itens sob análise. Extraia todos os elementos pertinentes do documento em anexo nessa conversa.
+Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os TÓPICOS sob análise conforme requisitado ao final desse comando. Extraia todas as informações pertinentes do documento em anexo nessa conversa.
 
-Adote um tom estritamente impessoal e objetivo, característico de dissertações expositivas de alto nível. Utilize a terceira pessoa do singular, vocabulário condizente com o documento em anexo e absolutamente preciso, respeitando rigorosamente a norma-padrão da língua portuguesa. Evite coloquialismos, ambiguidades, juízos de valor não fundamentados ou expressões de cunho emocional, garantindo uma exposição sóbria e direta dos conceitos.
+Adote um tom estritamente impessoal e objetivo, característico de dissertações expositivas de alto nível. Utilize a terceira pessoa do singular, vocabulário condizente com o documento em anexo e absolutamente preciso, respeitando rigorosamente a norma-padrão da língua portuguesa. Evite coloquialismos, ambiguidades, juízos de valor não fundamentados ou expressões de cunho emocional, garantindo uma exposição sóbria e direta dos conceitos presentes no documento em anexo nessa conversa.
 
 Utilize o estilo de redação didático tanto para concursos públicos quanto para exames de vestibulares.
 Faça um parágrafo de introdução apresentando o contexto e o assunto.
-Faça diversos parágrafos explicando cada um dos pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+Faça diversos parágrafos explicando cada um dos pontos pertinentes a todos os TÓPICOS sob análise conforme o documento em anexo nessa conversa.
 Faça um parágrafo de conclusão resumindo tudo que foi explicado.
 
 Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatamente o mesmo nível de formalidade, estrutura de frases e jargões ao longo de toda a nossa conversa.
 
 Inicie a dissertação com um parágrafo de introdução estratégico que contextualize imediatamente o tema central com base no documento fornecido. Em seguida, apresente de forma clara a tese ou a premissa principal que será explorada. Finalize esta introdução delineando brevemente os principais tópicos que serão desenvolvidos nos parágrafos seguintes, criando uma espécie de roteiro de leitura claro e objetivo que guie a compreensão estrutural do texto.
 
-Estruture cada parágrafo de desenvolvimento iniciando com um 'tópico frasal' claro, que apresente a ideia central a ser abordada. Em seguida, desdobre essa ideia com explicações detalhadas, contextualizações e sínteses extraídas exclusivamente do documento anexo. Finalize cada parágrafo com um breve fecho conclusivo daquela ideia antes de avançar para o próximo ponto.
+Estruture cada parágrafo de desenvolvimento iniciando com um 'tópico frasal' claro, que apresente a ideia central a ser abordada. Em seguida, desdobre essa ideia com explicações detalhadas, contextualizações e sínteses extraídas exclusivamente do documento em anexo. Finalize cada parágrafo com um breve fecho conclusivo daquela ideia antes de avançar para o próximo ponto.
 
 Elabore um parágrafo de conclusão que funcione como uma síntese de alto valor informacional, perfeitamente autossuficiente. Retome a tese central e os principais argumentos desenvolvidos ao longo do texto de forma concisa e integrada. A conclusão deve encapsular o núcleo do conhecimento extraído do documento, consolidando o aprendizado sem inserir em nenhuma hipótese informações, opiniões ou conceitos novos que não tenham sido previamente discutidos no desenvolvimento.
 
-Faça uma redação extensa com um grande número de parágrafos tratando todos os pontos pertinentes a todo o conteúdo sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+Faça uma redação extensa com um grande número de parágrafos tratando todos os pontos pertinentes a todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa.
 
 Assegure a coesão e a coerência textual empregando um rico repertório de conectivos e operadores argumentativos entre as frases e na transição entre os parágrafos. A progressão temática deve ser fluida e lógica, sem rupturas bruscas, de modo que cada novo parágrafo de desenvolvimento se conecte naturalmente ao raciocínio estabelecido no parágrafo anterior.
 
-Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve ser extenso, estruturado em múltiplos parágrafos e cobrir integralmente todos os tópicos pertinentes e sob análise conforme o documento em anexo nessa conversa e sobre os pontos requisitados ao final desse comando.
+Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve ser extenso, estruturado em múltiplos parágrafos e cobrir integralmente todos os pontos pertinentes de todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa.
 
-Desenvolva uma dissertação aprofundada com base no documento anexado e exclusivamente sobre os pontos requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos sob análise, articulando todas as informações relevantes em uma estrutura textual ampla, completa e bem fundamentada.
+Desenvolva uma dissertação aprofundada com base no documento anexado e exclusivamente sobre os TÓPICOS requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos pertinentes de todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa, articulando todas as informações relevantes em uma estrutura textual ampla, completa e bem fundamentada.
 
-Escreva um texto abrangente e longo, abordando ponto a ponto sob análise conforme o documento em anexo nessa conversa e sobre o que foi requisitado ao final desse comando. A resposta deve ser detalhada e não deve omitir nenhuma informação relevante.
+Escreva um texto abrangente e longo, abordando ponto a ponto todos os pontos pertinentes de todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa. A resposta deve ser detalhada e não deve omitir nenhuma informação presente no documento em anexo.
 
 Não coloque nada além do título e dos parágrafos na sua resposta.
 Não coloque nenhum link (vínculo) para referências na sua resposta. 
@@ -52,10 +52,12 @@ Assuma que você é o autor do documento em anexo. Ao me responder, replique a m
 Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
-Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a redação.
-Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a redação.
-Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a redação.
+Não coloque nenhuma introdução no começo da sua resposta para dizer o que você fez. Forneça **apenas** a redação sobre todos os pontos presentes no documento em anexo de todos os TÓPICOS requisitados no final desse comando.
 
-Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa, escreva em formato de dissertação expositiva. Escreva uma dissertação expositiva para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise que são relacionados a esses pontos:
+Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa. Forneça **apenas** a redação sobre todos os pontos presentes no documento em anexo de todos os TÓPICOS requisitados no final desse comando.
+
+Não inclua introduções, conclusões, observações ou perguntas finais. Forneça **apenas** a redação sobre todos os pontos presentes no documento em anexo de todos os TÓPICOS requisitados no final desse comando.
+
+Vamos escrever um artigo detalhado extraindo os conhecimentos do documento em anexo nessa conversa. Escreva em formato de dissertação expositiva / explicativa. Escreva uma dissertação didática para cobrir e explicar com riqueza de detalhes todo o conteúdo sob análise do documento em anexo e que são relacionados a esses TÓPICOS:
 
 < INSERT >
