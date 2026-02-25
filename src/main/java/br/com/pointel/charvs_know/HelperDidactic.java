@@ -2,9 +2,13 @@ package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
+
+import org.apache.commons.io.FilenameUtils;
 
 import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DColPane;
@@ -278,7 +282,46 @@ public class HelperDidactic extends DFrame {
 
     private void buttonSoundActionPerformed(ActionEvent e) {
         try {
-            
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("There are no group selected.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            if (selectedFile == null) {
+                throw new Exception("There are no didactic selected.");
+            }
+            var poolFolder = new File(selectedRef.baseFolder, "+ Pool");
+            if (!poolFolder.exists()) {
+                poolFolder.mkdirs();
+            }
+            var mp3Files = new ArrayList<File>();
+            for (var file : poolFolder.listFiles()) {
+                if (file.getName().endsWith(".mp3")) {
+                    mp3Files.add(file);
+                }
+            }
+            var selectedName = FilenameUtils.getBaseName(selectedFile.getName());
+            File mp3File = null;
+            var minDiff = Integer.MAX_VALUE;
+            for (var file : mp3Files) {
+                var mp3Name = FilenameUtils.getBaseName(file.getName());
+                var difference = WizString.getDistanceWords(selectedName, mp3Name);
+                if (mp3Name.equals(selectedName)) {
+                    mp3File = file;
+                    break;
+                } else if (difference < minDiff) {
+                    mp3File = file;
+                    minDiff = difference;
+                }
+            }
+            if (mp3File == null) {
+                throw new Exception("No mp3 file found in pool folder.");
+            }
+            var targetFile = new File(selectedFile.getParentFile(), selectedName + ".mp3");
+            Files.move(mp3File.toPath(), targetFile.toPath());
+            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            CKUtils.putMarkDownLink(titrationFile, targetFile.getName());
+            WizGUI.showNotify("Sound inserted.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
