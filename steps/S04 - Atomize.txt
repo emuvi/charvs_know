@@ -42,6 +42,8 @@ Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatam
 
 12. *Inteligência:* Construa um ecossistema de conhecimento por meio de vinculações semânticas e lógicas entre as notas atômicas, utilizando respostas de interações anteriores para criar uma explicação clara e integrada que conecte o tema atual a todas as outras notas relevantes já geradas.
 
+13. Validação de Integridade dos Links: É terminantemente proibido criar links para notas fantasmas ou não geradas. Todo e qualquer link inserido no formato [[título da outra nota]] deve passar por uma validação estrita: o texto dentro dos colchetes duplos deve ser uma cópia exata, caractere por caractere, de um título de nota atômica que você efetivamente redigiu e incluiu no conjunto final nesta conversa. Se a nota de destino não existir nessa conversa, não crie o link.
+
 
 Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
