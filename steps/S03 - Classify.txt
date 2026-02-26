@@ -9,7 +9,8 @@ Inicie cada nível hierárquico de classificação com o carácter `-`.
 O primeiro nível hierárquico deve ser ou `Funcional` ou `Elementar` conforme a natureza de aplicação de cada um dos grupos de significados nos assuntos abaixo separados por `---` que foram determinados conforme o documento em anexo nessa conversa.
 
 
-Sugira cada classificação para cada um dos grupos semióticos de assuntos abaixo separados por `---` no seguinte estilo:
+# Estilos, Modelos e Exemplos de Classificação
+Sugira cada classificação para cada um dos grupos semióticos de assuntos abaixo separados por `---` conforme os seguintes estilos, modelos e exemplos de classificação:
 [[- Funcional - Direito - Direito Penal - Lavagem de Dinheiro]]
 [[- Funcional - Direito - Direito Constitucional - Cidadania e Direitos Políticos]]
 [[- Funcional - Informática - Engenharia de Sistemas - Metodologias de Engenharia de Sistemas]]
@@ -45,6 +46,18 @@ Sugira cada classificação para cada um dos grupos semióticos de assuntos abai
 [[- Elementar - Português - Semântica - Sinônimos e Antônimos]]
 [[- Elementar - Português - Interpretação de Texto - Tipologia Textual]]
 [[- Elementar - Inglês - Gramática - Tempos Verbais]]
+
+É estritamente obrigatório utilizar as classificações já listadas na seção '# Estilos, Modelos e Exemplos de Classificação' sempre que elas forem pertinentes e adequadas ao grupo de assuntos analisado. Não crie ou invente novos títulos de classificação se o tema do bloco já estiver contemplado com exatidão por um dos exemplos fornecidos; nesses casos, simplesmente copie e aplique a estrutura da classificação existente.
+
+Antes de gerar uma nova classificação para qualquer grupo, consulte primeiramente a lista de '# Estilos, Modelos e Exemplos de Classificação'. Se você identificar uma taxonomia nessa lista que se encaixe perfeitamente no grupo semântico em análise, você deve assumi-la como a resposta definitiva para aquele grupo. A criação de classificações inéditas só é autorizada quando rigorosamente nenhum dos exemplos fornecidos for semanticamente aplicável ao assunto.
+
+Trate os itens da seção '# Estilos, Modelos e Exemplos de Classificação' como um vocabulário controlado prioritário. Sempre que houver correspondência temática ou semântica entre o assunto abordado no grupo e um dos exemplos fornecidos nessa lista, você deve, impreterivelmente, adotar a classificação exata do exemplo. O reaproveitamento integral dessas estruturas listadas tem precedência e prioridade absoluta sobre a geração de taxonomias novas.
+
+Quando for estritamente necessário criar uma nova classificação que não conste na lista de '# Estilos, Modelos e Exemplos de Classificação', você deve garantir que ela siga rigorosamente o mesmo padrão estrutural, tom e nível de abstração dos exemplos fornecidos. As novas taxonomias devem mimetizar a nomenclatura técnica e a cadência de especificidade dos exemplos, parecendo pertencer nativamente ao mesmo ecossistema classificatório e mantendo a coerência estilística ininterrupta.
+
+Para as situações em que o assunto exigir a formulação de uma taxonomia totalmente nova, extraia a lógica subjacente do modelo classificatório apresentado na seção '# Estilos, Modelos e Exemplos de Classificação'. Suas novas criações devem espelhar a mesma proporção de abrangência temática nos Níveis 1 e 2, e a mesma granularidade acadêmica ou funcional nos Níveis 3 e 4, garantindo uniformidade ontológica e taxonômica em todo o sistema gerado.
+
+Utilize o conjunto da lista '# Estilos, Modelos e Exemplos de Classificação' como um gabarito de orientação classificatória obrigatório para qualquer nova criação. Toda classificação inédita sugerida deve adotar idêntica matriz de pensamento, utilizando o mesmo peso semântico na escolha das palavras e a mesma transição lógica do conceito mais abrangente para o mais restrito, de modo que seja impossível distinguir as categorias pré-existentes das categorias recém-geradas.
 
 
 Cada classificação sugerida deve começar com `[[` e terminar com `]]`.
@@ -87,6 +100,12 @@ Faça um agrupamento inteligente. Ou seja, siga essas regras de agrupamento:
 2) O segundo nível hierárquico de cada classificação sugerida deve *PREFERENCIALMENTE* ser o mesmo para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
 3) O terceiro nível hierárquico de cada classificação sugerida pode, ou não, ser específico para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
 4) O quarto nível hierárquico de cada classificação sugerida deve *SEMPRE* ser específico para cada um dos grupos semânticos de assuntos abaixo separados por `---`.
+
+Maximize o agrupamento dos assuntos nos três primeiros níveis hierárquicos. Crie o menor número possível de categorias distintas para o segundo e o terceiro nível, forçando a convergência de temas correlatos sob os mesmos rótulos abrangentes. Apenas o quarto nível hierárquico deve apresentar ramificações específicas e dispersas, garantindo uma taxonomia altamente coesa e unificada em sua base estrutural.
+
+Para garantir uma estruturação eficiente, consolide os assuntos identificados utilizando rigorosamente as mesmas classificações para os níveis 2 e 3 sempre que houver qualquer afinidade semântica ou de área de conhecimento. Evite ao máximo criar novos títulos para os níveis 2 e 3 se um título já existente puder abranger o tema por aproximação, limitando a especificidade, a granularidade e a dispersão dos assuntos exclusivamente ao nível 4 da classificação.
+
+Aplique uma lógica de funil rigorosa de agrupamento: consolide o máximo de blocos de assuntos sob categorias idênticas nos níveis 1, 2 e 3. Antes de sugerir um novo rótulo para o nível 2 ou 3, você deve avaliar exaustivamente se o assunto analisado não pode ser alocado em uma categoria já definida em outros blocos. O nível 4 é o único estrato hierárquico autorizado a refletir a multiplicidade fina e isolada de cada tema.
 
 Sugira classificações que consigam sintetizar cada um dos grupos semânticos de assuntos abaixo separados por `---`:
 
