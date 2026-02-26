@@ -31,8 +31,11 @@ public class HelperExplains extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onAction(this::comboGroupActionPerformed);    
+    private final DButton buttonNext = new DButton("Next")
+            .onAction(this::buttonNextActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
-            .growHorizontal().put(comboGroup);
+            .growHorizontal().put(comboGroup)
+            .growNone().put(buttonNext);
 
     private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField()
             .cols(4).editable(false).horizontalAlignmentCenter();
@@ -132,6 +135,15 @@ public class HelperExplains extends DFrame {
         textTopics.setValue(group.topics);
         textAsk.setValue("");
         buttonBringActionPerformed(e);
+    }
+
+    private void buttonNextActionPerformed(ActionEvent e) {
+        var index = comboGroup.selectedIndex();
+        if (index < comboGroup.itemsCount() - 1) {
+            comboGroup.select(index + 1);
+        } else if (comboGroup.itemsCount() > 0) {
+            comboGroup.select(0);
+        }
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {

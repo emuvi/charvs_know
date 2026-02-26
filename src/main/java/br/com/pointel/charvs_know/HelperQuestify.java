@@ -24,14 +24,11 @@ public class HelperQuestify extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onAction(this::comboGroupActionPerformed);
-    private final DButton buttonNamer = new DButton("&")
-            .onAction(this::buttonNamerActionPerformed);
-    private final DButton buttonDecker = new DButton(">")
-            .onAction(this::buttonDeckerActionPerformed);
+    private final DButton buttonNext = new DButton("Next")
+            .onAction(this::buttonNextActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growHorizontal().put(comboGroup)
-            .growNone().put(buttonNamer)
-            .growNone().put(buttonDecker);
+            .growNone().put(buttonNext);
 
     private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField()
             .cols(4).editable(false).horizontalAlignmentCenter();
@@ -67,12 +64,16 @@ public class HelperQuestify extends DFrame {
             .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonBring = new DButton("<")
+            .onAction(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
             .onAction(this::buttonWriteActionPerformed);
-    private final DButton buttonBring = new DButton("Bring")
-            .onAction(this::buttonBringActionPerformed);
     private final DButton buttonOpen = new DButton("*")
             .onAction(this::buttonOpenActionPerformed);
+    private final DButton buttonNamer = new DButton("&")
+            .onAction(this::buttonNamerActionPerformed);
+    private final DButton buttonDecker = new DButton(">")
+            .onAction(this::buttonDeckerActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
@@ -80,7 +81,9 @@ public class HelperQuestify extends DFrame {
         .growHorizontal().put(buttonAsk)
         .growNone().put(buttonWrite)
         .growNone().put(buttonBring)
-        .growNone().put(buttonOpen);
+        .growNone().put(buttonOpen)
+            .growNone().put(buttonNamer)
+            .growNone().put(buttonDecker);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -131,34 +134,12 @@ public class HelperQuestify extends DFrame {
         buttonBringActionPerformed(e);
     }
 
-    private void buttonNamerActionPerformed(ActionEvent e) {
-        try {
-            var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
-                throw new Exception("Select a group to clear.");
-            }
-            var group = selectedRef.ref.groups.get(index);
-            var deckName = getDeckName(group);
-            WizGUI.putStringOnClipboard(deckName);
-            WizGUI.showNotify("Name copied.");
-        } catch (Exception ex) {
-            WizGUI.showError(ex);
-        }
-    }
-
-    private void buttonDeckerActionPerformed(ActionEvent e) {
-        try {
-            var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
-                throw new Exception("Select a group to clear.");
-            }
-            var group = selectedRef.ref.groups.get(index);
-            var deckName = getDeckName(group);
-            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
-            AnkiCsvHelper.setupDeckFromCsv(deckName, questsFile);
-            WizGUI.showNotify("Deck created.", 1);
-        } catch (Exception ex) {
-            WizGUI.showError(ex);
+    private void buttonNextActionPerformed(ActionEvent e) {
+        var index = comboGroup.selectedIndex();
+        if (index < comboGroup.itemsCount() - 1) {
+            comboGroup.select(index + 1);
+        } else if (comboGroup.itemsCount() > 0) {
+            comboGroup.select(0);
         }
     }
 
@@ -268,6 +249,37 @@ public class HelperQuestify extends DFrame {
             var group = selectedRef.ref.groups.get(index);
             var questsFile = group.getQuestsFile(selectedRef.baseFolder);
             WizGUI.open(questsFile);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
+    private void buttonNamerActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var deckName = getDeckName(group);
+            WizGUI.putStringOnClipboard(deckName);
+            WizGUI.showNotify("Name copied.");
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
+    private void buttonDeckerActionPerformed(ActionEvent e) {
+        try {
+            var index = comboGroup.selectedIndex();
+            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+                throw new Exception("Select a group to clear.");
+            }
+            var group = selectedRef.ref.groups.get(index);
+            var deckName = getDeckName(group);
+            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            AnkiCsvHelper.setupDeckFromCsv(deckName, questsFile);
+            WizGUI.showNotify("Deck created.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }

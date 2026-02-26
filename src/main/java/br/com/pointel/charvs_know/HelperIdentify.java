@@ -133,7 +133,7 @@ public class HelperIdentify extends DFrame {
                 selectedRef.ref.groups.add(group);
                 comboGroup.add("Group " + String.format("%02d", i + 1));
             }
-            comboGroup.selectedIndex(0);
+            comboGroup.select(0);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -158,7 +158,7 @@ public class HelperIdentify extends DFrame {
         group.topics = textAsk.edit().selectedText().trim();
         selectedRef.ref.groups.add(group);
         comboGroup.add("Group " + String.format("%02d", selectedRef.ref.groups.size()));
-        comboGroup.selectedIndex(selectedRef.ref.groups.size() - 1);
+        comboGroup.select(selectedRef.ref.groups.size() - 1);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
