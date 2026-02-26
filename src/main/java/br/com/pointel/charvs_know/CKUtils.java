@@ -1,6 +1,8 @@
 package br.com.pointel.charvs_know;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.pointel.jarch.mage.WizString;
 
@@ -56,6 +58,25 @@ public class CKUtils {
         if (updated) {
             ClassDatex.write(classData, classFile);
         }
+    }
+
+    public static List<String> filterMarkDownLinks(List<String> onListOfLinks) {
+        var result = new ArrayList<String>();
+        for (var link : onListOfLinks) {
+            if (link == null || link.isBlank()) {
+                continue;
+            }
+            var testLink = delBrackets(link);
+            if (testLink.toLowerCase().endsWith(".md")) {
+                result.add(link);
+            } else {
+                var lastDot = testLink.lastIndexOf('.');
+                if (lastDot == -1 || lastDot < testLink.length() - 7){
+                    result.add(link);
+                }
+            }
+        }
+        return result;
     }
 
     public static String cleanFileName(String title) {

@@ -265,13 +265,14 @@ public class HelperDidactic extends DFrame {
             var group = selectedRef.ref.groups.get(index);            
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
-            if (titrationData.didacticLinks.isEmpty()) {
+            var didacticLinks = CKUtils.filterMarkDownLinks(titrationData.didacticLinks);
+            if (didacticLinks.isEmpty()) {
                 return;
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            if (titrationData.didacticLinks.size() > 1) {
+            if (didacticLinks.size() > 1) {
                 var selectLink = new DListDesk<String>("Select a text to bring");
-                selectLink.options(titrationData.didacticLinks);
+                selectLink.options(didacticLinks);
                 selectLink.onSelect(selected -> {
                     try {
                         if (selected == null || selected.isBlank()) {
@@ -284,7 +285,7 @@ public class HelperDidactic extends DFrame {
                 });
                 selectLink.setVisible(true);
             } else {
-                var link = titrationData.didacticLinks.get(0);
+                var link = didacticLinks.get(0);
                 bringDidactic(folder, link);
             }
         } catch (Exception ex) {

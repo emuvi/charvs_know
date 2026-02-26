@@ -5,6 +5,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -265,13 +266,14 @@ public class HelperExplains extends DFrame {
             var group = selectedRef.ref.groups.get(index);            
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
-            if (titrationData.explainsLinks.isEmpty()) {
+            var explainsLinks = CKUtils.filterMarkDownLinks(titrationData.explainsLinks);
+            if (explainsLinks.isEmpty()) {
                 return;
             }
             var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            if (titrationData.explainsLinks.size() > 1) {
+            if (explainsLinks.size() > 1) {
                 var selectLink = new DListDesk<String>("Select a text to bring");
-                selectLink.options(titrationData.explainsLinks);
+                selectLink.options(explainsLinks);
                 selectLink.onSelect(selected -> {
                     try {
                         if (selected == null || selected.isBlank()) {
@@ -284,7 +286,7 @@ public class HelperExplains extends DFrame {
                 });
                 selectLink.setVisible(true);
             } else {
-                var link = titrationData.explainsLinks.get(0);
+                var link = explainsLinks.get(0);
                 bringExplains(folder, link);
             }
         } catch (Exception ex) {
