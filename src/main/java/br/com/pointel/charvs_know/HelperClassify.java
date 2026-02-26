@@ -287,31 +287,25 @@ public class HelperClassify extends DFrame {
     }
 
     private String getHierarchy(String ofClassification) {
+        var builder = new StringBuilder("[[index]]");
         if (ofClassification == null || ofClassification.isBlank()) {
-            return "";
+            return builder.toString();
         }
         var parts = ofClassification.split("\\-");
-        var builder = new StringBuilder();
         var currentPath = new StringBuilder();
-        var first = true;
         for (var p : parts) {
             var part = p.trim();
             if (part.isBlank()) {
                 continue;
             }
             var formattedPart = "- " + part;
-            if (first) {
-                currentPath.append(formattedPart);
-                builder.append("[[").append(currentPath).append("]]");
-                first = false;
-            } else {
-                currentPath.append("/").append(formattedPart);
-                builder.append(" [[")
-                       .append(currentPath)
-                       .append("/")
-                       .append(formattedPart)
-                       .append("]]");
+            if (!currentPath.isEmpty()) {
+                currentPath.append("/");
             }
+            currentPath.append(formattedPart);
+            builder.append(" [[").append(currentPath)
+                   .append("/").append(formattedPart)
+                   .append("]]");
         }
         return builder.toString();
     }

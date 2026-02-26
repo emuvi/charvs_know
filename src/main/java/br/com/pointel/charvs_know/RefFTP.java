@@ -27,9 +27,9 @@ public class RefFTP {
         if (!ftp.isConnected()) {
             ftp.connect();
         }
-        var md5 = WizBytes.getMD5(origin);
+        var hashMD5 = "& " + WizBytes.getMD5(origin);
         var ext = FilenameUtils.getExtension(origin.getName());
-        var refWithExtension = md5 + (ext.isEmpty() ? "" : "." + ext);
+        var refWithExtension = hashMD5 + (ext.isEmpty() ? "" : "." + ext);
         ftp.openWithMakeDir(getBaseFTPFolder(refWithExtension));
         ftp.upload(origin, refWithExtension);
     }
@@ -51,11 +51,11 @@ public class RefFTP {
     }
 
     public static String getBaseFTPFolder(String refWithExtension) {
-        return BASE_PUBLIC + BASE_FOLDER + refWithExtension.substring(0, 3);
+        return BASE_PUBLIC + BASE_FOLDER + refWithExtension.substring(0, 4);
     }
 
     public static String getBaseURIFolder(String refWithExtension) {
-        return BASE_URI + BASE_FOLDER + refWithExtension.substring(0, 3);
+        return BASE_URI + BASE_FOLDER + refWithExtension.substring(0, 4);
     }
 
     public static String getBaseURI(String refWithExtension) {

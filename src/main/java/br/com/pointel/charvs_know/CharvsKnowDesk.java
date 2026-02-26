@@ -233,7 +233,7 @@ public class CharvsKnowDesk extends DFrame {
     private transient SelectedRef selectedRef = null;
 
     public void selectRef(File selectFile) throws Exception {
-        var hashMD5 = WizBytes.getMD5(selectFile);
+        var hashMD5 = "& " + WizBytes.getMD5(selectFile);
         var refFile = getBaseRefFile(hashMD5 + ".md");
         var refWithExtension = hashMD5 + "." + FilenameUtils.getExtension(selectFile.getName());
         var sourceFile = getBaseRefFile(refWithExtension);
@@ -273,7 +273,7 @@ public class CharvsKnowDesk extends DFrame {
         }
         Ref ref;
         if (!refFile.exists()) {
-            var hashMD5 = WizBytes.getMD5(sourceFile);
+            var hashMD5 = "& " + WizBytes.getMD5(sourceFile);
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
@@ -303,7 +303,7 @@ public class CharvsKnowDesk extends DFrame {
         if (!baseRefsFolder.exists()) {
             baseRefsFolder.mkdirs();
         }
-        var baseRefFolder = new File(baseRefsFolder, refWithExtension.substring(0, 3));
+        var baseRefFolder = new File(baseRefsFolder, refWithExtension.substring(0, 4));
         if (!baseRefFolder.exists()) {
             baseRefFolder.mkdirs();
         }
