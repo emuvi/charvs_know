@@ -44,6 +44,12 @@ Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatam
 
 13. Validação de Integridade dos Links: É terminantemente proibido criar links para notas fantasmas ou não geradas. Todo e qualquer link inserido no formato [[título da outra nota]] deve passar por uma validação estrita: o texto dentro dos colchetes duplos deve ser uma cópia exata, caractere por caractere, de um título de nota atômica que você efetivamente redigiu e incluiu no conjunto final nesta conversa. Se a nota de destino não existir nessa conversa, não crie o link.
 
+14. Limite Estrito de Extensão: Cada nota atômica deve ser rigorosamente pequena e concisa, contendo apenas a quantidade de texto estritamente necessária para explicar o seu conceito central. Considere que uma nota atômica ideal é um bloco de informação de leitura rápida; se a explicação demandar múltiplos parágrafos extensos, este é o sinal claro de que o conteúdo não é mais atômico e deve ser imediatamente interrompido e repensado.
+
+15. Regra de Fragmentação Categórica: É terminantemente proibido agrupar desdobramentos, listas complexas ou múltiplos exemplos dentro da mesma nota. Se um conceito se ramificar em subtópicos ou requerer a explicação de suas partes componentes, fragmente-o imediatamente. Crie uma nota principal concisa e divida cada subponto em novas notas atômicas separadas, independentes e menores.
+
+16. Autossuficiência Contextual e Vinculativa: Ao fragmentar uma nota grande em várias menores, garanta que cada nova nota gerada mantenha a sua autossuficiência contextual plena. O leitor jamais deve precisar ler a nota anterior para entender a atual. Utilize os links [[título da outra nota]] estruturalmente para conectar as partes fragmentadas de volta ao conceito-raiz, criando uma teia de notas curtas em vez de um único texto longo.
+
 
 Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
@@ -85,6 +91,12 @@ Cada título de cada nota atômica deve ser autossuficiente em sentido, iniciand
 Produza as notas atômicas em português claro e didático, denso em informação tecnicamente preciso, com um conjunto de notas atômicas organizadas do abstrato ao concreto, do genérico ao específico, utilizando obrigatoriamente negrito para o termo principal, itálico para o segundo e terceiro mais importantes, e conexões semânticas entre as notas através de links no formato [[título da outra nota]].
 
 O objetivo é gerar um conjunto exaustivo de notas atômicas interconectadas sobre um tema alvo, organizadas em uma estrutura lógica que parte dos conceitos mais abstratos e genéricos até alcançar o nível mais profundo de detalhamento com cada ponto específico presente no documento, utilizando `---` como único separador e omitindo qualquer introdução ou conclusão.
+
+Para alcançar esse nível profundo de detalhamento sem comprometer a atomicidade, limite rigorosamente o escopo e o tamanho físico de cada nota. Se, durante a elaboração, você perceber que uma nota exige múltiplos parágrafos, desdobramentos complexos ou listas extensas para ser explicada, interrompa imediatamente a sua construção. O excesso de volume textual é o indicador absoluto de que a nota perdeu o seu caráter atômico e passou a abrigar múltiplos conceitos concorrentes.
+
+Diante de qualquer conceito multifacetado, aplique a regra de fragmentação compulsória. Em vez de consolidar diversas características, fases, exemplos ou argumentos em um único grande bloco de texto, isole cada um desses elementos estruturais em sua própria nota atômica independente. Aprofunde o detalhamento do documento criando notas-satélites menores, mais precisas e mais curtas, garantindo que o foco narrativo permaneça absolutamente restrito a uma única faceta da informação por vez.
+
+Nesse processo de subdivisão exaustiva, preserve incondicionalmente a autossuficiência contextual de cada fragmento gerado. Mesmo sendo uma fração de um conceito maior resultante da divisão, a nota deve ser redigida de forma que seu conteúdo seja perfeitamente compreensível e útil de maneira isolada, sem jamais exigir a leitura prévia de notas adjacentes. Utilize o sistema de links [[título da outra nota]] como a única ferramenta para ancorar essas notas específicas e curtas de volta aos conceitos genéricos e abstratos, formando uma rede semântica altamente granular.
 
 
 Para o sistema de indexação por Tags, utilize três níveis hierárquicos ao final de cada nota:
