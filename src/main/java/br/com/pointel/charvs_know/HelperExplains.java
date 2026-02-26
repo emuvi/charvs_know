@@ -30,7 +30,7 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class HelperExplains extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
-            .onClick(this::comboGroupActionPerformed);    
+            .onAction(this::comboGroupActionPerformed);    
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growHorizontal().put(comboGroup);
 
@@ -63,17 +63,17 @@ public class HelperExplains extends DFrame {
 
 
     private final DButton buttonClear = new DButton("Clear")
-            .onClick(this::buttonClearActionPerformed);
+            .onAction(this::buttonClearActionPerformed);
     private final DButton buttonClearAll = new DButton("All")
-            .onClick(this::buttonClearAllActionPerformed);
+            .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
-            .onClick(this::buttonAskActionPerformed);
+            .onAction(this::buttonAskActionPerformed);
     private final DButton buttonBring = new DButton("<")
-            .onClick(this::buttonBringActionPerformed);
+            .onAction(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
-            .onClick(this::buttonWriteActionPerformed);
+            .onAction(this::buttonWriteActionPerformed);
     private final DButton buttonSound = new DButton(">")
-            .onClick(this::buttonSoundActionPerformed);
+            .onAction(this::buttonSoundActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)

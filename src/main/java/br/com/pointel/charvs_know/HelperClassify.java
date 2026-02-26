@@ -1,6 +1,7 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.jarch.desk.DButton;
+import br.com.pointel.jarch.desk.DCheckEdit;
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DComboEdit;
 import br.com.pointel.jarch.desk.DFieldEdit;
@@ -26,13 +28,13 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class HelperClassify extends DFrame {
 
     private final DButton buttonClear = new DButton("Clear")
-            .onClick(this::buttonClearActionPerformed);
+            .onAction(this::buttonClearActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
-            .onClick(this::buttonAskActionPerformed);
+            .onAction(this::buttonAskActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
-            .onClick(this::buttonParseActionPerformed);
+            .onAction(this::buttonParseActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
-            .onClick(this::buttonBringActionPerformed);
+            .onAction(this::buttonBringActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
@@ -47,22 +49,25 @@ public class HelperClassify extends DFrame {
             .growBoth().put(textAsk);
 
     private final DButton buttonSame = new DButton("Same")
-            .onClick(this::buttonSameActionPerformed);
+            .onAction(this::buttonSameActionPerformed);
     private final DButton buttonAuto = new DButton("Auto")
-            .onClick(this::buttonAutoActionPerformed);
+            .onAction(this::buttonAutoActionPerformed);
     private final DButton buttonSet = new DButton("Set")
-            .onClick(this::buttonSetActionPerformed);
+            .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
-            .onClick(this::comboGroupActionPerformed);
+            .onAction(this::comboGroupActionPerformed)
+            .onMouseClicked(this::comboGroupMouseClicked);
+    private final DCheckEdit checkAutoSave = new DCheckEdit();
     private final DButton buttonSave = new DButton("Save")
-            .onClick(this::buttonSaveActionPerformed);
+            .onAction(this::buttonSaveActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
-            .onClick(this::buttonWriteActionPerformed);
+            .onAction(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growNone().put(buttonSame)
             .growNone().put(buttonAuto)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
+            .growNone().put(checkAutoSave)
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
@@ -245,6 +250,12 @@ public class HelperClassify extends DFrame {
         fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
+    }
+
+    private void comboGroupMouseClicked(MouseEvent e) {
+        if (checkAutoSave.isSelected()) {
+            buttonSaveActionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, "AutoSave"));
+        }
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {

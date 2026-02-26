@@ -19,9 +19,9 @@ public class ReplacesDesk extends DFrame {
     private final DListEditor<Replace> listEditor = new DListEditor<>(ReplaceEditFrame.class);
 
     private final DButton buttonReplace = new DButton("Replace")
-            .onClick(this::buttonReplaceActionPerformed);
+            .onAction(this::buttonReplaceActionPerformed);
     private final DButton buttonUndo = new DButton("Undo")
-            .onClick(this::buttonUndoActionPerformed);
+            .onAction(this::buttonUndoActionPerformed);
     private final DPane paneActions = new DLinePane()
             .put(buttonReplace)
             .put(buttonUndo);

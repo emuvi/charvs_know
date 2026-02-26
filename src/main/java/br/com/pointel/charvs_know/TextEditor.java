@@ -16,11 +16,11 @@ public class TextEditor extends DBordPane {
     private final DScroll scrollPane = new DScroll(textEdit);
 
     private final DButton buttonReplaces = new DButton("#")
-            .onClick(this::buttonReplacesActionPerformed);
+            .onAction(this::buttonReplacesActionPerformed);
     private final DButton buttonReplacesAct = new DButton(">")
-            .onClick(this::buttonReplacesActActionPerformed);
+            .onAction(this::buttonReplacesActActionPerformed);
     private final DButton buttonGroovy = new DButton("$")
-            .onClick(this::buttonGroovyActionPerformed);
+            .onAction(this::buttonGroovyActionPerformed);
     private final DPane paneActions = new DLinePane()
             .put(buttonReplaces)
             .put(buttonReplacesAct)

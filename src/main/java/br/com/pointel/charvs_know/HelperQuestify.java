@@ -23,11 +23,11 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class HelperQuestify extends DFrame {
 
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
-            .onClick(this::comboGroupActionPerformed);
+            .onAction(this::comboGroupActionPerformed);
     private final DButton buttonNamer = new DButton("&")
-            .onClick(this::buttonNamerActionPerformed);
+            .onAction(this::buttonNamerActionPerformed);
     private final DButton buttonDecker = new DButton(">")
-            .onClick(this::buttonDeckerActionPerformed);
+            .onAction(this::buttonDeckerActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growHorizontal().put(comboGroup)
             .growNone().put(buttonNamer)
@@ -62,17 +62,17 @@ public class HelperQuestify extends DFrame {
 
 
     private final DButton buttonClear = new DButton("Clear")
-            .onClick(this::buttonClearActionPerformed);
+            .onAction(this::buttonClearActionPerformed);
     private final DButton buttonClearAll = new DButton("All")
-            .onClick(this::buttonClearAllActionPerformed);
+            .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
-            .onClick(this::buttonAskActionPerformed);
+            .onAction(this::buttonAskActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
-            .onClick(this::buttonWriteActionPerformed);
+            .onAction(this::buttonWriteActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
-            .onClick(this::buttonBringActionPerformed);
+            .onAction(this::buttonBringActionPerformed);
     private final DButton buttonOpen = new DButton("*")
-            .onClick(this::buttonOpenActionPerformed);
+            .onAction(this::buttonOpenActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)

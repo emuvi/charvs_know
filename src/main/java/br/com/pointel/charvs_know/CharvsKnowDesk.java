@@ -63,7 +63,7 @@ public class CharvsKnowDesk extends DFrame {
             .growNone().put(buttonStepOpen);
 
     private final DButton buttonMemoaWrite = new DButton("Write")
-            .onClick(this::buttonMemoaWriteActionPerformed);
+            .onAction(this::buttonMemoaWriteActionPerformed);
     private final TextEditor textMemoaEditor = new TextEditor()
             .addButton(buttonMemoaWrite);
 

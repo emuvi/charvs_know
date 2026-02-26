@@ -14,9 +14,9 @@ public class LastSelectedDesk extends DListDesk<String> {
     private final CharvsKnowDesk parent;
 
     private final DButton buttonMemoa = new DButton("Memoa")
-            .onClick(this::buttonMemoaActionPerformed);
+            .onAction(this::buttonMemoaActionPerformed);
     private final DButton buttonClear = new DButton("Clear")
-            .onClick(this::buttonClearActionPerformed);
+            .onAction(this::buttonClearActionPerformed);
     
 
     public LastSelectedDesk(CharvsKnowDesk parent) {
