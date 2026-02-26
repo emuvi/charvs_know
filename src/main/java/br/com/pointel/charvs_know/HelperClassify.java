@@ -276,6 +276,7 @@ public class HelperClassify extends DFrame {
         try {
             selectedRef.ref.props.classifiedAt = WizUtilDate.formatDateMach(new Date());
             for (var group : selectedRef.ref.groups) {
+                group.hierarchy = getHierarchy(group.classification);
                 group.writeClassification(selectedRef.baseFolder);
             }
             selectedRef.write();
@@ -283,6 +284,36 @@ public class HelperClassify extends DFrame {
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
+    }
+
+    private String getHierarchy(String ofClassification) {
+        if (ofClassification == null || ofClassification.isBlank()) {
+            return "";
+        }
+        var parts = ofClassification.split("\\-");
+        var builder = new StringBuilder();
+        var currentPath = new StringBuilder();
+        var first = true;
+        for (var p : parts) {
+            var part = p.trim();
+            if (part.isBlank()) {
+                continue;
+            }
+            var formattedPart = "- " + part;
+            if (first) {
+                currentPath.append(formattedPart);
+                builder.append("[[").append(currentPath).append("]]");
+                first = false;
+            } else {
+                currentPath.append("/").append(formattedPart);
+                builder.append(" [[")
+                       .append(currentPath)
+                       .append("/")
+                       .append(formattedPart)
+                       .append("]]");
+            }
+        }
+        return builder.toString();
     }
 
     private String getInsertion() {

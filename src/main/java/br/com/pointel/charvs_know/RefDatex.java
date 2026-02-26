@@ -105,6 +105,7 @@ public class RefDatex {
             var propsOrganization = WizProps.fromSource(nodeOrganization.getValue(), propsSeparator);
             group.order = propsOrganization.getOrDefault("Ordem", "");
             group.classification = propsOrganization.getOrDefault("Classificação", "");
+            group.hierarchy = propsOrganization.getOrDefault("Hierarquia", "");
             group.titration = propsOrganization.getOrDefault("Titulação", "");
             group.topics = nodeTopics.getValue().trim();
             var propsRealization = WizProps.fromSource(nodeRealization.getValue(), propsSeparator);
@@ -157,6 +158,7 @@ public class RefDatex {
         builder.append(organizationStart).append("\n");
         builder.append("Ordem: ").append(group.order).append("\n");
         builder.append("Classificação: ").append(group.classification).append("\n");
+        builder.append("Hierarquia: ").append(group.hierarchy).append("\n");
         builder.append("Titulação: ").append(group.titration).append("\n");
         builder.append(organizationEnd).append("\n");
         builder.append(topicsStart).append("\n");

@@ -6,6 +6,7 @@ public class RefGroup {
 
     public String order = "";
     public String classification = "";
+    public String hierarchy = "";
     public String titration = "";
     public String topics = "";
     public String cardsAt = "";
