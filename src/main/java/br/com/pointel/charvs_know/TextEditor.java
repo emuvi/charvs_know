@@ -1,6 +1,8 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.util.function.Consumer;
 
 import br.com.pointel.jarch.desk.DBordPane;
 import br.com.pointel.jarch.desk.DButton;
@@ -48,11 +50,21 @@ public class TextEditor extends DBordPane {
         textEdit.value(text);
     }
 
-    public void buttonReplacesActionPerformed(ActionEvent e) {
+    public TextEditor onFocusGained(Consumer<FocusEvent> consumer) {
+        textEdit.onFocusGained(consumer);
+        return this;
+    }
+
+    public TextEditor onFocusLost(Consumer<FocusEvent> consumer) {
+        textEdit.onFocusLost(consumer);
+        return this;
+    }
+
+    private void buttonReplacesActionPerformed(ActionEvent e) {
         new ReplacesDesk(this).setVisible(true);
     }
 
-    public void buttonReplacesActActionPerformed(ActionEvent e) {
+    private void buttonReplacesActActionPerformed(ActionEvent e) {
         try {
             String text = getValue();
             for (Replace replace : Setup.readReplacesList()) {
@@ -64,7 +76,7 @@ public class TextEditor extends DBordPane {
         }
     }
 
-    public void buttonGroovyActionPerformed(ActionEvent e) {
+    private void buttonGroovyActionPerformed(ActionEvent e) {
         
     }
 

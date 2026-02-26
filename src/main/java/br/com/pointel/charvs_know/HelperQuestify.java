@@ -79,11 +79,11 @@ public class HelperQuestify extends DFrame {
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
-        .growNone().put(buttonWrite)
         .growNone().put(buttonBring)
+        .growNone().put(buttonWrite)
         .growNone().put(buttonOpen)
-            .growNone().put(buttonNamer)
-            .growNone().put(buttonDecker);
+        .growNone().put(buttonNamer)
+        .growNone().put(buttonDecker);
 
     private final TextEditor textAsk = new TextEditor();
      

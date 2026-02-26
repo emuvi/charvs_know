@@ -1,13 +1,16 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.jarch.desk.DButton;
+import br.com.pointel.jarch.desk.DCheckEdit;
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DComboEdit;
+import br.com.pointel.jarch.desk.DEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
@@ -45,6 +48,8 @@ public class HelperIdentify extends DFrame {
             .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onAction(this::comboGroupActionPerformed);
+    private final DEdit<Boolean> checkAutoSave = new DCheckEdit()
+            .name("AutoSave");
     private final DButton buttonSave = new DButton("Save")
             .onAction(this::buttonSaveActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
@@ -52,10 +57,12 @@ public class HelperIdentify extends DFrame {
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
+            .growNone().put(checkAutoSave)
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
-    private final TextEditor textTopics = new TextEditor();
+    private final TextEditor textTopics = new TextEditor()
+            .onFocusLost(this::callSaveOnFocusLost);
 
     private final DPane paneGroup = new DColPane().insets(2)
             .growHorizontal().put(paneGroupActs)
@@ -85,6 +92,7 @@ public class HelperIdentify extends DFrame {
     private void buttonClearActionPerformed(ActionEvent e) {
         selectedRef.ref.groups.clear();
         comboGroup.clear();
+        comboGroupActionPerformed(e);
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
@@ -133,7 +141,8 @@ public class HelperIdentify extends DFrame {
                 selectedRef.ref.groups.add(group);
                 comboGroup.add("Group " + String.format("%02d", i + 1));
             }
-            comboGroup.select(0);
+            comboGroup.select(parts.length > 0 ? 0 : -1);
+            comboGroupActionPerformed(e);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -159,13 +168,14 @@ public class HelperIdentify extends DFrame {
         selectedRef.ref.groups.add(group);
         comboGroup.add("Group " + String.format("%02d", selectedRef.ref.groups.size()));
         comboGroup.select(selectedRef.ref.groups.size() - 1);
+        comboGroupActionPerformed(e);
     }
 
     private void buttonSetActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
             textTopics.setValue(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).topics = textTopics.getValue().trim();
+            saveIfAutoSave(e != null ? e.getSource() : null);
         }
     }
 
@@ -195,6 +205,16 @@ public class HelperIdentify extends DFrame {
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
+        }
+    }
+
+    private void callSaveOnFocusLost(FocusEvent e) {
+        saveIfAutoSave(e != null ? e.getSource() : null);
+    }
+
+    private void saveIfAutoSave(Object source) {
+        if (Boolean.TRUE.equals(checkAutoSave.value())) {
+            buttonSaveActionPerformed(new ActionEvent(source, ActionEvent.ACTION_PERFORMED, "AutoSave"));
         }
     }
 

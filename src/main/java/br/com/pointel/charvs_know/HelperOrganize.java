@@ -1,13 +1,16 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.jarch.desk.DButton;
+import br.com.pointel.jarch.desk.DCheckEdit;
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DComboEdit;
+import br.com.pointel.jarch.desk.DEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
@@ -44,6 +47,8 @@ public class HelperOrganize extends DFrame {
             .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
             .onAction(this::comboGroupActionPerformed);
+    private final DEdit<Boolean> checkAutoSave = new DCheckEdit()
+            .name("AutoSave");
     private final DButton buttonSave = new DButton("Save")
             .onAction(this::buttonSaveActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
@@ -51,11 +56,14 @@ public class HelperOrganize extends DFrame {
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
+            .growNone().put(checkAutoSave)
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
-    private final TextEditor textTitration = new TextEditor();
-    private final DText textTopics = new DText().editable(false);
+    private final TextEditor textTitration = new TextEditor()
+            .onFocusLost(this::callSaveOnFocusLost);
+    private final DText textTopics = new DText()
+            .editable(false);
     private final DScroll scrollTopics = new DScroll(textTopics);
     private final DSplitter splitterGroup = new DSplitter()
             .vertical().top(textTitration).bottom(scrollTopics)
@@ -92,6 +100,7 @@ public class HelperOrganize extends DFrame {
         for (var group : selectedRef.ref.groups) {
             group.clearOrganized();
         }
+        comboGroupActionPerformed(e);
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
@@ -181,7 +190,7 @@ public class HelperOrganize extends DFrame {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
             textTitration.setValue(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).titration = textTitration.getValue().trim();
+            saveIfAutoSave(e != null ? e.getSource() : null);
         }
     }
 
@@ -213,6 +222,16 @@ public class HelperOrganize extends DFrame {
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
+        }
+    }
+
+    private void callSaveOnFocusLost(FocusEvent e) {
+        saveIfAutoSave(e != null ? e.getSource() : null);
+    }
+
+    private void saveIfAutoSave(Object source) {
+        if (Boolean.TRUE.equals(checkAutoSave.value())) {
+            buttonSaveActionPerformed(new ActionEvent(source, ActionEvent.ACTION_PERFORMED, "AutoSave"));
         }
     }
 

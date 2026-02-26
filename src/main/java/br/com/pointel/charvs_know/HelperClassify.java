@@ -1,6 +1,7 @@
 package br.com.pointel.charvs_know;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import br.com.pointel.jarch.desk.DButton;
 import br.com.pointel.jarch.desk.DCheckEdit;
 import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DComboEdit;
+import br.com.pointel.jarch.desk.DEdit;
 import br.com.pointel.jarch.desk.DFieldEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DIntegerField;
@@ -55,9 +57,9 @@ public class HelperClassify extends DFrame {
     private final DButton buttonSet = new DButton("Set")
             .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
-            .onAction(this::comboGroupActionPerformed)
-            .onMouseClicked(this::comboGroupMouseClicked);
-    private final DCheckEdit checkAutoSave = new DCheckEdit();
+            .onAction(this::comboGroupActionPerformed);
+    private final DEdit<Boolean> checkAutoSave = new DCheckEdit()
+            .name("AutoSave");
     private final DButton buttonSave = new DButton("Save")
             .onAction(this::buttonSaveActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
@@ -71,9 +73,11 @@ public class HelperClassify extends DFrame {
             .growNone().put(buttonSave)
             .growNone().put(buttonWrite);
 
-    private final DFieldEdit<Integer> fieldClassOrder = new DIntegerField()
-            .cols(4).horizontalAlignmentCenter();
-    private final TextEditor fieldClassTitle = new TextEditor();
+    private final DEdit<Integer> fieldClassOrder = new DIntegerField()
+            .cols(4).horizontalAlignmentCenter()
+            .onFocusLost(this::callSaveOnFocusLost);
+    private final TextEditor fieldClassTitle = new TextEditor()
+            .onFocusLost(this::callSaveOnFocusLost);
     private final DSplitter splitterClass = new DSplitter()
             .horizontal().left(fieldClassOrder).right(fieldClassTitle)
             .divider(0.2f)
@@ -122,6 +126,7 @@ public class HelperClassify extends DFrame {
         for (var group : selectedRef.ref.groups) {
             group.clearClassified();
         }
+        comboGroupActionPerformed(e);
     }
 
     private void buttonAskActionPerformed(ActionEvent e) {
@@ -229,7 +234,7 @@ public class HelperClassify extends DFrame {
         var index = comboGroup.selectedIndex();
         if (index > -1) {
             fieldClassTitle.setValue(textAsk.edit().selectedText().trim());
-            selectedRef.ref.groups.get(index).classification = fieldClassTitle.getValue().trim();
+            saveIfAutoSave(e != null ? e.getSource() : null);
         }
     }
 
@@ -250,12 +255,6 @@ public class HelperClassify extends DFrame {
         fieldClassTitle.setValue(group.classification);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
-    }
-
-    private void comboGroupMouseClicked(MouseEvent e) {
-        if (checkAutoSave.isSelected()) {
-            buttonSaveActionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, "AutoSave"));
-        }
     }
 
     private void buttonSaveActionPerformed(ActionEvent e) {
@@ -283,6 +282,16 @@ public class HelperClassify extends DFrame {
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
+        }
+    }
+
+    private void callSaveOnFocusLost(FocusEvent e) {
+        saveIfAutoSave(e != null ? e.getSource() : null);
+    }
+
+    private void saveIfAutoSave(Object source) {
+        if (Boolean.TRUE.equals(checkAutoSave.value())) {
+            buttonSaveActionPerformed(new ActionEvent(source, ActionEvent.ACTION_PERFORMED, "AutoSave"));
         }
     }
 
