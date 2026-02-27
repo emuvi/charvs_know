@@ -33,6 +33,8 @@ public class HelperClassify extends DFrame {
             .onAction(this::buttonClearActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonPaste = new DButton("Ʇ")
+            .onAction(this::buttonPasteActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
             .onAction(this::buttonParseActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
@@ -41,6 +43,7 @@ public class HelperClassify extends DFrame {
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonPaste)
         .growNone().put(buttonParse)
         .growNone().put(buttonBring);
 
@@ -141,6 +144,11 @@ public class HelperClassify extends DFrame {
             askThread.start();
             buttonAsk.setText("Asking...");
         }
+    }
+
+    private void buttonPasteActionPerformed(ActionEvent e) {
+        textAsk.edit().clear();
+        textAsk.edit().paste();
     }
 
     private void buttonParseActionPerformed(ActionEvent e) {

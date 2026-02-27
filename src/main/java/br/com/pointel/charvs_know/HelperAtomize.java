@@ -65,6 +65,8 @@ public class HelperAtomize extends DFrame {
             .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonPaste = new DButton("Ʇ")
+            .onAction(this::buttonPasteActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
             .onAction(this::buttonWriteActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
@@ -74,6 +76,7 @@ public class HelperAtomize extends DFrame {
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonPaste)
         .growNone().put(buttonWrite)
         .growNone().put(buttonBring);
 
@@ -224,6 +227,11 @@ public class HelperAtomize extends DFrame {
             askThread.start();
             buttonAsk.setText("Asking...");
         }
+    }
+
+    private void buttonPasteActionPerformed(ActionEvent e) {
+        textAsk.edit().clear();
+        textAsk.edit().paste();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {

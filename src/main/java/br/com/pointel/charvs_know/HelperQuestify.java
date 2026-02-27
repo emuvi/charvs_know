@@ -64,6 +64,8 @@ public class HelperQuestify extends DFrame {
             .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonPaste = new DButton("Ʇ")
+            .onAction(this::buttonPasteActionPerformed);
     private final DButton buttonBring = new DButton("<")
             .onAction(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
@@ -185,6 +187,11 @@ public class HelperQuestify extends DFrame {
             askThread.start();
             buttonAsk.setText("Asking...");
         }
+    }
+
+    private void buttonPasteActionPerformed(ActionEvent e) {
+        textAsk.edit().clear();
+        textAsk.edit().paste();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {

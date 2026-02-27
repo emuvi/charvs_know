@@ -72,6 +72,8 @@ public class HelperExplains extends DFrame {
             .onAction(this::buttonClearAllActionPerformed);
     private final DButton buttonAsk = new DButton("Ask")
             .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonPaste = new DButton("Ʇ")
+            .onAction(this::buttonPasteActionPerformed);
     private final DButton buttonBring = new DButton("<")
             .onAction(this::buttonBringActionPerformed);
     private final DButton buttonWrite = new DButton("Write")
@@ -83,6 +85,7 @@ public class HelperExplains extends DFrame {
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonPaste)
         .growNone().put(buttonBring)
         .growNone().put(buttonWrite)
         .growNone().put(buttonSound);
@@ -206,6 +209,11 @@ public class HelperExplains extends DFrame {
             askThread.start();
             buttonAsk.setText("Asking...");
         }
+    }
+
+    private void buttonPasteActionPerformed(ActionEvent e) {
+        textAsk.edit().clear();
+        textAsk.edit().paste();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
