@@ -129,28 +129,18 @@ public class HelperClassify extends DFrame {
         comboGroupActionPerformed(e);
     }
 
+    private volatile AskThread askThread = null;
+
     private void buttonAskActionPerformed(ActionEvent e) {
-        if (buttonAsk.getText().equals("Asking...")) {
-            return;
+        if (askThread != null) {
+            askThread.stop = true;
+            askThread = null;
+            buttonAsk.setText("Ask");
+        } else {
+            askThread = new AskThread();
+            askThread.start();
+            buttonAsk.setText("Asking...");
         }
-        buttonAsk.setText("Asking...");
-        new Thread("Asking Classify") {
-            @Override
-            public void run() {
-                try {
-                    var result = selectedRef.talkWithAttach(Steps.Classify.getCommand(getInsertion()));
-                    SwingUtilities.invokeLater(() -> {
-                        textAsk.setValue(result);
-                        textAsk.edit().selectionStart(0);
-                        textAsk.edit().selectionEnd(0);
-                    });
-                } catch (Exception ex) {
-                    WizGUI.showError(ex);
-                } finally {
-                    SwingUtilities.invokeLater(() -> buttonAsk.setText("Ask"));
-                }
-            }
-        }.start();
     }
 
     private void buttonParseActionPerformed(ActionEvent e) {
@@ -387,6 +377,37 @@ public class HelperClassify extends DFrame {
             }
         }
         return result;
+    }
+
+    private class AskThread extends Thread {
+
+        public volatile boolean stop = false;
+
+        public AskThread() {
+            super("Asking Identify");
+        }
+
+        @Override
+        public void run() {
+            try {
+                var result = selectedRef.talkWithAttach(Steps.Classify.getCommand(getInsertion()));
+                if (stop) {
+                    return;
+                }
+                SwingUtilities.invokeLater(() -> {
+                    textAsk.setValue(result);
+                    textAsk.edit().selectionStart(0);
+                    textAsk.edit().selectionEnd(0);
+                });
+            } catch (Exception ex) {
+                WizGUI.showError(ex);
+            } finally {
+                if (askThread == this) {
+                    askThread = null;
+                    SwingUtilities.invokeLater(() -> buttonAsk.setText("Ask"));
+                }
+            }
+        }
     }
 
 }
