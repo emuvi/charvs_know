@@ -81,6 +81,7 @@ public class HelperQuestify extends DFrame {
         .growNone().put(buttonClear)
         .growNone().put(buttonClearAll)
         .growHorizontal().put(buttonAsk)
+        .growNone().put(buttonPaste)
         .growNone().put(buttonBring)
         .growNone().put(buttonWrite)
         .growNone().put(buttonOpen)
