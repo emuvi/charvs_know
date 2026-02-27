@@ -241,11 +241,11 @@ public class CharvsKnowDesk extends DFrame {
             if (WizGUI.showConfirm("Selected reference not found in the base. Do you wanna to move it inside?")) {
                 Files.move(selectFile.toPath(), sourceFile.toPath());
                 WizGUI.showInfo("Selected reference moved to the base.");
-            } else if (WizGUI.showConfirm("Do you wanna to copy it to the base?")) {
+            } else if (WizGUI.showConfirm("Selected reference not found in the base. Do you wanna to copy it to the base?")) {
                 Files.copy(selectFile.toPath(), sourceFile.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
                 WizGUI.showInfo("Selected reference copied to the base.");
             } else {
-                throw new Exception("Selected reference not found in the base.");
+                throw new Exception("You must have the selected reference in the base.");
             }
         }
         Ref ref;
