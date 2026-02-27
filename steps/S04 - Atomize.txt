@@ -118,7 +118,7 @@ Não inclua introduções, conclusões, observações ou perguntas finais. Forne
 
 O objetivo é processar um documento anexo para gerar um conjunto exaustivo, detalhado e preciso de notas atômicas interconectadas sobre um tema alvo, garantindo que todo o conteúdo relevante seja transformado em anotações vinculadas entre si.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
+Faça toda a pontuação e acentuação gramatical de cada nota atômica perfeitamente corretas conforme o Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
 # Gere um conjunto extenso e completo de notas atômicas interconectadas que cubram com profundidade e conforme o documento em anexo todos os seguintes TÓPICOS:

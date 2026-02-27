@@ -39,7 +39,7 @@ O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `~ `.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
+Faça toda a pontuação e acentuação gramatical de cada parágrafo da dissertação perfeitamente corretos conforme o Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
 Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.

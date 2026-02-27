@@ -26,7 +26,7 @@ Faça uma lista extensa e completa com riqueza de detalhes para cobrir todos os 
 
 Aja como um analista de conhecimento especializado. Analise o documento em anexo e gere um **sumário hierárquico detalhado e exaustivo** cobrindo todos os assuntos, temas e tópicos abordados no documento em anexo.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
+Faça toda a pontuação e acentuação gramatical de cada item da lista perfeitamente corretos conforme o Português da norma-padrão.
 
 Faça uma lista extensa com riqueza de detalhes para cobrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que aparecem no documento em anexo nessa conversa.
 

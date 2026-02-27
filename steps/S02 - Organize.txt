@@ -23,7 +23,7 @@ Nunca separe cada título de classificação sugerido com os caracteres: `---`.
 
 Coloque uma linha em branco entre cada título de classificação sugerido.
 
-Faça toda a acentuação e pontuação da sua resposta em Português da norma-padrão.
+Faça toda a pontuação e acentuação gramatical de cada item de classificação perfeitamente corretos conforme o Português da norma-padrão.
 
 Não coloque nada na sua resposta além dos títulos de classificação sugeridos para sintetizar cada um dos grupos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
