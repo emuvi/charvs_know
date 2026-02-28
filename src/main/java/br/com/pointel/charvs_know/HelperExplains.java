@@ -3,6 +3,7 @@ package br.com.pointel.charvs_know;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -330,7 +331,7 @@ public class HelperExplains extends DFrame {
                 throw new Exception("No mp3 file found in pool folder.");
             }
             var targetFile = new File(selectedFile.getParentFile(), selectedName + ".mp3");
-            Files.move(mp3File.toPath(), targetFile.toPath());
+            Files.move(mp3File.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
             CKUtils.putMarkDownLink(titrationFile, targetFile.getName());
             WizGUI.showNotify("Sound inserted.", 1);
