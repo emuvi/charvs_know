@@ -87,10 +87,6 @@ Estruture essa lista de forma que a totalidade do conteúdo do arquivo anexado s
 
 Você está terminantemente proibido de realizar resumos genéricos que resultem em perda de dados, condensações superficiais ou na omissão de partes do texto original. A sua função é assegurar que cada argumento, explicação e dado pertinente do documento em anexo seja rigorosamente capturado, categorizado e devidamente listado dentro da estrutura de enumeração hierárquica exigida.
 
-
-
-
-
 Aqui estão os 6 parágrafos reescritos para induzir a formação de agrupamentos semânticos **extremamente pequenos e granulares**, mantendo o mesmo tom imperativo, restritivo e exaustivo que caracteriza a sua engenharia de prompt:
 
 Agrupe os itens da lista hierárquica por afinidade semântica, reunindo os temas, assuntos e tópicos que possuem fortíssima e restrita correlação de significado, garantindo obrigatoriamente que cada grupo formado seja extremamente pequeno, atômico e altamente focado, separando-os exclusivamente com uma linha contendo apenas os caracteres `---`.
@@ -104,5 +100,9 @@ Faça um agrupamento inteligente em que todos os tópicos e núcleos de conteúd
 Não utilize títulos de categoria, cabeçalhos ou qualquer texto descritivo para nomear esses agrupamentos hiperfocados e granulares. A única forma autorizada para segmentar esses conjuntos minúsculos de itens — que devem impreterivelmente respeitar um limite restrito de linhas hierárquicas por bloco — é o uso estrito de uma linha com os caracteres `---` entre um micrógrupo e outro.
 
 O resultado final da sua extração deve ser uma lista hierárquica em 3 (três) níveis, rigidamente segmentada em blocos de afinidade semântica minúsculos, onde cada agrupamento reduzido de significados é separado do anterior e do posterior única e exclusivamente por uma linha isolada contendo os caracteres `---`.
+
+A numeração de cada item deve seguir implacavelmente o padrão de 3 (três) níveis hierárquicos, formatados exclusivamente com algarismos arábicos e pontos separadores exatos, no modelo "1.", "1.1." e "1.1.1.". Você está terminantemente proibido de utilizar marcadores em formato de texto, letras, numerais romanos, hifens, asteriscos, espaços indentados ou qualquer outra representação visual ou tipográfica que desvie dessa numeração estrita e algorítmica para estruturar a hierarquia da sua resposta.
+
+Cada linha da sua resposta formatada deve abrigar única e exclusivamente o seu respectivo identificador numérico, seguido de um único espaço em branco, o texto sumarizante correspondente e a pontuação final adequada. Não insira quebras de linha ou parágrafos dentro de um mesmo item, não agrupe mais de um item na mesma linha e assegure-se de que a listagem se mantenha visualmente asséptica, onde cada elemento comece e termine na sua própria linha de forma absoluta e independente.
 
 Faça uma lista extensa com riqueza de detalhes para cobrir todos os assuntos, temas, tópicos e todos os núcleos de conteúdo que constam no documento em anexo nessa conversa.
