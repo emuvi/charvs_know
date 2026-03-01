@@ -2,6 +2,10 @@
 
 All desired features for this project will be documented in this file.
 
+## Problems
+
+    - Clean the file name inside de atomic notes.
+
 ## Upload
 
 Today is made the upload only of the reference.
