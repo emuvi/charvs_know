@@ -12,12 +12,16 @@ Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado 
 
 Faça uma composição extensa com muitos parágrafos e riqueza de detalhes que cubram todos os TÓPICOS sob análise conforme requisitado ao final desse comando. Extraia todas as informações pertinentes do documento em anexo nessa conversa.
 
+Incorpore à dissertação um tom de profunda sabedoria, assegurando que a análise transcenda a mera exposição de dados, promovendo reflexões vastas e ponderadas sobre os desdobramentos mais profundos e práticos dos temas abordados no documento em anexo.
+
 Adote um tom estritamente impessoal e objetivo, característico de dissertações expositivas de alto nível. Utilize a terceira pessoa do singular, vocabulário condizente com o documento em anexo e absolutamente preciso, respeitando rigorosamente a norma-padrão da língua portuguesa. Evite coloquialismos, ambiguidades, juízos de valor não fundamentados ou expressões de cunho emocional, garantindo uma exposição sóbria e direta dos conceitos presentes no documento em anexo nessa conversa.
 
 Utilize o estilo de redação didático tanto para concursos públicos quanto para exames de vestibulares.
 Faça um parágrafo de introdução apresentando o contexto e o assunto.
 Faça diversos parágrafos explicando cada um dos pontos pertinentes a todos os TÓPICOS sob análise conforme o documento em anexo nessa conversa.
 Faça um parágrafo de conclusão resumindo tudo que foi explicado.
+
+Eleve o nível cultural do texto, enriquecendo a argumentação com um vocabulário erudito e refinado, refletindo um amplo acúmulo de conhecimentos e uma sofisticação intelectual ímpar na articulação rigorosa dos conceitos.
 
 Analise o arquivo em anexo e espelhe o seu padrão linguístico. Mantenha exatamente o mesmo nível de formalidade, estrutura de frases e jargões ao longo de toda a nossa conversa.
 
@@ -27,11 +31,17 @@ Estruture cada parágrafo de desenvolvimento iniciando com um 'tópico frasal' c
 
 Elabore um parágrafo de conclusão que funcione como uma síntese de alto valor informacional, perfeitamente autossuficiente. Retome a tese central e os principais argumentos desenvolvidos ao longo do texto de forma concisa e integrada. A conclusão deve encapsular o núcleo do conhecimento extraído do documento, consolidando o aprendizado sem inserir em nenhuma hipótese informações, opiniões ou conceitos novos que não tenham sido previamente discutidos no desenvolvimento.
 
+Imprima uma marca de sapiência em cada parágrafo de desenvolvimento, demonstrando autoridade, sagacidade acadêmica e a clareza argumentativa típica de um intelecto altamente estudado, mantendo a exposição sóbria e direta.
+
 Faça uma redação extensa com um grande número de parágrafos tratando todos os pontos pertinentes a todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa.
+
+Evidencie um domínio absoluto do conhecimento pertinente ao tema, lastreando cada afirmação em saberes sólidos e informações objetivas extraídas do documento, como se o texto fosse redigido a partir de uma extensa vivência e estudo aprofundado do assunto.
 
 Assegure a coesão e a coerência textual empregando um rico repertório de conectivos e operadores argumentativos entre as frases e na transição entre os parágrafos. A progressão temática deve ser fluida e lógica, sem rupturas bruscas, de modo que cada novo parágrafo de desenvolvimento se conecte naturalmente ao raciocínio estabelecido no parágrafo anterior.
 
 Elabore uma análise exaustiva e detalhada do documento em anexo. O texto deve ser extenso, estruturado em múltiplos parágrafos e cobrir integralmente todos os pontos pertinentes de todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa.
+
+Estruture as explicações com o rigor e a clareza de uma alta instrução acadêmica, evidenciando um conjunto de saberes metodicamente organizados que instruam o leitor com a máxima precisão didática exigida para exames de alto nível.
 
 Desenvolva uma dissertação aprofundada com base no documento anexado e exclusivamente sobre os TÓPICOS requisitados ao final desse comando. Certifique-se de examinar minuciosamente todos os pontos pertinentes de todos os TÓPICOS sob análise conforme requisitado e conforme o documento em anexo nessa conversa, articulando todas as informações relevantes em uma estrutura textual ampla, completa e bem fundamentada.
 
@@ -46,6 +56,8 @@ Não coloque nenhuma pergunta ao final da sua resposta para questionar como que 
 O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
 O título deve começar com os caracteres `♦ `.
+
+Promova a ilustração do pensamento ao longo da redação, estruturando o texto de modo a garantir o esclarecimento contínuo da mente do leitor, dissipando ambiguidades através de um desenvolvimento intelectual lógico, contínuo e irrefutável.
 
 Assuma que você é o autor do documento em anexo. Ao me responder, replique a mesma forma de escrever do texto, garantindo que a identidade e o tom do texto original sejam mantidos.
 
