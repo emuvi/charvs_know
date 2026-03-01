@@ -85,22 +85,22 @@ public class HelperOrganize extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
+    private final WorkRef workRef;
 
     
-    public HelperOrganize(SelectedRef selectedRef) {
+    public HelperOrganize(WorkRef workRef) {
         super("Helper Organize");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
         onFirstActivated(e -> buttonBringActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             group.clearOrganized();
         }
         comboGroupActionPerformed(e);
@@ -138,7 +138,7 @@ public class HelperOrganize extends DFrame {
             var index = 0;
             var start = source.indexOf("[[");
             while (start > -1) {
-                if (index >= selectedRef.ref.groups.size()) {
+                if (index >= workRef.ref.groups.size()) {
                     break;
                 }
                 var end = source.indexOf("]]", start);
@@ -148,7 +148,7 @@ public class HelperOrganize extends DFrame {
                         titration = "+ " + titration;
                     }
                     titration = CKUtils.cleanFileName(titration);
-                    selectedRef.ref.groups.get(index).titration = "[[" + titration + "]]";
+                    workRef.ref.groups.get(index).titration = "[[" + titration + "]]";
                     start = source.indexOf("[[", end);
                     index++;
                 } else {
@@ -163,7 +163,7 @@ public class HelperOrganize extends DFrame {
 
     private void buttonBringActionPerformed(ActionEvent e) {
         var builder = new StringBuilder();
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             var titration = group.titration;
             if (titration == null || titration.isBlank()) {
                 titration = "[[+ ]]";
@@ -194,12 +194,12 @@ public class HelperOrganize extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             textTitration.setValue("");
             textTopics.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         textTitration.setValue(group.titration);
         textTopics.setValue(group.topics);
     }
@@ -209,14 +209,14 @@ public class HelperOrganize extends DFrame {
         if (index == -1) {
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         group.titration = textTitration.getValue().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
-            selectedRef.ref.props.organizedAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.ref.props.organizedAt = WizUtilDate.formatDateMach(new Date());
+            workRef.write();
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -236,7 +236,7 @@ public class HelperOrganize extends DFrame {
     private String getInsertion() {
         var result = new StringBuilder();
         var first = true;
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             if (first) {
                 first = false;
             } else {
@@ -258,7 +258,7 @@ public class HelperOrganize extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Organize.getCommand(getInsertion()));
+                var result = workRef.talkWithBase(Steps.Organize.getCommand(getInsertion()));
                 if (stop) {
                     return;
                 }

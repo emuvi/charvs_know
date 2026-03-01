@@ -5,10 +5,10 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SelectedRef {
+public class WorkRef {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(SelectedRef.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorkRef.class);
 
 
     public final File baseFolder;
@@ -18,8 +18,11 @@ public class SelectedRef {
     public final String refWithExtension;
     public final Runnable updateStatus;
     public final Talker talker;
+    public final Sounder sounder;
 
-    public SelectedRef(File baseFolder, Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
+    private volatile File workFile;
+
+    public WorkRef(File baseFolder, Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
         this.baseFolder = baseFolder;
         this.ref = ref;
         this.refFile = refFile;
@@ -27,17 +30,18 @@ public class SelectedRef {
         this.refWithExtension = refWithExtension;
         this.updateStatus = updateStatus;
         this.talker = Talker.get();
+        this.sounder = Sounder.get();
     }
 
-    public String talk(String command) {
-        logger.info("Command:\n{}", command);
+    public String talk(String command) throws Exception {
+        logger.info("Talk Command:\n{}", command);
         return talker.talk(command);
     }
 
-    public String talkWithAttach(String command) {
-        logger.info("Command:\n{}", command);
-        var baseURI = RefFTP.getBaseURI(refWithExtension);
-        logger.info("Base URI:\n{}", baseURI);
+    public String talkWithBase(String command) throws Exception {
+        logger.info("Talk Command:\n{}", command);
+        var baseURI = RefBase.getURIRefs(refWithExtension);
+        logger.info("Talk Base URI:\n{}", baseURI);
         return talker.talk(command, UriMime.of(baseURI));
     }
 
@@ -50,5 +54,19 @@ public class SelectedRef {
         RefDatex.write(ref, refFile);
         updateStatus.run();
     }
+
+
+    public boolean hasWorkFile() {
+        return workFile != null;
+    }
+
+    public File workFile() {
+        return workFile;
+    }
+
+    public void workFile(File workFile) {
+        this.workFile = workFile;
+    }
+
 
 }

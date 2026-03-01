@@ -177,10 +177,10 @@ public class CharvsKnowDesk extends DFrame {
 
     private void buttonSelectedOpenActionPerformed(ActionEvent evt) {
         try {
-            if (selectedRef == null) {
+            if (workRef == null) {
                 return;
             }
-            WizGUI.exploreAndSelect(selectedRef.sourceFile);
+            WizGUI.exploreAndSelect(workRef.sourceFile);
         } catch (Exception e) {
             WizGUI.showError(e);
         }
@@ -188,14 +188,14 @@ public class CharvsKnowDesk extends DFrame {
 
     private void buttonActExecuteActionPerformed(ActionEvent evt) {
         try {
-            if (selectedRef == null) {
+            if (workRef == null) {
                 throw new Exception("Reference not selected.");
             }
             var step = getSelectedStep();
             if (step == null) {
                 throw new Exception("Action not selected.");
             }
-            step.getAct().execute(selectedRef);
+            step.getAct().execute(workRef);
         } catch (Exception e) {
             WizGUI.showError(e);
         }
@@ -217,20 +217,20 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     private void buttonMemoaWriteActionPerformed(ActionEvent evt) {
-        if (selectedRef == null) {
+        if (workRef == null) {
             return;
         }
         try {
-            selectedRef.ref.memoa.text = textMemoaEditor.getValue().trim();
-            selectedRef.ref.props.memoedAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.ref.memoa.text = textMemoaEditor.getValue().trim();
+            workRef.ref.props.memoedAt = WizUtilDate.formatDateMach(new Date());
+            workRef.write();
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }    
     }
 
     private transient File lastSelectedFile = null;
-    private transient SelectedRef selectedRef = null;
+    private transient WorkRef workRef = null;
 
     public void selectRef(File selectFile) throws Exception {
         var hashMD5 = "& " + WizBytes.getMD5(selectFile);
@@ -261,7 +261,7 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = selectFile;
-        selectedRef = new SelectedRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
+        workRef = new WorkRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 
@@ -285,15 +285,15 @@ public class CharvsKnowDesk extends DFrame {
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
         lastSelectedFile = sourceFile;
-        selectedRef = new SelectedRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
+        workRef = new WorkRef(getBaseFolder(), ref, refFile, sourceFile, refWithExtension, this::updateStatus);
         updateStatus();
     }
 
     public void updateStatus() {
-        textMemoaEditor.setValue(selectedRef.ref.memoa.text);
+        textMemoaEditor.setValue(workRef.ref.memoa.text);
         var start = textView.getSelectionStart();
         var end = textView.getSelectionEnd();
-        textView.setText(RefDatex.getRefSource(selectedRef.ref, false));
+        textView.setText(RefDatex.getRefSource(workRef.ref, false));
         textView.setSelectionStart(start);
         textView.setSelectionEnd(end);
     }

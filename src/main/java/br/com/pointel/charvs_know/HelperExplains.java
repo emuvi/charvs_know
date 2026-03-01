@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -18,12 +17,12 @@ import br.com.pointel.jarch.desk.DComboEdit;
 import br.com.pointel.jarch.desk.DFieldEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DIntegerField;
+import br.com.pointel.jarch.desk.DListDesk;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
-import br.com.pointel.jarch.desk.DListDesk;
 import br.com.pointel.jarch.mage.WizGUI;
 import br.com.pointel.jarch.mage.WizString;
 import br.com.pointel.jarch.mage.WizText;
@@ -105,31 +104,29 @@ public class HelperExplains extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
-
-    private File selectedFile = null;
+    private final WorkRef workRef;
 
     
-    public HelperExplains(SelectedRef selectedRef) {
+    public HelperExplains(WorkRef workRef) {
         super("Helper Explains");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
             textAsk.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         Integer orderInt = null;
         try {
             orderInt = Integer.parseInt(group.order.trim());
@@ -154,10 +151,10 @@ public class HelperExplains extends DFrame {
     private void buttonClearActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             clearGroup(group);
             buttonBringActionPerformed(e);
             WizGUI.showNotify("Cleared.");
@@ -171,7 +168,7 @@ public class HelperExplains extends DFrame {
             if (!WizGUI.showConfirm("Are you sure to clear all?")) {
                 return;
             }
-            for (var group : selectedRef.ref.groups) {
+            for (var group : workRef.ref.groups) {
                 clearGroup(group);
             }
             buttonBringActionPerformed(e);
@@ -182,12 +179,12 @@ public class HelperExplains extends DFrame {
     }
 
     private void clearGroup(RefGroup group) throws Exception {
-        var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+        var titrationFile = group.getTitrationFile(workRef.baseFolder);
         if (!titrationFile.exists()) {
             return;
         }
         var titrationData = ClassDatex.read(titrationFile);
-        var folder = group.getClassificationFolder(selectedRef.baseFolder);
+        var folder = group.getClassificationFolder(workRef.baseFolder);
         for (var link : titrationData.explainsLinks) {
             var explainsFile = new File(folder, link + ".md");
             if (explainsFile.exists()) {
@@ -220,7 +217,7 @@ public class HelperExplains extends DFrame {
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
             var source = textAsk.edit().getValue().trim();
@@ -231,7 +228,7 @@ public class HelperExplains extends DFrame {
                 source = replace.apply(source);
             }
             textAsk.edit().setValue(source);
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             var title = CKUtils.cleanFileName(WizString.getFirstLine(source)).trim();
             if (title.isBlank()) {
                 throw new Exception("The first line of the content must have a title.");
@@ -240,16 +237,16 @@ public class HelperExplains extends DFrame {
                 title = "^ " + title;
             }
             if (!source.contains("*Refs:*")) {
-                source = source + "\n\n*Refs:* " + selectedRef.ref.props.hashMD5;
+                source = source + "\n\n*Refs:* " + workRef.ref.props.hashMD5;
             }
-            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            var folder = group.getClassificationFolder(workRef.baseFolder);
             var explainsFile = new File(folder, title + ".md");
             WizText.write(explainsFile, source);
-            selectedFile = explainsFile;
-            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            workRef.workFile(explainsFile);
+            var titrationFile = group.getTitrationFile(workRef.baseFolder);
             CKUtils.putMarkDownLink(titrationFile, title);
             group.explainsAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.write();
             WizGUI.showNotify("Explains written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -259,17 +256,17 @@ public class HelperExplains extends DFrame {
     private void buttonBringActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);            
-            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);            
+            var titrationFile = group.getTitrationFile(workRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
             var explainsLinks = CKUtils.filterMarkDownLinks(titrationData.explainsLinks);
             if (explainsLinks.isEmpty()) {
                 return;
             }
-            var folder = group.getClassificationFolder(selectedRef.baseFolder);
+            var folder = group.getClassificationFolder(workRef.baseFolder);
             if (explainsLinks.size() > 1) {
                 var selectLink = new DListDesk<String>("Select a text to bring");
                 selectLink.options(explainsLinks);
@@ -296,45 +293,14 @@ public class HelperExplains extends DFrame {
     private void buttonSoundActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("There are no group selected.");
             }
-            var group = selectedRef.ref.groups.get(index);
-            if (selectedFile == null) {
+            var group = workRef.ref.groups.get(index);
+            if (!workRef.hasWorkFile()) {
                 throw new Exception("There are no explains selected.");
             }
-            var poolFolder = new File(selectedRef.baseFolder, "+ Pool");
-            if (!poolFolder.exists()) {
-                poolFolder.mkdirs();
-            }
-            var mp3Files = new ArrayList<File>();
-            for (var file : poolFolder.listFiles()) {
-                if (file.getName().endsWith(".mp3")) {
-                    mp3Files.add(file);
-                }
-            }
-            var selectedName = FilenameUtils.getBaseName(selectedFile.getName());
-            File mp3File = null;
-            var minDiff = Integer.MAX_VALUE;
-            for (var file : mp3Files) {
-                var mp3Name = FilenameUtils.getBaseName(file.getName());
-                var difference = WizString.getDistanceWords(selectedName, mp3Name);
-                if (mp3Name.equals(selectedName)) {
-                    mp3File = file;
-                    break;
-                } else if (difference < minDiff) {
-                    mp3File = file;
-                    minDiff = difference;
-                }
-            }
-            if (mp3File == null) {
-                throw new Exception("No mp3 file found in pool folder.");
-            }
-            var targetFile = new File(selectedFile.getParentFile(), selectedName + ".mp3");
-            Files.move(mp3File.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
-            CKUtils.putMarkDownLink(titrationFile, targetFile.getName());
-            WizGUI.showNotify("Sound inserted.", 1);
+            workRef.sounder.sound(workRef, group);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
@@ -347,15 +313,15 @@ public class HelperExplains extends DFrame {
         }
         var source = WizText.read(explainsFile);
         textAsk.setValue(source);
-        selectedFile = explainsFile;
+        workRef.workFile(explainsFile);
     }
 
     private String getInsertion() {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             return "";
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         return group.topics.trim();
     }
 
@@ -370,7 +336,7 @@ public class HelperExplains extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Explains.getCommand(getInsertion()));
+                var result = workRef.talkWithBase(Steps.Explains.getCommand(getInsertion()));
                 if (stop) {
                     return;
                 }

@@ -111,22 +111,22 @@ public class HelperClassify extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
+    private final WorkRef workRef;
 
     
-    public HelperClassify(SelectedRef selectedRef) {
+    public HelperClassify(WorkRef workRef) {
         super("Helper Classify");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
         onFirstActivated(e -> buttonBringActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             group.clearClassified();
         }
         comboGroupActionPerformed(e);
@@ -176,7 +176,7 @@ public class HelperClassify extends DFrame {
                     }
                     classification = CKUtils.cleanFileName(classification);
                     var order = orders.get(index).toString();
-                    for (var group : selectedRef.ref.groups) {
+                    for (var group : workRef.ref.groups) {
                         if (order.equals(group.order)) {
                             group.classification = classification;
                         }
@@ -195,7 +195,7 @@ public class HelperClassify extends DFrame {
 
     private void buttonBringActionPerformed(ActionEvent e) {
         var map = new LinkedHashMap<Integer, String>();
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
                 continue;
             }
@@ -217,7 +217,7 @@ public class HelperClassify extends DFrame {
     }
 
     private void buttonSameActionPerformed(ActionEvent e) {
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             group.order = 1 + "";
         }
         comboGroupActionPerformed(e);
@@ -238,13 +238,13 @@ public class HelperClassify extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         Integer orderInt = null;
         try {
             orderInt = Integer.parseInt(group.order.trim());
@@ -260,7 +260,7 @@ public class HelperClassify extends DFrame {
         if (index == -1) {
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         var orderStr = "";
         try {
             orderStr = fieldClassOrder.getValue().toString();
@@ -271,12 +271,12 @@ public class HelperClassify extends DFrame {
 
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
-            selectedRef.ref.props.classifiedAt = WizUtilDate.formatDateMach(new Date());
-            for (var group : selectedRef.ref.groups) {
+            workRef.ref.props.classifiedAt = WizUtilDate.formatDateMach(new Date());
+            for (var group : workRef.ref.groups) {
                 group.hierarchy = getHierarchy(group.classification);
-                group.writeClassification(selectedRef.baseFolder);
+                group.writeClassification(workRef.baseFolder);
             }
-            selectedRef.write();
+            workRef.write();
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -334,7 +334,7 @@ public class HelperClassify extends DFrame {
 
     private String getInsertion(Integer of) {
         var result = new StringBuilder();
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
                 continue;
             }
@@ -349,7 +349,7 @@ public class HelperClassify extends DFrame {
 
     private Set<Integer> getOrders() {
         var result = new LinkedHashSet<Integer>();
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
                 continue;
             }
@@ -368,13 +368,13 @@ public class HelperClassify extends DFrame {
 
     private Set<Integer> createOrders() {
         var result = new LinkedHashSet<Integer>();
-        var size = (int) Math.ceil(selectedRef.ref.groups.size() / 3.0);
-        if (selectedRef.ref.groups.size() % 3 == 1) {
+        var size = (int) Math.ceil(workRef.ref.groups.size() / 3.0);
+        if (workRef.ref.groups.size() % 3 == 1) {
             size--;
         }
         Integer order = 1;
         int count = 0;
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             group.order = order.toString();
             if (!result.contains(order)) {
                 result.add(order);
@@ -398,7 +398,7 @@ public class HelperClassify extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Classify.getCommand(getInsertion()));
+                var result = workRef.talkWithBase(Steps.Classify.getCommand(getInsertion()));
                 if (stop) {
                     return;
                 }

@@ -99,6 +99,16 @@ public class Setup {
         WizProps.set(KEY_TALKER_KIND, talkerKind.ordinal());
     }
 
+    public static final String KEY_SOUNDER_KIND = "FRAME_SETUP_COMP_SOUNDER_KIND";
+    
+    public static SetupSounderKind getSounderKind() {
+        return SetupSounderKind.values()[WizProps.get(KEY_SOUNDER_KIND, 0)];
+    }
+
+    public static void setSounderKind(SetupSounderKind soundKind) {
+        WizProps.set(KEY_SOUNDER_KIND, soundKind.ordinal());
+    }
+
     public static File getReplacesListFile() {
         return new File("replaces.ser");
     }

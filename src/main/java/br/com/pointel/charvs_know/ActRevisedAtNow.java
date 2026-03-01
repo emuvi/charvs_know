@@ -8,12 +8,12 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class ActRevisedAtNow implements Act {
 
     @Override
-    public void execute(SelectedRef selectedRef) throws Exception {
-        selectedRef.ref.props.revisedAt = WizUtilDate.formatDateMach(new Date());
-        Integer revisedCount = WizInteger.get(selectedRef.ref.props.revisedCount, 0);
+    public void execute(WorkRef workRef) throws Exception {
+        workRef.ref.props.revisedAt = WizUtilDate.formatDateMach(new Date());
+        Integer revisedCount = WizInteger.get(workRef.ref.props.revisedCount, 0);
         revisedCount++;
-        selectedRef.ref.props.revisedCount = revisedCount.toString();
-        selectedRef.write();
+        workRef.ref.props.revisedCount = revisedCount.toString();
+        workRef.write();
     }
 
 }

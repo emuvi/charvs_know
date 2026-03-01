@@ -78,22 +78,22 @@ public class HelperIdentify extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
+    private final WorkRef workRef;
 
     
-    public HelperIdentify(SelectedRef selectedRef) {
+    public HelperIdentify(WorkRef workRef) {
         super("Helper Identify");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
         onFirstActivated(e -> buttonBringActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
-        selectedRef.ref.groups.clear();
+        workRef.ref.groups.clear();
         comboGroup.clear();
         comboGroupActionPerformed(e);
     }
@@ -131,12 +131,12 @@ public class HelperIdentify extends DFrame {
             if (parts.length == 0) {
                 return;
             }
-            selectedRef.ref.groups.clear();
+            workRef.ref.groups.clear();
             comboGroup.clear();
             for (int i = 0; i < parts.length; i++) {
                 var group = new RefGroup();
                 group.topics = parts[i].trim();
-                selectedRef.ref.groups.add(group);
+                workRef.ref.groups.add(group);
                 comboGroup.add("Group " + String.format("%02d", i + 1));
             }
             comboGroup.select(parts.length > 0 ? 0 : -1);
@@ -149,7 +149,7 @@ public class HelperIdentify extends DFrame {
     private void buttonBringActionPerformed(ActionEvent e) {
         var builder = new StringBuilder();
         var first = true;
-        for (var group : selectedRef.ref.groups) {
+        for (var group : workRef.ref.groups) {
             if (first) {
                 first = false;
             } else {
@@ -163,9 +163,9 @@ public class HelperIdentify extends DFrame {
     private void buttonAddActionPerformed(ActionEvent e) {
         var group = new RefGroup();
         group.topics = textAsk.edit().selectedText().trim();
-        selectedRef.ref.groups.add(group);
-        comboGroup.add("Group " + String.format("%02d", selectedRef.ref.groups.size()));
-        comboGroup.select(selectedRef.ref.groups.size() - 1);
+        workRef.ref.groups.add(group);
+        comboGroup.add("Group " + String.format("%02d", workRef.ref.groups.size()));
+        comboGroup.select(workRef.ref.groups.size() - 1);
         comboGroupActionPerformed(e);
     }
 
@@ -179,11 +179,11 @@ public class HelperIdentify extends DFrame {
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             textTopics.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         textTopics.setValue(group.topics);
     }
 
@@ -192,14 +192,14 @@ public class HelperIdentify extends DFrame {
         if (index == -1) {
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         group.topics = textTopics.getValue().trim();
     }
 
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
-            selectedRef.ref.props.identifiedAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.ref.props.identifiedAt = WizUtilDate.formatDateMach(new Date());
+            workRef.write();
             WizGUI.close(this);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -227,7 +227,7 @@ public class HelperIdentify extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Identify.getCommand());
+                var result = workRef.talkWithBase(Steps.Identify.getCommand());
                 if (stop) {
                     return;
                 }

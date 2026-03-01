@@ -7,9 +7,9 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class ActDoneAtNow implements Act {
 
     @Override
-    public void execute(SelectedRef selectedRef) throws Exception {
-        selectedRef.ref.props.doneAt = WizUtilDate.formatDateMach(new Date());
-        selectedRef.write();
+    public void execute(WorkRef workRef) throws Exception {
+        workRef.ref.props.doneAt = WizUtilDate.formatDateMach(new Date());
+        workRef.write();
     }
 
 }

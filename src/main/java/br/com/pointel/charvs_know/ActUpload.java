@@ -8,10 +8,10 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class ActUpload implements Act {
 
     @Override
-    public void execute(SelectedRef selectedRef) throws Exception {
-        RefFTP.upload(selectedRef.sourceFile, selectedRef.refWithExtension);
-        selectedRef.ref.props.uploadedAt = WizUtilDate.formatDateMach(new Date());
-        selectedRef.write();
+    public void execute(WorkRef workRef) throws Exception {
+        RefBase.upload(workRef.sourceFile, workRef.refWithExtension);
+        workRef.ref.props.uploadedAt = WizUtilDate.formatDateMach(new Date());
+        workRef.write();
         WizGUI.showInfo("Upload executed.");
     }
 

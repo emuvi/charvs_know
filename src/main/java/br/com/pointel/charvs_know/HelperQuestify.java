@@ -102,29 +102,29 @@ public class HelperQuestify extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
+    private final WorkRef workRef;
 
     
-    public HelperQuestify(SelectedRef selectedRef) {
+    public HelperQuestify(WorkRef workRef) {
         super("Helper Questify");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
             textAsk.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         Integer orderInt = null;
         try {
             orderInt = Integer.parseInt(group.order.trim());
@@ -149,10 +149,10 @@ public class HelperQuestify extends DFrame {
     private void buttonClearActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             clearGroup(group);
             buttonBringActionPerformed(e);
             WizGUI.showNotify("Cleared.");
@@ -166,7 +166,7 @@ public class HelperQuestify extends DFrame {
             if (!WizGUI.showConfirm("Are you sure to clear all?")) {
                 return;
             }
-            for (var group : selectedRef.ref.groups) {
+            for (var group : workRef.ref.groups) {
                 clearGroup(group);
             }
             buttonBringActionPerformed(e);
@@ -198,7 +198,7 @@ public class HelperQuestify extends DFrame {
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
             var source = textAsk.edit().getValue().trim();
@@ -209,11 +209,11 @@ public class HelperQuestify extends DFrame {
                 source = replace.apply(source);
             }
             textAsk.edit().setValue(source);
-            var group = selectedRef.ref.groups.get(index);
-            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);
+            var questsFile = group.getQuestsFile(workRef.baseFolder);
             WizText.write(questsFile, source);
             group.questsAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.write();
             WizGUI.showNotify("Quests written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -223,11 +223,11 @@ public class HelperQuestify extends DFrame {
     private void buttonBringActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
-            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);
+            var questsFile = group.getQuestsFile(workRef.baseFolder);
             var source = "";
             if (questsFile.exists()) {
                 source = WizText.read(questsFile);
@@ -241,11 +241,11 @@ public class HelperQuestify extends DFrame {
     private void buttonOpenActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
-            var group = selectedRef.ref.groups.get(index);
-            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);
+            var questsFile = group.getQuestsFile(workRef.baseFolder);
             WizGUI.open(questsFile);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -255,10 +255,10 @@ public class HelperQuestify extends DFrame {
     private void buttonNamerActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             var deckName = getDeckName(group);
             WizGUI.putStringOnClipboard(deckName);
             WizGUI.showNotify("Name copied.");
@@ -270,12 +270,12 @@ public class HelperQuestify extends DFrame {
     private void buttonDeckerActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             var deckName = getDeckName(group);
-            var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+            var questsFile = group.getQuestsFile(workRef.baseFolder);
             AnkiCsvHelper.setupDeckFromCsv(deckName, questsFile);
             WizGUI.showNotify("Deck created.", 1);
         } catch (Exception ex) {
@@ -285,15 +285,15 @@ public class HelperQuestify extends DFrame {
 
     private String getInsertion() {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             return "";
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         return group.topics.trim();
     }
 
     private void clearGroup(RefGroup group) throws Exception {
-        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+        var questsFile = group.getQuestsFile(workRef.baseFolder);
         if (questsFile.exists()) {
             if (!questsFile.delete()) {
                 throw new Exception("Failed to delete quest file: " + questsFile.getAbsolutePath());
@@ -316,7 +316,7 @@ public class HelperQuestify extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Questify.getCommand(getInsertion()));
+                var result = workRef.talkWithBase(Steps.Questify.getCommand(getInsertion()));
                 if (stop) {
                     return;
                 }

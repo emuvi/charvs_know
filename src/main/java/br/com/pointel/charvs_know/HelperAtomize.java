@@ -94,29 +94,29 @@ public class HelperAtomize extends DFrame {
             .borderEmpty(7);
 
 
-    private final SelectedRef selectedRef;
+    private final WorkRef workRef;
 
     
-    public HelperAtomize(SelectedRef selectedRef) {
+    public HelperAtomize(WorkRef workRef) {
         super("Helper Atomize");
-        this.selectedRef = selectedRef;
+        this.workRef = workRef;
         body(splitterBody);
         comboGroup.clear();
-        for (int i = 0; i < selectedRef.ref.groups.size(); i++) {
+        for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
     }
 
     private void comboGroupActionPerformed(ActionEvent e) {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             fieldClassTitle.setValue("");
             textTitration.setValue("");
             textTopics.setValue("");
             textAsk.setValue("");
             return;
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         Integer orderInt = null;
         try {
             orderInt = Integer.parseInt(group.order.trim());
@@ -141,10 +141,10 @@ public class HelperAtomize extends DFrame {
     private void buttonClearActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
+            var group = workRef.ref.groups.get(index);
             clearGroup(group);
             buttonBringActionPerformed(e);
             WizGUI.showNotify("Cleared.");
@@ -158,7 +158,7 @@ public class HelperAtomize extends DFrame {
             if (!WizGUI.showConfirm("Are you sure to clear all?")) {
                 return;
             }
-            for (var group : selectedRef.ref.groups) {
+            for (var group : workRef.ref.groups) {
                 clearGroup(group);
             }
             buttonBringActionPerformed(e);
@@ -169,8 +169,8 @@ public class HelperAtomize extends DFrame {
     }
 
     private void clearGroup(RefGroup group) throws Exception {
-        var folder = group.getClassificationFolder(selectedRef.baseFolder);
-        var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+        var folder = group.getClassificationFolder(workRef.baseFolder);
+        var titrationFile = group.getTitrationFile(workRef.baseFolder);
         var titrationData = ClassDatex.read(titrationFile);
         for (var link : titrationData.cardsLinks) {
             var cardFile = new File(folder, link + ".md");
@@ -196,7 +196,7 @@ public class HelperAtomize extends DFrame {
                 }
             }
         }
-        var questsFile = group.getQuestsFile(selectedRef.baseFolder);
+        var questsFile = group.getQuestsFile(workRef.baseFolder);
         if (questsFile.exists()) {
             if (!questsFile.delete()) {
                 throw new Exception("Failed to delete quests file: " + questsFile.getAbsolutePath());
@@ -207,12 +207,12 @@ public class HelperAtomize extends DFrame {
                 throw new Exception("Failed to delete titration file: " + titrationFile.getAbsolutePath());
             }
         }
-        var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
+        var classificationFile = group.getClassificationFile(workRef.baseFolder);
         CKUtils.delMarkDownLink(classificationFile, group.titration);
         group.cardsAt = "";
         group.questsAt = "";
         group.explainsAt = "";
-        selectedRef.write();
+        workRef.write();
     }
 
     private volatile AskThread askThread = null;
@@ -237,7 +237,7 @@ public class HelperAtomize extends DFrame {
     private void buttonWriteActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to write.");
             }
             var source = textAsk.edit().getValue().trim();
@@ -248,8 +248,8 @@ public class HelperAtomize extends DFrame {
                 source = replace.apply(source);
             }
             textAsk.edit().setValue(source);
-            var group = selectedRef.ref.groups.get(index);
-            var classFolder = group.getClassificationFolder(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);
+            var classFolder = group.getClassificationFolder(workRef.baseFolder);
             var atomicsSources = source.split("\\-\\-\\-");
             for (var atomicSource : atomicsSources) {
                 atomicSource = atomicSource.trim();
@@ -274,15 +274,15 @@ public class HelperAtomize extends DFrame {
                 }
                 atomicNote.note = AtomicNote.extractNote(atomicSource);
                 atomicNote.tags = AtomicNote.extractTags(atomicSource);
-                atomicNote.refs = selectedRef.ref.props.hashMD5;
+                atomicNote.refs = workRef.ref.props.hashMD5;
                 AtomicNote.write(atomicNote, atomicFile);
-                var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+                var titrationFile = group.getTitrationFile(workRef.baseFolder);
                 CKUtils.putMarkDownLink(titrationFile, name);
-                var classificationFile = group.getClassificationFile(selectedRef.baseFolder);
+                var classificationFile = group.getClassificationFile(workRef.baseFolder);
                 CKUtils.putMarkDownLink(classificationFile, group.titration);
             }
             group.cardsAt = WizUtilDate.formatDateMach(new Date());
-            selectedRef.write();
+            workRef.write();
             WizGUI.showNotify("Atomics written.", 1);
         } catch (Exception ex) {
             WizGUI.showError(ex);
@@ -292,12 +292,12 @@ public class HelperAtomize extends DFrame {
     private void buttonBringActionPerformed(ActionEvent e) {
         try {
             var index = comboGroup.selectedIndex();
-            if (index == -1 || index >= selectedRef.ref.groups.size()) {
+            if (index == -1 || index >= workRef.ref.groups.size()) {
                 throw new Exception("Select a group to clear.");
             }
-            var group = selectedRef.ref.groups.get(index);
-            var folder = group.getClassificationFolder(selectedRef.baseFolder);
-            var titrationFile = group.getTitrationFile(selectedRef.baseFolder);
+            var group = workRef.ref.groups.get(index);
+            var folder = group.getClassificationFolder(workRef.baseFolder);
+            var titrationFile = group.getTitrationFile(workRef.baseFolder);
             var titrationData = ClassDatex.read(titrationFile);
             var builder = new StringBuilder();
             builder.append("---\n\n");
@@ -326,10 +326,10 @@ public class HelperAtomize extends DFrame {
 
     private String getInsertion() {
         var index = comboGroup.selectedIndex();
-        if (index == -1 || index >= selectedRef.ref.groups.size()) {
+        if (index == -1 || index >= workRef.ref.groups.size()) {
             return "";
         }
-        var group = selectedRef.ref.groups.get(index);
+        var group = workRef.ref.groups.get(index);
         return group.topics.trim();
     }
 
@@ -344,7 +344,7 @@ public class HelperAtomize extends DFrame {
         @Override
         public void run() {
             try {
-                var result = selectedRef.talkWithAttach(Steps.Atomize.getCommand(getInsertion()));
+                var result = workRef.talkWithBase(Steps.Atomize.getCommand(getInsertion()));
                 if (stop) {
                     return;
                 }

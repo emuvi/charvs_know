@@ -23,6 +23,10 @@ public class SetupDesk extends DFrame {
     private JLabel labelTalkerKind = new JLabel("Talker Kind:");
     private DefaultComboBoxModel<String> modelTalkerKind = new DefaultComboBoxModel<>(new String[] { "Genai", "Clipboard" });
     private JComboBox<String> comboTalkerKind = new JComboBox<>(modelTalkerKind);
+
+    private JLabel labelSounderKind = new JLabel("Sounder Kind:");
+    private DefaultComboBoxModel<String> modelSounderKind = new DefaultComboBoxModel<>(new String[] { "Genai", "Clipboard" });
+    private JComboBox<String> comboSounderKind = new JComboBox<>(modelSounderKind);
     
     public SetupDesk() {
         super("Setup");
@@ -32,14 +36,17 @@ public class SetupDesk extends DFrame {
     private void initComponents() {
         comboGenaiModel.setName("GenaiModel");
         comboTalkerKind.setName("TalkerKind");
+        comboSounderKind.setName("SounderKind");
 
         panelBody.setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
-        panelBody.setLayout(new GridLayout(2, 2, 2, 2));
+        panelBody.setLayout(new GridLayout(3, 2, 2, 2));
         panelBody.add(labelGenaiModel);
         panelBody.add(comboGenaiModel);
         panelBody.add(labelTalkerKind);
         panelBody.add(comboTalkerKind);
+        panelBody.add(labelSounderKind);
+        panelBody.add(comboSounderKind);
 
         setContentPane(scrollBody);
         setLocationRelativeTo(null);
