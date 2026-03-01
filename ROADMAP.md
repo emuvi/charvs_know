@@ -14,3 +14,7 @@ We want to make the upload of the entire base.
 ## Groovy Commands on TextEditor
 
     - Put a combo and a button to easy call a command.
+
+## Interface
+
+    - Make next and prior buttons to all combo of groups.
