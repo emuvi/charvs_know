@@ -12,7 +12,7 @@ public class RefBase {
 
 
     public static final String BASE_URI = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_URI", "https://urvs.com.br/");
-    public static final String BASE_REFS = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_FOLDER", "Conhecimento/+ Refs/");
+    public static final String BASE_REFS = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_FOLDER", "Conhecer/+ Refs/");
     public static final String BASE_INSIDE = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_INSIDE", "public_html/");
     public static final String BASE_URI_REFS = BASE_URI + BASE_REFS;
 
