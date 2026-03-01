@@ -109,6 +109,16 @@ public class Setup {
         WizProps.set(KEY_SOUNDER_KIND, soundKind.ordinal());
     }
 
+    public static final String KEY_BALCON_VOICE = "FRAME_SETUP_COMP_BALCON_VOICE";
+    
+    public static String getBalconVoice() {
+        return WizProps.get(KEY_BALCON_VOICE, "Microsoft Maria Desktop");
+    }
+
+    public static void setBalconVoice(String balconVoice) {
+        WizProps.set(KEY_BALCON_VOICE, balconVoice);
+    }
+
     public static File getReplacesListFile() {
         return new File("replaces.ser");
     }
