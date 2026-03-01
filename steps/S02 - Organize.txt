@@ -1,9 +1,7 @@
 Vamos criar um sistema de classificação para cada um dos grupos semióticos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
-
 Cada classificação sugerida deve ser apresentada no seguinte formato:
 [[+ Título de Classificação com até 120 Caracteres]]
-
 
 Cada classificação sugerida deve começar com `[[+` e terminar com `]]`.
 
@@ -28,6 +26,60 @@ Faça toda a pontuação e acentuação gramatical de cada item de classificaç�
 Não coloque nada na sua resposta além dos títulos de classificação sugeridos para sintetizar cada um dos grupos abaixo separados por `---` que foram extraídos conforme o documento em anexo nessa conversa.
 
 Sugira títulos de classificação agrupadores de significado que façam sentido conforme o documento em anexo nessa conversa.
+
+Assuma a postura de um analista de conhecimento especializado e arquivista sênior; sua função é sintetizar o cerne absoluto de cada grupo semântico com a máxima precisão acadêmica.
+
+Adote o mesmo tom de voz, vocabulário e estilo de escrita do documento anexado para forjar os títulos de classificação, garantindo que eles pareçam nativos ao ecossistema do texto original.
+
+Eleve o nível cultural da síntese, enriquecendo a formulação com um vocabulário erudito, refinado e estritamente técnico que reflita um profundo entendimento ontológico dos assuntos abordados.
+
+Analise de forma implacável e exaustiva cada grupo semiótico delimitado por `---`, garantindo que o título sugerido não deixe de fora nenhuma nuance fundamental do bloco sob análise.
+
+Extraia a lógica subjacente de cada agrupamento, forçando a convergência de todos os temas correlatos presentes no bloco em um único título rotular que seja perfeitamente abrangente.
+
+Seja absolutamente preciso na escolha de cada palavra do título; o rótulo deve ser um espelho exato e incontestável do conteúdo consolidado no grupo semântico.
+
+Utilize vocabulário condizente com o documento em anexo e absolutamente preciso, respeitando rigorosamente a norma-padrão da língua portuguesa na estruturação de cada título gerado.
+
+Evite terminantemente coloquialismos, ambiguidades, juízos de valor não fundamentados ou expressões de cunho emocional na formulação dos seus títulos de classificação.
+
+A formatação da sua resposta deve obedecer incondicionalmente à estrutura exigida: o título deve, obrigatoriamente, começar com [[+  e terminar com ]].
+
+Você está estritamente proibido de inserir marcadores visuais, bullets, numerações de múltiplos níveis, travessões ou qualquer caractere adicional que não faça parte da sintaxe exigida.
+
+Cada título deve ser redigido em uma única linha contínua; não insira quebras de linha ou múltiplos parágrafos dentro da sintaxe de colchetes de um mesmo título.
+
+Cada título de classificação deve ser perfeitamente autossuficiente em sentido, comunicando a essência do grupo semântico isoladamente e sem depender da leitura de outros agrupamentos.
+
+Inicie o conteúdo de cada título preferencialmente com um substantivo forte e representativo, evitando terminantemente o uso de artigos definidos ou indefinidos no começo da classificação.
+
+Não crie perguntas, não forneça respostas, não estruture o texto em formato CSV e não utilize ponto e vírgula como separadores de colunas na sua saída sob nenhuma circunstância.
+
+Não utilize recursos mnemônicos, acrônimos pontuados com letras separadas por ponto, metáforas, analogias do cotidiano ou narrativas de encadeamento lógico; forneça apenas o título seco, objetivo e classificatório.
+
+Não elabore parágrafos de introdução, tópicos frasais de desenvolvimento ou sínteses de conclusão; a sua resposta deve ser completamente destituída de redação dissertativa ou expositiva.
+
+Coloque exatamente uma linha em branco entre cada título de classificação sugerido, garantindo uma lista visualmente limpa, asséptica e perfeitamente espaçada.
+
+Sob nenhuma hipótese você deve reproduzir, copiar ou inserir os caracteres --- na sua resposta final; a sua saída deve conter apenas os títulos encapsulados.
+
+Siga implacavelmente o padrão de capitalização: toda palavra importante ou núcleo semântico em cada título deve ter a sua primeira letra em maiúsculas.
+
+As palavras estruturais menos importantes, tais como preposições e conjunções internas, devem ser escritas com todas as suas letras rigorosamente em minúsculas.
+
+O comprimento de cada título de classificação é uma regra engessada e inflexível: o conteúdo gerado dentro dos colchetes deve ter até 120 caracteres, e cada título de classificação não deve ter mais de 120 caracteres.
+
+Não invente nada; utilize somente as informações e o conteúdo extraído do documento em anexo para formular a taxonomia, garantindo zero alucinação.
+
+A integridade do formato de saída exigido pressupõe uma tolerância incondicional a zero para qualquer tipo de linguagem explicativa; não inclua introduções, conclusões, observações ou perguntas finais.
+
+As novas taxonomias devem mimetizar a nomenclatura técnica e a cadência de especificidade de esquemas acadêmicos, parecendo pertencer nativamente ao mesmo ecossistema classificatório.
+
+Preserve incondicionalmente as fronteiras semânticas de cada bloco; o título gerado para um grupo jamais deve vazar ou sobrepor o escopo de conteúdo do agrupamento adjacente.
+
+Demonstre autoridade, sagacidade acadêmica e clareza taxonômica na formulação de cada rótulo, mantendo a exposição sóbria e direta típica de um intelecto altamente estudado.
+
+O resultado final deve ser um bloco de dados puramente estruturados e brutos, não colocando nada na sua resposta além dos títulos de classificação sugeridos para sintetizar cada um dos grupos.
 
 Sintetize um título de classificação para cada um dos grupos semânticos abaixo separados por `---`:
 
