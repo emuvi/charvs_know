@@ -11,9 +11,15 @@ We want to make the upload of the entire base.
 
     - Put a `-` button to delete a selected group.
 
-## Groovy Commands on TextEditor
+## Groovy Commands
 
-    - Put a combo and a button to easy call a command.
+    - Make the interface to develop Groovy Commands.
+    - Make possible the called groovy command to throw exceptions and stop the process.
+
+## TextEditor
+
+    - Put a combo and a button to easy call Groovy Commands.
+    - Make the regex and the groovy commands to be able to be triggered on each set value.
 
 ## Interface
 
