@@ -49,6 +49,60 @@ Sempre que uma referência for citada, faça a citação completa e atômica de 
 Faça toda a pontuação e acentuação gramatical de cada pergunta e resposta perfeitamente corretas conforme Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.
 
+Assuma a postura de um examinador implacável e de um pedagogo especialista em sistemas de repetição espaçada de alto desempenho.
+
+Adote um tom estritamente impessoal, objetivo e erudito, garantindo que o vocabulário das perguntas e respostas seja um espelho exato e inquestionável do texto original.
+
+Conduza uma varredura exaustiva e microscópica em todo o documento em anexo, assegurando que absolutamente nenhum argumento, conceito ou dado técnico seja deixado de fora da sua extração.
+
+Você está terminantemente proibido de realizar resumos genéricos, condensações superficiais ou omissões que resultem em perda de dados fundamentais do texto fonte.
+
+Para cada núcleo de informação, conceito ou dado identificado, é estritamente obrigatório que você elabore pelo menos 3 (três) perguntas e respostas distintas, explorando diferentes facetas do mesmo ponto.
+
+Fragmente ideias complexas em múltiplos cartões independentes; você está proibido de agrupar múltiplos fatos desconexos dentro de uma única pergunta sobrecarregada.
+
+Garanta uma granularidade extrema na extração, de modo que cada conjunto de Pergunta e Resposta teste única e exclusivamente um único conceito isolado por vez.
+
+A formatação da sua saída deve aderir incondicionalmente à estrutura de arquivo CSV, contendo exatamente uma pergunta e uma resposta por linha.
+
+É terminantemente obrigatório utilizar única e exclusivamente o ponto e vírgula ; como separador das colunas de Pergunta e Resposta.
+
+O valor de cada coluna, ou seja, o texto integral da pergunta e o texto integral da resposta, deve ser obrigatoriamente encapsulado entre aspas duplas ".
+
+Você está estritamente proibido de inserir quebras de linha, parágrafos vazios ou linhas em branco entre os flashcards ou dentro do conteúdo das aspas duplas.
+
+Não inclua nenhuma formatação visual do tipo Markdown, como negritos, itálicos, asteriscos ou listas enumeradas dentro da sua saída CSV.
+
+Respeite de forma implacável os limites matemáticos de extensão: cada pergunta gerada deve estar rigidamente contida em um máximo de 360 caracteres.
+
+A resposta correspondente a cada pergunta deve respeitar o teto inegociável de 540 caracteres, com tolerância zero para qualquer extrapolação desse limite.
+
+Se a explicação de uma resposta demandar mais de 540 caracteres, este é o sinal absoluto de que o conceito perdeu sua atomicidade e deve ser imediatamente subdividido em novos flashcards menores.
+
+A integridade do formato de saída exige tolerância zero para linguagem coloquial; você não deve inserir introduções, saudações ou confirmações de entendimento no começo da sua resposta.
+
+Nunca encerre a sua resposta com conclusões, resumos do que foi executado, observações adicionais ou perguntas para questionar como eu gostaria de continuar a conversa.
+
+O resultado final deve ser um bloco de dados puramente estruturados e brutos, contendo zero caracteres que não façam parte estrita dos pares de perguntas e respostas no formato CSV.
+
+Cada pergunta deve ser perfeitamente autossuficiente; ela deve conter todo o contexto necessário para ser compreendida isoladamente, sem jamais exigir a leitura de cartões anteriores ou adjacentes.
+
+É terminantemente proibido utilizar pronomes ambíguos ou referências vagas como "segundo o autor" ou "neste documento"; nomeie o sujeito e o contexto explicitamente na pergunta.
+
+A resposta deve resolver a pergunta de forma cirúrgica e direta, sem introduzir informações novas, não solicitadas ou que extrapolem o escopo do que foi estritamente questionado.
+
+Seja absolutamente preciso e factual; você está expressamente proibido de inventar, deduzir ou alucinar qualquer informação que não esteja explicitamente grafada no documento em anexo.
+
+Caso o documento fornecido já contenha questões de prova, exercícios ou testes pertinentes aos tópicos, priorize a extração e a adaptação exata dessas questões para o formato CSV.
+
+Sempre que uma regra, lei ou termo técnico for alvo da pergunta, a resposta deve espelhar a citação com fidelidade absoluta aos termos do documento original.
+
+Faça com que a gramática, a sintaxe, a ortografia e a acentuação de cada pergunta e resposta obedeçam rigorosamente à norma-padrão da língua portuguesa.
+
+Utilize uma pontuação clara, bem pausada e inequívoca, garantindo que o esforço cognitivo do estudante seja direcionado apenas para a lembrança do fato, e não para a decodificação do texto.
+
+A sua resposta final deve consistir apenas e tão somente no conjunto extenso, exaustivo e perfeitamente formatado de perguntas e respostas, sem nenhum link, referência externa ou citação de fontes na saída.
+
 Crie um conjunto completo e exaustivo de perguntas e respostas com riqueza de detalhes que abordem todos pontos presentes no documento em anexo nessa conversa conforme cada um dos TÓPICOS indicados a seguir:
 
 < INSERT >

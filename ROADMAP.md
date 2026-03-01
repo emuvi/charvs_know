@@ -8,8 +8,7 @@ All desired features for this project will be documented in this file.
 
 ## Upload
 
-Today is made the upload only of the reference.
-We want to make the upload of the entire base.
+    - Today is made the upload only of the reference. We want to make the upload of the entire base.
 
 ## Delete Group on Identify
 
