@@ -51,9 +51,9 @@ public class ClassDatex {
             } else {
                 if (line.startsWith("[[") && line.endsWith("]]")) {
                     var link = CKUtils.delBrackets(line);
-                    if (link.startsWith("^")) {
+                    if (link.startsWith("♦")) {
                         result.explainsLinks.add(link);
-                    } else if (link.startsWith("~")) {
+                    } else if (link.startsWith("♣")) {
                         result.didacticLinks.add(link);
                     } else {
                         result.cardsLinks.add(link);

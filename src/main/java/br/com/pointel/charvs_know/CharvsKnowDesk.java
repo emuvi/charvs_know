@@ -32,7 +32,7 @@ import br.com.pointel.jarch.mage.WizUtilDate;
 public class CharvsKnowDesk extends DFrame {
 
     private final JButton buttonSetup = new JButton("@");
-    private final JButton buttonBaseSelect = new JButton("^");
+    private final JButton buttonBaseSelect = new JButton("♦");
     private final JButton buttonBaseOpen = new JButton("*");
     private final JComboBox<String> comboBase = new JComboBox<>();
     private final JButton buttonBaseAdd = new JButton("+");

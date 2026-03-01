@@ -22,11 +22,11 @@ public class CKUtils {
         }
         var classData = ClassDatex.read(classFile);
         link = delBrackets(link);
-        if (link.startsWith("^")) {
+        if (link.startsWith("♦")) {
             if (!classData.explainsLinks.contains(link)) {
                 classData.explainsLinks.add(link);
             }
-        } else if (link.startsWith("~")) {
+        } else if (link.startsWith("♣")) {
             if (!classData.didacticLinks.contains(link)) {
                 classData.didacticLinks.add(link);
             }
@@ -48,9 +48,9 @@ public class CKUtils {
         var classData = ClassDatex.read(classFile);
         link = delBrackets(link);
         var updated = false;
-        if (link.startsWith("^")) {
+        if (link.startsWith("♦")) {
             updated = classData.explainsLinks.remove(link);
-        } else if (link.startsWith("~")) {
+        } else if (link.startsWith("♣")) {
             updated = classData.didacticLinks.remove(link);
         } else  {
             updated = classData.cardsLinks.remove(link);

@@ -4,7 +4,7 @@ Vamos tratar os TÓPICOS sob análise conforme requisitado ao final dessa requis
 A resposta deve começar com 1 (um) título.
 O título não deve ter mais de 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
-O título deve começar com os caracteres `~ `.
+O título deve começar com os caracteres `♣ `.
 O título deve capturar toda a essência de cada um dos elementos sob análise.
 Deixe uma linha em branco após o título e entre cada parágrafo. 
 
@@ -37,7 +37,7 @@ Não coloque nada além do título e do artigo.
 Não coloque nenhuma pergunta ao final da sua resposta para questionar como que eu gostaria de continuar essa conversa.
 O título deve ter até 120 caracteres.
 Faça um título conciso que capture toda a essência da redação / dissertação.
-O título deve começar com os caracteres `~ `.
+O título deve começar com os caracteres `♣ `.
 
 Faça toda a pontuação e acentuação gramatical de cada parágrafo da dissertação perfeitamente corretos conforme o Português da norma-padrão.
 Utilize uma pontuação clara e bem pausada que garanta uma leitura fácil e tranquila.

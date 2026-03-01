@@ -233,8 +233,8 @@ public class HelperDidactic extends DFrame {
             if (title.isBlank()) {
                 throw new Exception("The first line of the content must have a title.");
             }
-            if (!title.startsWith("~")) {
-                title = "~ " + title;
+            if (!title.startsWith("♣")) {
+                title = "♣ " + title;
             }
             if (!source.contains("*Refs:*")) {
                 source = source + "\n\n*Refs:* " + workRef.ref.props.hashMD5;
