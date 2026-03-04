@@ -41,7 +41,15 @@ public enum Steps {
     }
 
     public String getCommand(String withInsertion) throws Exception {
-        return Files.readString(getCommandFile().toPath()).replace("< INSERT >", withInsertion);
+        return getCommand().replace("< INSERT >", withInsertion);
+    }
+
+    public String getCommand(String... withInsertions) throws Exception {
+        var command = getCommand();
+        for (var i = 0; i < withInsertions.length; i++) {
+            command = command.replace("< INSERT " + (i + 1) + " >", withInsertions[i]);
+        }
+        return command;
     }
 
     public static final File STEPFS_FOLDER = new File("steps");

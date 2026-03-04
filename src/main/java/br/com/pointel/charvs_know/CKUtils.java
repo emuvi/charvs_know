@@ -8,6 +8,30 @@ import br.com.pointel.jarch.mage.WizString;
 
 public class CKUtils {
 
+    public static List<String> getAllClassifications(File onBaseFolder) throws Exception {
+        var result = new ArrayList<String>();
+        for (var inside : onBaseFolder.listFiles()) {
+            if (inside.isDirectory() && inside.getName().startsWith("- ")) {
+                getAllClassifications(result, inside, 1, onBaseFolder.getAbsolutePath().length());
+            }
+        }
+        return result;
+    }
+
+    private static void getAllClassifications(List<String> result, File folder, int level, int baseFolderLength) throws Exception {
+        if (level == 4) {
+            var classification = folder.getAbsolutePath().substring(baseFolderLength);
+            classification = classification.replace(File.separator, " ");
+            result.add(classification.trim());
+            return;
+        }
+        for (var inside : folder.listFiles()) {
+            if (inside.isDirectory() && inside.getName().startsWith("- ")) {
+                getAllClassifications(result, inside, level + 1, baseFolderLength);
+            }
+        }
+    }
+
     public static void putMarkDownLink(File classFile, String link) throws Exception {
         if (link == null || link.isBlank()) {
             return;

@@ -11,41 +11,7 @@ O primeiro nível hierárquico deve ser ou `Funcional` ou `Elementar` conforme a
 
 # Estilos, Modelos e Exemplos de Classificação
 Sugira cada classificação para cada um dos grupos semióticos de assuntos abaixo separados por `---` conforme os seguintes estilos, modelos e exemplos de classificação:
-[[- Funcional - Direito - Direito Penal - Lavagem de Dinheiro]]
-[[- Funcional - Direito - Direito Constitucional - Cidadania e Direitos Políticos]]
-[[- Funcional - Informática - Engenharia de Sistemas - Metodologias de Engenharia de Sistemas]]
-[[- Funcional - Administração - Fundamentos e Dinâmica Organizacional - Organização Estrutural]]
-[[- Funcional - Economia - Fundamentos e Microeconomia - Medidas de Elasticidades]]
-[[- Funcional - Economia - Macroeconomia - Sistema Financeiro Nacional]]
-[[- Funcional - Contabilidade - Contabilidade Geral - Balanço Patrimonial]]
-[[- Funcional - Gestão de Pessoas - Comportamento Organizacional - Motivação e Liderança]]
-[[- Funcional - Direito - Direito Administrativo - Atos Administrativos]]
-[[- Funcional - Tecnologia da Informação - Banco de Dados - Modelagem de Dados]]
-[[- Funcional - Marketing - Gestão de Marketing - Pesquisa de Mercado]]
-[[- Funcional - Finanças - Matemática Financeira - Juros Compostos e Descontos]]
-[[- Funcional - Direito - Direito Civil - Obrigações e Contratos]]
-[[- Funcional - Administração - Gestão de Projetos - Ciclo de Vida do Projeto]]
-[[- Funcional - Economia - Economia Brasileira - Planos Econômicos]]
-[[- Funcional - Auditoria - Auditoria Governamental - Normas de Auditoria]]
-[[- Elementar - Português - Morfologia e Estrutura da Palavra - Preposição e Conjunção]]
-[[- Elementar - Português - Sintaxe e Regras de Construção - Emprego dos Sinais de Pontuação]]
-[[- Elementar - Geografia - Dinâmica Espacial e Demográfica - Demografia e Migrações]]
-[[- Elementar - Matemática - Aritmética e Fundamentos Numéricos - Potências de Dez e Unidades de Medida]]
-[[- Elementar - História - História do Brasil - Período Colonial]]
-[[- Elementar - História - História Geral - Revolução Francesa]]
-[[- Elementar - Física - Mecânica Clássica - Leis de Newton]]
-[[- Elementar - Física - Termodinâmica - Calorimetria e Mudanças de Fase]]
-[[- Elementar - Química - Química Geral - Tabela Periódica]]
-[[- Elementar - Química - Química Orgânica - Hidrocarbonetos]]
-[[- Elementar - Biologia - Citologia - Estrutura Celular]]
-[[- Elementar - Biologia - Genética - Leis de Mendel]]
-[[- Elementar - Geografia - Geografia Física - Climatologia e Biomas]]
-[[- Elementar - Geografia - Geopolítica - Globalização e Blocos Econômicos]]
-[[- Elementar - Matemática - Geometria Plana - Áreas e Perímetros]]
-[[- Elementar - Matemática - Álgebra - Equações e Funções]]
-[[- Elementar - Português - Semântica - Sinônimos e Antônimos]]
-[[- Elementar - Português - Interpretação de Texto - Tipologia Textual]]
-[[- Elementar - Inglês - Gramática - Tempos Verbais]]
+< INSERT 1 >
 
 É estritamente obrigatório utilizar as classificações já listadas na seção '# Estilos, Modelos e Exemplos de Classificação' sempre que elas forem pertinentes e adequadas ao grupo de assuntos analisado. Não crie ou invente novos títulos de classificação se o tema do bloco já estiver contemplado com exatidão por um dos exemplos fornecidos; nesses casos, simplesmente copie e aplique a estrutura da classificação existente.
 
@@ -127,4 +93,4 @@ A integridade visual da sua saída pressupõe uma tolerância incondicional a ze
 
 Sugira classificações que consigam sintetizar cada um dos grupos semânticos de assuntos abaixo separados por `---`:
 
-< INSERT >
+< INSERT 2 >
