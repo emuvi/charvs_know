@@ -8,4 +8,18 @@ public class RefMemoa {
         return text != null && !text.isBlank();
     }
 
+    public boolean contains(String text) {
+        return text != null && this.text.contains(text);
+    }
+
+    public RefMemoa append(String text) {
+        if (!isPresent()) {
+            this.text = text;
+        } else {
+            this.text += "\n\n" + text;
+        }
+        this.text = this.text.trim();
+        return this;
+    }
+
 }

@@ -253,10 +253,14 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
-            RefDatex.write(ref, refFile);
         } else {
             ref = RefDatex.read(refFile);
         }
+        var refFrom = "Ref from: " + selectFile.getName();
+        if (!ref.memoa.contains(refFrom)) {
+            ref.memoa.append(refFrom);
+        }
+        RefDatex.write(ref, refFile);
         fieldSelectedRefWithExtension.setText(refWithExtension);
         SwingUtilities.updateComponentTreeUI(this);
         Setup.putSelectedRef(refWithExtension);
