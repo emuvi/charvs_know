@@ -324,7 +324,7 @@ public class HelperClassify extends DFrame {
     }
 
     private String getInsertionClasses() throws Exception {
-        var classes = CKUtils.getAllClassifications(workRef.baseFolder);
+        var classes = CKUtils.putBrackets(CKUtils.getAllClassifications(workRef.baseFolder));
         while (classes.size() < 64) {
             classes.add(classifyExamples[WizRand.getInt(classifyExamples.length)]);
         }

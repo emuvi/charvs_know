@@ -81,7 +81,7 @@ public class RefDatex {
 
     private static void parseProps(Ref ref) {
         var props = WizProps.fromSource(nodeProps.getValue(), propsSeparator);
-        ref.props.hashMD5 = props.getOrDefault("hash-md5", "");
+        ref.props.hashMD5 = dressHash(props.getOrDefault("hash-md5", ""));
         ref.props.createdAt = props.getOrDefault("created-at", "");
         ref.props.memoedAt = props.getOrDefault("memoed-at", "");
         ref.props.uploadedAt = props.getOrDefault("uploaded-at", "");
@@ -127,7 +127,7 @@ public class RefDatex {
     public static String getRefSource(Ref ref, boolean withMemoa) {
         var builder = new StringBuilder();
         builder.append(propsStart).append("\n");
-        builder.append("hash-md5").append(propsSeparator).append(ref.props.hashMD5).append("\n");
+        builder.append("hash-md5").append(propsSeparator).append(stripHash(ref.props.hashMD5)).append("\n");
         builder.append("created-at").append(propsSeparator).append(ref.props.createdAt).append("\n");
         builder.append("memoed-at").append(propsSeparator).append(ref.props.memoedAt).append("\n");
         builder.append("uploaded-at").append(propsSeparator).append(ref.props.uploadedAt).append("\n");
@@ -152,6 +152,27 @@ public class RefDatex {
             }
         }
         return builder.toString();
+    }
+
+    private static String stripHash(String ref) {
+        if (ref == null) {
+            return "";
+        }
+        if (ref.startsWith("&")) {
+            ref = ref.substring(1);
+        }
+        return ref.trim();
+    }
+
+    private static String dressHash(String ref) {
+        if (ref == null || ref.isBlank()) {
+            return "";
+        }
+        ref = ref.trim();
+        if (!ref.startsWith("&")) {
+            ref = "& " + ref;
+        }
+        return ref;
     }
 
     private static void writeGroup(RefGroup group, StringBuilder builder) {

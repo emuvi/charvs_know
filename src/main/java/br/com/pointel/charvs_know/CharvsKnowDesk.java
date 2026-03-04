@@ -256,7 +256,7 @@ public class CharvsKnowDesk extends DFrame {
         } else {
             ref = RefDatex.read(refFile);
         }
-        var refFrom = "Ref from: " + selectFile.getName();
+        var refFrom = "Ref: " + selectFile.getName();
         if (!ref.memoa.contains(refFrom)) {
             ref.memoa.append(refFrom);
         }

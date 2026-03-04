@@ -126,6 +126,16 @@ public class CKUtils {
         return title.replaceAll("\\s+", " ").trim();
     }
 
+    public static List<String> putBrackets(List<String> links) {
+        if (links == null) {
+            return null;
+        }
+        for (int i = 0; i < links.size(); i++) {
+            links.set(i, putBrackets(links.get(i)));
+        }
+        return links;
+    }
+
     public static String putBrackets(String link) {
         if (link == null || link.isBlank()) {
             return "";
