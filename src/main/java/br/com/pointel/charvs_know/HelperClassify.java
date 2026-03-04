@@ -52,8 +52,8 @@ public class HelperClassify extends DFrame {
             .growHorizontal().put(paneAskActs)
             .growBoth().put(textAsk);
 
-    private final DButton buttonSame = new DButton("Same")
-            .onAction(this::buttonSameActionPerformed);
+    private final DButton buttonOrdBy = new DButton("OrdBy")
+            .onAction(this::buttonOrdByActionPerformed);
     private final DButton buttonAuto = new DButton("Auto")
             .onAction(this::buttonAutoActionPerformed);
     private final DButton buttonSet = new DButton("Set")
@@ -67,7 +67,7 @@ public class HelperClassify extends DFrame {
     private final DButton buttonWrite = new DButton("Write")
             .onAction(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
-            .growNone().put(buttonSame)
+            .growNone().put(buttonOrdBy)
             .growNone().put(buttonAuto)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
@@ -215,15 +215,17 @@ public class HelperClassify extends DFrame {
         textAsk.setValue(builder.toString());
     }
 
-    private void buttonSameActionPerformed(ActionEvent e) {
-        for (var group : workRef.ref.groups) {
-            group.order = 1 + "";
+    private void buttonOrdByActionPerformed(ActionEvent e) {
+        var ordBy = WizGUI.showInput("Orders Groups By:", "3");
+        if (ordBy == null || ordBy.isBlank()) {
+            return;
         }
+        createOrders(Double.parseDouble(ordBy));
         comboGroupActionPerformed(e);
     }
 
     private void buttonAutoActionPerformed(ActionEvent e) {
-        createOrders();
+        createOrders(3);
         comboGroupActionPerformed(e);
     }
 
@@ -378,15 +380,19 @@ public class HelperClassify extends DFrame {
         if (!result.isEmpty()) {
             return result;
         } else {
-            return createOrders();
+            return createOrders(3);
         }
     }
 
-    private Set<Integer> createOrders() {
+    private Set<Integer> createOrders(double ordBy) {
         var result = new LinkedHashSet<Integer>();
-        var size = (int) Math.ceil(workRef.ref.groups.size() / 3.0);
-        if (workRef.ref.groups.size() % 3 == 1) {
+        var size = (int) Math.ceil(workRef.ref.groups.size() / ordBy);
+        var iOrdBy = (int) ordBy;
+        if (workRef.ref.groups.size() % iOrdBy == 1) {
             size--;
+        }
+        if (size < 1) {
+            size = 1;
         }
         Integer order = 1;
         int count = 0;
@@ -396,7 +402,7 @@ public class HelperClassify extends DFrame {
                 result.add(order);
             }
             count++;
-            if (count % 3 == 0 && order < size) {
+            if (count % iOrdBy == 0 && order < size) {
                 order++;
             }
         }
