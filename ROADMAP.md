@@ -5,6 +5,7 @@ All desired features for this project will be documented in this file.
 ## Problems
 
     - Clean the file name inside de atomic notes.
+    - Clean the name of classifications for possibles: ` - `.
 
 ## Upload
 
