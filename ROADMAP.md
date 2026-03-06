@@ -33,3 +33,4 @@ All desired features for this project will be documented in this file.
 
     - Make next and prior buttons to all combo of groups.
     - Make last selected references saved in the knowledge base.
+    - Make all configs to be save in a per base way.

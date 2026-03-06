@@ -22,7 +22,7 @@ public class WorkRef {
 
     private volatile File workFile;
 
-    public WorkRef(File baseFolder, Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) {
+    public WorkRef(File baseFolder, Ref ref, File refFile, File sourceFile, String refWithExtension, Runnable updateStatus) throws Exception {
         this.baseFolder = baseFolder;
         this.ref = ref;
         this.refFile = refFile;

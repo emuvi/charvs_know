@@ -2,6 +2,18 @@ package br.com.pointel.charvs_know;
 
 public enum SetupTalkerKind {
 
-    Genai, Clipboard;
+    Genai(TalkerGenai.class), 
+    Openai(TalkerOpenai.class), 
+    Clipboard(TalkerClipboard.class);
+
+    private final Class<? extends Talker> talkerClass;
+
+    SetupTalkerKind(Class<? extends Talker> talkerClass) {
+        this.talkerClass = talkerClass;
+    }
+
+    public Class<? extends Talker> getTalkerClass() {
+        return talkerClass;
+    }
     
 }

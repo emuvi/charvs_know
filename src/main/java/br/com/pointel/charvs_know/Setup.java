@@ -99,6 +99,16 @@ public class Setup {
         WizProps.set(KEY_TALKER_KIND, talkerKind.ordinal());
     }
 
+    public static final String KEY_OPENAI_MODEL = "FRAME_SETUP_COMP_OPENAI_MODEL";
+    
+    public static SetupOpenaiModel getOpenaiModel() {
+        return SetupOpenaiModel.values()[WizProps.get(KEY_OPENAI_MODEL, 0)];
+    }
+
+    public static void setOpenaiModel(SetupOpenaiModel openaiModel) {
+        WizProps.set(KEY_OPENAI_MODEL, openaiModel.ordinal());
+    }
+
     public static final String KEY_SOUNDER_KIND = "FRAME_SETUP_COMP_SOUNDER_KIND";
     
     public static SetupSounderKind getSounderKind() {
