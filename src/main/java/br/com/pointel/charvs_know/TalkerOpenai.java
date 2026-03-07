@@ -9,10 +9,10 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import br.com.pointel.charvs_know.openai.Request;
-import br.com.pointel.charvs_know.openai.Response;
-import br.com.pointel.charvs_know.openai.ErrorResponse;
-import br.com.pointel.charvs_know.openai.Message;
+import br.com.pointel.charvs_know.talkers.openai.ErrorResponse;
+import br.com.pointel.charvs_know.talkers.openai.Message;
+import br.com.pointel.charvs_know.talkers.openai.Request;
+import br.com.pointel.charvs_know.talkers.openai.Response;
 import br.com.pointel.jarch.mage.WizEnv;
 
 public class TalkerOpenai implements Talker {

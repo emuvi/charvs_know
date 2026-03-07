@@ -9,11 +9,11 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import br.com.pointel.charvs_know.gemini.Content;
-import br.com.pointel.charvs_know.gemini.Request;
-import br.com.pointel.charvs_know.gemini.Response;
-import br.com.pointel.charvs_know.gemini.Part;
-import br.com.pointel.charvs_know.gemini.ErrorResponse;
+import br.com.pointel.charvs_know.talkers.gemini.Content;
+import br.com.pointel.charvs_know.talkers.gemini.ErrorResponse;
+import br.com.pointel.charvs_know.talkers.gemini.Part;
+import br.com.pointel.charvs_know.talkers.gemini.Request;
+import br.com.pointel.charvs_know.talkers.gemini.Response;
 import br.com.pointel.jarch.mage.WizEnv;
 
 public class TalkerGenai implements Talker {

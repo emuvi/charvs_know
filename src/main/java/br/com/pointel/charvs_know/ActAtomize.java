@@ -1,5 +1,7 @@
 package br.com.pointel.charvs_know;
 
+import br.com.pointel.charvs_know.desk.HelperAtomize;
+
 public class ActAtomize implements Act {
 
     @Override

@@ -4,13 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import br.com.pointel.charvs_know.desk.Replace;
+import br.com.pointel.charvs_know.desk.ReplaceAutoOn;
 import br.com.pointel.jarch.mage.WizObject;
 import br.com.pointel.jarch.mage.WizProps;
 
 public class Setup {
 
     public static void setBase(String base) {
-        System.out.println("Base: " + base);
         WizProps.setFolder(new File(base));
     }
 

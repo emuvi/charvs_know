@@ -1,5 +1,6 @@
 package br.com.pointel.charvs_know;
 
+import br.com.pointel.charvs_know.desk.CharvsKnowDesk;
 import br.com.pointel.jarch.flow.App;
 import br.com.pointel.jarch.flow.AppGUI;
 
