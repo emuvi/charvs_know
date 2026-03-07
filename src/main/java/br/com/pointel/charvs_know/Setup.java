@@ -9,14 +9,9 @@ import br.com.pointel.jarch.mage.WizProps;
 
 public class Setup {
 
-    private static final String KEY_BASE = "FRAME_CHARVS_KNOW_COMP_BASE";
-    
-    public static String getBase() {
-        return WizProps.get(KEY_BASE, "");
-    }
-
     public static void setBase(String base) {
-        WizProps.set(KEY_BASE, base);
+        System.out.println("Base: " + base);
+        WizProps.setFolder(new File(base));
     }
 
     private static final String KEY_LAST_SELECTED_REF01 = "FRAME_CHARVS_KNOW_LAST_SELECTED_REF01";

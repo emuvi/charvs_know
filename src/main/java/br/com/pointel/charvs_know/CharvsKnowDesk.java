@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
@@ -34,7 +35,7 @@ public class CharvsKnowDesk extends DFrame {
     private final JButton buttonSetup = new JButton("@");
     private final JButton buttonBaseSelect = new JButton("♦");
     private final JButton buttonBaseOpen = new JButton("*");
-    private final JComboBox<String> comboBase = new JComboBox<>();
+     private final JComboBox<String> comboBase = new JComboBox<>();
     private final JButton buttonBaseAdd = new JButton("+");
     private final JButton buttonBaseDel = new JButton("-");
     private final DRowPane rowBase = new DRowPane().insets(2)
@@ -90,6 +91,19 @@ public class CharvsKnowDesk extends DFrame {
         body(paneBody);
         exitOnClose();
 
+        var comboExit = new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                Setup.setBase(getSelectedBase());
+            }
+        };
+        onFirstActivated(e -> {
+            loadBases();
+            comboBase.addFocusListener(comboExit);
+            comboBase.getEditor().getEditorComponent().addFocusListener(comboExit);
+        });
+        onClosing(e -> saveBases());
+
         buttonSetup.setToolTipText("Setup");
         buttonSetup.addActionListener(this::buttonSetupActionPerformed);
         buttonBaseSelect.setToolTipText("Select Base Folder");
@@ -97,13 +111,7 @@ public class CharvsKnowDesk extends DFrame {
         buttonBaseOpen.setToolTipText("Open Base Folder");
         buttonBaseOpen.addActionListener(this::buttonBaseOpenActionPerformed);
         comboBase.setEditable(true);
-        comboBase.setName("Base");
-        comboBase.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                Setup.setBase(getSelectedBase());
-            }
-        });
+        comboBase.addActionListener(e -> Setup.setBase(getSelectedBase()));
         buttonBaseAdd.setToolTipText("Add Base");
         buttonBaseAdd.addActionListener(this::comboBaseAddActionPerformed);
         buttonBaseDel.setToolTipText("Del Base");
@@ -323,7 +331,8 @@ public class CharvsKnowDesk extends DFrame {
     }
 
     public String getSelectedBase() {
-        return comboBase.getSelectedItem().toString();
+        var selected = comboBase.getSelectedItem();
+        return selected == null ? "" : selected.toString();
     }
 
     public void setSelectedBase(String base) {
@@ -335,6 +344,43 @@ public class CharvsKnowDesk extends DFrame {
             return null;
         }
         return Steps.valueOf(comboActChoose.getSelectedItem().toString());
+    }
+
+    private void loadBases() {
+        try {
+            var file = new File("bases.ini");
+            if (!file.exists()) {
+                return;
+            }
+            var lines = Files.readAllLines(file.toPath());
+            for (var line : lines) {
+                if (!line.isBlank()) {
+                    comboBase.addItem(line.trim());
+                }
+            }
+            comboBase.setSelectedIndex(0);
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
+    }
+
+    private void saveBases() {
+        try {
+            var bases = new ArrayList<String>();
+            var selected = getSelectedBase();
+            if (selected != null && !selected.isBlank()) {
+                bases.add(selected);
+            }
+            for (int i = 0; i < comboBase.getItemCount(); i++) {
+                var item = comboBase.getItemAt(i);
+                if (item != null && !item.isBlank() && !item.equals(selected)) {
+                    bases.add(item);
+                }
+            }
+            Files.write(new File("bases.ini").toPath(), bases);
+        } catch (Exception e) {
+            WizGUI.showError(e);
+        }
     }
 
 }
