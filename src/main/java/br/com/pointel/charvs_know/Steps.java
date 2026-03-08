@@ -9,11 +9,12 @@ public enum Steps {
     Structure("S01 - Structure.txt", new ActStructure()), 
     Identify("S02 - Identify.txt", new ActIdentify()), 
     Organize("S03 - Organize.txt", new ActOrganize()), 
-    Classify("S04 - Classify.txt", new ActClassify()),
-    Atomize("S05 - Atomize.txt", new ActAtomize()), 
-    Questify("S06 - Questify.txt", new ActQuestify()), 
-    Explains("S07 - Explains.txt", new ActExplains()),
-    Didactic("S08 - Didactic.txt", new ActDidactic()),
+    Orderify("S04 - Orderify.txt", new ActClassify()),
+    Classify("S05 - Classify.txt", new ActClassify()),
+    Atomize("S06 - Atomize.txt", new ActAtomize()), 
+    Questify("S07 - Questify.txt", new ActQuestify()), 
+    Explains("S08 - Explains.txt", new ActExplains()),
+    Didactic("S09 - Didactic.txt", new ActDidactic()),
     DoneAtNow(null, new ActDoneAtNow()),
     RevisedAtNow(null, new ActRevisedAtNow());
 

@@ -7,7 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.charvs_know.CKUtils;
@@ -22,6 +24,7 @@ import br.com.pointel.jarch.desk.DEdit;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DIntegerField;
 import br.com.pointel.jarch.desk.DPane;
+import br.com.pointel.jarch.desk.DPopup;
 import br.com.pointel.jarch.desk.DRowPane;
 import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
@@ -34,18 +37,27 @@ public class HelperClassify extends DFrame {
 
     private final DButton buttonClear = new DButton("Clear")
             .onAction(this::buttonClearActionPerformed);
-    private final DButton buttonAsk = new DButton("Ask")
-            .onAction(this::buttonAskActionPerformed);
+    private final DButton buttonAskOrderify = new DButton("Ask Orders")
+            .onAction(this::buttonAskOrderifyActionPerformed);
+    private final DButton buttonAskClassify = new DButton("Ask Classes")
+            .onAction(this::buttonAskClassifyActionPerformed);
     private final DButton buttonPaste = new DButton("Ʇ")
             .onAction(this::buttonPasteActionPerformed);
+    private final DPopup popupParse = new DPopup()
+            .item("Orderify", this::buttonParseOrderifyActionPerformed)
+            .item("Classify", this::buttonParseClassifyActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
-            .onAction(this::buttonParseActionPerformed);
+            .popup(popupParse);
+    private final DPopup popupBring = new DPopup()
+            .item("Orderify", this::buttonBringOrderifyActionPerformed)
+            .item("Classify", this::buttonBringClassifyActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
-            .onAction(this::buttonBringActionPerformed);
+            .popup(popupBring);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
-        .growHorizontal().put(buttonAsk)
+        .growHorizontal().put(buttonAskOrderify)
+        .growHorizontal().put(buttonAskClassify)
         .growNone().put(buttonPaste)
         .growNone().put(buttonParse)
         .growNone().put(buttonBring);
@@ -125,7 +137,7 @@ public class HelperClassify extends DFrame {
         for (int i = 0; i < workRef.ref.groups.size(); i++) {
             comboGroup.add("Group " + String.format("%02d", i + 1));
         }
-        onFirstActivated(e -> buttonBringActionPerformed(null));
+        onFirstActivated(e -> buttonBringClassifyActionPerformed(null));
     }
 
     private void buttonClearActionPerformed(ActionEvent e) {
@@ -135,17 +147,31 @@ public class HelperClassify extends DFrame {
         comboGroupActionPerformed(e);
     }
 
-    private volatile AskThread askThread = null;
+    private volatile AskOrderifyThread askOrderifyThread = null;
 
-    private void buttonAskActionPerformed(ActionEvent e) {
-        if (askThread != null) {
-            askThread.stop = true;
-            askThread = null;
-            buttonAsk.setText("Ask");
+    private void buttonAskOrderifyActionPerformed(ActionEvent e) {
+        if (askOrderifyThread != null) {
+            askOrderifyThread.stop = true;
+            askOrderifyThread = null;
+            buttonAskOrderify.setText("Ask Orders");
         } else {
-            askThread = new AskThread();
-            askThread.start();
-            buttonAsk.setText("Asking...");
+            askOrderifyThread = new AskOrderifyThread();
+            askOrderifyThread.start();
+            buttonAskOrderify.setText("Asking...");
+        }
+    }
+
+    private volatile AskClassifyThread askClassifyThread = null;
+
+    private void buttonAskClassifyActionPerformed(ActionEvent e) {
+        if (askClassifyThread != null) {
+            askClassifyThread.stop = true;
+            askClassifyThread = null;
+            buttonAskClassify.setText("Ask");
+        } else {
+            askClassifyThread = new AskClassifyThread();
+            askClassifyThread.start();
+            buttonAskClassify.setText("Asking...");
         }
     }
 
@@ -154,7 +180,32 @@ public class HelperClassify extends DFrame {
         textAsk.edit().paste();
     }
 
-    private void buttonParseActionPerformed(ActionEvent e) {
+    private void buttonParseOrderifyActionPerformed(ActionEvent e) {
+        try {
+            var source = textAsk.edit().getValue().trim();
+            if (source.isBlank()) {
+                return;
+            }
+            for (var replace : Setup.getReplacesList(ReplaceAutoOn.OnOrderify)) {
+                source = replace.apply(source);
+            }
+            textAsk.edit().setValue(source);
+            var index = 0;
+            var matcher = Pattern.compile("\\[(\\d+)\\]").matcher(source);
+            while (matcher.find()) {
+                if (index >= workRef.ref.groups.size()) {
+                    break;
+                }
+                workRef.ref.groups.get(index).order = matcher.group(1);
+                index++;
+            }
+            comboGroupActionPerformed(e);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
+    private void buttonParseClassifyActionPerformed(ActionEvent e) {
         try {
             var source = textAsk.edit().getValue().trim();
             if (source.isBlank()) {
@@ -196,7 +247,21 @@ public class HelperClassify extends DFrame {
         }
     }
 
-    private void buttonBringActionPerformed(ActionEvent e) {
+    private void buttonBringOrderifyActionPerformed(ActionEvent e) {
+        var builder = new StringBuilder();
+        for (var group : workRef.ref.groups) {
+            var order = group.order;
+            if (order == null) {
+                order = "";
+            }
+            builder.append("[");
+            builder.append(order);
+            builder.append("]\n\n");
+        }
+        textAsk.setValue(builder.toString());
+    }
+
+    private void buttonBringClassifyActionPerformed(ActionEvent e) {
         var map = new LinkedHashMap<Integer, String>();
         for (var group : workRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
@@ -326,14 +391,30 @@ public class HelperClassify extends DFrame {
         return builder.toString();
     }
 
-    private String[] getInsertions() throws Exception {
+    private String getOrderifyInsertion() {
+        var result = new StringBuilder();
+        var first = true;
+        for (var group : workRef.ref.groups) {
+            if (first) {
+                first = false;
+            } else {
+                result.append("\n\n---\n\n");
+            }
+            result.append(group.titration.trim());
+            result.append("\n\n");
+            result.append(group.topics.trim());
+        }
+        return result.toString();
+    }
+
+    private String[] getClassifyInsertions() throws Exception {
         return new String[] {
-            getInsertionClasses(),
-            getInsertionTopics(),
+            getClassifyInsertionClasses(),
+            getClassifyInsertionTopics(),
         };
     }
 
-    private String getInsertionClasses() throws Exception {
+    private String getClassifyInsertionClasses() throws Exception {
         var classes = CKUtils.putBrackets(CKUtils.getAllClassifications(workRef.baseFolder));
         while (classes.size() < 64) {
             classes.add(classifyExamples[WizRand.getInt(classifyExamples.length)]);
@@ -341,7 +422,7 @@ public class HelperClassify extends DFrame {
         return String.join("\n", classes);
     }
 
-    private String getInsertionTopics() {
+    private String getClassifyInsertionTopics() {
         var result = new StringBuilder();
         var first = true;
         var orders = getOrders();
@@ -351,12 +432,12 @@ public class HelperClassify extends DFrame {
             } else {
                 result.append("\n\n---\n\n");
             }
-            result.append(getInsertion(order));
+            result.append(getClassifyInsertion(order));
         }
         return result.toString();
     }
 
-    private String getInsertion(Integer of) {
+    private String getClassifyInsertion(Integer of) {
         var result = new StringBuilder();
         for (var group : workRef.ref.groups) {
             if (group.order == null || group.order.isBlank()) {
@@ -450,18 +531,18 @@ public class HelperClassify extends DFrame {
         return result;
     }
 
-    private class AskThread extends Thread {
+    private class AskOrderifyThread extends Thread {
 
         public volatile boolean stop = false;
 
-        public AskThread() {
-            super("Asking Classify");
+        public AskOrderifyThread() {
+            super("Asking Orderify");
         }
 
         @Override
         public void run() {
             try {
-                var result = workRef.talkWithBase(Steps.Classify.getCommand(getInsertions()));
+                var result = workRef.talkWithBase(Steps.Orderify.getCommand(getOrderifyInsertion()));
                 if (stop) {
                     return;
                 }
@@ -473,9 +554,40 @@ public class HelperClassify extends DFrame {
             } catch (Exception ex) {
                 WizGUI.showError(ex);
             } finally {
-                if (askThread == this) {
-                    askThread = null;
-                    SwingUtilities.invokeLater(() -> buttonAsk.setText("Ask"));
+                if (askOrderifyThread == this) {
+                    askOrderifyThread = null;
+                    SwingUtilities.invokeLater(() -> buttonAskOrderify.setText("Ask Orders"));
+                }
+            }
+        }
+    }
+
+    private class AskClassifyThread extends Thread {
+
+        public volatile boolean stop = false;
+
+        public AskClassifyThread() {
+            super("Asking Classify");
+        }
+
+        @Override
+        public void run() {
+            try {
+                var result = workRef.talkWithBase(Steps.Classify.getCommand(getClassifyInsertions()));
+                if (stop) {
+                    return;
+                }
+                SwingUtilities.invokeLater(() -> {
+                    textAsk.setValue(result);
+                    textAsk.edit().selectionStart(0);
+                    textAsk.edit().selectionEnd(0);
+                });
+            } catch (Exception ex) {
+                WizGUI.showError(ex);
+            } finally {
+                if (askClassifyThread == this) {
+                    askClassifyThread = null;
+                    SwingUtilities.invokeLater(() -> buttonAskClassify.setText("Ask"));
                 }
             }
         }
