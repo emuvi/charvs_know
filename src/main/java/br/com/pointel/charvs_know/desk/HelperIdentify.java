@@ -30,20 +30,23 @@ public class HelperIdentify extends DFrame {
             .onAction(this::buttonAskActionPerformed);
     private final DButton buttonPaste = new DButton("Ʇ")
             .onAction(this::buttonPasteActionPerformed);
+    private final DButton buttonDel = new DButton("-")
+            .onAction(this::buttonDelActionPerformed);
+    private final DButton buttonJoin = new DButton("~")
+            .onAction(this::buttonJoinActionPerformed);
     private final DButton buttonParse = new DButton("Parse")
             .onAction(this::buttonParseActionPerformed);
     private final DButton buttonBring = new DButton("Bring")
             .onAction(this::buttonBringActionPerformed);
-    private final DButton buttonAdd = new DButton("Add")
-            .onAction(this::buttonAddActionPerformed);
     
     private final DPane paneAskActs = new DRowPane().insets(2)
         .growNone().put(buttonClear)
         .growHorizontal().put(buttonAsk)
         .growNone().put(buttonPaste)
+        .growNone().put(buttonDel)
+        .growNone().put(buttonJoin)
         .growNone().put(buttonParse)
-        .growNone().put(buttonBring)
-        .growNone().put(buttonAdd);
+        .growNone().put(buttonBring);
 
     private final TextEditor textAsk = new TextEditor();
      
@@ -51,6 +54,8 @@ public class HelperIdentify extends DFrame {
             .growHorizontal().put(paneAskActs)
             .growBoth().put(textAsk);
 
+    private final DButton buttonAdd = new DButton("Add")
+            .onAction(this::buttonAddActionPerformed);
     private final DButton buttonSet = new DButton("Set")
             .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
@@ -62,6 +67,7 @@ public class HelperIdentify extends DFrame {
     private final DButton buttonWrite = new DButton("Write")
             .onAction(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
+            .growNone().put(buttonAdd)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
             .growNone().put(checkAutoSave)
@@ -119,6 +125,63 @@ public class HelperIdentify extends DFrame {
     private void buttonPasteActionPerformed(ActionEvent e) {
         textAsk.edit().clear();
         textAsk.edit().paste();
+    }
+
+    private void buttonDelActionPerformed(ActionEvent e) {
+        try {
+            var text = textAsk.getValue();
+            var caret = textAsk.edit().selectionStart();
+            if (caret > text.length()) {
+                caret = text.length();
+            }
+            var prevSep = text.lastIndexOf("---", caret);
+            var nextSep = text.indexOf("---", caret);
+            if (prevSep != -1 && nextSep != -1 && prevSep == nextSep) {
+                return;
+            }
+            var start = prevSep == -1 ? 0 : prevSep + 3;
+            var end = nextSep == -1 ? text.length() : nextSep;
+            var newText = text.substring(0, start) + text.substring(end);
+            newText = newText.replaceAll("(?s)---\\s*---", "\n\n---\n\n");
+            newText = newText.replaceAll("(?s)^\\s*---\\s*", "");
+            newText = newText.replaceAll("(?s)\\s*---\\s*$", "");
+            newText = newText.replaceAll("\n{3,}", "\n\n");
+            textAsk.setValue(newText);
+            textAsk.edit().selectionStart(start);
+            textAsk.edit().selectionEnd(start);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
+    }
+
+    private void buttonJoinActionPerformed(ActionEvent e) {
+        try {
+            var text = textAsk.getValue();
+            var caretStart = textAsk.edit().selectionStart();
+            var caretEnd = textAsk.edit().selectionEnd();
+            if (caretStart > text.length()) caretStart = text.length();
+            if (caretEnd > text.length()) caretEnd = text.length();
+            if (caretStart == caretEnd) {
+                return;
+            }
+            if (caretStart > caretEnd) {
+                var temp = caretStart;
+                caretStart = caretEnd;
+                caretEnd = temp;
+            }
+            var selected = text.substring(caretStart, caretEnd);
+            selected = selected.replace("---", "");
+            var newText = text.substring(0, caretStart) + selected + text.substring(caretEnd);
+            newText = newText.replaceAll("(?s)---\\s*---", "\n\n---\n\n");
+            newText = newText.replaceAll("(?s)^\\s*---\\s*", "");
+            newText = newText.replaceAll("(?s)\\s*---\\s*$", "");
+            newText = newText.replaceAll("\n{3,}", "\n\n");
+            textAsk.setValue(newText);
+            textAsk.edit().selectionStart(caretStart);
+            textAsk.edit().selectionEnd(caretStart);
+        } catch (Exception ex) {
+            WizGUI.showError(ex);
+        }
     }
 
     private void buttonParseActionPerformed(ActionEvent e) {

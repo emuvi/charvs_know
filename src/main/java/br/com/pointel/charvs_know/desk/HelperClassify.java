@@ -57,8 +57,8 @@ public class HelperClassify extends DFrame {
             .growHorizontal().put(paneAskActs)
             .growBoth().put(textAsk);
 
-    private final DButton buttonOrdBy = new DButton("OrdBy")
-            .onAction(this::buttonOrdByActionPerformed);
+    private final DButton buttonOrdIn = new DButton("OrdIn")
+            .onAction(this::buttonOrdInActionPerformed);
     private final DButton buttonAuto = new DButton("Auto")
             .onAction(this::buttonAutoActionPerformed);
     private final DButton buttonSet = new DButton("Set")
@@ -72,7 +72,7 @@ public class HelperClassify extends DFrame {
     private final DButton buttonWrite = new DButton("Write")
             .onAction(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
-            .growNone().put(buttonOrdBy)
+            .growNone().put(buttonOrdIn)
             .growNone().put(buttonAuto)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
@@ -220,17 +220,17 @@ public class HelperClassify extends DFrame {
         textAsk.setValue(builder.toString());
     }
 
-    private void buttonOrdByActionPerformed(ActionEvent e) {
-        var ordBy = WizGUI.showInput("Orders Groups By:", "3");
-        if (ordBy == null || ordBy.isBlank()) {
+    private void buttonOrdInActionPerformed(ActionEvent e) {
+        var ordersIn = WizGUI.showInput("Group Orders In:", "4");
+        if (ordersIn == null || ordersIn.isBlank()) {
             return;
         }
-        createOrders(Double.parseDouble(ordBy));
+        createOrdersIn(Integer.parseInt(ordersIn));
         comboGroupActionPerformed(e);
     }
 
     private void buttonAutoActionPerformed(ActionEvent e) {
-        createOrders(3);
+        createOrdersAuto();
         comboGroupActionPerformed(e);
     }
 
@@ -385,14 +385,44 @@ public class HelperClassify extends DFrame {
         if (!result.isEmpty()) {
             return result;
         } else {
-            return createOrders(3);
+            return createOrdersAuto();
         }
     }
 
-    private Set<Integer> createOrders(double ordBy) {
+    private Set<Integer> createOrdersIn(int count) {
         var result = new LinkedHashSet<Integer>();
-        var size = (int) Math.ceil(workRef.ref.groups.size() / ordBy);
-        var iOrdBy = (int) ordBy;
+        if (count < 1) {
+            count = 1;
+        }
+        var total = workRef.ref.groups.size();
+        var perGroup = total / count;
+        var extra = total % count;
+        var order = 1;
+        var currentCount = 0;
+        var currentLimit = perGroup + (extra > 0 ? 1 : 0);
+        if (extra > 0) {
+            extra--;
+        }
+        for (var group : workRef.ref.groups) {
+            group.order = String.valueOf(order);
+            result.add(order);
+            currentCount++;
+            if (currentCount >= currentLimit && order < count) {
+                order++;
+                currentCount = 0;
+                currentLimit = perGroup + (extra > 0 ? 1 : 0);
+                if (extra > 0) {
+                    extra--;
+                }
+            }
+        }
+        return result;
+    }
+
+    private Set<Integer> createOrdersAuto() {
+        var result = new LinkedHashSet<Integer>();
+        var iOrdBy = 3;
+        var size = (int) Math.ceil(workRef.ref.groups.size() / iOrdBy);
         if (workRef.ref.groups.size() % iOrdBy == 1) {
             size--;
         }
