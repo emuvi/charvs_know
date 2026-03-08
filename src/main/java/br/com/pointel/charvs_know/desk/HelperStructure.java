@@ -114,6 +114,7 @@ public class HelperStructure extends DFrame {
             var index = new File(workRef.baseFolder, "index.md");
             index.delete();
             index.createNewFile();
+            buttonBringActionPerformed(e);
         } catch (Exception ex) {
             WizGUI.showError(ex);
         }
