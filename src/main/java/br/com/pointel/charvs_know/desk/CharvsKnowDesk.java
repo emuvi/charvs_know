@@ -201,12 +201,16 @@ public class CharvsKnowDesk extends DFrame {
 
     private void buttonActExecuteActionPerformed(ActionEvent evt) {
         try {
-            if (workRef == null) {
-                throw new Exception("Reference not selected.");
-            }
             var step = getSelectedStep();
             if (step == null) {
                 throw new Exception("Action not selected.");
+            }
+            if (step == Steps.Structure) {
+                step.getAct().execute(new WorkRef(getBaseFolder(), null, null, null, null, null));
+                return; 
+            }
+            if (workRef == null) {
+                throw new Exception("Reference not selected.");
             }
             step.getAct().execute(workRef);
         } catch (Exception e) {

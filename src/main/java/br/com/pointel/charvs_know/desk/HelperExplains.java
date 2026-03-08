@@ -337,7 +337,7 @@ public class HelperExplains extends DFrame {
         public volatile boolean stop = false;
 
         public AskThread() {
-            super("Asking Identify");
+            super("Asking Explains");
         }
 
         @Override

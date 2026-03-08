@@ -419,7 +419,7 @@ public class HelperClassify extends DFrame {
         public volatile boolean stop = false;
 
         public AskThread() {
-            super("Asking Identify");
+            super("Asking Classify");
         }
 
         @Override

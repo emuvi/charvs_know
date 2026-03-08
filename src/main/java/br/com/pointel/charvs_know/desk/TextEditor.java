@@ -51,6 +51,10 @@ public class TextEditor extends DBordPane {
         textEdit.value(text);
     }
 
+    public void append(String text) {
+        textEdit.append(text);
+    }
+
     public TextEditor onFocusGained(Consumer<FocusEvent> consumer) {
         textEdit.onFocusGained(consumer);
         return this;

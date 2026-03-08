@@ -7,7 +7,6 @@ import java.util.Date;
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.charvs_know.CKUtils;
-import br.com.pointel.charvs_know.RefGroup;
 import br.com.pointel.charvs_know.Setup;
 import br.com.pointel.charvs_know.Steps;
 import br.com.pointel.charvs_know.WorkRef;
@@ -257,7 +256,7 @@ public class HelperOrganize extends DFrame {
         public volatile boolean stop = false;
 
         public AskThread() {
-            super("Asking Identify");
+            super("Asking Organize");
         }
 
         @Override

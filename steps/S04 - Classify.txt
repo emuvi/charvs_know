@@ -6,8 +6,7 @@ Cada classificação sugerida deve apresentar quatro níveis hierárquicos, cada
 
 Inicie cada nível hierárquico de classificação com o carácter `-`.
 
-O primeiro nível hierárquico deve ser ou `Funcional` ou `Elementar` conforme a natureza de aplicação de cada um dos grupos de significados nos assuntos abaixo separados por `---` que foram determinados conforme o documento em anexo nessa conversa.
-
+O primeiro nível hierárquico deve ser implacavelmente definido pela adoção de apenas um único classificador dentre as seguintes opções exclusivas: Acadêmico / Profissional, Fundamento / Aplicação, Teórico / Prático, Macro / Micro, Estático / Dinâmico, Subjetivo / Objetivo, Analítico / Sintético, Descritivo / Normativo, Estratégico / Operacional, Interno / Externo, Lógico / Físico ou Natural / Cultural.
 
 # Estilos, Modelos e Exemplos de Classificação
 Sugira cada classificação para cada um dos grupos semióticos de assuntos abaixo separados por `---` conforme os seguintes estilos, modelos e exemplos de classificação:
@@ -85,7 +84,7 @@ Assegure uma uniformidade ontológica e taxonômica absoluta em todo o sistema g
 
 Sob nenhuma hipótese fragmente temas semelhantes em categorias de nível 2 ou 3 diferentes; o agrupamento inteligente exige que a matriz de pensamento seja idêntica, unindo o máximo de blocos separados por `---` debaixo das mesmas raízes taxonômicas para formar um ecossistema classificatório maciço e unificado.
 
-A formatação da sua resposta deve obedecer incondicionalmente à estrutura de exatamente quatro níveis hierárquicos, encapsulados obrigatoriamente de forma que cada classificação comece com `[[` e termine com `]]`. É estritamente exigido que o primeiro nível hierárquico seja implacavelmente definido apenas como `Funcional` ou `Elementar`, refletindo a natureza da aplicação de cada um dos grupos de significados analisados.
+A formatação da sua resposta deve obedecer incondicionalmente à estrutura de exatamente quatro níveis hierárquicos, encapsulados obrigatoriamente de forma que cada classificação comece com `[[` e termine com `]]`. É estritamente exigido que o primeiro nível hierárquico seja implacavelmente definido entre: `Acadêmico` ou `Profissional`, `Fundamento` ou `Aplicação`, `Teórico` ou `Prático`, `Macro` ou `Micro`, `Estático` ou `Dinâmico`, `Subjetivo` ou `Objetivo`, `Analítico` ou `Sintético`, `Descritivo` ou `Normativo`, `Estratégico` ou `Operacional`, `Interno` ou `Externo`, `Lógico` ou `Físico` ou `Natural` ou `Cultural`. E deve refletir a natureza de cada um dos grupos de significados analisados.
 
 Você está terminantemente proibido de violar os limites matemáticos de extensão exigidos para a taxonomia: o segundo nível hierárquico não deve ter mais de 25 caracteres , o terceiro nível não deve ter mais de 50 caracteres, o quarto nível não deve ter mais de 75 caracteres, e o título de classificação completo sugerido não deve exceder 180 caracteres em nenhuma hipótese. Aplique de forma implacável a regra de capitalização, garantindo que todas as palavras significativas iniciem com a primeira letra em maiúsculas, enquanto as palavras menos significativas, como preposições e conjunções, devem ser redigidas com todas as suas letras inteiramente em minúsculas.
 

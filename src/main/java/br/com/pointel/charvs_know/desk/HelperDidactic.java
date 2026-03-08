@@ -2,17 +2,11 @@ package br.com.pointel.charvs_know.desk;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
-import org.apache.commons.io.FilenameUtils;
-
 import br.com.pointel.charvs_know.CKUtils;
-import br.com.pointel.charvs_know.ClassData;
 import br.com.pointel.charvs_know.ClassDatex;
 import br.com.pointel.charvs_know.RefGroup;
 import br.com.pointel.charvs_know.Setup;
@@ -337,7 +331,7 @@ public class HelperDidactic extends DFrame {
         public volatile boolean stop = false;
 
         public AskThread() {
-            super("Asking Identify");
+            super("Asking Didactic");
         }
 
         @Override
