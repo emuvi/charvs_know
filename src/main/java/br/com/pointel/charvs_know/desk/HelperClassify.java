@@ -11,7 +11,6 @@ import java.util.Set;
 import javax.swing.SwingUtilities;
 
 import br.com.pointel.charvs_know.CKUtils;
-import br.com.pointel.charvs_know.RefGroup;
 import br.com.pointel.charvs_know.Setup;
 import br.com.pointel.charvs_know.Steps;
 import br.com.pointel.charvs_know.WorkRef;
@@ -59,8 +58,8 @@ public class HelperClassify extends DFrame {
 
     private final DButton buttonOrdIn = new DButton("OrdIn")
             .onAction(this::buttonOrdInActionPerformed);
-    private final DButton buttonAuto = new DButton("Auto")
-            .onAction(this::buttonAutoActionPerformed);
+    private final DButton buttonOrdBy = new DButton("OrdBy")
+            .onAction(this::buttonOrdByActionPerformed);
     private final DButton buttonSet = new DButton("Set")
             .onAction(this::buttonSetActionPerformed);
     private final DComboEdit<String> comboGroup = new DComboEdit<String>()
@@ -73,7 +72,7 @@ public class HelperClassify extends DFrame {
             .onAction(this::buttonWriteActionPerformed);
     private final DPane paneGroupActs = new DRowPane().insets(2)
             .growNone().put(buttonOrdIn)
-            .growNone().put(buttonAuto)
+            .growNone().put(buttonOrdBy)
             .growNone().put(buttonSet)
             .growHorizontal().put(comboGroup)
             .growNone().put(checkAutoSave)
@@ -229,8 +228,12 @@ public class HelperClassify extends DFrame {
         comboGroupActionPerformed(e);
     }
 
-    private void buttonAutoActionPerformed(ActionEvent e) {
-        createOrdersAuto();
+    private void buttonOrdByActionPerformed(ActionEvent e) {
+        var ordersBy = WizGUI.showInput("Group Orders By:", "3");
+        if (ordersBy == null || ordersBy.isBlank()) {
+            return;
+        }
+        createOrdersBy(Integer.parseInt(ordersBy));
         comboGroupActionPerformed(e);
     }
 
@@ -385,18 +388,18 @@ public class HelperClassify extends DFrame {
         if (!result.isEmpty()) {
             return result;
         } else {
-            return createOrdersAuto();
+            return createOrdersBy(3);
         }
     }
 
-    private Set<Integer> createOrdersIn(int count) {
+    private Set<Integer> createOrdersIn(int ordIn) {
         var result = new LinkedHashSet<Integer>();
-        if (count < 1) {
-            count = 1;
+        if (ordIn < 1) {
+            ordIn = 1;
         }
         var total = workRef.ref.groups.size();
-        var perGroup = total / count;
-        var extra = total % count;
+        var perGroup = total / ordIn;
+        var extra = total % ordIn;
         var order = 1;
         var currentCount = 0;
         var currentLimit = perGroup + (extra > 0 ? 1 : 0);
@@ -407,7 +410,7 @@ public class HelperClassify extends DFrame {
             group.order = String.valueOf(order);
             result.add(order);
             currentCount++;
-            if (currentCount >= currentLimit && order < count) {
+            if (currentCount >= currentLimit && order < ordIn) {
                 order++;
                 currentCount = 0;
                 currentLimit = perGroup + (extra > 0 ? 1 : 0);
@@ -419,10 +422,13 @@ public class HelperClassify extends DFrame {
         return result;
     }
 
-    private Set<Integer> createOrdersAuto() {
+    private Set<Integer> createOrdersBy(int ordBy) {
         var result = new LinkedHashSet<Integer>();
-        var iOrdBy = 3;
-        var size = (int) Math.ceil(workRef.ref.groups.size() / iOrdBy);
+        var iOrdBy = ordBy;
+        if (iOrdBy < 1) {
+            iOrdBy = 1;
+        }
+        var size = (int) Math.ceil(workRef.ref.groups.size() / (double) iOrdBy);
         if (workRef.ref.groups.size() % iOrdBy == 1) {
             size--;
         }
