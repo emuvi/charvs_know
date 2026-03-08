@@ -18,6 +18,7 @@ import br.com.pointel.jarch.desk.DColPane;
 import br.com.pointel.jarch.desk.DFrame;
 import br.com.pointel.jarch.desk.DPane;
 import br.com.pointel.jarch.desk.DRowPane;
+import br.com.pointel.jarch.desk.DScroll;
 import br.com.pointel.jarch.desk.DSplitter;
 import br.com.pointel.jarch.desk.DText;
 import br.com.pointel.jarch.mage.WizFiles;
@@ -64,10 +65,11 @@ public class HelperStructure extends DFrame {
 
     private final DText textTopics = new DText()
             .editable(false);
+    private final DScroll scrollTopics = new DScroll(textTopics);
 
     private final DPane paneGroup = new DColPane().insets(2)
             .growHorizontal().put(paneGroupActs)
-            .growBoth().put(textTopics);
+            .growBoth().put(scrollTopics);
 
     private final DSplitter splitterBody = new DSplitter()
             .horizontal().left(paneAsk).right(paneGroup)
@@ -164,15 +166,16 @@ public class HelperStructure extends DFrame {
                     if (partName.isBlank()) {
                         continue;
                     }
+                    var nodeName = "- " + partName;
                     Node found = null;
                     for (var child : current.children) {
-                        if (child.name.equals(partName)) {
+                        if (child.name.equals(nodeName)) {
                             found = child;
                             break;
                         }
                     }
                     if (found == null) {
-                        found = new Node("- " + partName);
+                        found = new Node(nodeName);
                         current.add(found);
                     }
                     current = found;
@@ -270,7 +273,14 @@ public class HelperStructure extends DFrame {
                     return;
                 }
                 SwingUtilities.invokeLater(() -> {
-                    textAsk.append(result);
+                    var actual = textAsk.getValue();
+                    if (actual == null || actual.isBlank()) {
+                        actual = "";
+                    }
+                    if (!actual.isBlank()) {
+                        actual += "\n\n";
+                    }
+                    textAsk.setValue(actual + result);
                     textAsk.edit().selectionStart(0);
                     textAsk.edit().selectionEnd(0);
                 });
