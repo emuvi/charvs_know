@@ -13,10 +13,28 @@ public class RefMemoa {
     }
 
     public RefMemoa append(String text) {
+        if (text == null || text.isBlank()) {
+            return this;
+        }
+        text = text.trim();
         if (!isPresent()) {
             this.text = text;
         } else {
-            this.text += "\n\n" + text;
+            this.text = this.text + "\n\n" + text;
+        }
+        this.text = this.text.trim();
+        return this;
+    }
+
+    public RefMemoa appendOnTop(String text) {
+        if (text == null || text.isBlank()) {
+            return this;
+        }
+        text = text.trim();
+        if (!isPresent()) {
+            this.text = text;
+        } else {
+            this.text = text + "\n\n" + this.text;
         }
         this.text = this.text.trim();
         return this;

@@ -252,7 +252,8 @@ public class CharvsKnowDesk extends DFrame {
     public void selectRef(File selectFile) throws Exception {
         var hashMD5 = "& " + WizBytes.getMD5(selectFile);
         var refFile = getBaseRefFile(hashMD5 + ".md");
-        var refWithExtension = hashMD5 + "." + FilenameUtils.getExtension(selectFile.getName());
+        var extension = FilenameUtils.getExtension(selectFile.getName());
+        var refWithExtension = hashMD5 + "." + extension;
         var sourceFile = getBaseRefFile(refWithExtension);
         if (!sourceFile.exists()) {
             if (WizGUI.showConfirm("Selected reference not found in the base. Do you wanna to move it inside?")) {
@@ -270,12 +271,16 @@ public class CharvsKnowDesk extends DFrame {
             ref = new Ref();
             ref.props.hashMD5 = hashMD5;
             ref.props.createdAt = WizUtilDate.formatDateMach(new Date());
+            var source = "Fonte: [[" + refWithExtension + "]]";
+            if (!ref.memoa.contains(source)) {
+                ref.memoa.append(source);
+            }
         } else {
             ref = RefDatex.read(refFile);
         }
-        var refFrom = "Ref: " + selectFile.getName();
-        if (!ref.memoa.contains(refFrom)) {
-            ref.memoa.append(refFrom);
+        var named = "Nomeado: " + selectFile.getName();
+        if (!ref.memoa.contains(named)) {
+            ref.memoa.appendOnTop(named);
         }
         RefDatex.write(ref, refFile);
         fieldSelectedRefWithExtension.setText(refWithExtension);
