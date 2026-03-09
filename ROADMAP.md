@@ -11,17 +11,8 @@ All desired features for this project will be documented in this file.
 
     - Today is made the upload only of the reference. We want to make the upload of the entire base.
 
-## Identify
-
-    - Put a `-` button to delete a selected group.
-
-## Classify
-
-    - Make the grouping on classify automatic and be grouped semantically.
-
 ## Groovy Commands
 
-    - Make the interface to develop Groovy Commands.
     - Make possible the called groovy command to throw exceptions and stop the process.
 
 ## TextEditor
