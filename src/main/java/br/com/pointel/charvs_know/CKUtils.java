@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pointel.jarch.data.Pair;
 import br.com.pointel.jarch.mage.WizString;
 
 public class CKUtils {
@@ -126,6 +127,31 @@ public class CKUtils {
         return title.replaceAll("\\s+", " ").trim();
     }
 
+    public static String cleanBracketsLinks(String source) {
+        if (source == null || source.isBlank()) {
+            return source;
+        }
+        var links = getBracketsLinks(source);
+        if (links.isEmpty()) {
+            return source;
+        }
+        var builder = new StringBuilder();
+        int lastEnd = 0;
+        for (var link : links) {
+            builder.append(source, lastEnd, link.key());
+            builder.append("[[");
+            var content = source.substring(link.key() + 2, link.val() - 2);
+            var cleaned = cleanFileName(content);
+            builder.append(cleaned);
+            builder.append("]]");
+            lastEnd = link.val();
+        }
+        if (lastEnd < source.length()) {
+            builder.append(source, lastEnd, source.length());
+        }
+        return builder.toString();
+    }
+
     public static List<String> putBrackets(List<String> links) {
         if (links == null) {
             return null;
@@ -160,6 +186,24 @@ public class CKUtils {
             link = link.substring(0, link.length() - 2);
         }
         return link;
+    }
+
+    public static List<Pair<Integer, Integer>> getBracketsLinks(String source) {
+        var result = new ArrayList<Pair<Integer, Integer>>();
+        if (source == null || source.isBlank()) {
+            return result;
+        }
+        var start = source.indexOf("[[");
+        while (start > -1) {
+            var end = source.indexOf("]]", start);
+            if (end > -1) {
+                result.add(new Pair<>(start, end + 2));
+                start = source.indexOf("[[", end + 2);
+            } else {
+                break;
+            }
+        }
+        return result;
     }
 
 }

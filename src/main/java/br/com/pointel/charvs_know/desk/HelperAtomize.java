@@ -8,7 +8,6 @@ import javax.swing.SwingUtilities;
 
 import br.com.pointel.charvs_know.AtomicNote;
 import br.com.pointel.charvs_know.CKUtils;
-import br.com.pointel.charvs_know.ClassData;
 import br.com.pointel.charvs_know.ClassDatex;
 import br.com.pointel.charvs_know.RefGroup;
 import br.com.pointel.charvs_know.Setup;
@@ -270,6 +269,7 @@ public class HelperAtomize extends DFrame {
                     continue;
                 }
                 name = CKUtils.cleanFileName(name);
+                atomicSource = CKUtils.cleanBracketsLinks(atomicSource);
                 var atomicFile = new File(classFolder, name + ".md");
                 AtomicNote atomicNote;
                 if (atomicFile.exists()) {
