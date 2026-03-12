@@ -16,7 +16,7 @@ import br.com.pointel.charvs_know.talkers.gemini.Request;
 import br.com.pointel.charvs_know.talkers.gemini.Response;
 import br.com.pointel.jarch.mage.WizEnv;
 
-public class TalkerGenai implements Talker {
+public class TalkerGemini implements Talker {
 
     private final HttpClient httpClient = HttpClient.newHttpClient();
     private final Gson gson = new Gson();
