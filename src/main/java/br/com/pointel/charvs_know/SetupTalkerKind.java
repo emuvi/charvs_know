@@ -2,6 +2,7 @@ package br.com.pointel.charvs_know;
 
 public enum SetupTalkerKind {
 
+    GCloud(TalkerGCloud.class),
     Genai(TalkerGemini.class), 
     Openai(TalkerOpenai.class), 
     Clipboard(TalkerClipboard.class);
