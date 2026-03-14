@@ -9,7 +9,7 @@ public class ActUpload implements Act {
 
     @Override
     public void execute(WorkRef workRef) throws Exception {
-        RefBaseFTP.upload(workRef.sourceFile, workRef.refWithExtension);
+        workRef.refBase.upload(workRef.sourceFile, workRef.refWithExtension);
         workRef.ref.props.uploadedAt = WizUtilDate.formatDateMach(new Date());
         workRef.write();
         WizGUI.showInfo("Upload executed.");

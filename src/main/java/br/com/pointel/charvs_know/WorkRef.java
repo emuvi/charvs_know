@@ -19,6 +19,7 @@ public class WorkRef {
     public final Runnable updateStatus;
     public final Talker talker;
     public final Sounder sounder;
+    public final RefBase refBase;
 
     private volatile File workFile;
 
@@ -31,6 +32,7 @@ public class WorkRef {
         this.updateStatus = updateStatus;
         this.talker = Talker.get();
         this.sounder = Sounder.get();
+        this.refBase = RefBase.get();
     }
 
     public String talk(String command) throws Exception {
@@ -40,7 +42,7 @@ public class WorkRef {
 
     public String talkWithBase(String command) throws Exception {
         logger.info("Talk Command:\n{}", command);
-        var baseURI = RefBaseFTP.getURIRefs(refWithExtension);
+        var baseURI = refBase.getURIRefs(refWithExtension);
         logger.info("Talk Base URI:\n{}", baseURI);
         return talker.talk(command, UriMime.of(baseURI));
     }

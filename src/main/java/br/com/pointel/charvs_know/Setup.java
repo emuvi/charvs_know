@@ -95,6 +95,16 @@ public class Setup {
         WizProps.set(KEY_TALKER_KIND, talkerKind.ordinal());
     }
 
+    public static final String KEY_REF_BASE_KIND = "FRAME_SETUP_COMP_REF_BASE_KIND";
+    
+    public static SetupRefBaseKind getRefBaseKind() {
+        return SetupRefBaseKind.values()[WizProps.get(KEY_REF_BASE_KIND, 0)];
+    }
+
+    public static void setRefBaseKind(SetupRefBaseKind refBaseKind) {
+        WizProps.set(KEY_REF_BASE_KIND, refBaseKind.ordinal());
+    }
+
     public static final String KEY_OPENAI_MODEL = "FRAME_SETUP_COMP_OPENAI_MODEL";
     
     public static SetupOpenaiModel getOpenaiModel() {
