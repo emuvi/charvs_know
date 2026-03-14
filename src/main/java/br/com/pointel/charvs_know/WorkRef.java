@@ -40,7 +40,7 @@ public class WorkRef {
 
     public String talkWithBase(String command) throws Exception {
         logger.info("Talk Command:\n{}", command);
-        var baseURI = RefBase.getURIRefs(refWithExtension);
+        var baseURI = RefBaseFTP.getURIRefs(refWithExtension);
         logger.info("Talk Base URI:\n{}", baseURI);
         return talker.talk(command, UriMime.of(baseURI));
     }

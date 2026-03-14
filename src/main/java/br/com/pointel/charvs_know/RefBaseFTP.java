@@ -8,7 +8,7 @@ import br.com.pointel.jarch.flow.FTP;
 import br.com.pointel.jarch.mage.WizBytes;
 import br.com.pointel.jarch.mage.WizEnv;
 
-public class RefBase {
+public class RefBaseFTP {
 
 
     public static final String BASE_URI = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_URI", "https://urvs.com.br/");
