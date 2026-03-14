@@ -11,10 +11,10 @@ import br.com.pointel.jarch.mage.WizEnv;
 public class RefBaseFTP implements RefBase {
 
 
-    public final String BASE_URI = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_URI", "https://urvs.com.br/");
-    public final String BASE_REFS = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_FOLDER", "Conhecer/+ Refs/");
-    public final String BASE_INSIDE = WizEnv.get("CHARVS_KNOW_REFS_BASE_BASE_INSIDE", "public_html/");
-    public final String BASE_URI_REFS = BASE_URI + BASE_REFS;
+    public final String BASE_FTP_URI = WizEnv.get("CHARVS_KNOW_REFS_BASE_FTP_URI", "https://urvs.com.br/");
+    public final String BASE_FTP_REFS = WizEnv.get("CHARVS_KNOW_REFS_BASE_FTP_FOLDER", "Conhecer/+ Refs/");
+    public final String BASE_FTP_INSIDE = WizEnv.get("CHARVS_KNOW_REFS_BASE_FTP_INSIDE", "public_html/");
+    public final String BASE_FTP_URI_REFS = BASE_FTP_URI + BASE_FTP_REFS;
 
 
     private final FTP ftp = new FTP(
@@ -59,11 +59,11 @@ public class RefBaseFTP implements RefBase {
     }
 
     private String getInsideRefsFolder(String refWithExtension) {
-        return BASE_INSIDE + BASE_REFS + refWithExtension.substring(0, 4);
+        return BASE_FTP_INSIDE + BASE_FTP_REFS + refWithExtension.substring(0, 4);
     }
 
     private String getURIRefsFolder(String refWithExtension) {
-        return BASE_URI + BASE_REFS + refWithExtension.substring(0, 4);
+        return BASE_FTP_URI + BASE_FTP_REFS + refWithExtension.substring(0, 4);
     }
 
 }
